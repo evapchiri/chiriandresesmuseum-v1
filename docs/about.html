@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About the project — Chiriandreses Museum</title>
+<meta name="description" content="How the Chiriandreses Museum project came to be, the process behind it, and where to find the full documentation.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="site-hero">
+  <div class="wrap">
+    <h1 class="hero-title">Chiriandreses Museum</h1>
+    <p class="hero-subtitle">Our family's story in 3D</p>
+  </div>
+</header>
+
+<main class="wrap about-main">
+  <p class="page-intro">Here you can learn how the project came to be, the challenges and lessons along the way, and more detail about the project as a whole.</p>
+
+  <div class="about-layout">
+    <nav class="about-nav" aria-label="About page sections">
+      <button type="button" class="active" data-panel="about">About the project</button>
+      <button type="button" data-panel="lab-notes">Lab notes</button>
+      <button type="button" data-panel="lessons">Lessons learned</button>
+      <button type="button" data-panel="documentation">Documentation</button>
+    </nav>
+
+    <div class="about-content">
+
+      <section data-panel-content="about" tabindex="-1">
+        <h2>About the project</h2>
+
+<p>This project followed the European Commission's VIGIE 2020/654 study on quality in 3D digitisation of tangible cultural heritage, adapted throughout for a solo practitioner working with personal, non-fragile objects rather than an institutional team and archival-grade holdings. Planning and capture practice also drew on the 3D4CH Competence Centre's <em>Essential Guide to 3D Digitised Heritage</em> training series, alongside photogrammetry community guidance on preparing models for reuse in VR, AR, and web-based viewing.</p>
+
+<h3>Scope &amp; team</h3>
+<p>The objective was to generate high-quality 3D models of a family heirloom and travel-souvenir collection, following Europeana-aligned standards for model, metadata, and paradata, and to make them accessible through a purpose-built web experience. I led capture, processing, and documentation. Custom tooling was developed in collaboration with my partner, <strong>Robert Upson</strong>, a Senior Software Engineer, to address reconstruction failures the standard pipeline couldn't resolve.</p>
+
+<h3>Equipment &amp; software</h3>
+<ul class="spec-list">
+  <li><strong>Camera:</strong> Canon DSLR 2000D, EF-S 18-55mm IS II lens</li>
+  <li><strong>Lighting:</strong> 2× NEEWER portable lights, dimmable 5600K 1000LM, white diffuser filter</li>
+  <li><strong>Turntable:</strong> Home turntable rig, white background</li>
+  <li><strong>Scale reference:</strong> Homemade, accurate to ±1mm</li>
+  <li><strong>Photogrammetry:</strong> Agisoft Metashape Standard v2.2.2</li>
+  <li><strong>Supplementary tooling:</strong> HeritageScan — a custom CLI built on Apple's RealityKit SDK, for cases the standard pipeline couldn't resolve</li>
+  <li><strong>3D authoring:</strong> Blender</li>
+  <li><strong>Compute:</strong> MacBook M2 2022, 16GB</li>
+</ul>
+
+<h3>The capture campaign</h3>
+<p>18 objects were photographed across a single week's access to the family collection at my parents' home in Spain (16–22 February 2026), immediately before my relocation to Japan. Re-photographing wasn't possible afterwards — the objects aren't accessible for recapture — which shaped several decisions along the way. Target accuracy was ±5mm, target resolution 1.5mm, target reprojection error 1.5px. Nine objects reached finished status: technical success (a model exists) was treated as necessary but not sufficient — a model also had to remain a credible representation of the object without disproportionate manual reconstruction to count.</p>
+
+<h3>Custom tooling: HeritageScan</h3>
+<p>Where Metashape's standard reconstruction failed — high-specularity or dark textures, low-featured surfaces — Robert built HeritageScan to test an alternative reconstruction algorithm against the same source images. It didn't resolve every alignment challenge Metashape struggled with, but for one object in particular it produced a better result in roughly a fifth of the time and effort.</p>
+
+<p>The full methodology and per-object paradata record goes into considerably more depth than fits here — see the Documentation tab for the complete document.</p>
+      </section>
+
+      <section data-panel-content="lab-notes" hidden tabindex="-1">
+        <h2>Lab notes</h2>
+        <p class="placeholder-note">Coming soon — day-to-day notes from the capture and processing sessions will live here.</p>
+      </section>
+
+      <section data-panel-content="lessons" hidden tabindex="-1">
+        <h2>Lessons learned</h2>
+        <p class="placeholder-note">Coming soon — what worked, what didn't, and what I'd do differently next time.</p>
+      </section>
+
+      <section data-panel-content="documentation" hidden tabindex="-1">
+        <h2>Documentation</h2>
+        <p>The source records behind this site. Some links are still being connected — see the note below.</p>
+        <ul class="doc-list">
+          <li><a href="REPLACE_WITH_LINK">Methodology & Paradata document (full)</a></li>
+        <li><a href="REPLACE_WITH_LINK">Digitisation journal — dated process log, 16 Feb–19 May 2026</a></li>
+        <li><a href="REPLACE_WITH_LINK">Object digitisation notes (spreadsheet, per-object capture & processing sheets)</a></li>
+        <li><a href="REPLACE_WITH_LINK">Object metadata info (spreadsheet, family-sourced raw metadata + narrative descriptions)</a></li>
+        <li><a href="REPLACE_WITH_LINK">Final Metashape processing reports (PDF, one per object)</a></li>
+        <li><a href="REPLACE_WITH_LINK">Project planning table (EP-001 / EP-002)</a></li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Licensed CC BY-NC-SA 4.0. Part of the <a href="index.html">Chiriandreses Museum</a> digitisation campaign.</p>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

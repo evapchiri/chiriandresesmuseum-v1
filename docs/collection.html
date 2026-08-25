@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Collection — Chiriandreses Museum</title>
+<meta name="description" content="Nine 3D-digitised family heirlooms — filter by acquisition year, country, continent, ID, or object name.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="site-hero">
+  <div class="wrap">
+    <h1 class="hero-title">Chiriandreses Museum</h1>
+    <p class="hero-subtitle">Our family's story in 3D</p>
+  </div>
+</header>
+
+<main class="wrap collection-main">
+  <p class="page-intro">Nine objects, each with its story, its capture and processing route, and an honest account of which material properties were measured and which were estimated. Filter the set below, or browse the full collection.</p>
+
+  <form class="filter-bar" aria-label="Filter the collection">
+    <div class="filter-field">
+      <label for="filter-year">Acquisition Year</label>
+      <select id="filter-year" data-filter="decade">
+        <option value="all">All</option>
+        <option value="1980s">1980s</option>
+        <option value="1990s">1990s</option>
+        <option value="2000s">2000s</option>
+        <option value="2010s">2010s</option>
+      </select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-country">Country</label>
+      <select id="filter-country" data-filter="country">
+        <option value="all">All</option>
+        <option value="China / Hong Kong">China / Hong Kong</option>
+        <option value="Egypt">Egypt</option>
+        <option value="Morocco">Morocco</option>
+        <option value="Senegal">Senegal</option>
+        <option value="Spain">Spain</option>
+        <option value="Thailand">Thailand</option>
+      </select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-continent">Continent</label>
+      <select id="filter-continent" data-filter="continent">
+        <option value="all">All</option>
+        <option value="Africa">Africa</option>
+        <option value="Asia">Asia</option>
+        <option value="Europe">Europe</option>
+      </select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-id">ID</label>
+      <select id="filter-id" data-filter="id">
+        <option value="all">All</option>
+        <option value="CHAN-001">CHAN-001</option>
+        <option value="CHAN-003">CHAN-003</option>
+        <option value="CHAN-006">CHAN-006</option>
+        <option value="CHAN-007">CHAN-007</option>
+        <option value="CHAN-009">CHAN-009</option>
+        <option value="CHAN-012">CHAN-012</option>
+        <option value="CHAN-013">CHAN-013</option>
+        <option value="CHAN-016">CHAN-016</option>
+        <option value="CHAN-017">CHAN-017</option>
+      </select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-name">Object Name</label>
+      <select id="filter-name" data-filter="name">
+        <option value="all">All</option>
+        <option value="Berber candlestick">Berber candlestick</option>
+        <option value="Box of little birds">Box of little birds</option>
+        <option value="Box of stone eggs">Box of stone eggs</option>
+        <option value="Chinese personal seal">Chinese personal seal</option>
+        <option value="Marrakech's Koutoubia replica souvenir">Marrakech's Koutoubia replica souvenir</option>
+        <option value="Mysterious stone foot">Mysterious stone foot</option>
+        <option value="Senegalese toy bus">Senegalese toy bus</option>
+        <option value="Thai dancer">Thai dancer</option>
+        <option value="The Chinese horn (ceremonial vessel, rhyton)">The Chinese horn (ceremonial vessel, rhyton)</option>
+      </select>
+    </div>
+    <button type="button" class="filter-reset">Reset</button>
+  </form>
+
+  <p class="no-results" hidden>No objects match these filters.</p>
+
+  <div class="grid">
+    <article class="card" data-decade="1990s" data-country="Morocco" data-continent="Africa" data-id="CHAN-001" data-name="Marrakech's Koutoubia replica souvenir">
+    <span class="card-id">CHAN-001</span>
+    <h2><a href="objects/koutoubia-replica.html">Marrakech's Koutoubia replica souvenir</a></h2>
+    <p class="teaser">Architectural replica of the Koutoubia minaret in Marrakech, a 12th-century Almohad landmark known as the ‘sister’ to the Giralda …</p>
+    <p class="tags">1990s · Morocco</p>
+  </article>
+<article class="card" data-decade="1990s" data-country="Morocco" data-continent="Africa" data-id="CHAN-003" data-name="Berber candlestick">
+    <span class="card-id">CHAN-003</span>
+    <h2><a href="objects/berber-candlestick.html">Berber candlestick</a></h2>
+    <p class="teaser">A souvenir purchased by my parents on their first ever trip together as a couple, in the Medina of Rabat. This traditional steatit…</p>
+    <p class="tags">1990s · Morocco</p>
+  </article>
+<article class="card" data-decade="1980s" data-country="China / Hong Kong" data-continent="Asia" data-id="CHAN-006" data-name="Chinese personal seal">
+    <span class="card-id">CHAN-006</span>
+    <h2><a href="objects/chinese-personal-seal.html">Chinese personal seal</a></h2>
+    <p class="teaser">A heavy, ink-stained piece of Chinese history my father got from a version of Hong Kong that doesn't really exist anymore, bought …</p>
+    <p class="tags">1980s · China / Hong Kong</p>
+  </article>
+<article class="card" data-decade="1980s" data-country="Thailand" data-continent="Asia" data-id="CHAN-007" data-name="Thai dancer">
+    <span class="card-id">CHAN-007</span>
+    <h2><a href="objects/thai-dancer.html">Thai dancer</a></h2>
+    <p class="teaser">An ornamental figurine of a traditional Thai dancer, bought by my mother around 1988 or 1989 from one of the market stalls that li…</p>
+    <p class="tags">1980s · Thailand</p>
+  </article>
+<article class="card" data-decade="1980s" data-country="China / Hong Kong" data-continent="Asia" data-id="CHAN-009" data-name="The Chinese horn (ceremonial vessel, rhyton)">
+    <span class="card-id">CHAN-009</span>
+    <h2><a href="objects/chinese-rhyton.html">The Chinese horn (ceremonial vessel, rhyton)</a></h2>
+    <p class="teaser">Based on its intricate iconography and material, we believe this to be a replica of a late Ming / early Qing dynasty-style rhyton …</p>
+    <p class="tags">1980s · China / Hong Kong</p>
+  </article>
+<article class="card" data-decade="1980s" data-country="Egypt" data-continent="Africa" data-id="CHAN-012" data-name="Box of little birds">
+    <span class="card-id">CHAN-012</span>
+    <h2><a href="objects/box-of-little-birds.html">Box of little birds</a></h2>
+    <p class="teaser">A charming wooden box filled with 12 little hand-carved birds, each painted with its own unique pattern — a traditional souvenir f…</p>
+    <p class="tags">1980s · Egypt</p>
+  </article>
+<article class="card" data-decade="2010s" data-country="Senegal" data-continent="Africa" data-id="CHAN-013" data-name="Senegalese toy bus">
+    <span class="card-id">CHAN-013</span>
+    <h2><a href="objects/senegalese-toy-bus.html">Senegalese toy bus</a></h2>
+    <p class="teaser">A vibrant little bus made from wood and card, mimicking the colourful ‘car rapides’ seen everywhere in cities like Saint-Louis. It…</p>
+    <p class="tags">2010s · Senegal</p>
+  </article>
+<article class="card" data-decade="1980s" data-country="Egypt" data-continent="Africa" data-id="CHAN-016" data-name="Box of stone eggs">
+    <span class="card-id">CHAN-016</span>
+    <h2><a href="objects/box-of-stone-eggs.html">Box of stone eggs</a></h2>
+    <p class="teaser">My mother's precious collection of miniature stones, each hand-carved and polished into the shape of an egg — a souvenir from Egyp…</p>
+    <p class="tags">1980s · Egypt</p>
+  </article>
+<article class="card" data-decade="2000s" data-country="Spain" data-continent="Europe" data-id="CHAN-017" data-name="Mysterious stone foot">
+    <span class="card-id">CHAN-017</span>
+    <h2><a href="objects/mysterious-stone-foot.html">Mysterious stone foot</a></h2>
+    <p class="teaser">One of our dearest family treasures. I spotted this stone in 2008, as a little girl, sitting among the breakwater rocks by Meco be…</p>
+    <p class="tags">2000s · Spain</p>
+  </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Licensed CC BY-NC-SA 4.0 — attribution required, non-commercial use only, adaptations shared under the same licence.</p>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

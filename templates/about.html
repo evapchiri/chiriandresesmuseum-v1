@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About the project — Chiriandreses Museum</title>
+<meta name="description" content="How the Chiriandreses Museum project came to be, the process behind it, and where to find the full documentation.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+{{HERO}}
+
+<main class="wrap about-main">
+  <p class="page-intro">Here you can learn how the project came to be, the challenges and lessons along the way, and more detail about the project as a whole.</p>
+
+  <div class="about-layout">
+    <nav class="about-nav" aria-label="About page sections">
+      <button type="button" class="active" data-panel="about">About the project</button>
+      <button type="button" data-panel="lab-notes">Lab notes</button>
+      <button type="button" data-panel="lessons">Lessons learned</button>
+      <button type="button" data-panel="documentation">Documentation</button>
+    </nav>
+
+    <div class="about-content">
+
+      <section data-panel-content="about" tabindex="-1">
+        {{ABOUT_CONTENT}}
+      </section>
+
+      <section data-panel-content="lab-notes" hidden tabindex="-1">
+        <h2>Lab notes</h2>
+        <p class="placeholder-note">Coming soon — day-to-day notes from the capture and processing sessions will live here.</p>
+      </section>
+
+      <section data-panel-content="lessons" hidden tabindex="-1">
+        <h2>Lessons learned</h2>
+        <p class="placeholder-note">Coming soon — what worked, what didn't, and what I'd do differently next time.</p>
+      </section>
+
+      <section data-panel-content="documentation" hidden tabindex="-1">
+        <h2>Documentation</h2>
+        <p>The source records behind this site. Some links are still being connected — see the note below.</p>
+        <ul class="doc-list">
+          {{DOCUMENTATION_LINKS}}
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Licensed CC BY-NC-SA 4.0. Part of the <a href="index.html">Chiriandreses Museum</a> digitisation campaign.</p>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

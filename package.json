@@ -1,0 +1,10 @@
+{
+  "name": "chiriandreses-museum",
+  "version": "1.0.0",
+  "description": "Chiriandreses Museum v1 — static site, built from data/objects.json into /docs for GitHub Pages.",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "serve": "node scripts/serve.js"
+  }
+}

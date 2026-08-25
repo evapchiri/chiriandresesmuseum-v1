@@ -1,0 +1,314 @@
+[
+  {
+    "id": "CHAN-001",
+    "sketchfabUid": "feed8bbe68e442279524be33a7ab8d28",
+    "slug": "koutoubia-replica",
+    "title": "Marrakech's Koutoubia replica souvenir",
+    "type": "Souvenir, architectural replica",
+    "materials": "Limestone (soapstone/steatite), hand-carved",
+    "measurements": "Height 335mm, base 62×55mm",
+    "weight": "1,216g",
+    "chronology": "1990s (acquired August 1990)",
+    "geography": "Morocco, Marrakech",
+    "story": [
+      "Architectural replica of the Koutoubia minaret in Marrakech, a 12th-century Almohad landmark known as the ‘sister’ to the Giralda in Seville. It carries particular sentimental value for my family — my mother bought two of these in the summer of 1990: one for herself, and one as a gift for a man she had recently met in Seville, who would later become her husband, my father.",
+      "At the time she was living in Madrid, and hoped this replica would serve as a persistent reminder of her every time he looked at it. A classic move, and a memento of her persistence."
+    ],
+    "captureDate": "18 February 2026",
+    "complexity": {
+      "object": "Low",
+      "surface": "Low",
+      "material": "Low"
+    },
+    "route": "Standard Metashape",
+    "software": "Agisoft Metashape Standard 2.2.2",
+    "provenance": [
+      {
+        "property": "Overall model",
+        "status": "measured",
+        "note": "Direct Metashape output. No manual PBR intervention or geometry repair required."
+      }
+    ],
+    "country": "Morocco",
+    "continent": "Africa",
+    "decade": "1990s"
+  },
+  {
+    "id": "CHAN-003",
+    "sketchfabUid": "e628ad5a3d8e43d1bdb2615674615a2b",
+    "slug": "berber-candlestick",
+    "title": "Berber candlestick",
+    "type": "Souvenir, ceremonial-style candlestick with bird motifs",
+    "materials": "Soapstone (steatite), hand-carved",
+    "measurements": "Height 220mm, width 170mm, depth 32mm",
+    "weight": "909g",
+    "chronology": "1991",
+    "geography": "Morocco, Rabat",
+    "story": [
+      "A souvenir purchased by my parents on their first ever trip together as a couple, in the Medina of Rabat. This traditional steatite carving, normally associated with the Berber culture of the Anti-Atlas, was historically favoured because soapstone is exceptionally heat-resistant — an ideal medium for lighting objects like this one.",
+      "The shopkeeper insisted it was a ‘ceremonial Berber artefact’, but my mother was sure that was said to every tourist passing by. Sacred object or modern souvenir, it remains a memento from the very beginning of my parents' relationship."
+    ],
+    "captureDate": "19 February 2026",
+    "complexity": {
+      "object": "Medium",
+      "surface": "Low",
+      "material": "Medium"
+    },
+    "route": "Standard Metashape",
+    "software": "Agisoft Metashape Standard 2.2.2",
+    "provenance": [
+      {
+        "property": "Albedo / diffuse",
+        "status": "estimated",
+        "note": "A small area under the bird attachment points was clone-sampled by hand in Blender, where source image coverage was incomplete. Visually consistent, not independently verified against the object."
+      },
+      {
+        "property": "Roughness / metallic",
+        "status": "n/a",
+        "note": "Not created for this object."
+      }
+    ],
+    "country": "Morocco",
+    "continent": "Africa",
+    "decade": "1990s"
+  },
+  {
+    "id": "CHAN-006",
+    "sketchfabUid": "36d3e33e97c248fb8c366dd477356738",
+    "slug": "chinese-personal-seal",
+    "title": "Chinese personal seal",
+    "type": "Personal seal / stamp",
+    "materials": "Probably a soft stone, likely serpentine (‘modern jade’)",
+    "materialsNote": "The public narrative below uses the more specific attribution of Shoushan stone. The two accounts — and the two proposed dates — haven't been reconciled; this row states the more cautious version for a technical audience.",
+    "measurements": "Height 150mm, diameter 50mm",
+    "weight": "853g",
+    "chronology": "Family record: unknown, probably 20th century. Public narrative: c. 19th century",
+    "geography": "China, acquired at Hong Kong's Jade Street Market, 1989",
+    "story": [
+      "A heavy, ink-stained piece of Chinese history my father got from a version of Hong Kong that doesn't really exist anymore, bought at a stall in the Jade Street Market while the city was buzzing for its founding anniversary. It was part of a ‘jade haul’ that also included the rhyton (CHAN-009) in this collection.",
+      "If you look at the base, you can still see traces of red ink from when it was used. Carved on the surface is a snippet of 8th-century exile poetry by Han Yu, about a song so bitter the listener's tears fall like rain — signed by the seal master Lin Gao."
+    ],
+    "captureDate": "19 February 2026",
+    "complexity": {
+      "object": "Medium",
+      "surface": "Medium",
+      "material": "Low"
+    },
+    "route": "Standard Metashape",
+    "software": "Agisoft Metashape Standard 2.2.2",
+    "provenance": [
+      {
+        "property": "Overall model",
+        "status": "measured",
+        "note": "Clean processing, no manual PBR intervention required. Known limitation: the top edge is slightly rugged compared to the physical object."
+      }
+    ],
+    "country": "China / Hong Kong",
+    "continent": "Asia",
+    "decade": "1980s"
+  },
+  {
+    "id": "CHAN-007",
+    "sketchfabUid": "4f0b77b63ced4502ac8c4d2e5e538d1f",
+    "slug": "thai-dancer",
+    "title": "Thai dancer",
+    "type": "Ornamental figurine (middle pose of a set of three)",
+    "materials": "Bronze alloy, green and gold patina",
+    "measurements": "180mm, 506g (this pose)",
+    "weight": "506g",
+    "chronology": "Late 1980s (c. 1988–89)",
+    "geography": "Thailand, Chiang Mai",
+    "story": [
+      "An ornamental figurine of a traditional Thai dancer, bought by my mother around 1988 or 1989 from one of the market stalls that line the streets of Chiang Mai. Cast in a patinated metal alloy with a gold decorative patina, it's the classic artisanal souvenir found throughout Northern Thailand.",
+      "It doesn't have a dramatic story behind it, but it's one of my mother's favourite travelling mementos, and one of the consistent decor pieces from our house."
+    ],
+    "captureDate": "19 February 2026",
+    "complexity": {
+      "object": "Medium",
+      "surface": "Medium",
+      "material": "Medium"
+    },
+    "route": "Standard Metashape",
+    "software": "Agisoft Metashape Standard 2.2.2",
+    "provenance": [
+      {
+        "property": "Metallic",
+        "status": "estimated",
+        "note": "Manually painted for the gilded areas in Blender; shine intensity judged by eye against the physical object, not measured."
+      },
+      {
+        "property": "Geometry (underarm)",
+        "status": "estimated",
+        "note": "Minor manual reshaping of a self-occluded joint the source images couldn't see into."
+      },
+      {
+        "property": "Confidence",
+        "status": "flagged",
+        "note": "Source images had focus limitations on fine extremities. Selected as the best result of three related figurines photographed for this slot."
+      }
+    ],
+    "country": "Thailand",
+    "continent": "Asia",
+    "decade": "1980s"
+  },
+  {
+    "id": "CHAN-009",
+    "sketchfabUid": "fde9e7ab95f9400badfe8aa6370baacf",
+    "slug": "chinese-rhyton",
+    "title": "The Chinese horn (ceremonial vessel, rhyton)",
+    "type": "Ceremonial vessel replica",
+    "materials": "Carved haematite",
+    "measurements": "Height 158mm",
+    "weight": "1,017g",
+    "chronology": "Styled after a late Ming / early Qing dynasty rhyton (late 16th–early 17th c.), acquired 1989",
+    "geography": "China, Hong Kong Jade Street Market",
+    "story": [
+      "Based on its intricate iconography and material, we believe this to be a replica of a late Ming / early Qing dynasty-style rhyton — a traditional Chinese ceremonial vessel. My father got it in 1989 from a stall in the old Hong Kong Jade Street Market, a few years before the handover to China and the transformations that followed.",
+      "Getting it wasn't as simple as buying a standard souvenir — the antiques dealer seemed reluctant to let it go to a foreigner, and there was a real sense of cultural gravity around the piece that made the purchase feel particularly special."
+    ],
+    "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
+    "complexity": null,
+    "route": "Standard Metashape (resolved after initial reconstruction difficulty)",
+    "software": "Agisoft Metashape Standard 2.2.2",
+    "provenance": [
+      {
+        "property": "Albedo / diffuse",
+        "status": "estimated",
+        "note": "The self-occluded area where the dragon-tail motif twists back on itself was clone-sampled by hand in Blender."
+      },
+      {
+        "property": "Roughness / metallic",
+        "status": "n/a",
+        "note": "Not created for this object."
+      }
+    ],
+    "country": "China / Hong Kong",
+    "continent": "Asia",
+    "decade": "1980s"
+  },
+  {
+    "id": "CHAN-012",
+    "sketchfabUid": "4639789be1f045fe9a800f6fa2493137",
+    "slug": "box-of-little-birds",
+    "title": "Box of little birds",
+    "type": "Decorative box with carved figures",
+    "materials": "Hand-carved and painted wood, 12 individually patterned birds",
+    "measurements": "Not logged",
+    "weight": "Not logged",
+    "chronology": "c. 1987",
+    "geography": "Egypt (gift from my aunt)",
+    "story": [
+      "A charming wooden box filled with 12 little hand-carved birds, each painted with its own unique pattern — a traditional souvenir from Egypt, given to my mother by her sister around 1987.",
+      "Known in the family as part of ‘the trip from hell’: my aunt and uncle got stranded in Egypt's airport for two weeks after their flights were cancelled, with barely any food or embassy help. This little box survived the journey — a piece my mother holds dear, both as a memento of a wild travel story and of the sister she was very close to."
+    ],
+    "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
+    "complexity": null,
+    "route": "Standard Metashape",
+    "software": "Agisoft Metashape Standard 2.2.2",
+    "provenance": [
+      {
+        "property": "Overall model",
+        "status": "measured",
+        "note": "Clean processing, no manual PBR intervention or retouching required."
+      }
+    ],
+    "country": "Egypt",
+    "continent": "Africa",
+    "decade": "1980s"
+  },
+  {
+    "id": "CHAN-013",
+    "sketchfabUid": "3e70d0be70b7418ab93d46ef62240cdd",
+    "slug": "senegalese-toy-bus",
+    "title": "Senegalese toy bus",
+    "type": "Toy / souvenir",
+    "materials": "Polychrome wood and card",
+    "measurements": "Length 175mm, height 115mm, width 70mm",
+    "weight": "122g",
+    "chronology": "c. 2019",
+    "geography": "Senegal",
+    "story": [
+      "A vibrant little bus made from wood and card, mimicking the colourful ‘car rapides’ seen everywhere in cities like Saint-Louis. It was given to my mother around 2019 by a dear friend and former colleague — a Spaniard from Cádiz living as an expat in Senegal, who helped her both personally and professionally.",
+      "There's a good chance it belonged to his young son first, which is why it has that lovely, personal ‘played-with’ feel. My mother treasures it not only as a reminder of that friendship, but of her first steps in her career, and the support she received at the time."
+    ],
+    "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
+    "complexity": null,
+    "route": "HeritageScan",
+    "software": "HeritageScan (custom CLI, Apple RealityKit SDK)",
+    "provenance": [
+      {
+        "property": "Overall model",
+        "status": "measured",
+        "note": "Resolved via HeritageScan — a custom RealityKit-based tool built to test an alternative reconstruction algorithm against the same source images — in roughly a fifth of the time and effort Metashape alone had taken. No Blender retouching required beyond the alignment itself."
+      }
+    ],
+    "country": "Senegal",
+    "continent": "Africa",
+    "decade": "2010s"
+  },
+  {
+    "id": "CHAN-016",
+    "sketchfabUid": "f980220be7574a779fce78cd065f4fd7",
+    "slug": "box-of-stone-eggs",
+    "title": "Box of stone eggs",
+    "type": "Mineral collection / decorative set",
+    "materials": "20 different hand-carved and polished stone types (aventurine, opaline, lepidolite, jasper, quartz, dolomite, and others)",
+    "measurements": "Not logged",
+    "weight": "Not logged",
+    "chronology": "c. 1987",
+    "geography": "Egypt (gift from my aunt)",
+    "story": [
+      "My mother's precious collection of miniature stones, each hand-carved and polished into the shape of an egg — a souvenir from Egypt, brought back by her sister in 1987, made from twenty different mineral types.",
+      "My mother is an avid egg collector, but usually of the regular-sized kind — making this her especially cute miniature collection."
+    ],
+    "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
+    "complexity": null,
+    "route": "Standard Metashape",
+    "software": "Agisoft Metashape Standard 2.2.2",
+    "provenance": [
+      {
+        "property": "Roughness",
+        "status": "estimated",
+        "note": "Hand-reconstructed in Blender to reflect the differing natural shine across the set's stone types, informed by memory and reference photographs — not derived empirically from the capture."
+      },
+      {
+        "property": "Geometry",
+        "status": "estimated",
+        "note": "Manual smoothing of surface geometry: without cross-polarisation, the shiny stone surface initially reconstructed as uneven and bumpy rather than smooth."
+      }
+    ],
+    "country": "Egypt",
+    "continent": "Africa",
+    "decade": "1980s"
+  },
+  {
+    "id": "CHAN-017",
+    "sketchfabUid": "538a7490e3514e67aebd0659cf0e13bf",
+    "slug": "mysterious-stone-foot",
+    "title": "Mysterious stone foot",
+    "type": "Possible sculptural fragment",
+    "materials": "Unidentified stone",
+    "measurements": "Length 295mm, width 215mm, height 110mm",
+    "weight": "Approx. 6,900g",
+    "chronology": "Found c. 2008–09; if genuinely a fragment, possibly Roman, given proximity to the Baelo Claudia ruins",
+    "geography": "Found at Meco beach, Cádiz, Spain",
+    "story": [
+      "One of our dearest family treasures. I spotted this stone in 2008, as a little girl, sitting among the breakwater rocks by Meco beach, Cádiz. To us it resembled a sculpted foot — intriguing enough that we brought it home to Seville, no small feat given how much it weighs.",
+      "If it really is an ancient fragment, we believe it's likely Roman, given how close Meco beach is to the ruins of Baelo Claudia. Genuine artefact or a natural trick, it was my very first ‘archaeological find’ — and looking back, possibly the spark that led to my career in cultural heritage."
+    ],
+    "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
+    "complexity": null,
+    "route": "Standard Metashape",
+    "software": "Agisoft Metashape Standard 2.2.2",
+    "provenance": [
+      {
+        "property": "Overall model",
+        "status": "measured",
+        "note": "Clean processing, no manual PBR intervention or retouching required."
+      }
+    ],
+    "country": "Spain",
+    "continent": "Europe",
+    "decade": "2000s"
+  }
+]

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Collection — Chiriandreses Museum</title>
+<meta name="description" content="Nine 3D-digitised family heirlooms — filter by acquisition year, country, continent, ID, or object name.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+{{HERO}}
+
+<main class="wrap collection-main">
+  <p class="page-intro">Nine objects, each with its story, its capture and processing route, and an honest account of which material properties were measured and which were estimated. Filter the set below, or browse the full collection.</p>
+
+  <form class="filter-bar" aria-label="Filter the collection">
+    <div class="filter-field">
+      <label for="filter-year">Acquisition Year</label>
+      <select id="filter-year" data-filter="decade">
+        <option value="all">All</option>
+        {{YEAR_OPTIONS}}
+      </select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-country">Country</label>
+      <select id="filter-country" data-filter="country">
+        <option value="all">All</option>
+        {{COUNTRY_OPTIONS}}
+      </select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-continent">Continent</label>
+      <select id="filter-continent" data-filter="continent">
+        <option value="all">All</option>
+        {{CONTINENT_OPTIONS}}
+      </select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-id">ID</label>
+      <select id="filter-id" data-filter="id">
+        <option value="all">All</option>
+        {{ID_OPTIONS}}
+      </select>
+    </div>
+    <div class="filter-field">
+      <label for="filter-name">Object Name</label>
+      <select id="filter-name" data-filter="name">
+        <option value="all">All</option>
+        {{NAME_OPTIONS}}
+      </select>
+    </div>
+    <button type="button" class="filter-reset">Reset</button>
+  </form>
+
+  <p class="no-results" hidden>No objects match these filters.</p>
+
+  <div class="grid">
+    {{CARDS}}
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Licensed CC BY-NC-SA 4.0 — attribution required, non-commercial use only, adaptations shared under the same licence.</p>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
