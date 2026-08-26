@@ -22,12 +22,26 @@ function fill(template, tokens) {
   return out;
 }
 
-/* ---------- Shared hero (identical markup on every top-level page) ---------- */
+/* ---------- Shared navigation + hero ---------- */
 
-function heroHTML() {
+/* `basePath` is '' on top-level pages and '../' on generated object pages.
+ * `current` marks the active link with aria-current="page" (one of
+ * 'index' | 'about' | 'collection', or '' if none apply). */
+function siteNavHTML(basePath, current, { withHome = false } = {}) {
+  const link = (href, label, key) =>
+    `<a class="site-nav-link" href="${basePath}${href}"${current === key ? ' aria-current="page"' : ''}>${label}</a>`;
+  const home = withHome ? link('index.html', 'Chiriandreses Museum', 'index') : '';
+  return `<nav class="site-nav" aria-label="Main">
+      ${home}${link('about.html', 'About', 'about')}
+      ${link('collection.html', 'Collection', 'collection')}
+    </nav>`;
+}
+
+function heroHTML(basePath, current) {
   return `<header class="site-hero">
   <div class="wrap">
-    <h1 class="hero-title">Chiriandreses Museum</h1>
+    ${siteNavHTML(basePath, current)}
+    <h1 class="hero-title"><a href="${basePath}index.html"${current === 'index' ? ' aria-current="page"' : ''}>Chiriandreses Museum</a></h1>
     <p class="hero-subtitle">Our family's story in 3D</p>
   </div>
 </header>`;
@@ -39,7 +53,7 @@ const PROJECT_BLURB = `Between 16–22 February 2026, I spent a week in Spain 3D
 
 function buildLandingPage(template) {
   return fill(template, {
-    HERO: heroHTML(),
+    HERO: heroHTML('', 'index'),
     PROJECT_BLURB,
   });
 }
@@ -238,15 +252,17 @@ function parseAboutPageCopy() {
   }
 
   return {
+    aboutMe: extractSection('ABOUT ME'),
     labNotes: extractSection('LAB NOTES'),
     lessonsLearned: extractSection('LESSONS LEARNED'),
   };
 }
 
 function buildAboutPage(template) {
-  const { labNotes, lessonsLearned } = parseAboutPageCopy();
+  const { aboutMe, labNotes, lessonsLearned } = parseAboutPageCopy();
   return fill(template, {
-    HERO: heroHTML(),
+    HERO: heroHTML('', 'about'),
+    ABOUT_ME: aboutMe,
     ABOUT_CONTENT: aboutContentHTML(),
     DOCUMENTATION_LINKS: documentationLinksHTML(),
     LAB_NOTES: labNotes,
@@ -283,13 +299,14 @@ function buildCollectionPage(template, objects) {
   const cards = objects.map(buildCard).join('\n');
 
   return fill(template, {
-    HERO: heroHTML(),
+    HERO: heroHTML('', 'collection'),
     YEAR_OPTIONS: optionsHTML(years),
     COUNTRY_OPTIONS: optionsHTML(countries),
     CONTINENT_OPTIONS: optionsHTML(continents),
     ID_OPTIONS: ids.map((id) => `<option value="${id}">${id}</option>`).join('\n        '),
     NAME_OPTIONS: names.map((n) => `<option value="${n}">${n}</option>`).join('\n        '),
     CARDS: cards,
+    OBJECTS_DATA: buildObjectsDataJSON(objects),
   });
 }
 
@@ -327,12 +344,17 @@ function storyHTML(paragraphs) {
   return paragraphs.map((p) => `<p>${p}</p>`).join('\n');
 }
 
-function buildObjectPage(obj, template) {
-  const materialsNote = obj.materialsNote
+function materialsNoteHTML(obj) {
+  return obj.materialsNote
     ? `<span class="materials-note">${obj.materialsNote}</span>`
     : '';
+}
+
+function buildObjectPage(obj, template) {
+  const materialsNote = materialsNoteHTML(obj);
 
   return fill(template, {
+    SITE_NAV: siteNavHTML('../', 'collection', { withHome: true }),
     TITLE: obj.title,
     ID: obj.id,
     TYPE: obj.type,
@@ -352,6 +374,34 @@ function buildObjectPage(obj, template) {
     STORY: storyHTML(obj.story),
     PROVENANCE: provenanceHTML(obj.provenance),
   });
+}
+
+/* Per-object data for the Collection page's detail modal — same fields as
+ * the standalone object page, pre-rendered to HTML fragments so the client
+ * JS only has to inject innerHTML, not re-implement the markup rules here. */
+function buildObjectsDataJSON(objects) {
+  const data = objects.map((obj) => ({
+    id: obj.id,
+    slug: obj.slug,
+    title: obj.title,
+    type: obj.type,
+    chronology: obj.chronology,
+    chronologyShort: chronologyShort(obj.chronology),
+    geography: obj.geography,
+    materialsHTML: obj.materials + materialsNoteHTML(obj),
+    measurements: obj.measurements,
+    weight: obj.weight,
+    captureDate: obj.captureDate,
+    complexity: complexityText(obj.complexity),
+    route: obj.route,
+    software: obj.software,
+    sketchfabUid: obj.sketchfabUid,
+    storyHTML: storyHTML(obj.story),
+    provenanceHTML: provenanceHTML(obj.provenance),
+  }));
+  // Defuse a literal "</script" inside any authored field so it can't
+  // terminate the embedding <script type="application/json"> early.
+  return JSON.stringify(data).replace(/<\/script/gi, '<\\/script');
 }
 
 /* ---------- Main ---------- */

@@ -66,6 +66,53 @@
   </div>
 </footer>
 
+<div id="object-modal" class="modal-overlay" hidden>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <button type="button" class="modal-close" aria-label="Close">&times;</button>
+    <div class="wrap">
+      <p class="tag-row" id="modal-tags"></p>
+      <h2 id="modal-title"></h2>
+
+      <div class="object-body">
+        <div class="viewer-wrap">
+          <div class="viewer-frame">
+            <iframe id="modal-iframe" title="" src="" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
+          </div>
+          <p class="viewer-caption">Drag to rotate · scroll to zoom · tap the AR icon on supported devices</p>
+          <div class="story" id="modal-story"></div>
+        </div>
+
+        <aside class="field-record">
+          <p class="record-title" id="modal-record-title"></p>
+
+          <dl>
+            <div class="record-row"><dt>Type</dt><dd id="modal-type"></dd></div>
+            <div class="record-row"><dt>Materials</dt><dd id="modal-materials"></dd></div>
+            <div class="record-row"><dt>Measurements</dt><dd id="modal-measurements"></dd></div>
+            <div class="record-row"><dt>Weight</dt><dd id="modal-weight"></dd></div>
+            <div class="record-row"><dt>Chronology</dt><dd id="modal-chronology"></dd></div>
+            <div class="record-row"><dt>Geography</dt><dd id="modal-geography"></dd></div>
+          </dl>
+
+          <p class="record-section-label">How this was made</p>
+          <dl>
+            <div class="record-row"><dt>Captured</dt><dd id="modal-captured"></dd></div>
+            <div class="record-row"><dt>Complexity</dt><dd id="modal-complexity"></dd></div>
+            <div class="record-row"><dt>Route</dt><dd id="modal-route"></dd></div>
+            <div class="record-row"><dt>Software</dt><dd id="modal-software"></dd></div>
+          </dl>
+
+          <p class="record-section-label">Material property provenance</p>
+          <div id="modal-provenance"></div>
+
+          <a class="methodology-link" id="modal-full-link" href="">View this object's own page &rarr;</a>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="objects-data">{{OBJECTS_DATA}}</script>
 <script src="assets/site.js"></script>
 </body>
 </html>

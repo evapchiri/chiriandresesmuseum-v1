@@ -11,7 +11,11 @@
 
 <header class="site-hero">
   <div class="wrap">
-    <h1 class="hero-title">Chiriandreses Museum</h1>
+    <nav class="site-nav" aria-label="Main">
+      <a class="site-nav-link" href="about.html" aria-current="page">About</a>
+      <a class="site-nav-link" href="collection.html">Collection</a>
+    </nav>
+    <h1 class="hero-title"><a href="index.html">Chiriandreses Museum</a></h1>
     <p class="hero-subtitle">Our family's story in 3D</p>
   </div>
 </header>
@@ -20,16 +24,41 @@
   <p class="page-intro">Here you can learn how the project came to be, the challenges and lessons along the way, and more detail about the project as a whole.</p>
 
   <div class="about-layout">
-    <nav class="about-nav" aria-label="About page sections">
-      <button type="button" class="active" data-panel="about">About the project</button>
-      <button type="button" data-panel="lab-notes">Lab notes</button>
-      <button type="button" data-panel="lessons">Lessons learned</button>
-      <button type="button" data-panel="documentation">Documentation</button>
+    <nav class="about-nav" aria-label="About page sections" role="tablist">
+      <button type="button" id="tab-about-me" class="active" data-panel="about-me" role="tab" aria-selected="true" aria-controls="panel-about-me">About me</button>
+      <button type="button" id="tab-about" data-panel="about" role="tab" aria-selected="false" aria-controls="panel-about">About the project</button>
+      <button type="button" id="tab-lab-notes" data-panel="lab-notes" role="tab" aria-selected="false" aria-controls="panel-lab-notes">Lab notes</button>
+      <button type="button" id="tab-lessons" data-panel="lessons" role="tab" aria-selected="false" aria-controls="panel-lessons">Lessons learned</button>
+      <button type="button" id="tab-documentation" data-panel="documentation" role="tab" aria-selected="false" aria-controls="panel-documentation">Documentation</button>
     </nav>
 
     <div class="about-content">
 
-      <section data-panel-content="about" tabindex="-1">
+      <section id="panel-about-me" data-panel-content="about-me" role="tabpanel" aria-labelledby="tab-about-me" tabindex="-1">
+        <h2>About me</h2>
+
+<p><strong>Eva Perez Chirinos</strong></p>
+
+<p><em>Digital Heritage Technologist | Photogrammetry, 3D &amp; Digital Preservation</em></p>
+
+<p>By training I'm an archaeologist in love with all things digital — particularly with how 3D can offer a new way of experiencing and learning about cultural heritage in the digital space.</p>
+
+<p>I hold a BA in Archaeology &amp; Anthropology from UCL, where I specialised in Digital Humanities. During my early steps at university I got close to processing finds, structuring datasets, and building pipelines for the digitisation and visual documentation of artefacts — for future use in education, exhibitions, or further analysis. That experience showed me the real struggles of generating digital media within tight archaeological and museum budgets, timelines, and environments — and just as much, the struggle of organising that media well enough afterwards to actually reuse it, with one non-negotiable: traceability.</p>
+
+<p>After graduating, though, I've spent the last couple of years doing SaaS technical support and helping teams do their best work — learning, alongside them, how software actually gets built, deployed, and iterated on in the real world. Most recently for a Digital Asset Management platform, and before that for a high-stakes FinTech software platform.</p>
+
+<p>Chiriandreses Museum is where all of that learned knowledge meets: my own family's objects, digitised properly, with the process — what was measured, what was estimated, what didn't survive — treated as part of the story, rather than hidden behind an awe-looking 3D model.</p>
+
+<ul>
+  <li>CFG alumni with a CFGDegree in Software &amp; Data Engineering (<em>Merit) and a Masters in DevOps &amp; Cloud (</em>Distinction).</li>
+  <li>Experienced in Tier 2 SaaS technical support, platform migrations, and customer success operations, with a track record of reducing critical cases and improving self-service infrastructure.</li>
+  <li>Awarded the 2022 Peter Dorell Prize (UCL Institute of Archaeology) for bringing 3D digitisation and artefact photographic documentation into the Downley excavation.</li>
+  <li>Contributed to the University of Oxford's MarEA Project, researching cyclonic impacts on Omani maritime heritage.</li>
+  <li>Project Data Assistant on "Monumentality and Landscape: Linear Earthworks in Britain" (UCL Institute of Archaeology &amp; Durham University, Leverhulme Trust-funded) — database development and grey literature retrieval.</li>
+</ul>
+      </section>
+
+      <section id="panel-about" data-panel-content="about" role="tabpanel" aria-labelledby="tab-about" hidden tabindex="-1">
         <h2>About the project</h2>
 
 <p>This project followed the European Commission's VIGIE 2020/654 study on quality in 3D digitisation of tangible cultural heritage, adapted throughout for a solo practitioner working with personal, non-fragile objects rather than an institutional team and archival-grade holdings. Planning and capture practice also drew on the 3D4CH Competence Centre's <em>Essential Guide to 3D Digitised Heritage</em> training series, alongside photogrammetry community guidance on preparing models for reuse in VR, AR, and web-based viewing.</p>
@@ -58,7 +87,7 @@
 <p>The full methodology and per-object paradata record goes into considerably more depth than fits here — see the Documentation tab for the complete document.</p>
       </section>
 
-      <section data-panel-content="lab-notes" hidden tabindex="-1">
+      <section id="panel-lab-notes" data-panel-content="lab-notes" role="tabpanel" aria-labelledby="tab-lab-notes" hidden tabindex="-1">
         <h2>Lab notes</h2>
 
 <p>Day-to-day notes from the capture and processing sessions, kept close to how they actually happened — dead ends included.</p>
@@ -195,7 +224,7 @@
 <p>Picked it back up, this time chasing retopology, texture-map baking, and Kintsugi 3D Builder experiments — basically a proper go at answering the authenticity question this time round, with actual measured specularity capture instead of eyeballing shine values. Early days on this bit still. More to come.</p>
       </section>
 
-      <section data-panel-content="lessons" hidden tabindex="-1">
+      <section id="panel-lessons" data-panel-content="lessons" role="tabpanel" aria-labelledby="tab-lessons" hidden tabindex="-1">
         <h2>Lessons learned</h2>
 
 <p>What worked, what didn't, and what I'd do differently next time.</p>
@@ -229,7 +258,7 @@
 <p>Keep the notes going, even when nothing seems worth logging. The gap between 19 May and 1 July — where Sketchfab uploads and a public LinkedIn post happened with zero written notes — is exactly the stretch where the authenticity question actually started, and I only have it preserved because I happened to write a public post about it. Undocumented process is a real risk, not just an inconvenience, on a project whose whole point is a documented process.</p>
       </section>
 
-      <section data-panel-content="documentation" hidden tabindex="-1">
+      <section id="panel-documentation" data-panel-content="documentation" role="tabpanel" aria-labelledby="tab-documentation" hidden tabindex="-1">
         <h2>Documentation</h2>
         <p>The source records behind this site. Some links are still being connected — see the note below.</p>
         <ul class="doc-list">

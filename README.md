@@ -1,24 +1,39 @@
-# Chiriandreses Museum — v1
+# Chiriandreses Museum
 
-Static site for the Chiriandreses Museum digitisation project. Plain HTML/CSS/JS,
-no framework, no client-side dependencies. A small Node build script turns
-`data/objects.json` + four HTML templates into finished static pages in `/docs`,
-which GitHub Pages serves directly.
+A personal case study in 3D-digitising family heirlooms and travel souvenirs —
+nine objects captured, processed, and published to a genuinely thought-through,
+Europeana-aligned methodology, with an honest paper trail for every object:
+what was measured directly from the capture, what was estimated by eye, and
+where. The point is the process behind the models being trustworthy and
+reusable, not just the renders themselves.
+
+Full methodology & paradata write-up: [`reference/methodology-paradata.md`](reference/methodology-paradata.md).
+
+Static site: plain HTML/CSS/JS, no framework, no client-side dependencies. A
+small Node build script turns `data/objects.json` + four HTML templates into
+finished static pages in `/docs`, which GitHub Pages serves directly.
 
 ## Site structure
+
+Every page shares a persistent nav (About ⇄ Collection, plus the site title
+linking back to the landing page).
 
 - **`index.html`** — Landing page. Hero, a short project blurb, and two buttons
   ("About the project" / "The Collection") with a cursor-following tooltip on
   hover (desktop only — gracefully skipped on touch devices).
-- **`about.html`** — The BTS/process page. Same hero, then a sticky left-hand
-  nav that swaps content panels in place (About the project / Lab notes /
-  Lessons learned / Documentation) — no page scroll or navigation, just a
-  tab switch.
-- **`collection.html`** — Same hero, a horizontal bar of five dropdown
-  filters (Acquisition Year, Country, Continent, ID, Object Name), and the
-  grid of object cards. Filtering is client-side vanilla JS — no page reload.
-- **`objects/*.html`** — One page per object, same as before: Sketchfab
-  embed + the "Field Record" provenance docket.
+- **`about.html`** — The BTS/process page. A sticky left-hand nav swaps
+  content panels in place (About Me / About the project / Lab notes / Lessons
+  learned / Documentation) — no page scroll or navigation, just a tab switch.
+- **`collection.html`** — A horizontal bar of five dropdown filters
+  (Acquisition Year, Country, Continent, ID, Object Name) and the grid of
+  object cards. Filtering is client-side vanilla JS — no page reload. Clicking
+  a card opens that object's full record in a scrollable modal, sharing the
+  same data the standalone object pages are built from; the modal is
+  deep-linkable (`collection.html#chan-001`) and degrades to a normal link if
+  JS is off.
+- **`objects/*.html`** — One page per object: Sketchfab embed + the "Field
+  Record" provenance docket. Real, shareable, crawlable URLs — not just an
+  artifact of the modal.
 
 ## Why this shape
 
@@ -55,27 +70,13 @@ npx serve docs
 # or: python3 -m http.server 8080 --directory docs
 ```
 
-## Filling in the real Sketchfab embeds
-
-Every object in `data/objects.json` currently has:
-
-```json
-"sketchfabUid": "REPLACE_WITH_SKETCHFAB_UID"
-```
-
-To get the real UID: open the model on Sketchfab, and copy the long
-alphanumeric string from the model's URL —
-`sketchfab.com/models/<THIS-PART>/...` (or `sketchfab.com/3d-models/<name>-<THIS-PART>`).
-Paste it in for each object, then re-run `npm run build`.
-
 ## Filling in the Documentation links
 
-The About page's Documentation panel lists six source documents (methodology
-doc, digitisation journal, spreadsheets, Metashape reports, planning table),
-each currently pointing at `REPLACE_WITH_LINK` in
-`scripts/build.js` → `documentationLinksHTML()`. Once you've decided where
-each document will actually live (GitHub, Google Drive, etc.), update the
-`href` values there and re-run `npm run build`.
+The About page's Documentation panel lists source documents (methodology
+doc, spreadsheets, Metashape reports, planning table), some still pointing at
+`REPLACE_WITH_LINK` in `scripts/build.js` → `documentationLinksHTML()`. Update
+the `href` values there once each document has a home, then re-run
+`npm run build`.
 
 ## Editing content
 
@@ -83,12 +84,13 @@ each document will actually live (GitHub, Google Drive, etc.), update the
 - **Page structure / layout** → `templates/index.html`, `templates/object.html`
 - **Look and feel** → `assets/styles.css`
 
-After any change, run `npm run build` again and commit the regenerated
-`/docs` folder along with your source changes — `/docs` is checked into git
-deliberately (see below), so GitHub Pages has something to serve without
-needing a CI step.
+Run `npm run build` locally to preview your change before pushing. `/docs` is
+checked into git deliberately, so GitHub Pages has something to serve — but
+you don't need to commit the rebuilt `/docs` yourself: `.github/workflows/build-docs.yml`
+rebuilds and commits it automatically on every push to `main`, so pushing
+your source change is enough.
 
-## Publishing on GitHub Pages (fastest path)
+## Publishing on GitHub Pages
 
 1. Push this repo to GitHub.
 2. In the repo, go to **Settings → Pages**.
@@ -97,9 +99,8 @@ needing a CI step.
 5. GitHub gives you a `https://<username>.github.io/<repo>/` URL within a
    minute or two.
 
-No GitHub Actions workflow needed for v1 — you build locally, commit `/docs`,
-push. A custom domain can be added later under the same Pages settings
-without changing anything else here.
+A custom domain can be added later under the same Pages settings without
+changing anything else here.
 
 ## Known trade-offs (worth knowing, not fixing yet)
 

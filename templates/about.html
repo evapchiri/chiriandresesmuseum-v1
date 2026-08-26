@@ -15,28 +15,33 @@
   <p class="page-intro">Here you can learn how the project came to be, the challenges and lessons along the way, and more detail about the project as a whole.</p>
 
   <div class="about-layout">
-    <nav class="about-nav" aria-label="About page sections">
-      <button type="button" class="active" data-panel="about">About the project</button>
-      <button type="button" data-panel="lab-notes">Lab notes</button>
-      <button type="button" data-panel="lessons">Lessons learned</button>
-      <button type="button" data-panel="documentation">Documentation</button>
+    <nav class="about-nav" aria-label="About page sections" role="tablist">
+      <button type="button" id="tab-about-me" class="active" data-panel="about-me" role="tab" aria-selected="true" aria-controls="panel-about-me">About me</button>
+      <button type="button" id="tab-about" data-panel="about" role="tab" aria-selected="false" aria-controls="panel-about">About the project</button>
+      <button type="button" id="tab-lab-notes" data-panel="lab-notes" role="tab" aria-selected="false" aria-controls="panel-lab-notes">Lab notes</button>
+      <button type="button" id="tab-lessons" data-panel="lessons" role="tab" aria-selected="false" aria-controls="panel-lessons">Lessons learned</button>
+      <button type="button" id="tab-documentation" data-panel="documentation" role="tab" aria-selected="false" aria-controls="panel-documentation">Documentation</button>
     </nav>
 
     <div class="about-content">
 
-      <section data-panel-content="about" tabindex="-1">
+      <section id="panel-about-me" data-panel-content="about-me" role="tabpanel" aria-labelledby="tab-about-me" tabindex="-1">
+        {{ABOUT_ME}}
+      </section>
+
+      <section id="panel-about" data-panel-content="about" role="tabpanel" aria-labelledby="tab-about" hidden tabindex="-1">
         {{ABOUT_CONTENT}}
       </section>
 
-      <section data-panel-content="lab-notes" hidden tabindex="-1">
+      <section id="panel-lab-notes" data-panel-content="lab-notes" role="tabpanel" aria-labelledby="tab-lab-notes" hidden tabindex="-1">
         {{LAB_NOTES}}
       </section>
 
-      <section data-panel-content="lessons" hidden tabindex="-1">
+      <section id="panel-lessons" data-panel-content="lessons" role="tabpanel" aria-labelledby="tab-lessons" hidden tabindex="-1">
         {{LESSONS_LEARNED}}
       </section>
 
-      <section data-panel-content="documentation" hidden tabindex="-1">
+      <section id="panel-documentation" data-panel-content="documentation" role="tabpanel" aria-labelledby="tab-documentation" hidden tabindex="-1">
         <h2>Documentation</h2>
         <p>The source records behind this site. Some links are still being connected — see the note below.</p>
         <ul class="doc-list">

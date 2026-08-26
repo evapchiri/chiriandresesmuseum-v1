@@ -1,12 +1,12 @@
-# About page copy — Lab notes & Lessons learned
+# About page copy — About Me, Lab notes & Lessons learned
 
-*Source-of-truth markdown for the two panels on the About page ("Lab notes" and "Lessons learned"). This is the approved copy as of 26 August 2026 — drafted and reviewed in a Cowork session, hand-authored from the private journal at `reference/lab-notes/` (never linked or exposed directly — see `CLAUDE.md`).*
+*Source-of-truth markdown for three panels on the About page ("About Me", "Lab notes", and "Lessons learned"). The Lab notes / Lessons learned copy is the approved version as of 26 August 2026 — drafted and reviewed in a Cowork session, hand-authored from the private journal at `reference/lab-notes/` (never linked or exposed directly — see `CLAUDE.md`). "About Me" was added later the same day, drafted collaboratively from Eva's LinkedIn/CV facts.*
 
-**This file is parsed directly by `scripts/build.js`** (see `renderMarkdownSection()` / `parseAboutPageCopy()`) — editing this file is the only thing you need to do to update the two panels; there's no separate HTML to hand-edit or keep in sync.
+**This file is parsed directly by `scripts/build.js`** (see `renderMarkdownSection()` / `parseAboutPageCopy()`) — editing this file is the only thing you need to do to update these panels; there's no separate HTML to hand-edit or keep in sync.
 
-**Voice note:** Lab notes is deliberately casual and colloquial — contractions, fragments, loose rhythm — not rigid or report-like. Lessons learned is comparatively serious and thematic. Both were explicitly confirmed in review; if retouching, keep that split rather than tightening Lab notes back up.
+**Voice note:** Lab notes is deliberately casual and colloquial — contractions, fragments, loose rhythm — not rigid or report-like. Lessons learned is comparatively serious and thematic. About Me sits in between: personal and conversational, but not fragmentary. All three were explicitly confirmed in review; if retouching, keep those registers distinct rather than flattening them toward each other.
 
-**Supported syntax:** `##` marks the two top-level sections (`LAB NOTES`, `LESSONS LEARNED`) the build splits on — don't add a third. `###` headings, plain paragraphs, `**bold**`, `*italic*`, `` `code` ``, `[text](url)` links, and `> blockquote` all render as you'd expect. `- ` bullets make a list; a bullet can be followed by an indented (2-space) fenced ` ```gallery ` block to attach a gallery to that specific item. A paragraph written as `*[like this]*` — asterisk-bracket-asterisk — is treated as an internal editorial note and is stripped from the build entirely; use it for TODOs/placeholders that shouldn't reach the public page.
+**Supported syntax:** `##` marks the top-level sections (`ABOUT ME`, `LAB NOTES`, `LESSONS LEARNED`) the build splits on — each needs a matching call in `parseAboutPageCopy()` in `scripts/build.js` if you ever add another. `###` headings, plain paragraphs, `**bold**`, `*italic*`, `` `code` ``, `[text](url)` links, and `> blockquote` all render as you'd expect. `- ` bullets make a list; a bullet can be followed by an indented (2-space) fenced ` ```gallery ` block to attach a gallery to that specific item. A paragraph written as `*[like this]*` — asterisk-bracket-asterisk — is treated as an internal editorial note and is stripped from the build entirely; use it for TODOs/placeholders that shouldn't reach the public page.
 
 **Gallery blocks:** a fenced ` ```gallery ` block, one image per line as `filename.jpg :: alt text` (filenames are relative to `assets/img/lab-notes/`), with an optional first line `caption: ...` for a caption shown under the gallery. Can appear at the top level between paragraphs, or indented under a list item. Image/caption assignments below were cross-referenced against the private journal's own inline image placement, not guessed — if new images are ever added to a section, `reference/lab-notes/digitisation-lab-notes.md` is the place to check where in the story they actually belong.
 
@@ -184,3 +184,23 @@ Photogrammetry gives you geometry and colour from photographs; it doesn't give y
 Slow down at the very start. A more deliberate first day or two testing camera settings and studio set-up, before the "intense" photography sprint, would likely have paid for itself several times over in objects that didn't need to be abandoned.
 
 Keep the notes going, even when nothing seems worth logging. The gap between 19 May and 1 July — where Sketchfab uploads and a public LinkedIn post happened with zero written notes — is exactly the stretch where the authenticity question actually started, and I only have it preserved because I happened to write a public post about it. Undocumented process is a real risk, not just an inconvenience, on a project whose whole point is a documented process.
+
+## ABOUT ME
+
+**Eva Perez Chirinos**
+
+*Digital Heritage Technologist | Photogrammetry, 3D & Digital Preservation*
+
+By training I'm an archaeologist in love with all things digital — particularly with how 3D can offer a new way of experiencing and learning about cultural heritage in the digital space.
+
+I hold a BA in Archaeology & Anthropology from UCL, where I specialised in Digital Humanities. During my early steps at university I got close to processing finds, structuring datasets, and building pipelines for the digitisation and visual documentation of artefacts — for future use in education, exhibitions, or further analysis. That experience showed me the real struggles of generating digital media within tight archaeological and museum budgets, timelines, and environments — and just as much, the struggle of organising that media well enough afterwards to actually reuse it, with one non-negotiable: traceability.
+
+After graduating, though, I've spent the last couple of years doing SaaS technical support and helping teams do their best work — learning, alongside them, how software actually gets built, deployed, and iterated on in the real world. Most recently for a Digital Asset Management platform, and before that for a high-stakes FinTech software platform.
+
+Chiriandreses Museum is where all of that learned knowledge meets: my own family's objects, digitised properly, with the process — what was measured, what was estimated, what didn't survive — treated as part of the story, rather than hidden behind an awe-looking 3D model.
+
+- CFG alumni with a CFGDegree in Software & Data Engineering (*Merit) and a Masters in DevOps & Cloud (*Distinction).
+- Experienced in Tier 2 SaaS technical support, platform migrations, and customer success operations, with a track record of reducing critical cases and improving self-service infrastructure.
+- Awarded the 2022 Peter Dorell Prize (UCL Institute of Archaeology) for bringing 3D digitisation and artefact photographic documentation into the Downley excavation.
+- Contributed to the University of Oxford's MarEA Project, researching cyclonic impacts on Omani maritime heritage.
+- Project Data Assistant on "Monumentality and Landscape: Linear Earthworks in Britain" (UCL Institute of Archaeology & Durham University, Leverhulme Trust-funded) — database development and grey literature retrieval.
