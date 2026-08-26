@@ -227,6 +227,24 @@ h1, h2, h3 {
 .about-content p { max-width: 66ch; color: var(--ink); }
 .about-content p.placeholder-note { color: var(--ink-soft); font-style: italic; }
 
+.about-content ul:not(.spec-list):not(.doc-list) {
+  padding-left: 1.2em;
+  max-width: 66ch;
+  display: grid;
+  gap: 0.85em;
+}
+.about-content ul:not(.spec-list):not(.doc-list) li { padding-left: 0.2em; }
+
+.about-content blockquote {
+  margin: 1.2em 0;
+  padding: 4px 0 4px 18px;
+  border-left: 2px solid var(--brass);
+  max-width: 60ch;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.about-content blockquote p { margin: 0; }
+
 .spec-list {
   list-style: none;
   padding: 0;
@@ -249,6 +267,38 @@ h1, h2, h3 {
   background: var(--paper-raised);
   padding: 12px 14px;
   font-size: 0.92rem;
+}
+
+/* Lab notes photo galleries */
+
+.lab-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 6px;
+  margin: 14px 0 4px;
+  max-width: 66ch;
+}
+
+.lab-gallery a {
+  display: block;
+  border: 1px solid var(--rule);
+  background: var(--paper-raised);
+  line-height: 0;
+}
+
+.lab-gallery img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  display: block;
+}
+
+.lab-gallery-note {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  margin: 0 0 1.2em;
+  max-width: 66ch;
 }
 
 /* ---------- Collection page ---------- */

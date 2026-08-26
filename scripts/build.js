@@ -87,11 +87,170 @@ function documentationLinksHTML() {
   return docs.map((d) => `<li><a href="${d.href}">${d.label}</a></li>`).join('\n        ');
 }
 
+/* ---------- About page: Lab notes & Lessons learned ----------
+ * Public copy lives at reference/about-page-copy.md — see that file's own
+ * header for the supported markdown syntax. Parsed here directly rather than
+ * via a markdown-parsing dependency: the source is single-author (not
+ * arbitrary input), the feature set is small, and the custom image-gallery
+ * blocks would need a hand-written plugin against any library anyway. */
+
+const LAB_IMG = 'assets/img/lab-notes/';
+
+function escapeHTML(text) {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function escapeAttr(text) {
+  return escapeHTML(text).replace(/"/g, '&quot;');
+}
+
+function inlineHTML(text) {
+  let out = escapeHTML(text);
+  out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  out = out.replace(/`([^`]+)`/g, '<code>$1</code>');
+  return out;
+}
+
+function galleryBlockHTML(fenceLines) {
+  let caption = '';
+  const images = [];
+  for (const raw of fenceLines) {
+    const line = raw.trim();
+    if (!line) continue;
+    const captionMatch = line.match(/^caption:\s*(.+)$/i);
+    if (captionMatch) { caption = captionMatch[1].trim(); continue; }
+    const sep = line.indexOf('::');
+    if (sep === -1) throw new Error(`Malformed gallery line in about-page-copy.md (expected "file.jpg :: alt text"): ${line}`);
+    images.push([line.slice(0, sep).trim(), line.slice(sep + 2).trim()]);
+  }
+  const figs = images.map(([file, alt]) => `    <a href="${LAB_IMG}${file}" target="_blank" rel="noopener"><img src="${LAB_IMG}${file}" alt="${escapeAttr(alt)}" loading="lazy"></a>`).join('\n');
+  const note = caption ? `\n  <p class="lab-gallery-note">${escapeHTML(caption)}</p>` : '';
+  return `<div class="lab-gallery">\n${figs}\n  </div>${note}`;
+}
+
+function titleCaseHeader(header) {
+  return header.split(' ').map((w, i) => (i === 0 ? w[0] + w.slice(1).toLowerCase() : w.toLowerCase())).join(' ');
+}
+
+/* Renders the lines between one "## HEADER" marker and the next to HTML. */
+function renderMarkdownSection(lines) {
+  const out = [];
+  let i = 0;
+  const isBlank = (line) => line.trim() === '';
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    if (isBlank(line)) { i++; continue; }
+    if (/^(-{3,}|\*{3,}|_{3,})$/.test(line.trim())) { i++; continue; }
+
+    const heading = line.match(/^###\s+(.+)$/);
+    if (heading) { out.push(`<h3>${inlineHTML(heading[1].trim())}</h3>`); i++; continue; }
+
+    if (line.trim() === '```gallery') {
+      const fence = [];
+      i++;
+      while (i < lines.length && lines[i].trim() !== '```') { fence.push(lines[i]); i++; }
+      i++;
+      out.push(galleryBlockHTML(fence));
+      continue;
+    }
+
+    if (/^>\s?/.test(line)) {
+      const quoteLines = [];
+      while (i < lines.length && /^>\s?/.test(lines[i])) { quoteLines.push(lines[i].replace(/^>\s?/, '')); i++; }
+      out.push(`<blockquote><p>${inlineHTML(quoteLines.join(' ').trim())}</p></blockquote>`);
+      continue;
+    }
+
+    if (/^-\s+/.test(line)) {
+      const items = [];
+      while (i < lines.length) {
+        if (/^-\s+/.test(lines[i])) {
+          items.push({ text: lines[i].replace(/^-\s+/, ''), fence: null });
+          i++;
+        } else if (isBlank(lines[i])) {
+          const next = lines[i + 1];
+          if (next !== undefined && (/^\s{2,}/.test(next) || /^-\s+/.test(next))) { i++; continue; }
+          break;
+        } else if (/^\s{2,}/.test(lines[i])) {
+          const trimmed = lines[i].trim();
+          if (trimmed === '```gallery') {
+            const fence = [];
+            i++;
+            while (i < lines.length && lines[i].trim() !== '```') { fence.push(lines[i]); i++; }
+            i++;
+            items[items.length - 1].fence = fence;
+          } else {
+            items[items.length - 1].text += ` ${trimmed}`;
+            i++;
+          }
+        } else {
+          break;
+        }
+      }
+      const li = items.map(({ text, fence }) => {
+        const gallery = fence ? `\n  ${galleryBlockHTML(fence)}\n  ` : '';
+        return `  <li>${inlineHTML(text.trim())}${gallery}</li>`;
+      }).join('\n');
+      out.push(`<ul>\n${li}\n</ul>`);
+      continue;
+    }
+
+    // A `*[bracketed like this]*` paragraph is an internal editorial note —
+    // dropped from the build rather than rendered (see about-page-copy.md).
+    {
+      const commentLines = [];
+      let j = i;
+      while (j < lines.length && !isBlank(lines[j])) { commentLines.push(lines[j]); j++; }
+      if (/^\*\[.*\]\*$/.test(commentLines.join(' ').trim())) { i = j; continue; }
+    }
+
+    {
+      const paraLines = [];
+      while (
+        i < lines.length && !isBlank(lines[i]) &&
+        !/^#{2,3}\s/.test(lines[i]) && !/^-\s+/.test(lines[i]) &&
+        !/^>\s?/.test(lines[i]) && lines[i].trim() !== '```gallery'
+      ) {
+        paraLines.push(lines[i]);
+        i++;
+      }
+      out.push(`<p>${inlineHTML(paraLines.join(' ').trim())}</p>`);
+    }
+  }
+
+  return out.join('\n\n');
+}
+
+function parseAboutPageCopy() {
+  const lines = readFile(path.join(ROOT, 'reference', 'about-page-copy.md')).split('\n');
+
+  function extractSection(marker) {
+    const startIdx = lines.findIndex((l) => l.trim() === `## ${marker}`);
+    if (startIdx === -1) throw new Error(`reference/about-page-copy.md is missing a "## ${marker}" header`);
+    let endIdx = lines.findIndex((l, idx) => idx > startIdx && /^##\s/.test(l));
+    if (endIdx === -1) endIdx = lines.length;
+    const body = renderMarkdownSection(lines.slice(startIdx + 1, endIdx));
+    return `<h2>${titleCaseHeader(marker)}</h2>\n\n${body}`;
+  }
+
+  return {
+    labNotes: extractSection('LAB NOTES'),
+    lessonsLearned: extractSection('LESSONS LEARNED'),
+  };
+}
+
 function buildAboutPage(template) {
+  const { labNotes, lessonsLearned } = parseAboutPageCopy();
   return fill(template, {
     HERO: heroHTML(),
     ABOUT_CONTENT: aboutContentHTML(),
     DOCUMENTATION_LINKS: documentationLinksHTML(),
+    LAB_NOTES: labNotes,
+    LESSONS_LEARNED: lessonsLearned,
   });
 }
 
@@ -208,9 +367,17 @@ function main() {
   fs.rmSync(DOCS, { recursive: true, force: true });
   fs.mkdirSync(path.join(DOCS, 'objects'), { recursive: true });
   fs.mkdirSync(path.join(DOCS, 'assets'), { recursive: true });
+  fs.mkdirSync(path.join(DOCS, 'assets', 'img', 'lab-notes'), { recursive: true });
 
   fs.copyFileSync(path.join(ROOT, 'assets', 'styles.css'), path.join(DOCS, 'assets', 'styles.css'));
   fs.copyFileSync(path.join(ROOT, 'assets', 'site.js'), path.join(DOCS, 'assets', 'site.js'));
+
+  const labImgDir = path.join(ROOT, 'assets', 'img', 'lab-notes');
+  if (fs.existsSync(labImgDir)) {
+    for (const file of fs.readdirSync(labImgDir)) {
+      fs.copyFileSync(path.join(labImgDir, file), path.join(DOCS, 'assets', 'img', 'lab-notes', file));
+    }
+  }
 
   fs.writeFileSync(path.join(DOCS, 'index.html'), buildLandingPage(landingTemplate));
   fs.writeFileSync(path.join(DOCS, 'about.html'), buildAboutPage(aboutTemplate));
