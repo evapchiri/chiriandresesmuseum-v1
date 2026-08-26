@@ -6,23 +6,26 @@
 <title>Chiriandreses Museum — Our family's story in 3D</title>
 <meta name="description" content="Nine family heirlooms, 3D-digitised and documented — the objects, their stories, and the process behind them.">
 <link rel="stylesheet" href="assets/styles.css">
+{{THEME_INIT}}
 </head>
 <body>
+
+{{THEME_TOGGLE}}
 
 {{HERO}}
 
 <main class="wrap landing-main">
-  <p class="landing-blurb">{{PROJECT_BLURB}}</p>
+  <div class="landing-blurb">{{PROJECT_BLURB}}</div>
 
   <div class="landing-actions">
-    <a class="btn btn-primary" href="about.html" data-tip="BTS of my journey">About the project</a>
-    <a class="btn btn-primary" href="collection.html" data-tip="Explore each object's story and technical details!">The Collection</a>
+    <a class="btn btn-primary" href="about.html" data-tip="BTS of my journey">ABOUT</a>
+    <a class="btn btn-primary" href="collection.html" data-tip="Explore each object's story and technical details!">THE COLLECTION</a>
   </div>
 </main>
 
 <footer class="site-footer">
   <div class="wrap">
-    <p>Licensed CC BY-NC-SA 4.0 — attribution required, non-commercial use only, adaptations shared under the same licence.</p>
+    {{FOOTER_META}}
   </div>
 </footer>
 

@@ -7,10 +7,32 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initCursorTooltips();
+  initThemeToggle();
   initAboutTabs();
   initCollectionFilters();
   initObjectModal();
 });
+
+/* ---------- Theme toggle: manual dark/light choice, persisted ---------- */
+
+function initThemeToggle() {
+  const btn = document.querySelector('.theme-toggle');
+  if (!btn) return;
+
+  const root = document.documentElement;
+
+  function currentTheme() {
+    const stored = root.getAttribute('data-theme');
+    if (stored) return stored;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  btn.addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+}
 
 /* ---------- Landing page: cursor-following tooltips ---------- */
 

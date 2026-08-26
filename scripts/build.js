@@ -37,24 +37,53 @@ function siteNavHTML(basePath, current, { withHome = false } = {}) {
     </nav>`;
 }
 
-function heroHTML(basePath, current) {
+function heroHTML(basePath, current, { showNav = true } = {}) {
+  const nav = showNav ? siteNavHTML(basePath, current) : '';
   return `<header class="site-hero">
   <div class="wrap">
-    ${siteNavHTML(basePath, current)}
     <h1 class="hero-title"><a href="${basePath}index.html"${current === 'index' ? ' aria-current="page"' : ''}>Chiriandreses Museum</a></h1>
-    <p class="hero-subtitle">Our family's story in 3D</p>
+    <p class="hero-subtitle">Explore our family's story in <strong>3D</strong></p>
+    ${nav}
   </div>
 </header>`;
 }
 
+/* ---------- Shared theme toggle (icon-only, fixed position, all pages) ---------- */
+
+function themeToggleHTML() {
+  return `<button type="button" class="theme-toggle" aria-label="Toggle dark mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
+  </button>`;
+}
+
+/* Blocking inline script, placed in <head>, so a stored theme choice is
+ * applied before first paint — avoids a flash of the wrong theme. */
+function themeInitScript() {
+  return `<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>`;
+}
+
+/* ---------- Shared footer credit line ---------- */
+
+const { version: SITE_VERSION } = readJSON(path.join(ROOT, 'package.json'));
+
+function footerMetaHTML() {
+  const year = new Date().getFullYear();
+  return `<p class="footer-meta">&copy; ${year} Eva Perez Chirinos — v${SITE_VERSION} Licensed CC BY-NC-SA 4.0</p>`;
+}
+
 /* ---------- Landing page ---------- */
 
-const PROJECT_BLURB = `Between 16–22 February 2026, I spent a week in Spain 3D-digitising eighteen of my family's heirlooms and travel souvenirs — a hand-carved Moroccan candlestick, a toy bus from Senegal, a stone my mother swears was once part of a Roman statue. Nine objects made it through cleanly enough to share. This site holds all of it: the objects themselves, and the process, equipment, and judgement calls behind getting each one from a physical heirloom to a shareable, trustworthy 3D model.`;
+const PROJECT_BLURB = `<p>A small family collection of heirlooms, travel mementos and precious treasures that capture my parents' love story, turned into interactive 3D models for you to explore.</p>
+<p>Each model comes with its own story of how it turned up here with us, alongside an honest record of its digitisation process that aims to closely follow the current European framework set out in the VIGIE 2020/654 study to achieve quality and traceability in 3D heritage digitisation.</p>`;
 
 function buildLandingPage(template) {
   return fill(template, {
-    HERO: heroHTML('', 'index'),
+    HERO: heroHTML('', 'index', { showNav: false }),
     PROJECT_BLURB,
+    THEME_TOGGLE: themeToggleHTML(),
+    THEME_INIT: themeInitScript(),
+    FOOTER_META: footerMetaHTML(),
   });
 }
 
@@ -267,6 +296,9 @@ function buildAboutPage(template) {
     DOCUMENTATION_LINKS: documentationLinksHTML(),
     LAB_NOTES: labNotes,
     LESSONS_LEARNED: lessonsLearned,
+    THEME_TOGGLE: themeToggleHTML(),
+    THEME_INIT: themeInitScript(),
+    FOOTER_META: footerMetaHTML(),
   });
 }
 
@@ -307,6 +339,9 @@ function buildCollectionPage(template, objects) {
     NAME_OPTIONS: names.map((n) => `<option value="${n}">${n}</option>`).join('\n        '),
     CARDS: cards,
     OBJECTS_DATA: buildObjectsDataJSON(objects),
+    THEME_TOGGLE: themeToggleHTML(),
+    THEME_INIT: themeInitScript(),
+    FOOTER_META: footerMetaHTML(),
   });
 }
 
@@ -373,6 +408,9 @@ function buildObjectPage(obj, template) {
     SKETCHFAB_UID: obj.sketchfabUid,
     STORY: storyHTML(obj.story),
     PROVENANCE: provenanceHTML(obj.provenance),
+    THEME_TOGGLE: themeToggleHTML(),
+    THEME_INIT: themeInitScript(),
+    FOOTER_META: footerMetaHTML(),
   });
 }
 
