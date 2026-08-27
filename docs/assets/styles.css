@@ -7,85 +7,33 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Onest:wght@400;500&display=swap");
 
+/* Palette — single fixed dark scheme (Chiriandreses v1).
+   Built on a four-colour set: #222831 / #31363F / #76ABAE / #EEEEEE, with the
+   off-white as text; the page ground is taken a shade deeper than the darkest
+   swatch (#181818) so the #31363F raised surfaces read as lifted.
+   Light/dark switching is intentionally disabled for now; the previous
+   prefers-color-scheme + data-theme override blocks were removed earlier and
+   can be reinstated from git history if switching returns. */
 :root {
-  --paper: #f5f3f9;
-  --paper-raised: #ffffff;
-  --ink: #221f2d;
-  --ink-soft: #5f5876;
-  --rule: #dbd8e7;
-  --patina: #4a3f63;
-  --patina-deep: #332e44;
-  --brass: #cc4b3c;
-  --measured: #3f7a5c;
-  --measured-bg: #e1efe6;
-  --estimated: #9a6b24;
-  --estimated-bg: #f1e6c9;
-  --flagged: #cc4b3c;
-  --flagged-bg: #f7e0db;
-  --na: #6b6478;
-  --na-bg: #e8e5f0;
+  color-scheme: dark;
+  --paper: #181818;
+  --paper-raised: #31363f;
+  --ink: #eeeeee;
+  --ink-soft: #adb2ba;
+  --rule: #434955;
+  --patina: #c4c8ce;
+  --patina-deep: #e0e3e7;
+  --brass: #76abae;
+  --measured: #6fd19d;
+  --measured-bg: #22362d;
+  --estimated: #e0b45c;
+  --estimated-bg: #38301c;
+  --flagged: #e2705c;
+  --flagged-bg: #3a251f;
+  --na: #b8bdc6;
+  --na-bg: #333842;
   --max-width: 1080px;
   --radius: 2px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #1a1822;
-    --paper-raised: #2a2636;
-    --ink: #edebf3;
-    --ink-soft: #b7b0c9;
-    --rule: #47415a;
-    --patina: #8f82b8;
-    --patina-deep: #b9aedd;
-    --brass: #e2705c;
-    --measured: #6fd19d;
-    --measured-bg: #1d3b2c;
-    --estimated: #e0b45c;
-    --estimated-bg: #3a2f13;
-    --flagged: #e2705c;
-    --flagged-bg: #3a201b;
-    --na: #cabfe0;
-    --na-bg: #2c2740;
-  }
-}
-
-/* Manual toggle (data-theme, set via localStorage) wins over prefers-color-scheme. */
-:root[data-theme="dark"] {
-  --paper: #1a1822;
-  --paper-raised: #2a2636;
-  --ink: #edebf3;
-  --ink-soft: #b7b0c9;
-  --rule: #47415a;
-  --patina: #8f82b8;
-  --patina-deep: #b9aedd;
-  --brass: #e2705c;
-  --measured: #6fd19d;
-  --measured-bg: #1d3b2c;
-  --estimated: #e0b45c;
-  --estimated-bg: #3a2f13;
-  --flagged: #e2705c;
-  --flagged-bg: #3a201b;
-  --na: #cabfe0;
-  --na-bg: #2c2740;
-}
-
-:root[data-theme="light"] {
-  --paper: #f5f3f9;
-  --paper-raised: #ffffff;
-  --ink: #221f2d;
-  --ink-soft: #5f5876;
-  --rule: #dbd8e7;
-  --patina: #4a3f63;
-  --patina-deep: #332e44;
-  --brass: #cc4b3c;
-  --measured: #3f7a5c;
-  --measured-bg: #e1efe6;
-  --estimated: #9a6b24;
-  --estimated-bg: #f1e6c9;
-  --flagged: #cc4b3c;
-  --flagged-bg: #f7e0db;
-  --na: #6b6478;
-  --na-bg: #e8e5f0;
 }
 
 * {
@@ -795,7 +743,7 @@ h3 {
   font-size: 0.74rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--patina-deep);
+  color: var(--brass);
   border-bottom: 1px dashed var(--rule);
   padding-bottom: 10px;
   margin-bottom: 14px;
@@ -835,7 +783,7 @@ h3 {
   font-size: 0.74rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--patina-deep);
+  color: var(--brass);
   margin: 22px 0 12px;
 }
 
@@ -904,7 +852,7 @@ body.modal-open {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(20, 18, 26, 0.65);
+  background: rgba(12, 14, 18, 0.72);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -1051,68 +999,6 @@ body.modal-open {
 .modal-close:hover {
   border-color: var(--brass);
   color: var(--brass);
-}
-
-/* ---------- Theme toggle (icon-only, fixed, every page) ---------- */
-
-.theme-toggle {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 60;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--rule);
-  border-radius: 50%;
-  background: var(--paper-raised);
-  color: var(--ink-soft);
-  cursor: pointer;
-  transition:
-    border-color 0.15s ease,
-    color 0.15s ease;
-}
-
-.theme-toggle:hover {
-  border-color: var(--brass);
-  color: var(--brass);
-}
-
-.theme-toggle svg {
-  width: 18px;
-  height: 18px;
-}
-
-.theme-toggle .icon-sun {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.theme-toggle .icon-moon {
-  fill: currentColor;
-  stroke: none;
-  display: none;
-}
-
-:root[data-theme="dark"] .theme-toggle .icon-sun {
-  display: none;
-}
-:root[data-theme="dark"] .theme-toggle .icon-moon {
-  display: block;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle .icon-sun {
-    display: none;
-  }
-  :root:not([data-theme="light"]) .theme-toggle .icon-moon {
-    display: block;
-  }
 }
 
 /* ---------- Footer ---------- */

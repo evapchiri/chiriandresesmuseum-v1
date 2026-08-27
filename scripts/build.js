@@ -48,19 +48,17 @@ function heroHTML(basePath, current, { showNav = true } = {}) {
 </header>`;
 }
 
-/* ---------- Shared theme toggle (icon-only, fixed position, all pages) ---------- */
+/* ---------- Shared theme toggle ----------
+ * Light/dark switching is disabled for now: the site ships a single fixed
+ * palette (see assets/styles.css). Both hooks emit nothing; restore the
+ * button + init-script bodies from git history to bring switching back. */
 
 function themeToggleHTML() {
-  return `<button type="button" class="theme-toggle" aria-label="Toggle dark mode">
-    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
-  </button>`;
+  return '';
 }
 
-/* Blocking inline script, placed in <head>, so a stored theme choice is
- * applied before first paint — avoids a flash of the wrong theme. */
 function themeInitScript() {
-  return `<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>`;
+  return '';
 }
 
 /* ---------- Shared footer credit line ---------- */
