@@ -312,12 +312,34 @@ function optionsHTML(values) {
   return values.map((v) => `<option value="${v}">${v}</option>`).join('\n        ');
 }
 
+/* Card thumbnails are black line-art SVGs supplied per object, named by ID
+ * (assets/img/cards/chan-001.svg). Inlined at build time (rather than
+ * referenced via <img src>) so CSS can recolor them for dark mode via
+ * currentColor. Returns '' when the file doesn't exist yet — CSS renders
+ * a placeholder box via .card-thumb:empty, so the site builds fine before
+ * the real assets arrive. */
+function cardThumbHTML(id) {
+  const file = path.join(ROOT, 'assets', 'img', 'cards', `${id.toLowerCase()}.svg`);
+  return fs.existsSync(file) ? readFile(file) : '';
+}
+
+const CARD_SEARCH_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.8-4.8"/></svg>`;
+
 function buildCard(obj) {
   return `<article class="card" data-decade="${obj.decade}" data-country="${obj.country}" data-continent="${obj.continent}" data-id="${obj.id}" data-name="${obj.title}">
-    <span class="card-id">${obj.id}</span>
-    <h2><a href="objects/${obj.slug}.html">${obj.title}</a></h2>
-    <p class="teaser">${obj.story[0].slice(0, 130)}…</p>
-    <p class="tags">${obj.decade} · ${obj.country}</p>
+    <a class="card-link" href="objects/${obj.slug}.html" aria-label="${obj.title}">
+      <div class="card-thumb">${cardThumbHTML(obj.id)}</div>
+      <div class="card-info">
+        <span class="card-id">${obj.id}</span>
+        <h2>${obj.title}</h2>
+        <ul class="card-meta">
+          <li>${obj.materials}</li>
+          <li>${chronologyShort(obj.chronology)}</li>
+          <li>${obj.geography}</li>
+        </ul>
+      </div>
+      <span class="card-icon">${CARD_SEARCH_ICON}</span>
+    </a>
   </article>`;
 }
 

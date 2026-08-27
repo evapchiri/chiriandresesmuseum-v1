@@ -481,50 +481,96 @@ h1, h2, h3 {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  margin: 36px 0 64px;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  max-width: 760px;
+  margin: 40px auto 64px;
 }
 
 .card {
+  border: 1px solid var(--rule);
+  border-radius: 14px;
   background: var(--paper-raised);
-  padding: 22px 20px 24px;
-  display: flex;
-  flex-direction: column;
-  min-height: 220px;
+  transition: border-color 0.15s ease;
 }
 
-.card .card-id {
+.card:hover { border-color: var(--patina-deep); }
+
+.card-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 0.5fr);
+  align-items: center;
+  gap: 24px;
+  padding: 18px 24px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-thumb {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+
+.card-thumb svg { max-width: 100%; max-height: 100%; width: auto; height: auto; }
+.card-thumb svg,
+.card-thumb svg * {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+.card-thumb:empty {
+  align-self: stretch;
+  border: 1px dashed var(--rule);
+  border-radius: 10px;
+}
+
+.card-info { min-width: 0; }
+
+.card-info .card-id {
   font-family: 'Geist Mono', monospace;
-  font-size: 0.72rem;
+  font-size: 0.66rem;
   color: var(--brass);
   letter-spacing: 0.06em;
 }
 
-.card h2 {
-  font-size: 1.28rem;
-  margin: 8px 0 10px;
+.card-info h2 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin: 4px 0 10px;
 }
 
-.card h2 a { color: var(--ink); text-decoration: none; }
-.card h2 a:hover { color: var(--patina-deep); }
-
-.card .teaser {
+.card-meta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 5px;
+  font-family: 'Onest', system-ui, sans-serif;
+  font-size: 0.82rem;
   color: var(--ink-soft);
-  font-size: 0.94rem;
-  flex-grow: 1;
 }
 
-.card .tags {
-  margin-top: 16px;
-  font-family: 'Geist Mono', monospace;
-  font-size: 0.72rem;
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--ink-soft);
-  border-top: 1px dashed var(--rule);
-  padding-top: 10px;
 }
+
+.card-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.card:hover .card-icon { color: var(--brass); }
 
 /* ---------- Object page ---------- */
 
@@ -581,6 +627,7 @@ h1, h2, h3 {
 }
 
 .viewer-frame {
+  position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
   border: 1px solid var(--rule);
@@ -588,10 +635,29 @@ h1, h2, h3 {
 }
 .viewer-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
 
+.viewer-loading {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, var(--paper-raised) 30%, var(--paper) 45%, var(--paper-raised) 60%);
+  background-size: 200% 100%;
+  animation: viewer-sweep 1.6s ease-in-out infinite;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.viewer-frame.loaded .viewer-loading { opacity: 0; }
+
+@keyframes viewer-sweep {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 .viewer-caption {
   font-family: 'Geist Mono', monospace;
   font-size: 0.74rem;
-  color: var(--ink-soft);
+  color: var(--patina-deep);
+  opacity: 0.5;
   margin-top: 8px;
 }
 
@@ -688,33 +754,119 @@ body.modal-open { overflow: hidden; }
   background: rgba(20, 18, 26, 0.65);
   display: flex;
   justify-content: center;
-  padding: 40px 20px;
+  align-items: flex-start;
+  padding: clamp(16px, 3vw, 40px) clamp(20px, 5vw, 64px);
   overflow-y: auto;
 }
 
 .modal-overlay[hidden] { display: none; }
 
+/* The panel itself is capped to fit within the overlay's padding — matching
+ * margins top and bottom — and never scrolls itself; its inner .wrap does,
+ * so the close button (in .modal-topbar, a sibling of .wrap) stays fixed in
+ * place regardless of scroll position within .wrap. Sizing throughout this
+ * block is kept compact so a typical object fits with no scrolling at all;
+ * the .wrap/.field-record overflow rules stay on as a fallback only for
+ * objects with unusually long field records. */
 .modal-panel {
   position: relative;
   background: var(--paper);
   border: 1px solid var(--rule);
   width: 100%;
   max-width: var(--max-width);
-  height: max-content;
-  padding: 44px 0 40px;
+  max-height: calc(100vh - 2 * clamp(16px, 3vw, 40px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-topbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 24px 5px;
+}
+
+.modal-topbar .tag-row {
+  color: var(--brass);
+  opacity: 0.5;
+  margin: 2px;
+}
+
+.modal-panel .wrap {
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: 10px;
 }
 
 .modal-panel #modal-title {
-  font-size: clamp(1.6rem, 3vw, 2.3rem);
-  margin: 6px 0 0;
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  margin: 6px 0 16px;
 }
 
-.modal-panel .object-body { padding-top: 30px; }
+.modal-panel .object-body {
+  padding: 4px 0 0;
+  grid-template-columns: 1.5fr 1fr;
+}
+
+/* Unlike the standalone object page, the modal's viewer doesn't stick while
+ * scrolling — instead only the field-record column scrolls, within its own
+ * bounded height, so the whole popup stays put inside the viewport. */
+.modal-panel .viewer-wrap { position: static; }
+
+.modal-panel .viewer-frame { aspect-ratio: 16 / 9; }
+
+/* max-height is a CSS fallback only — JS sets an inline max-height that
+ * exactly matches .viewer-wrap's rendered height (see syncFieldRecordHeight
+ * in site.js), since a pure-CSS grid-stretch approach lets field-record's
+ * own tall content inflate the shared row instead of being capped by it. */
+.modal-panel .field-record {
+  max-height: 400px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 14px 16px 12px;
+}
+
+.modal-panel .field-record .record-title {
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+.modal-panel .field-record .record-row {
+  font-size: 0.78rem;
+  padding: 3px 0;
+}
+
+.modal-panel .field-record .record-section-label {
+  margin: 10px 0 5px;
+}
+
+.modal-panel .field-record .provenance-item { padding: 5px 0; }
+
+.modal-panel .field-record .methodology-link { margin-top: 10px; }
+
+.modal-panel .story {
+  max-width: 100%;
+  margin-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px dashed var(--rule);
+}
+
+.modal-panel .story p {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  font-size: clamp(0.88rem, 0.82rem + 0.3vw, 0.95rem);
+  line-height: 1.45;
+  margin: 0 0 0.5em;
+}
 
 .modal-close {
-  position: absolute;
-  top: 12px;
-  right: 24px;
+  flex: none;
   width: 34px;
   height: 34px;
   border: 1px solid var(--rule);

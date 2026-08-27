@@ -11,7 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
   initAboutTabs();
   initCollectionFilters();
   initObjectModal();
+  initViewerLoading();
 });
+
+/* ---------- Sketchfab viewer: loading sweep while the iframe loads ----------
+ * Static object-page frames only need this once; the Collection modal reuses
+ * one iframe across objects, so openModal() resets the loading state itself
+ * (see initObjectModal below) rather than relying on this initial pass. */
+
+function initViewerLoading() {
+  document.querySelectorAll('.viewer-frame iframe').forEach((iframe) => {
+    iframe.addEventListener('load', () => {
+      iframe.closest('.viewer-frame')?.classList.add('loaded');
+    });
+  });
+}
 
 /* ---------- Theme toggle: manual dark/light choice, persisted ---------- */
 
@@ -154,13 +168,27 @@ function initObjectModal() {
   const panel = modal.querySelector('.modal-panel');
   const closeBtn = modal.querySelector('.modal-close');
   const iframe = modal.querySelector('#modal-iframe');
+  const viewerFrame = iframe.closest('.viewer-frame');
+  const viewerWrap = modal.querySelector('.viewer-wrap');
+  const fieldRecord = modal.querySelector('.field-record');
   let lastFocused = null;
+
+  /* Field record's max-height is set here (not in CSS) so it can match
+   * .viewer-wrap's actual rendered height exactly — a pure-CSS grid-stretch
+   * approach lets field-record's own tall content inflate the shared row
+   * instead of being capped by it, so this needs a real measurement. */
+  function syncFieldRecordHeight() {
+    if (modal.hidden) return;
+    fieldRecord.style.maxHeight = `${viewerWrap.getBoundingClientRect().height}px`;
+  }
+  window.addEventListener('resize', syncFieldRecordHeight);
 
   function fillModal(obj) {
     modal.querySelector('#modal-title').textContent = obj.title;
     modal.querySelector('#modal-tags').innerHTML =
       `<span>${obj.id}</span><span>${obj.type}</span><span>${obj.chronologyShort}</span><span>${obj.geography}</span>`;
     iframe.title = `3D model of ${obj.title}`;
+    viewerFrame?.classList.remove('loaded');
     iframe.src = `https://sketchfab.com/models/${obj.sketchfabUid}/embed?ui_theme=dark&ui_infos=0`;
     modal.querySelector('#modal-story').innerHTML = obj.storyHTML;
     modal.querySelector('#modal-record-title').textContent = `Field record — ${obj.id}`;
@@ -183,7 +211,8 @@ function initObjectModal() {
     lastFocused = document.activeElement;
     modal.hidden = false;
     document.body.classList.add('modal-open');
-    panel.focus();
+    panel.focus({ preventScroll: true });
+    syncFieldRecordHeight();
     if (pushState) history.pushState({ modal: obj.id }, '', `#${obj.id.toLowerCase()}`);
   }
 

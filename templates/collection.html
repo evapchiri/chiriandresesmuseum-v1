@@ -71,18 +71,20 @@
 
 <div id="object-modal" class="modal-overlay" hidden>
   <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
-    <button type="button" class="modal-close" aria-label="Close">&times;</button>
-    <div class="wrap">
+    <div class="modal-topbar">
       <p class="tag-row" id="modal-tags"></p>
+      <button type="button" class="modal-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="wrap">
       <h2 id="modal-title"></h2>
 
       <div class="object-body">
         <div class="viewer-wrap">
           <div class="viewer-frame">
+            <div class="viewer-loading" aria-hidden="true"></div>
             <iframe id="modal-iframe" title="" src="" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
           </div>
           <p class="viewer-caption">Drag to rotate · scroll to zoom · tap the AR icon on supported devices</p>
-          <div class="story" id="modal-story"></div>
         </div>
 
         <aside class="field-record">
@@ -111,6 +113,8 @@
           <a class="methodology-link" id="modal-full-link" href="">View this object's own page &rarr;</a>
         </aside>
       </div>
+
+      <div class="story" id="modal-story"></div>
     </div>
   </div>
 </div>
