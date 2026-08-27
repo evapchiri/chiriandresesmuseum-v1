@@ -5,7 +5,7 @@
    condition-report card, with provenance stated as stamped, plain-language
    flags rather than hidden in a spec sheet. */
 
-@import url('https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Onest:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Onest:wght@400;500&display=swap");
 
 :root {
   --paper: #f5f3f9;
@@ -88,30 +88,51 @@
   --na-bg: #e8e5f0;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.55;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { animation: none !important; transition: none !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
-a { color: var(--patina-deep); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover { color: var(--brass); }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+a {
+  color: var(--patina-deep);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover {
+  color: var(--brass);
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
 
-h1, h2, h3 {
-  font-family: 'Cactus Classical Serif', Georgia, serif;
+h1,
+h2,
+h3 {
+  font-family: "Cactus Classical Serif", Georgia, serif;
   font-weight: 400;
   line-height: 1.1;
   margin: 0 0 0.4em;
@@ -119,14 +140,17 @@ h1, h2, h3 {
 }
 
 .eyebrow {
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
 }
 
-.wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
 
 /* ---------- Site hero (identical on landing, About, Collection) ---------- */
 
@@ -144,14 +168,18 @@ h1, h2, h3 {
 }
 
 .site-nav-link {
-  font-family: 'Onest', system-ui, sans-serif;
+  font-family: "Onest", system-ui, sans-serif;
   font-weight: 500;
   font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   text-decoration: none;
   color: var(--ink-soft);
 }
 
-.site-nav-link:hover { color: var(--brass); }
+.site-nav-link:hover {
+  color: var(--brass);
+}
 
 .site-nav-link[aria-current="page"] {
   color: var(--patina-deep);
@@ -172,10 +200,12 @@ h1, h2, h3 {
   text-decoration: none;
 }
 
-.hero-title a:hover { color: var(--brass); }
+.hero-title a:hover {
+  color: var(--brass);
+}
 
 .hero-subtitle {
-  font-family: 'Cactus Classical Serif', Georgia, serif;
+  font-family: "Cactus Classical Serif", Georgia, serif;
   font-style: normal;
   font-weight: 400;
   font-size: 1.05rem;
@@ -184,9 +214,16 @@ h1, h2, h3 {
   opacity: 0.5;
 }
 
-.hero-subtitle strong { font-weight: 400; color: var(--ink); }
-.hero-subtitle::before { content: "— "; }
-.hero-subtitle::after { content: " —"; }
+.hero-subtitle strong {
+  font-weight: 400;
+  color: var(--ink);
+}
+.hero-subtitle::before {
+  content: "— ";
+}
+.hero-subtitle::after {
+  content: " —";
+}
 
 /* ---------- Landing page ---------- */
 
@@ -202,8 +239,12 @@ h1, h2, h3 {
   font-size: 0.95rem;
 }
 
-.landing-blurb p { margin: 0 0 1em; }
-.landing-blurb p:last-child { margin-bottom: 0; }
+.landing-blurb p {
+  margin: 0 0 1em;
+}
+.landing-blurb p:last-child {
+  margin-bottom: 0;
+}
 
 .landing-actions {
   margin-top: 34px;
@@ -214,7 +255,7 @@ h1, h2, h3 {
 }
 
 .btn {
-  font-family: 'Onest', system-ui, sans-serif;
+  font-family: "Onest", system-ui, sans-serif;
   font-weight: 500;
   font-size: 0.86rem;
   letter-spacing: 0.03em;
@@ -225,7 +266,10 @@ h1, h2, h3 {
   color: var(--ink);
   background: transparent;
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .btn-primary:hover,
@@ -246,7 +290,7 @@ h1, h2, h3 {
   pointer-events: none;
   background: var(--ink);
   color: var(--paper-raised);
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.76rem;
   padding: 6px 11px;
   border-radius: var(--radius);
@@ -255,21 +299,25 @@ h1, h2, h3 {
   transition: opacity 0.15s ease;
 }
 
-.cursor-tip.visible { opacity: 1; }
+.cursor-tip.visible {
+  opacity: 1;
+}
 
 /* ---------- Page intro (About + Collection) ---------- */
 
 .page-intro {
-  max-width: 68ch;
+  max-width: 60rem;
   margin: 30px auto 0;
-  color: var(--ink-soft);
+  /* color: var(--ink-soft); */
   text-align: center;
   padding: 0 24px;
 }
 
 /* ---------- About / BTS page ---------- */
 
-.about-main { padding-bottom: 60px; }
+.about-main {
+  padding-bottom: 60px;
+}
 
 .about-layout {
   display: grid;
@@ -279,7 +327,9 @@ h1, h2, h3 {
 }
 
 @media (max-width: 720px) {
-  .about-layout { grid-template-columns: 1fr; }
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 .about-nav {
@@ -309,14 +359,16 @@ h1, h2, h3 {
   background: none;
   border: none;
   border-left: 2px solid transparent;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 0.94rem;
   color: var(--ink-soft);
   padding: 8px 0 8px 14px;
   cursor: pointer;
 }
 
-.about-nav button:hover { color: var(--ink); }
+.about-nav button:hover {
+  color: var(--ink);
+}
 
 .about-nav button.active {
   color: var(--patina-deep);
@@ -324,27 +376,40 @@ h1, h2, h3 {
   font-weight: 500;
 }
 
-.about-content h2 { font-size: 1.6rem; }
-.about-content h3 { font-size: 1.15rem; margin-top: 1.6em; }
-.about-content p { max-width: 66ch; color: var(--ink); }
-.about-content p.placeholder-note { color: var(--ink-soft); font-style: italic; }
+.about-content h2 {
+  font-size: 1.6rem;
+}
+.about-content h3 {
+  font-size: 1.15rem;
+  margin-top: 1.6em;
+}
+.about-content p {
+  max-width: 66ch;
+  color: var(--ink);
+}
+.about-content p.placeholder-note {
+  color: var(--ink-soft);
+  font-style: italic;
+}
 
 /* About Me: first two paragraphs (name + tagline) read as a small intro card */
 #panel-about-me p:first-child {
-  font-family: 'Cactus Classical Serif', Georgia, serif;
+  font-family: "Cactus Classical Serif", Georgia, serif;
   font-size: 1.3rem;
   font-weight: 400;
   margin-bottom: 0.2em;
 }
 #panel-about-me p:first-child + p {
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.82rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--ink-soft);
   margin-bottom: 1.6em;
 }
-#panel-about-me p:first-child + p em { font-style: normal; }
+#panel-about-me p:first-child + p em {
+  font-style: normal;
+}
 
 .about-content ul:not(.spec-list):not(.doc-list) {
   padding-left: 1.2em;
@@ -352,7 +417,9 @@ h1, h2, h3 {
   display: grid;
   gap: 0.85em;
 }
-.about-content ul:not(.spec-list):not(.doc-list) li { padding-left: 0.2em; }
+.about-content ul:not(.spec-list):not(.doc-list) li {
+  padding-left: 0.2em;
+}
 
 .about-content blockquote {
   margin: 1.2em 0;
@@ -362,7 +429,9 @@ h1, h2, h3 {
   color: var(--ink-soft);
   font-style: italic;
 }
-.about-content blockquote p { margin: 0; }
+.about-content blockquote p {
+  margin: 0;
+}
 
 .spec-list {
   list-style: none;
@@ -372,7 +441,11 @@ h1, h2, h3 {
   gap: 8px;
   font-size: 0.94rem;
 }
-.spec-list li { padding-bottom: 8px; border-bottom: 1px dashed var(--rule); max-width: 60ch; }
+.spec-list li {
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--rule);
+  max-width: 60ch;
+}
 
 .doc-list {
   list-style: none;
@@ -413,7 +486,7 @@ h1, h2, h3 {
 }
 
 .lab-gallery-note {
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.76rem;
   color: var(--ink-soft);
   margin: 0 0 1.2em;
@@ -422,7 +495,9 @@ h1, h2, h3 {
 
 /* ---------- Collection page ---------- */
 
-.collection-main { padding-bottom: 60px; }
+.collection-main {
+  padding-bottom: 60px;
+}
 
 .filter-bar {
   margin: 36px 0 8px;
@@ -441,7 +516,7 @@ h1, h2, h3 {
 }
 
 .filter-field label {
-  font-family: 'Geist Mono', monospace;
+  font-family: "Onest", system-ui, sans-serif;
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -449,7 +524,7 @@ h1, h2, h3 {
 }
 
 .filter-field select {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-size: 0.88rem;
   padding: 8px 10px;
   border: 1px solid var(--rule);
@@ -460,7 +535,7 @@ h1, h2, h3 {
 }
 
 .filter-reset {
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.76rem;
   background: none;
   border: none;
@@ -494,7 +569,9 @@ h1, h2, h3 {
   transition: border-color 0.15s ease;
 }
 
-.card:hover { border-color: var(--patina-deep); }
+.card:hover {
+  border-color: var(--patina-deep);
+}
 
 .card-link {
   display: grid;
@@ -514,7 +591,12 @@ h1, h2, h3 {
   color: var(--ink);
 }
 
-.card-thumb svg { max-width: 100%; max-height: 100%; width: auto; height: auto; }
+.card-thumb svg {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
 .card-thumb svg,
 .card-thumb svg * {
   fill: currentColor !important;
@@ -527,11 +609,13 @@ h1, h2, h3 {
   border-radius: 10px;
 }
 
-.card-info { min-width: 0; }
+.card-info {
+  min-width: 0;
+}
 
 .card-info .card-id {
-  font-family: 'Geist Mono', monospace;
-  font-size: 0.66rem;
+  font-family: "Geist Mono", monospace;
+  font-size: 0.77rem;
   color: var(--brass);
   letter-spacing: 0.06em;
 }
@@ -548,7 +632,7 @@ h1, h2, h3 {
   padding: 0;
   display: grid;
   gap: 5px;
-  font-family: 'Onest', system-ui, sans-serif;
+  font-family: "Onest", system-ui, sans-serif;
   font-size: 0.82rem;
   color: var(--ink-soft);
 }
@@ -570,7 +654,9 @@ h1, h2, h3 {
   stroke-linejoin: round;
 }
 
-.card:hover .card-icon { color: var(--brass); }
+.card:hover .card-icon {
+  color: var(--brass);
+}
 
 /* ---------- Object page ---------- */
 
@@ -585,7 +671,7 @@ h1, h2, h3 {
 }
 
 .back-link {
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.78rem;
   text-decoration: none;
   display: inline-block;
@@ -599,11 +685,14 @@ h1, h2, h3 {
 
 .tag-row {
   margin-top: 10px;
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.82rem;
   color: var(--ink-soft);
 }
-.tag-row span:not(:last-child)::after { content: " · "; color: var(--rule); }
+.tag-row span:not(:last-child)::after {
+  content: " · ";
+  color: var(--rule);
+}
 
 .object-body {
   display: grid;
@@ -614,7 +703,9 @@ h1, h2, h3 {
 }
 
 @media (max-width: 840px) {
-  .object-body { grid-template-columns: 1fr; }
+  .object-body {
+    grid-template-columns: 1fr;
+  }
 }
 
 .viewer-wrap {
@@ -623,7 +714,9 @@ h1, h2, h3 {
 }
 
 @media (max-width: 840px) {
-  .viewer-wrap { position: static; }
+  .viewer-wrap {
+    position: static;
+  }
 }
 
 .viewer-frame {
@@ -633,12 +726,22 @@ h1, h2, h3 {
   border: 1px solid var(--rule);
   background: var(--paper-raised);
 }
-.viewer-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.viewer-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
 
 .viewer-loading {
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, var(--paper-raised) 30%, var(--paper) 45%, var(--paper-raised) 60%);
+  background: linear-gradient(
+    100deg,
+    var(--paper-raised) 30%,
+    var(--paper) 45%,
+    var(--paper-raised) 60%
+  );
   background-size: 200% 100%;
   animation: viewer-sweep 1.6s ease-in-out infinite;
   opacity: 1;
@@ -646,22 +749,31 @@ h1, h2, h3 {
   pointer-events: none;
 }
 
-.viewer-frame.loaded .viewer-loading { opacity: 0; }
+.viewer-frame.loaded .viewer-loading {
+  opacity: 0;
+}
 
 @keyframes viewer-sweep {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .viewer-caption {
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.74rem;
   color: var(--patina-deep);
   opacity: 0.5;
   margin-top: 8px;
 }
 
-.story p { margin: 0 0 1em; max-width: 62ch; }
+.story p {
+  margin: 0 0 1em;
+  max-width: 62ch;
+}
 
 /* Field Record docket — the signature element */
 
@@ -672,7 +784,7 @@ h1, h2, h3 {
 }
 
 .field-record .record-title {
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.74rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -690,20 +802,29 @@ h1, h2, h3 {
   padding: 6px 0;
   border-bottom: 1px dashed var(--rule);
 }
-.record-row:last-of-type { border-bottom: none; }
+.record-row:last-of-type {
+  border-bottom: none;
+}
 
 .record-row dt {
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.72rem;
   color: var(--ink-soft);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-.record-row dd { margin: 0; }
-.record-row .materials-note { display: block; font-size: 0.8rem; color: var(--ink-soft); margin-top: 4px; }
+.record-row dd {
+  margin: 0;
+}
+.record-row .materials-note {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
 
 .record-section-label {
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.74rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -715,11 +836,13 @@ h1, h2, h3 {
   padding: 10px 0;
   border-bottom: 1px dashed var(--rule);
 }
-.provenance-item:last-child { border-bottom: none; }
+.provenance-item:last-child {
+  border-bottom: none;
+}
 
 .stamp {
   display: inline-block;
-  font-family: 'Geist Mono', monospace;
+  font-family: "Geist Mono", monospace;
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -729,13 +852,33 @@ h1, h2, h3 {
   transform: rotate(-1deg);
   margin-bottom: 6px;
 }
-.stamp.measured { background: var(--measured-bg); color: var(--measured); }
-.stamp.estimated { background: var(--estimated-bg); color: var(--estimated); }
-.stamp.flagged { background: var(--flagged-bg); color: var(--flagged); }
-.stamp.na { background: var(--na-bg); color: var(--na); }
+.stamp.measured {
+  background: var(--measured-bg);
+  color: var(--measured);
+}
+.stamp.estimated {
+  background: var(--estimated-bg);
+  color: var(--estimated);
+}
+.stamp.flagged {
+  background: var(--flagged-bg);
+  color: var(--flagged);
+}
+.stamp.na {
+  background: var(--na-bg);
+  color: var(--na);
+}
 
-.provenance-item .prop { font-weight: 600; margin-right: 6px; }
-.provenance-item .note { display: block; color: var(--ink-soft); font-size: 0.88rem; margin-top: 4px; }
+.provenance-item .prop {
+  font-weight: 600;
+  margin-right: 6px;
+}
+.provenance-item .note {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
 
 .methodology-link {
   display: block;
@@ -745,7 +888,10 @@ h1, h2, h3 {
 
 /* ---------- Object detail modal (Collection page) ---------- */
 
-body.modal-open { overflow: hidden; }
+body.modal-open {
+  overflow: hidden;
+  padding: 0 24px;
+}
 
 .modal-overlay {
   position: fixed;
@@ -759,7 +905,9 @@ body.modal-open { overflow: hidden; }
   overflow-y: auto;
 }
 
-.modal-overlay[hidden] { display: none; }
+.modal-overlay[hidden] {
+  display: none;
+}
 
 /* The panel itself is capped to fit within the overlay's padding — matching
  * margins top and bottom — and never scrolls itself; its inner .wrap does,
@@ -771,13 +919,15 @@ body.modal-open { overflow: hidden; }
 .modal-panel {
   position: relative;
   background: var(--paper);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--ink);
   width: 100%;
   max-width: var(--max-width);
   max-height: calc(100vh - 2 * clamp(16px, 3vw, 40px));
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  border-radius: 14px;
 }
 
 .modal-topbar {
@@ -786,13 +936,17 @@ body.modal-open { overflow: hidden; }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 24px 24px 5px;
+  padding: 24px 0 0;
 }
 
-.modal-topbar .tag-row {
+/* ID + type/chronology/geography row, now sitting on its own line directly
+ * below the title/close-button row (a fixed sibling of .wrap, so it stays
+ * put while the modal body scrolls). */
+.modal-panel > .tag-row {
+  flex: none;
   color: var(--brass);
   opacity: 0.5;
-  margin: 2px;
+  margin: 4px 0 14px;
 }
 
 .modal-panel .wrap {
@@ -804,7 +958,8 @@ body.modal-open { overflow: hidden; }
 
 .modal-panel #modal-title {
   font-size: clamp(1.4rem, 2vw, 1.75rem);
-  margin: 6px 0 16px;
+  margin: 0;
+  min-width: 0;
 }
 
 .modal-panel .object-body {
@@ -815,9 +970,13 @@ body.modal-open { overflow: hidden; }
 /* Unlike the standalone object page, the modal's viewer doesn't stick while
  * scrolling — instead only the field-record column scrolls, within its own
  * bounded height, so the whole popup stays put inside the viewport. */
-.modal-panel .viewer-wrap { position: static; }
+.modal-panel .viewer-wrap {
+  position: static;
+}
 
-.modal-panel .viewer-frame { aspect-ratio: 16 / 9; }
+.modal-panel .viewer-frame {
+  aspect-ratio: 16 / 9;
+}
 
 /* max-height is a CSS fallback only — JS sets an inline max-height that
  * exactly matches .viewer-wrap's rendered height (see syncFieldRecordHeight
@@ -845,9 +1004,13 @@ body.modal-open { overflow: hidden; }
   margin: 10px 0 5px;
 }
 
-.modal-panel .field-record .provenance-item { padding: 5px 0; }
+.modal-panel .field-record .provenance-item {
+  padding: 5px 0;
+}
 
-.modal-panel .field-record .methodology-link { margin-top: 10px; }
+.modal-panel .field-record .methodology-link {
+  margin-top: 10px;
+}
 
 .modal-panel .story {
   max-width: 100%;
@@ -878,7 +1041,10 @@ body.modal-open { overflow: hidden; }
   cursor: pointer;
 }
 
-.modal-close:hover { border-color: var(--brass); color: var(--brass); }
+.modal-close:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
 
 /* ---------- Theme toggle (icon-only, fixed, every page) ---------- */
 
@@ -897,12 +1063,20 @@ body.modal-open { overflow: hidden; }
   background: var(--paper-raised);
   color: var(--ink-soft);
   cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
-.theme-toggle:hover { border-color: var(--brass); color: var(--brass); }
+.theme-toggle:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
 
-.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
 
 .theme-toggle .icon-sun {
   fill: none;
@@ -918,12 +1092,20 @@ body.modal-open { overflow: hidden; }
   display: none;
 }
 
-:root[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
-:root[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: none;
+}
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: block;
+}
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: none; }
-  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon {
+    display: block;
+  }
 }
 
 /* ---------- Footer ---------- */
@@ -931,7 +1113,7 @@ body.modal-open { overflow: hidden; }
 .site-footer {
   border-top: 1px solid var(--rule);
   padding: 26px 0 50px;
-  font-family: 'Onest', system-ui, sans-serif;
+  font-family: "Onest", system-ui, sans-serif;
   font-size: 0.76rem;
   color: var(--ink-soft);
 }

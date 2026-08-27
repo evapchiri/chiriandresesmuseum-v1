@@ -33,7 +33,7 @@ function siteNavHTML(basePath, current, { withHome = false } = {}) {
   const home = withHome ? link('index.html', 'Chiriandreses Museum', 'index') : '';
   return `<nav class="site-nav" aria-label="Main">
       ${home}${link('about.html', 'About', 'about')}
-      ${link('collection.html', 'Collection', 'collection')}
+      ${link('collection.html', 'The Collection', 'collection')}
     </nav>`;
 }
 
