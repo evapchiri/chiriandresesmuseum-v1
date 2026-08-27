@@ -117,37 +117,119 @@ function initCollectionFilters() {
   const filterBar = document.querySelector('.filter-bar');
   if (!filterBar) return;
 
-  const selects = filterBar.querySelectorAll('select[data-filter]');
-  const cards = document.querySelectorAll('.card[data-decade]');
+  const selects = [...filterBar.querySelectorAll('select[data-filter]')];
+  const cards = [...document.querySelectorAll('.card[data-decade]')];
   const emptyState = document.querySelector('.no-results');
   const resetBtn = document.querySelector('.filter-reset');
 
-  function applyFilters() {
+  // Snapshot each card's filterable values once, keyed by filter name.
+  const cardData = cards.map((card) => {
+    const values = {};
+    selects.forEach((s) => { values[s.dataset.filter] = card.dataset[s.dataset.filter]; });
+    return { card, values };
+  });
+
+  // The full, build-time option list for each select (minus the "All" entry),
+  // kept so the dropdowns can be rebuilt as selections narrow the field.
+  const fullOptions = new Map(
+    selects.map((s) => [
+      s,
+      [...s.options]
+        .filter((o) => o.value !== 'all')
+        .map((o) => ({ value: o.value, label: o.textContent })),
+    ])
+  );
+
+  // Active selections, optionally ignoring one select (used so a dropdown
+  // never constrains its own list of options).
+  function selections(exclude) {
     const active = {};
     selects.forEach((s) => {
-      if (s.value !== 'all') active[s.dataset.filter] = s.value;
+      if (s === exclude || s.value === 'all') return;
+      active[s.dataset.filter] = s.value;
     });
+    return active;
+  }
 
+  function cardMatches(values, active) {
+    return Object.entries(active).every(([key, value]) => values[key] === value);
+  }
+
+  // Values of `key` that some card still has once the other active filters
+  // are applied — i.e. the options for that dropdown that would return a hit.
+  function reachableValues(key, exclude) {
+    const others = selections(exclude);
+    return new Set(
+      cardData
+        .filter((d) => cardMatches(d.values, others))
+        .map((d) => d.values[key])
+    );
+  }
+
+  // Rebuild every dropdown so it only offers values that, combined with the
+  // other active filters, still return at least one object. A dropdown with
+  // no such values is disabled and shows a "No options" placeholder.
+  function refreshOptions() {
+    // First settle the selections themselves: clear any active choice the
+    // others have made impossible, repeating until stable so the result
+    // doesn't depend on which dropdown is examined first.
+    let changed = true;
+    while (changed) {
+      changed = false;
+      selects.forEach((select) => {
+        if (select.value === 'all') return;
+        if (!reachableValues(select.dataset.filter, select).has(select.value)) {
+          select.value = 'all';
+          changed = true;
+        }
+      });
+    }
+
+    // Then rebuild each dropdown's option list from the settled selections.
+    selects.forEach((select) => {
+      const reachable = reachableValues(select.dataset.filter, select);
+      const current = select.value;
+      const opts = fullOptions.get(select).filter((o) => reachable.has(o.value));
+
+      select.innerHTML = '';
+      if (opts.length === 0) {
+        select.appendChild(new Option('No options', 'all', true, true));
+        select.disabled = true;
+        return;
+      }
+      select.disabled = false;
+      select.appendChild(new Option('All', 'all'));
+      opts.forEach((o) => select.appendChild(new Option(o.label, o.value)));
+      select.value = current === 'all' || reachable.has(current) ? current : 'all';
+    });
+  }
+
+  function applyFilters() {
+    const active = selections(null);
     let visibleCount = 0;
-    cards.forEach((card) => {
-      const matches = Object.entries(active).every(
-        ([key, value]) => card.dataset[key] === value
-      );
+    cardData.forEach(({ card, values }) => {
+      const matches = cardMatches(values, active);
       card.style.display = matches ? '' : 'none';
       if (matches) visibleCount += 1;
     });
-
     if (emptyState) emptyState.hidden = visibleCount !== 0;
   }
 
-  selects.forEach((s) => s.addEventListener('change', applyFilters));
+  function update() {
+    refreshOptions();
+    applyFilters();
+  }
+
+  selects.forEach((s) => s.addEventListener('change', update));
 
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
       selects.forEach((s) => { s.value = 'all'; });
-      applyFilters();
+      update();
     });
   }
+
+  update();
 }
 
 /* ---------- Collection page: object detail modal ----------

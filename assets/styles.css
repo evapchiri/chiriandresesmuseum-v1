@@ -534,6 +534,13 @@ h3 {
   min-width: 150px;
 }
 
+/* Set when the current selections leave a facet with nothing to offer —
+ * the dropdown shows a "No options" placeholder and can't be opened. */
+.filter-field select:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .filter-reset {
   font-family: "Geist Mono", monospace;
   font-size: 0.76rem;
