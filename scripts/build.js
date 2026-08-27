@@ -7,12 +7,24 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const ROOT = path.join(__dirname, '..');
 const DOCS = path.join(ROOT, 'docs');
 
 function readJSON(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
 function readFile(p) { return fs.readFileSync(p, 'utf8'); }
+
+/* A site-root-relative asset path with a short content-hash query appended
+ * (`assets/x.mp4?v=1a2b3c4d`), so a re-encoded file with the same name still
+ * busts browser/CDN caches. Falls back to the bare path if the file is
+ * missing at build time. */
+function assetURL(relPath) {
+  const abs = path.join(ROOT, relPath);
+  if (!fs.existsSync(abs)) return relPath;
+  const hash = crypto.createHash('sha1').update(fs.readFileSync(abs)).digest('hex').slice(0, 8);
+  return `${relPath}?v=${hash}`;
+}
 
 function fill(template, tokens) {
   let out = template;
@@ -42,7 +54,7 @@ function heroHTML(basePath, current, { showNav = true } = {}) {
   return `<header class="site-hero">
   <div class="wrap">
     <h1 class="hero-title"><a href="${basePath}index.html"${current === 'index' ? ' aria-current="page"' : ''}>Chiriandreses Museum</a></h1>
-    <p class="hero-subtitle">Explore our family's story in <strong>3D</strong></p>
+    <p class="hero-subtitle">Explore our family's story in 3D</p>
     ${nav}
   </div>
 </header>`;
@@ -79,6 +91,8 @@ function buildLandingPage(template) {
   return fill(template, {
     HERO: heroHTML('', 'index', { showNav: false }),
     PROJECT_BLURB,
+    LANDING_VIDEO_SRC: assetURL('assets/video/landing-bg.mp4'),
+    LANDING_VIDEO_POSTER: assetURL('assets/video/landing-bg-poster.jpg'),
     THEME_TOGGLE: themeToggleHTML(),
     THEME_INIT: themeInitScript(),
     FOOTER_META: footerMetaHTML(),
@@ -484,6 +498,16 @@ function main() {
   if (fs.existsSync(labImgDir)) {
     for (const file of fs.readdirSync(labImgDir)) {
       fs.copyFileSync(path.join(labImgDir, file), path.join(DOCS, 'assets', 'img', 'lab-notes', file));
+    }
+  }
+
+  // Landing-page background video + poster (large-screen flourish, see
+  // assets/site.js). Committed pre-encoded web assets, copied verbatim.
+  const videoDir = path.join(ROOT, 'assets', 'video');
+  if (fs.existsSync(videoDir)) {
+    fs.mkdirSync(path.join(DOCS, 'assets', 'video'), { recursive: true });
+    for (const file of fs.readdirSync(videoDir)) {
+      fs.copyFileSync(path.join(videoDir, file), path.join(DOCS, 'assets', 'video', file));
     }
   }
 

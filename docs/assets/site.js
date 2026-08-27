@@ -11,7 +11,54 @@ document.addEventListener('DOMContentLoaded', () => {
   initCollectionFilters();
   initObjectModal();
   initViewerLoading();
+  initLandingBackgroundVideo();
 });
+
+/* ---------- Landing page: looping background video ----------
+ * Big-screen-only flourish. The <video> ships with no src/poster; we attach
+ * them (and start playback) only past a min-width breakpoint and only when
+ * the visitor hasn't asked for reduced motion — so narrow or motion-averse
+ * viewports never download the media. If the window is later widened past
+ * the breakpoint, it starts then. CSS (.landing-bg) hides the element and
+ * lays down the scrim; this just governs loading/playback. */
+
+function initLandingBackgroundVideo() {
+  const video = document.querySelector('.landing-bg-video');
+  if (!video) return;
+
+  const bigScreen = window.matchMedia('(min-width: 1024px)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let attached = false;
+
+  const play = () => {
+    const p = video.play();
+    if (p) p.catch(() => {}); // muted autoplay; poster stays if the browser blocks it
+  };
+
+  function attach() {
+    if (attached || !bigScreen.matches || reducedMotion.matches) return;
+    attached = true;
+    // Paths (with a cache-busting ?v=hash) come from build.js via data-* attrs.
+    video.poster = video.dataset.poster || 'assets/video/landing-bg-poster.jpg';
+    const source = document.createElement('source');
+    source.src = video.dataset.src || 'assets/video/landing-bg.mp4';
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    video.load(); // re-run resource selection now that a <source> exists
+    video.addEventListener('canplay', play, { once: true });
+    play();
+  }
+
+  attach();
+  bigScreen.addEventListener('change', attach);
+
+  // Resume if playback was deferred while the tab was in the background
+  // (e.g. opened in a new tab, or a battery/visibility pause) — it's a
+  // silent loop with no controls, so there's nothing a visitor meant to pause.
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && attached && video.paused) play();
+  });
+}
 
 /* ---------- Sketchfab viewer: loading sweep while the iframe loads ----------
  * Static object-page frames only need this once; the Collection modal reuses

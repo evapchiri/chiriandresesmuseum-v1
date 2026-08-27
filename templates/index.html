@@ -8,9 +8,17 @@
 <link rel="stylesheet" href="assets/styles.css">
 {{THEME_INIT}}
 </head>
-<body>
+<body class="landing">
 
 {{THEME_TOGGLE}}
+
+<!-- Looping background video — large screens only. No src/poster in markup:
+     assets/site.js injects them past a min-width breakpoint (and skips it under
+     prefers-reduced-motion), so narrow viewports never fetch the media. -->
+<div class="landing-bg" aria-hidden="true">
+  <video class="landing-bg-video" muted loop playsinline preload="none"
+         data-src="{{LANDING_VIDEO_SRC}}" data-poster="{{LANDING_VIDEO_POSTER}}"></video>
+</div>
 
 {{HERO}}
 

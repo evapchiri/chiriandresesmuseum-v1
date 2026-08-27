@@ -8,14 +8,22 @@
 <link rel="stylesheet" href="assets/styles.css">
 
 </head>
-<body>
+<body class="landing">
 
 
+
+<!-- Looping background video — large screens only. No src/poster in markup:
+     assets/site.js injects them past a min-width breakpoint (and skips it under
+     prefers-reduced-motion), so narrow viewports never fetch the media. -->
+<div class="landing-bg" aria-hidden="true">
+  <video class="landing-bg-video" muted loop playsinline preload="none"
+         data-src="assets/video/landing-bg.mp4?v=934844cb" data-poster="assets/video/landing-bg-poster.jpg?v=7494df72"></video>
+</div>
 
 <header class="site-hero">
   <div class="wrap">
     <h1 class="hero-title"><a href="index.html" aria-current="page">Chiriandreses Museum</a></h1>
-    <p class="hero-subtitle">Explore our family's story in <strong>3D</strong></p>
+    <p class="hero-subtitle">Explore our family's story in 3D</p>
     
   </div>
 </header>
