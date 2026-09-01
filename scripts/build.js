@@ -99,126 +99,24 @@ function buildLandingPage(template) {
   });
 }
 
-/* ---------- About / BTS page ---------- */
+/* ---------- About / BTS page ----------
+ * The two static panels — "About the project" and "About me" — are authored as
+ * plain HTML files in templates/partials/ so they can be retouched like any
+ * other page (syntax highlighting, no backtick-escaping) rather than edited as
+ * string literals in here. Lab notes / Lessons learned still come from
+ * reference/about-page-copy.md; the "## ABOUT ME" section in that file is now
+ * unused but kept so it stays a complete record. */
 
-function aboutContentHTML() {
-  return `<h2>About the project</h2>
-
-<p>This project followed the European Commission's VIGIE 2020/654 study on quality in 3D digitisation of tangible cultural heritage, adapted throughout for a solo practitioner working with personal, non-fragile objects rather than an institutional team and archival-grade holdings. Planning and capture practice also drew on the 3D4CH Competence Centre's <em>Essential Guide to 3D Digitised Heritage</em> training series, alongside photogrammetry community guidance on preparing models for reuse in VR, AR, and web-based viewing.</p>
-
-<h3>Scope &amp; team</h3>
-<p>The objective was to generate high-quality 3D models of a family heirloom and travel-souvenir collection, following Europeana-aligned standards for model, metadata, and paradata, and to make them accessible through a purpose-built web experience. I led capture, processing, and documentation. Custom tooling was developed in collaboration with my partner, <strong>Robert Upson</strong>, a Senior Software Engineer, to address reconstruction failures the standard pipeline couldn't resolve.</p>
-
-<h3>Equipment &amp; software</h3>
-<ul class="spec-list">
-  <li><strong>Camera:</strong> Canon DSLR 2000D, EF-S 18-55mm IS II lens</li>
-  <li><strong>Lighting:</strong> 2× NEEWER portable lights, dimmable 5600K 1000LM, white diffuser filter</li>
-  <li><strong>Turntable:</strong> Home turntable rig, white background</li>
-  <li><strong>Scale reference:</strong> Homemade, accurate to ±1mm</li>
-  <li><strong>Photogrammetry:</strong> Agisoft Metashape Standard v2.2.2</li>
-  <li><strong>Supplementary tooling:</strong> HeritageScan — a custom CLI built on Apple's RealityKit SDK, for cases the standard pipeline couldn't resolve</li>
-  <li><strong>3D authoring:</strong> Blender</li>
-  <li><strong>Compute:</strong> MacBook M2 2022, 16GB</li>
-</ul>
-
-<h3>The capture campaign</h3>
-<p>18 objects were photographed across a single week's access to the family collection at my parents' home in Spain (16–22 February 2026), immediately before my relocation to Japan. Re-photographing wasn't possible afterwards — the objects aren't accessible for recapture — which shaped several decisions along the way. Target accuracy was ±5mm, target resolution 1.5mm, target reprojection error 1.5px. Nine objects reached finished status: technical success (a model exists) was treated as necessary but not sufficient — a model also had to remain a credible representation of the object without disproportionate manual reconstruction to count.</p>
-
-<h3>Custom tooling: HeritageScan</h3>
-<p>Where Metashape's standard reconstruction failed — high-specularity or dark textures, low-featured surfaces — Robert built HeritageScan to test an alternative reconstruction algorithm against the same source images. It didn't resolve every alignment challenge Metashape struggled with, but for one object in particular it produced a better result in roughly a fifth of the time and effort.</p>
-
-<p>The full methodology and per-object paradata record goes into considerably more depth than fits here — see the Documentation tab for the complete document.</p>`;
+function partialHTML(name) {
+  return readFile(path.join(ROOT, 'templates', 'partials', name)).trim();
 }
 
-/* About page: "About me" panel.
- * Hand-authored HTML (unlike Lab notes / Lessons learned, which come from
- * reference/about-page-copy.md): this panel needs an image carousel, the
- * muted "extras" block, and footnote-style superscript links that the small
- * markdown parser in this file doesn't cover. The "## ABOUT ME" section still
- * present in about-page-copy.md is now unused — kept only so that file stays a
- * complete record; this function is the source of truth for what ships. */
+function aboutContentHTML() {
+  return partialHTML('about-project.html');
+}
+
 function aboutMeHTML() {
-  return `<h2>About me</h2>
-
-<p>Eva Perez Chirinos</p>
-<p>Digital Cultural Heritage &nbsp;|&nbsp; Photogrammetry &nbsp;|&nbsp; 3D &nbsp;|&nbsp; Digital asset management</p>
-<p class="about-me-links">
-  <a href="https://www.linkedin.com/in/eva-perez-chirinos" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-    LinkedIn
-  </a>
-  <a href="https://github.com/evapchiri" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.3-1.7-1.3-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
-    GitHub
-  </a>
-</p>
-
-<p>Long story short: I&rsquo;m an archaeologist in love with all things digital - diving into how 3D interactive data can offer new ways of experiencing and learning cultural heritage in the digital space.</p>
-
-<p>I hold a BA in Archaeology and Anthropology from UCL (University College London), where I naturally gravitated towards Digital Humanities. During my early steps at university I supervised the post-processing workload of a student excavation&rsquo;s finds and structured its main database. During this work, I decided to implement new photographic pipelines for the 2D &amp; 3D visual documentation of highlighted artefacts and archaeological trenches &mdash; so that these didn&rsquo;t just stay as rows in the database, but could be interacted with, displayed in class, local exhibitions, or for further specialist analysis.</p>
-
-<div class="about-me-carousel" data-carousel>
-  <div class="carousel-viewport">
-    <div class="carousel-track">
-      <div class="carousel-slide">
-        <img src="assets/img/about/excavation-exhibition-weald-downland.jpg" loading="lazy"
-          alt="Some of the excavation&rsquo;s artefact photographs being displayed in a temporary exhibition in Weald &amp; Downland Living Museum (2023)"
-          data-caption="Some of the excavation&rsquo;s artefact photographs being displayed in a temporary exhibition in Weald &amp; Downland Living Museum (2023)">
-      </div>
-      <div class="carousel-slide">
-        <img src="assets/img/about/student-excavation-digitisation-work.jpg" loading="lazy"
-          alt="Some of my digitisation work in the student excavation. Left: collage of different views of an artefact&rsquo;s RTI model. Right: multiple views of a processed 3D scan of one of the trenches"
-          data-caption="Some of my digitisation work in the student excavation. Left: collage of different views of an artefact&rsquo;s RTI model. Right: multiple views of a processed 3D scan of one of the trenches">
-      </div>
-    </div>
-    <button class="carousel-prev" type="button" aria-label="Previous image">&#8249;</button>
-    <button class="carousel-next" type="button" aria-label="Next image">&#8250;</button>
-  </div>
-  <p class="carousel-caption" data-carousel-caption>Some of the excavation&rsquo;s artefact photographs being displayed in a temporary exhibition in Weald &amp; Downland Living Museum (2023)</p>
-  <div class="carousel-dots"></div>
-</div>
-
-<p>This work got me the Peter Dorell Prize 2022 from the Institute of Archaeology<a href="#award-1"><sup>*1</sup></a>, but more so I navigated the struggles we can face in the Heritage field when trying to generate digital media within tight budgets, timelines, and certainly not the most &ldquo;cushy&rdquo; environments. It taught me about the importance of traceability - and how easy it is to lose sight of it - and equally so, the importance of organising that media well enough that it does not become a derived struggle to reuse those assets. Quite rapidly, software and digital asset management became another one of my passions.</p>
-
-<p>For the last couple of years I&rsquo;ve been working in SaaS software technical support, where I got pretty good at helping both internal and client teams do their best work when problems arise, or there&rsquo;s a challenge to face<a href="#award-2"><sup>*2</sup></a>. I learned first hand how software gets built, deployed, and iterated on in the real world, and how digital experiences get curated. In my most recent work I supported a Digital Asset Management platform, a critical software in every Heritage professionals&rsquo; toolkit in the management of their institution&rsquo;s digital assets.</p>
-
-<p>Like so, Chiriandreses Museum is where all of that technical and archaeological knowledge merges: an end-to-end digitisation pipeline, from project planning, to photography, to processing, and a key final part: sharing the knowledge behind the geometric data in an engaging way.</p>
-
-<div class="about-extras">
-
-  <p class="about-extras-heading"><strong><em>Other experiences/educational certificates of mine:</em></strong></p>
-  <ul>
-    <li>
-      <strong>CFG alumni with a CFGDegree in Software &amp; Data Engineering</strong> (<em>Merit</em>) <strong>and a Masters in DevOps &amp; Cloud</strong> (<em>Distinction</em>).
-      <span class="about-extra-note"><em>Back-end and front-end programming, Cloud software, UX/UI</em></span>
-    </li>
-    <li>
-      <strong>Contributed to the University of Oxford&rsquo;s &ldquo;<em>MarEA Project</em>&rdquo;.</strong>
-      <span class="about-extra-note"><em>Researching cyclonic impacts on Omani maritime heritage. My work was <a href="https://marea.soton.ac.uk/2021/10/26/examining-omans-cyclonic-activity-and-its-impact-on-maritime-cultural-heritage-student-project/" target="_blank" rel="noopener">published in the project&rsquo;s website.</a></em></span>
-    </li>
-    <li>
-      <strong>Assistant to &ldquo;<em>Monumentality and Landscape: Linear Earthworks in Britain</em>&rdquo;</strong> (UCL Institute of Archaeology &amp; Durham University, Leverhulme Trust-funded)
-      <span class="about-extra-note"><em>Database development and grey literature retrieval.</em></span>
-    </li>
-  </ul>
-
-  <p class="about-extras-heading"><strong><em>Awards &amp; recognition:</em></strong></p>
-  <ul>
-    <li id="award-1">
-      (*1) Awarded the <strong>2022 Peter Dorell Prize</strong> (UCL Institute of Archaeology)
-      <span class="about-extra-note"><em>For bringing 3D digitisation and artefact photographic documentation into the Downley excavation.</em></span>
-    </li>
-    <li id="award-2">
-      (*2) Avalara &ldquo;<strong>Customer Champion&rdquo; award</strong> for Q1 2025
-      <span class="about-extra-note"><em>For my &ldquo;unwavering commitment to putting customers first. With nearly 90% of Avalara Europe&rsquo;s glowing Trustpilot reviews and continues to set the gold standard for CSAT across the team.&rdquo;</em></span>
-    </li>
-    <li>
-      <strong>&ldquo;<em>Highly commended candidate</em>&rdquo;</strong> <strong><em>award</em></strong> <strong>x2</strong>
-      <span class="about-extra-note"><em>For two of CodeFirstGirls Kickstarter programming certificates: Python &amp; Apps | Javascript</em></span>
-    </li>
-  </ul>
-
-</div>`;
+  return partialHTML('about-me.html');
 }
 
 function documentationLinksHTML() {
@@ -630,4 +528,6 @@ function main() {
   console.log('Reminder: Documentation links on the About page still use REPLACE_WITH_LINK placeholders.');
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { build: main };

@@ -8,19 +8,23 @@ Content licence: CC BY-NC-SA 4.0 (Attribution–NonCommercial–ShareAlike) thro
 
 ## Architecture — read this before touching anything
 
-Plain HTML/CSS/JS. No framework, no client-side dependencies, no build tooling beyond one ~100-line Node script. This is a deliberate, already-litigated choice (see `README.md` → "Why this shape"). Two earlier attempts at this same project were abandoned specifically because framework overhead outpaced the actual need — a Next.js/shadcn build and a Vite/React build before that, both live as sibling folders one level up (`../chiriandresesmuseum`, `../chiriandresesmuseum-OLDvite`), neither referenced by this repo. Don't reintroduce React, a bundler, or a CSS framework here without discussing it first.
+Plain HTML/CSS/JS. No framework, no client-side dependencies, no build tooling beyond a few small dependency-free Node scripts in `scripts/` (build, dev server, plain server). This is a deliberate, already-litigated choice (see `README.md` → "Why this shape"). Two earlier attempts at this same project were abandoned specifically because framework overhead outpaced the actual need — a Next.js/shadcn build and a Vite/React build before that, both live as sibling folders one level up (`../chiriandresesmuseum`, `../chiriandresesmuseum-OLDvite`), neither referenced by this repo. Don't reintroduce React, a bundler, or a CSS framework here without discussing it first.
 
 - `data/objects.json` — single source of truth for all object content (metadata, story text, provenance records). This is what you edit for content changes.
-- `templates/*.html` — the four page templates (index, about, collection, object).
-- `scripts/build.js` — reads `objects.json` + templates, writes finished static pages into `/docs`. Also copies `assets/img/lab-notes/` into `docs/assets/img/lab-notes/` on build, and emits the per-object JSON the Collection page's detail modal reads (same data as the standalone object pages — both are generated from one source, not duplicated by hand).
+- `templates/*.html` — the four page templates (index, about, collection, object), with `{{TOKEN}}` slots build.js fills.
+- `templates/partials/*.html` — standalone HTML fragments read verbatim into a token: `about-me.html` and `about-project.html` are the two static About-page panels. Authored as plain HTML (not string literals in build.js) so they retouch like any other page. Add more here whenever a chunk of hand-written page HTML would otherwise live as a JS template literal.
+- `scripts/build.js` — reads `objects.json` + templates + partials, writes finished static pages into `/docs`. Also copies `assets/img/lab-notes/` and `assets/img/about/` into `docs/` on build, and emits the per-object JSON the Collection page's detail modal reads (same data as the standalone object pages — both are generated from one source, not duplicated by hand). Exports `{ build }` and only auto-runs when invoked directly, so `scripts/dev.js` can re-require it per rebuild.
 - `docs/` — **build output**, served directly by GitHub Pages once deployed. Checked into git deliberately — GitHub Pages here is still "Deploy from a branch: main / docs", not an Actions-based deploy. `.github/workflows/build-docs.yml` rebuilds and auto-commits `/docs` on every push to `main`, so pushing a source change is enough; run `npm run build` locally too when you want to preview before pushing. Never hand-edit files inside `docs/` directly — edits get silently wiped on the next build.
 - `assets/` — site-wide CSS/JS, copied into `docs/assets` on build. `assets/img/lab-notes/` specifically holds the **public, curated, resized** copies of process photos used in the About page's Lab notes panel — committed, not gitignored. Don't confuse this with `reference/lab-notes/` below, which is the private raw source those images were curated *from*. `assets/video/` holds the pre-encoded landing-page background video (`landing-bg.mp4` + `landing-bg-poster.jpg`), copied verbatim into `docs/assets/video/`; it's a large-screen-only flourish loaded lazily by `assets/site.js`, and the source render lives outside the repo (re-encode with ffmpeg if it changes).
 - `reference/` — source material that feeds the site's content but isn't itself served (see "Reference material" below). `reference/lab-notes/` specifically is gitignored and never committed — it's private, internal-only working material, not a draft of public content.
 
 ## Commands
 
-- `npm run build` — regenerate `/docs` from source.
-- `npm run serve` — serve `/docs` locally (or `npx serve docs`, or `python3 -m http.server 8080 --directory docs`).
+- `npm run dev` — the working loop: build once, serve `/docs` at `http://localhost:3000`, watch `templates/ assets/ data/ reference/ scripts/`, rebuild on save, and live-reload the browser (SSE snippet injected into HTML responses only — never written to `/docs`). Editing `scripts/build.js` is picked up live; editing `scripts/dev.js` needs a restart. No dependencies.
+- `npm run build` — one-shot regenerate `/docs` from source (what CI runs).
+- `npm run serve` — plain static server for `/docs`, no watch/reload (or `npx serve docs`).
+
+Edit **source only** — `templates/`, `templates/partials/`, `assets/`, `data/objects.json`, `reference/about-page-copy.md`, `scripts/build.js`. `docs/` is build output and is wiped on every build.
 
 ## The provenance/status vocabulary — keep this consistent
 
