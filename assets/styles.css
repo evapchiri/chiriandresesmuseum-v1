@@ -411,6 +411,10 @@ h3 {
   font-style: italic;
 }
 
+.partial-title {
+  color: var(--brass);
+}
+
 /* About Me: first two paragraphs (name + tagline) read as a small intro card */
 #panel-about-me p:first-child {
   font-family: "Cactus Classical Serif", Georgia, serif;
@@ -515,6 +519,24 @@ h3 {
 /* ---------- About me panel ---------- */
 
 /* LinkedIn / GitHub row (third paragraph of the panel) */
+
+.about-me-myname {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  max-width: 66ch;
+}
+#panel-about-me .myname {
+  margin-top: 15px;
+}
+#panel-about-me .mytag {
+  font-family: "Cactus Classical Serif", Georgia, serif;
+  font-weight: lighter;
+  color: var(--ink-soft);
+  margin: 0 0;
+}
+
 #panel-about-me .about-me-links {
   display: flex;
   flex-wrap: wrap;
@@ -556,13 +578,16 @@ h3 {
   opacity: 0.7;
   margin-top: 2.2em;
 }
+.about-extras li {
+  font-size: small;
+}
 .about-extras .about-extras-heading {
   margin-bottom: 0.4em;
 }
 .about-extras .about-extra-note {
   display: block;
   margin-top: 0.25em;
-  font-size: 0.92rem;
+  font-size: smaller;
 }
 
 /* About-me image carousel (progressive-enhancement: with JS off, the first
@@ -570,8 +595,7 @@ h3 {
 .about-me-carousel {
   max-width: 66ch;
   margin: 1.8em 0 2em;
-  border: 1px solid var(--rule);
-  background: var(--paper-raised);
+  text-align: center;
 }
 .about-me-carousel .carousel-viewport {
   position: relative;
@@ -582,7 +606,9 @@ h3 {
   transition: transform 0.4s ease;
 }
 @media (prefers-reduced-motion: reduce) {
-  .about-me-carousel .carousel-track { transition: none; }
+  .about-me-carousel .carousel-track {
+    transition: none;
+  }
 }
 .about-me-carousel .carousel-slide {
   flex: 0 0 100%;
@@ -619,12 +645,16 @@ h3 {
   border-color: var(--brass);
   color: var(--brass);
 }
-.about-me-carousel .carousel-prev { left: 8px; }
-.about-me-carousel .carousel-next { right: 8px; }
+.about-me-carousel .carousel-prev {
+  left: 8px;
+}
+.about-me-carousel .carousel-next {
+  right: 8px;
+}
 .about-me-carousel .carousel-caption {
   font-family: "Geist Mono", monospace;
   font-size: 0.76rem;
-  color: var(--ink-soft);
+  color: var(--brass);
   margin: 0;
   padding: 8px 12px 6px;
   max-width: none;

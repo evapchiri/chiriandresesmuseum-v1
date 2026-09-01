@@ -1,9 +1,17 @@
-<h2>About the project</h2>
+<h2 class="partial-title">About the project</h2>
 
-<p>This project followed the European Commission's VIGIE 2020/654 study on quality in 3D digitisation of tangible cultural heritage, adapted throughout for a solo practitioner working with personal, non-fragile objects rather than an institutional team and archival-grade holdings. Planning and capture practice also drew on the 3D4CH Competence Centre's <em>Essential Guide to 3D Digitised Heritage</em> training series, alongside photogrammetry community guidance on preparing models for reuse in VR, AR, and web-based viewing.</p>
+<p>This project followed the European Commission's VIGIE 2020/654 study on quality in 3D digitisation of tangible
+  cultural heritage, adapted throughout for a solo practitioner working with personal, non-fragile objects rather than
+  an institutional team and archival-grade holdings. Planning and capture practice also drew on the 3D4CH Competence
+  Centre's <em>Essential Guide to 3D Digitised Heritage</em> training series, alongside photogrammetry community
+  guidance on preparing models for reuse in VR, AR, and web-based viewing.</p>
 
 <h3>Scope &amp; team</h3>
-<p>The objective was to generate high-quality 3D models of a family heirloom and travel-souvenir collection, following Europeana-aligned standards for model, metadata, and paradata, and to make them accessible through a purpose-built web experience. I led capture, processing, and documentation. Custom tooling was developed in collaboration with my partner, <strong>Robert Upson</strong>, a Senior Software Engineer, to address reconstruction failures the standard pipeline couldn't resolve.</p>
+<p>The objective was to generate high-quality 3D models of a family heirloom and travel-souvenir collection, following
+  Europeana-aligned standards for model, metadata, and paradata, and to make them accessible through a purpose-built web
+  experience. I led capture, processing, and documentation. Custom tooling was developed in collaboration with my
+  partner, <strong>Robert Upson</strong>, a Senior Software Engineer, to address reconstruction failures the standard
+  pipeline couldn't resolve.</p>
 
 <h3>Equipment &amp; software</h3>
 <ul class="spec-list">
@@ -12,15 +20,25 @@
   <li><strong>Turntable:</strong> Home turntable rig, white background</li>
   <li><strong>Scale reference:</strong> Homemade, accurate to ±1mm</li>
   <li><strong>Photogrammetry:</strong> Agisoft Metashape Standard v2.2.2</li>
-  <li><strong>Supplementary tooling:</strong> HeritageScan — a custom CLI built on Apple's RealityKit SDK, for cases the standard pipeline couldn't resolve</li>
+  <li><strong>Supplementary tooling:</strong> HeritageScan — a custom CLI built on Apple's RealityKit SDK, for cases the
+    standard pipeline couldn't resolve</li>
   <li><strong>3D authoring:</strong> Blender</li>
   <li><strong>Compute:</strong> MacBook M2 2022, 16GB</li>
 </ul>
 
 <h3>The capture campaign</h3>
-<p>18 objects were photographed across a single week's access to the family collection at my parents' home in Spain (16–22 February 2026), immediately before my relocation to Japan. Re-photographing wasn't possible afterwards — the objects aren't accessible for recapture — which shaped several decisions along the way. Target accuracy was ±5mm, target resolution 1.5mm, target reprojection error 1.5px. Nine objects reached finished status: technical success (a model exists) was treated as necessary but not sufficient — a model also had to remain a credible representation of the object without disproportionate manual reconstruction to count.</p>
+<p>18 objects were photographed across a single week's access to the family collection at my parents' home in Spain
+  (16–22 February 2026), immediately before my relocation to Japan. Re-photographing wasn't possible afterwards — the
+  objects aren't accessible for recapture — which shaped several decisions along the way. Target accuracy was ±5mm,
+  target resolution 1.5mm, target reprojection error 1.5px. Nine objects reached finished status: technical success (a
+  model exists) was treated as necessary but not sufficient — a model also had to remain a credible representation of
+  the object without disproportionate manual reconstruction to count.</p>
 
 <h3>Custom tooling: HeritageScan</h3>
-<p>Where Metashape's standard reconstruction failed — high-specularity or dark textures, low-featured surfaces — Robert built HeritageScan to test an alternative reconstruction algorithm against the same source images. It didn't resolve every alignment challenge Metashape struggled with, but for one object in particular it produced a better result in roughly a fifth of the time and effort.</p>
+<p>Where Metashape's standard reconstruction failed — high-specularity or dark textures, low-featured surfaces — Robert
+  built HeritageScan to test an alternative reconstruction algorithm against the same source images. It didn't resolve
+  every alignment challenge Metashape struggled with, but for one object in particular it produced a better result in
+  roughly a fifth of the time and effort.</p>
 
-<p>The full methodology and per-object paradata record goes into considerably more depth than fits here — see the Documentation tab for the complete document.</p>
+<p>The full methodology and per-object paradata record goes into considerably more depth than fits here — see the
+  Documentation tab for the complete document.</p>
