@@ -140,7 +140,9 @@ function initAboutTabs() {
 /* ---------- About page: "About me" image carousel ----------
  * One-file, no-dependency slider. Progressive enhancement: markup ships
  * showing the first slide and its caption; if there's more than one slide
- * this wires up prev/next, dot controls, and left/right arrow keys. */
+ * this wires up prev/next, dot controls, left/right arrow keys, and a
+ * click-to-enlarge lightbox (an in-page popup, not a new page) that pages
+ * through the same images. */
 
 function initAboutCarousel() {
   document.querySelectorAll('[data-carousel]').forEach((root) => {
@@ -150,6 +152,7 @@ function initAboutCarousel() {
     const dotWrap = root.querySelector('.carousel-dots');
     const prev = root.querySelector('.carousel-prev');
     const next = root.querySelector('.carousel-next');
+    const viewport = root.querySelector('.carousel-viewport');
 
     if (slides.length < 2) {
       prev?.remove();
@@ -176,11 +179,85 @@ function initAboutCarousel() {
       dots.forEach((d, di) => d.setAttribute('aria-current', String(di === index)));
       const img = slides[index].querySelector('img');
       if (caption && img) caption.textContent = img.dataset.caption || img.alt || '';
+      if (!lightbox.hidden) renderLightbox();
     }
+
+    /* ---- Lightbox (in-page popup) ---- */
+
+    const lightbox = document.createElement('div');
+    lightbox.className = 'carousel-lightbox';
+    lightbox.hidden = true;
+    lightbox.innerHTML =
+      '<div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Enlarged image" tabindex="-1">' +
+      '<button class="lightbox-close" type="button" aria-label="Close">&times;</button>' +
+      '<button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image">&#8249;</button>' +
+      '<figure class="lightbox-figure"><img class="lightbox-img" alt=""><figcaption class="lightbox-caption"></figcaption></figure>' +
+      '<button class="lightbox-nav lightbox-next" type="button" aria-label="Next image">&#8250;</button>' +
+      '</div>';
+    document.body.appendChild(lightbox);
+
+    const lbImg = lightbox.querySelector('.lightbox-img');
+    const lbCaption = lightbox.querySelector('.lightbox-caption');
+    const lbDialog = lightbox.querySelector('.lightbox-dialog');
+    let lbReturnFocus = null;
+
+    function renderLightbox() {
+      const img = slides[index].querySelector('img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lbCaption.textContent = img.dataset.caption || img.alt || '';
+    }
+
+    function openLightbox() {
+      renderLightbox();
+      lbReturnFocus = document.activeElement;
+      lightbox.hidden = false;
+      document.body.classList.add('modal-open');
+      lbDialog.focus({ preventScroll: true });
+    }
+
+    function closeLightbox() {
+      if (lightbox.hidden) return;
+      lightbox.hidden = true;
+      document.body.classList.remove('modal-open');
+      if (lbReturnFocus) lbReturnFocus.focus();
+    }
+
+    const expandBtn = document.createElement('button');
+    expandBtn.type = 'button';
+    expandBtn.className = 'carousel-expand';
+    expandBtn.setAttribute('aria-label', 'View image larger');
+    expandBtn.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5"/></svg>';
+    expandBtn.addEventListener('click', openLightbox);
+    viewport.appendChild(expandBtn);
+
+    slides.forEach((slide) => {
+      const img = slide.querySelector('img');
+      if (img) img.addEventListener('click', openLightbox);
+    });
+
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.lightbox-prev').addEventListener('click', () => go(index - 1));
+    lightbox.querySelector('.lightbox-next').addEventListener('click', () => go(index + 1));
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    lightbox.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { closeLightbox(); return; }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); e.stopPropagation(); go(index - 1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); go(index + 1); }
+      else if (e.key === 'Tab') {
+        const f = [...lightbox.querySelectorAll('button')];
+        const first = f[0];
+        const last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
 
     prev.addEventListener('click', () => go(index - 1));
     next.addEventListener('click', () => go(index + 1));
     root.addEventListener('keydown', (e) => {
+      if (!lightbox.hidden) return;
       if (e.key === 'ArrowLeft') { e.preventDefault(); go(index - 1); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1); }
     });

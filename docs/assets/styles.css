@@ -547,8 +547,12 @@ h3 {
        - first stop  = radius of the fully-opaque core (raise to show more)
        - second stop = radius where it hits transparent (raise for a longer,
          softer fade; lower to cut out quicker) */
-  -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 12%, transparent 55%);
-          mask-image: radial-gradient(circle at 50% 45%, #000 12%, transparent 55%);
+  -webkit-mask-image: radial-gradient(
+    circle at 50% 45%,
+    #000 12%,
+    transparent 55%
+  );
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 32%, transparent 75%);
 }
 @media (max-width: 720px) {
   .about-me-portrait {
@@ -559,6 +563,7 @@ h3 {
 /* LinkedIn / GitHub row (third paragraph of the panel) */
 
 .about-me-myname {
+  margin-top: 50px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -714,6 +719,138 @@ h3 {
 }
 .about-me-carousel .carousel-dot[aria-current="true"] {
   background: var(--ink-soft);
+}
+
+/* Click-to-enlarge: the slide image, plus a discoverable corner button.
+   Both open .carousel-lightbox (built in assets/site.js). */
+.about-me-carousel .carousel-slide img {
+  cursor: zoom-in;
+}
+.about-me-carousel .carousel-expand {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: rgba(24, 24, 24, 0.78);
+  color: var(--ink);
+  cursor: pointer;
+}
+.about-me-carousel .carousel-expand:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+.about-me-carousel .carousel-expand svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+/* Image lightbox — an in-page popup, above everything, that pages through
+   the same carousel images. Scroll lock reuses body.modal-open. */
+.carousel-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(10, 12, 15, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 56px);
+}
+.carousel-lightbox[hidden] {
+  display: none;
+}
+.carousel-lightbox .lightbox-dialog {
+  position: relative;
+  max-width: min(1100px, 100%);
+  max-height: 100%;
+  outline: none;
+}
+.carousel-lightbox .lightbox-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.carousel-lightbox .lightbox-img {
+  max-width: 100%;
+  max-height: calc(100vh - clamp(110px, 18vw, 170px));
+  object-fit: contain;
+  border: 1px solid var(--rule);
+  background: #0f0f0f;
+}
+.carousel-lightbox .lightbox-caption {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  text-align: center;
+  max-width: 70ch;
+  margin: 0;
+}
+.carousel-lightbox .lightbox-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.carousel-lightbox .lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: rgba(24, 24, 24, 0.72);
+  color: var(--ink);
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.carousel-lightbox .lightbox-nav:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+.carousel-lightbox .lightbox-prev {
+  left: -60px;
+}
+.carousel-lightbox .lightbox-next {
+  right: -60px;
+}
+.carousel-lightbox .lightbox-close:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+@media (max-width: 900px) {
+  .carousel-lightbox .lightbox-prev {
+    left: 4px;
+  }
+  .carousel-lightbox .lightbox-next {
+    right: 4px;
+  }
+  .carousel-lightbox .lightbox-close {
+    right: 0;
+  }
 }
 
 /* ---------- Collection page ---------- */
