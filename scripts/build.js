@@ -99,204 +99,33 @@ function buildLandingPage(template) {
   });
 }
 
-/* ---------- About / BTS page ----------
- * The two static panels — "About the project" and "About me" — are authored as
- * plain HTML files in templates/partials/ so they can be retouched like any
- * other page (syntax highlighting, no backtick-escaping) rather than edited as
- * string literals in here. Lab notes / Lessons learned still come from
- * reference/about-page-copy.md; the "## ABOUT ME" section in that file is now
- * unused but kept so it stays a complete record. */
+/* ---------- About page ----------
+ * All five About-section panels are plain HTML fragments in templates/partials/,
+ * each read verbatim into its template token. Edit those files directly — no
+ * markdown step, no HTML-in-JS-string-literal. Each fragment starts with its
+ * own <h2>. Lab-note photo galleries are written inline as
+ * <div class="lab-gallery"> blocks (styled in assets/styles.css); the images
+ * they point at are copied from assets/img/lab-notes/ by main(). */
 
 function partialHTML(name) {
   return readFile(path.join(ROOT, 'templates', 'partials', name)).trim();
 }
 
-function aboutContentHTML() {
-  return partialHTML('about-project.html');
-}
-
-function aboutMeHTML() {
-  return partialHTML('about-me.html');
-}
-
-function documentationLinksHTML() {
-  const docs = [
-    { label: 'Methodology & Paradata document (full)', href: 'REPLACE_WITH_LINK' },
-    { label: 'Digitisation journal — dated process log, 16 Feb–19 May 2026', href: 'REPLACE_WITH_LINK' },
-    { label: 'Object digitisation notes (spreadsheet, per-object capture & processing sheets)', href: 'REPLACE_WITH_LINK' },
-    { label: 'Object metadata info (spreadsheet, family-sourced raw metadata + narrative descriptions)', href: 'REPLACE_WITH_LINK' },
-    { label: 'Final Metashape processing reports (PDF, one per object)', href: 'REPLACE_WITH_LINK' },
-    { label: 'Project planning table (EP-001 / EP-002)', href: 'REPLACE_WITH_LINK' },
-  ];
-  return docs.map((d) => `<li><a href="${d.href}">${d.label}</a></li>`).join('\n        ');
-}
-
-/* ---------- About page: Lab notes & Lessons learned ----------
- * Public copy lives at reference/about-page-copy.md — see that file's own
- * header for the supported markdown syntax. Parsed here directly rather than
- * via a markdown-parsing dependency: the source is single-author (not
- * arbitrary input), the feature set is small, and the custom image-gallery
- * blocks would need a hand-written plugin against any library anyway. */
-
-const LAB_IMG = 'assets/img/lab-notes/';
-
-function escapeHTML(text) {
-  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-function escapeAttr(text) {
-  return escapeHTML(text).replace(/"/g, '&quot;');
-}
-
-function inlineHTML(text) {
-  let out = escapeHTML(text);
-  out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
-  out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  out = out.replace(/`([^`]+)`/g, '<code>$1</code>');
-  return out;
-}
-
-function galleryBlockHTML(fenceLines) {
-  let caption = '';
-  const images = [];
-  for (const raw of fenceLines) {
-    const line = raw.trim();
-    if (!line) continue;
-    const captionMatch = line.match(/^caption:\s*(.+)$/i);
-    if (captionMatch) { caption = captionMatch[1].trim(); continue; }
-    const sep = line.indexOf('::');
-    if (sep === -1) throw new Error(`Malformed gallery line in about-page-copy.md (expected "file.jpg :: alt text"): ${line}`);
-    images.push([line.slice(0, sep).trim(), line.slice(sep + 2).trim()]);
-  }
-  const figs = images.map(([file, alt]) => `    <a href="${LAB_IMG}${file}" target="_blank" rel="noopener"><img src="${LAB_IMG}${file}" alt="${escapeAttr(alt)}" loading="lazy"></a>`).join('\n');
-  const note = caption ? `\n  <p class="lab-gallery-note">${escapeHTML(caption)}</p>` : '';
-  return `<div class="lab-gallery">\n${figs}\n  </div>${note}`;
-}
-
-function titleCaseHeader(header) {
-  return header.split(' ').map((w, i) => (i === 0 ? w[0] + w.slice(1).toLowerCase() : w.toLowerCase())).join(' ');
-}
-
-/* Renders the lines between one "## HEADER" marker and the next to HTML. */
-function renderMarkdownSection(lines) {
-  const out = [];
-  let i = 0;
-  const isBlank = (line) => line.trim() === '';
-
-  while (i < lines.length) {
-    const line = lines[i];
-
-    if (isBlank(line)) { i++; continue; }
-    if (/^(-{3,}|\*{3,}|_{3,})$/.test(line.trim())) { i++; continue; }
-
-    const heading = line.match(/^###\s+(.+)$/);
-    if (heading) { out.push(`<h3>${inlineHTML(heading[1].trim())}</h3>`); i++; continue; }
-
-    if (line.trim() === '```gallery') {
-      const fence = [];
-      i++;
-      while (i < lines.length && lines[i].trim() !== '```') { fence.push(lines[i]); i++; }
-      i++;
-      out.push(galleryBlockHTML(fence));
-      continue;
-    }
-
-    if (/^>\s?/.test(line)) {
-      const quoteLines = [];
-      while (i < lines.length && /^>\s?/.test(lines[i])) { quoteLines.push(lines[i].replace(/^>\s?/, '')); i++; }
-      out.push(`<blockquote><p>${inlineHTML(quoteLines.join(' ').trim())}</p></blockquote>`);
-      continue;
-    }
-
-    if (/^-\s+/.test(line)) {
-      const items = [];
-      while (i < lines.length) {
-        if (/^-\s+/.test(lines[i])) {
-          items.push({ text: lines[i].replace(/^-\s+/, ''), fence: null });
-          i++;
-        } else if (isBlank(lines[i])) {
-          const next = lines[i + 1];
-          if (next !== undefined && (/^\s{2,}/.test(next) || /^-\s+/.test(next))) { i++; continue; }
-          break;
-        } else if (/^\s{2,}/.test(lines[i])) {
-          const trimmed = lines[i].trim();
-          if (trimmed === '```gallery') {
-            const fence = [];
-            i++;
-            while (i < lines.length && lines[i].trim() !== '```') { fence.push(lines[i]); i++; }
-            i++;
-            items[items.length - 1].fence = fence;
-          } else {
-            items[items.length - 1].text += ` ${trimmed}`;
-            i++;
-          }
-        } else {
-          break;
-        }
-      }
-      const li = items.map(({ text, fence }) => {
-        const gallery = fence ? `\n  ${galleryBlockHTML(fence)}\n  ` : '';
-        return `  <li>${inlineHTML(text.trim())}${gallery}</li>`;
-      }).join('\n');
-      out.push(`<ul>\n${li}\n</ul>`);
-      continue;
-    }
-
-    // A `*[bracketed like this]*` paragraph is an internal editorial note —
-    // dropped from the build rather than rendered (see about-page-copy.md).
-    {
-      const commentLines = [];
-      let j = i;
-      while (j < lines.length && !isBlank(lines[j])) { commentLines.push(lines[j]); j++; }
-      if (/^\*\[.*\]\*$/.test(commentLines.join(' ').trim())) { i = j; continue; }
-    }
-
-    {
-      const paraLines = [];
-      while (
-        i < lines.length && !isBlank(lines[i]) &&
-        !/^#{2,3}\s/.test(lines[i]) && !/^-\s+/.test(lines[i]) &&
-        !/^>\s?/.test(lines[i]) && lines[i].trim() !== '```gallery'
-      ) {
-        paraLines.push(lines[i]);
-        i++;
-      }
-      out.push(`<p>${inlineHTML(paraLines.join(' ').trim())}</p>`);
-    }
-  }
-
-  return out.join('\n\n');
-}
-
-function parseAboutPageCopy() {
-  const lines = readFile(path.join(ROOT, 'reference', 'about-page-copy.md')).split('\n');
-
-  function extractSection(marker) {
-    const startIdx = lines.findIndex((l) => l.trim() === `## ${marker}`);
-    if (startIdx === -1) throw new Error(`reference/about-page-copy.md is missing a "## ${marker}" header`);
-    let endIdx = lines.findIndex((l, idx) => idx > startIdx && /^##\s/.test(l));
-    if (endIdx === -1) endIdx = lines.length;
-    const body = renderMarkdownSection(lines.slice(startIdx + 1, endIdx));
-    return `<h2>${titleCaseHeader(marker)}</h2>\n\n${body}`;
-  }
-
-  return {
-    aboutMe: extractSection('ABOUT ME'),
-    labNotes: extractSection('LAB NOTES'),
-    lessonsLearned: extractSection('LESSONS LEARNED'),
-  };
-}
+const ABOUT_PANELS = {
+  ABOUT_ME: 'about-me.html',
+  ABOUT_CONTENT: 'about-project.html',
+  LAB_NOTES: 'lab-notes.html',
+  LESSONS_LEARNED: 'lessons-learned.html',
+  DOCUMENTATION: 'documentation.html',
+};
 
 function buildAboutPage(template) {
-  const { labNotes, lessonsLearned } = parseAboutPageCopy();
+  const panels = Object.fromEntries(
+    Object.entries(ABOUT_PANELS).map(([token, file]) => [token, partialHTML(file)])
+  );
   return fill(template, {
     HERO: heroHTML('', 'about'),
-    ABOUT_ME: aboutMeHTML(),
-    ABOUT_CONTENT: aboutContentHTML(),
-    DOCUMENTATION_LINKS: documentationLinksHTML(),
-    LAB_NOTES: labNotes,
-    LESSONS_LEARNED: lessonsLearned,
+    ...panels,
     THEME_TOGGLE: themeToggleHTML(),
     THEME_INIT: themeInitScript(),
     FOOTER_META: footerMetaHTML(),
