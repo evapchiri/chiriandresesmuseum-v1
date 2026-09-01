@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "chiriandreses-docs",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8091", "--directory", "docs"],
-      "port": 8091
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "serve"],
+      "port": 3000
     }
   ]
 }

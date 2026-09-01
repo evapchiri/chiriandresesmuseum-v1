@@ -8,7 +8,7 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const PORT = 8080;
+const PORT = 3000;
 const ROOT = path.join(__dirname, "..", "docs");
 
 const TYPES = {
@@ -48,6 +48,9 @@ const server = http.createServer((req, res) => {
     const ext = path.extname(filePath);
     res.writeHead(200, {
       "Content-Type": TYPES[ext] || "application/octet-stream",
+      // Local preview only: never cache, so a rebuild is always picked up
+      // on refresh without fighting the browser's heuristic caching.
+      "Cache-Control": "no-store, must-revalidate",
     });
     res.end(data);
   });
