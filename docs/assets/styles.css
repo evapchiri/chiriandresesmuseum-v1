@@ -512,6 +512,142 @@ h3 {
   max-width: 66ch;
 }
 
+/* ---------- About me panel ---------- */
+
+/* LinkedIn / GitHub row (third paragraph of the panel) */
+#panel-about-me .about-me-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 1.8em;
+  font-family: "Geist Mono", monospace;
+  font-size: 0.82rem;
+}
+#panel-about-me .about-me-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+#panel-about-me .about-me-links a:hover {
+  text-decoration: underline;
+}
+#panel-about-me .about-me-links svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  flex: none;
+}
+
+/* Footnote-style superscript refs (*1 / *2 jump to the awards list) */
+#panel-about-me sup a,
+#panel-about-me a sup {
+  text-decoration: none;
+}
+#panel-about-me li[id] {
+  scroll-margin-top: 20px;
+}
+
+/* "Other experiences" / "Awards & recognition": the two bold-italic headings
+   and their lists, dropped to ~70% so they sit visually below the narrative.
+   For a flat grey instead, swap the `opacity` line for:
+   color: var(--ink-soft);  (and add `.about-extras * { color: inherit; }`). */
+.about-extras {
+  opacity: 0.7;
+  margin-top: 2.2em;
+}
+.about-extras .about-extras-heading {
+  margin-bottom: 0.4em;
+}
+.about-extras .about-extra-note {
+  display: block;
+  margin-top: 0.25em;
+  font-size: 0.92rem;
+}
+
+/* About-me image carousel (progressive-enhancement: with JS off, the first
+   slide + its caption show, no controls — see initAboutCarousel in site.js) */
+.about-me-carousel {
+  max-width: 66ch;
+  margin: 1.8em 0 2em;
+  border: 1px solid var(--rule);
+  background: var(--paper-raised);
+}
+.about-me-carousel .carousel-viewport {
+  position: relative;
+  overflow: hidden;
+}
+.about-me-carousel .carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-me-carousel .carousel-track { transition: none; }
+}
+.about-me-carousel .carousel-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  margin: 0;
+}
+.about-me-carousel .carousel-slide img {
+  display: block;
+  width: 100%;
+  height: clamp(240px, 44vh, 430px);
+  object-fit: contain;
+  background: #0f0f0f;
+}
+.about-me-carousel .carousel-prev,
+.about-me-carousel .carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: rgba(24, 24, 24, 0.78);
+  color: var(--ink);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.about-me-carousel .carousel-prev:hover,
+.about-me-carousel .carousel-next:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+.about-me-carousel .carousel-prev { left: 8px; }
+.about-me-carousel .carousel-next { right: 8px; }
+.about-me-carousel .carousel-caption {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  margin: 0;
+  padding: 8px 12px 6px;
+  max-width: none;
+}
+.about-me-carousel .carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 0 12px;
+}
+.about-me-carousel .carousel-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 1px solid var(--ink-soft);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+.about-me-carousel .carousel-dot[aria-current="true"] {
+  background: var(--ink-soft);
+}
+
 /* ---------- Collection page ---------- */
 
 .collection-main {

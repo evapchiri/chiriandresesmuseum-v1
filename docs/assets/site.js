@@ -8,6 +8,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initCursorTooltips();
   initAboutTabs();
+  initAboutCarousel();
   initCollectionFilters();
   initObjectModal();
   initViewerLoading();
@@ -133,6 +134,58 @@ function initAboutTabs() {
       const activePanel = document.querySelector(`[data-panel-content="${target}"]`);
       if (activePanel) activePanel.focus({ preventScroll: true });
     });
+  });
+}
+
+/* ---------- About page: "About me" image carousel ----------
+ * One-file, no-dependency slider. Progressive enhancement: markup ships
+ * showing the first slide and its caption; if there's more than one slide
+ * this wires up prev/next, dot controls, and left/right arrow keys. */
+
+function initAboutCarousel() {
+  document.querySelectorAll('[data-carousel]').forEach((root) => {
+    const track = root.querySelector('.carousel-track');
+    const slides = [...root.querySelectorAll('.carousel-slide')];
+    const caption = root.querySelector('[data-carousel-caption]');
+    const dotWrap = root.querySelector('.carousel-dots');
+    const prev = root.querySelector('.carousel-prev');
+    const next = root.querySelector('.carousel-next');
+
+    if (slides.length < 2) {
+      prev?.remove();
+      next?.remove();
+      dotWrap?.remove();
+      return;
+    }
+
+    let index = 0;
+
+    const dots = slides.map((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'carousel-dot';
+      dot.setAttribute('aria-label', `Show image ${i + 1} of ${slides.length}`);
+      dot.addEventListener('click', () => go(i));
+      dotWrap.appendChild(dot);
+      return dot;
+    });
+
+    function go(to) {
+      index = (to + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, di) => d.setAttribute('aria-current', String(di === index)));
+      const img = slides[index].querySelector('img');
+      if (caption && img) caption.textContent = img.dataset.caption || img.alt || '';
+    }
+
+    prev.addEventListener('click', () => go(index - 1));
+    next.addEventListener('click', () => go(index + 1));
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(index - 1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1); }
+    });
+
+    go(0);
   });
 }
 
