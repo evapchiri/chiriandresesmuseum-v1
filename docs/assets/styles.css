@@ -542,22 +542,13 @@ h3 {
   opacity: 0.4;
   pointer-events: none;
   user-select: none;
-  /* Two linear masks, intersected: the TOP and RIGHT edges stay crisp
-     (they meet the panel corner), while the BOTTOM and LEFT dissolve into
-     --paper. A pixel survives only where BOTH gradients keep it, so the
-     bottom-left corner fades out completely.
-       - softer bottom/left  -> lower the first stop (e.g. #000 30%)
-       - harder bottom/left  -> raise it toward #000 70%
-       - the crisp edges are top & right; swap `to bottom`/`to left`
-         for `to top`/`to right` to move the soft side. */
-  -webkit-mask-image:
-    linear-gradient(to bottom, #000 48%, transparent 96%),
-    linear-gradient(to left, #000 48%, transparent 96%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to bottom, #000 48%, transparent 96%),
-    linear-gradient(to left, #000 48%, transparent 96%);
-  mask-composite: intersect;
+  /* Tight circular vignette: a small solid core near the centre that fades
+     to nothing well before the edges, so only the middle of the photo shows.
+       - first stop  = radius of the fully-opaque core (raise to show more)
+       - second stop = radius where it hits transparent (raise for a longer,
+         softer fade; lower to cut out quicker) */
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 12%, transparent 55%);
+          mask-image: radial-gradient(circle at 50% 45%, #000 12%, transparent 55%);
 }
 @media (max-width: 720px) {
   .about-me-portrait {
