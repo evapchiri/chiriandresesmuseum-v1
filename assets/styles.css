@@ -539,11 +539,25 @@ h3 {
   background-image: url("img/about/eva-portrait.jpg");
   background-size: cover;
   background-position: 50% 35%;
-  opacity: 0.5;
+  opacity: 0.4;
   pointer-events: none;
   user-select: none;
-  -webkit-mask-image: radial-gradient(ellipse at 55% 42%, #000 28%, rgba(0, 0, 0, 0.45) 58%, transparent 76%);
-          mask-image: radial-gradient(ellipse at 55% 42%, #000 28%, rgba(0, 0, 0, 0.45) 58%, transparent 76%);
+  /* Two linear masks, intersected: the TOP and RIGHT edges stay crisp
+     (they meet the panel corner), while the BOTTOM and LEFT dissolve into
+     --paper. A pixel survives only where BOTH gradients keep it, so the
+     bottom-left corner fades out completely.
+       - softer bottom/left  -> lower the first stop (e.g. #000 30%)
+       - harder bottom/left  -> raise it toward #000 70%
+       - the crisp edges are top & right; swap `to bottom`/`to left`
+         for `to top`/`to right` to move the soft side. */
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 48%, transparent 96%),
+    linear-gradient(to left, #000 48%, transparent 96%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, #000 48%, transparent 96%),
+    linear-gradient(to left, #000 48%, transparent 96%);
+  mask-composite: intersect;
 }
 @media (max-width: 720px) {
   .about-me-portrait {
