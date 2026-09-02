@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="en-GB">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chiriandreses Museum — Our family's story in 3D</title>
-<meta name="description" content="Nine family heirlooms, 3D-digitised and documented — the objects, their stories, and the process behind them.">
-<link rel="stylesheet" href="assets/styles.css">
-{{THEME_INIT}}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chiriandreses Museum — Our family's story in 3D</title>
+  <meta name="description"
+    content="Nine family heirlooms, 3D-digitised and documented — the objects, their stories, and the process behind them.">
+  <link rel="stylesheet" href="assets/styles.css">
+  {{THEME_INIT}}
 </head>
+
 <body class="landing">
 
-{{THEME_TOGGLE}}
+  {{THEME_TOGGLE}}
 
-<!-- Looping background video — large screens only. No src/poster in markup:
+  <!-- Looping background video — large screens only. No src/poster in markup:
      assets/site.js injects them past a min-width breakpoint (and skips it under
      prefers-reduced-motion), so narrow viewports never fetch the media. -->
-<div class="landing-bg" aria-hidden="true">
-  <video class="landing-bg-video" muted loop playsinline preload="none"
-         data-src="{{LANDING_VIDEO_SRC}}" data-poster="{{LANDING_VIDEO_POSTER}}"></video>
-</div>
-
-{{HERO}}
-
-<main class="wrap landing-main">
-  <div class="landing-blurb">{{PROJECT_BLURB}}</div>
-
-  <div class="landing-actions">
-    <a class="btn btn-primary" href="about.html" data-tip="BTS of my journey">ABOUT</a>
-    <a class="btn btn-primary" href="collection.html" data-tip="Explore each object's story and technical details!">THE COLLECTION</a>
+  <div class="landing-bg" aria-hidden="true">
+    <video class="landing-bg-video" muted loop playsinline preload="none" data-src="{{LANDING_VIDEO_SRC}}"
+      data-poster="{{LANDING_VIDEO_POSTER}}"></video>
   </div>
-</main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    {{FOOTER_META}}
-  </div>
-</footer>
+  {{HERO}}
 
-<script src="assets/site.js"></script>
+  <main class="wrap landing-main">
+    <div class="landing-blurb">{{PROJECT_BLURB}}</div>
+
+    <div class="landing-actions">
+      <a class="btn btn-primary" href="about.html" data-tip="The project's behind-the-scenes">ABOUT</a>
+      <a class="btn btn-primary" href="collection.html"
+        data-tip="Explore each object's story, 3D model and technical details">THE COLLECTION</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      {{FOOTER_META}}
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
 </body>
+
 </html>

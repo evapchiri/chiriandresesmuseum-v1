@@ -417,22 +417,19 @@ h3 {
 
 /* About Me: first two paragraphs (name + tagline) read as a small intro card */
 #panel-about-me p:first-child {
-  font-family: "Cactus Classical Serif", Georgia, serif;
-  font-size: 1.3rem;
-  font-weight: 400;
-  margin-bottom: 0.2em;
+  font-family: "Onest", Georgia, serif;
 }
-#panel-about-me p:first-child + p {
+/* #panel-about-me p:first-child + p {
   font-family: "Geist Mono", monospace;
   font-size: 0.82rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--ink-soft);
   margin-bottom: 1.6em;
-}
-#panel-about-me p:first-child + p em {
+} */
+/* #panel-about-me p:first-child + p em {
   font-style: normal;
-}
+} */
 
 .about-content ul:not(.spec-list):not(.doc-list) {
   padding-left: 1.2em;
@@ -518,10 +515,16 @@ h3 {
 
 /* ---------- About me panel ---------- */
 
-/* Decorative portrait, top-right of the panel. Sits *behind* the panel text
-   (real content is lifted to z-index 1 below), scrolls away with the page
-   (position: absolute, not sticky/fixed), and fades to nothing at its edges
-   via a radial mask so it blends into --paper. Tweak size/opacity/fade here. */
+/* Portrait, as a wide band in the top-right of the panel. The photo is a
+   wide shot — empty wall on the left, Eva on the right. It's inset from the
+   panel: pushed down so the "About me" heading sits clear on the page
+   background above it, and right-anchored so its right edge lines up with
+   where the body text wraps (the 66ch measure the paragraphs use). The intro
+   text (name / tagline / links) reads over its left portion. Shown at full
+   opacity with no vignette; it scrolls away with the page (position:
+   absolute, not sticky/fixed) and sits *behind* the panel text, which is
+   lifted to z-index 1 below. `aspect-ratio` matches the source file so
+   nothing is cropped; tune size with `width`, drop with `top`. */
 #panel-about-me {
   position: relative;
 }
@@ -531,28 +534,16 @@ h3 {
 }
 .about-me-portrait {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 3rem;
+  right: calc(100% - 66ch);
   z-index: 0;
-  width: clamp(200px, 30vw, 360px);
-  aspect-ratio: 1 / 1;
+  /* width: min(60%, 480px); */
+  width: min(100%, 700px);
+  aspect-ratio: 3.3/1;
+  opacity: 80%;
   background-image: url("img/about/eva-portrait.jpg");
   background-size: cover;
-  background-position: 50% 35%;
-  opacity: 0.4;
-  pointer-events: none;
-  user-select: none;
-  /* Tight circular vignette: a small solid core near the centre that fades
-     to nothing well before the edges, so only the middle of the photo shows.
-       - first stop  = radius of the fully-opaque core (raise to show more)
-       - second stop = radius where it hits transparent (raise for a longer,
-         softer fade; lower to cut out quicker) */
-  -webkit-mask-image: radial-gradient(
-    circle at 50% 45%,
-    #000 12%,
-    transparent 55%
-  );
-  mask-image: radial-gradient(ellipse at 50% 50%, #000 32%, transparent 75%);
+  background-position: center;
 }
 @media (max-width: 720px) {
   .about-me-portrait {
@@ -563,20 +554,18 @@ h3 {
 /* LinkedIn / GitHub row (third paragraph of the panel) */
 
 .about-me-myname {
-  margin-top: 50px;
+  margin: 85px 0 50px;
   display: flex;
   align-items: center;
   text-align: center;
   flex-direction: column;
   max-width: 66ch;
 }
-#panel-about-me .myname {
-  margin-top: 15px;
-}
+
 #panel-about-me .mytag {
   font-family: "Cactus Classical Serif", Georgia, serif;
   font-weight: lighter;
-  color: var(--ink-soft);
+  color: rgba(245, 245, 245, 0.826);
   margin: 0 0;
 }
 
@@ -1350,6 +1339,7 @@ body.modal-open {
  * in site.js), since a pure-CSS grid-stretch approach lets field-record's
  * own tall content inflate the shared row instead of being capped by it. */
 .modal-panel .field-record {
+  position: relative;
   max-height: 400px;
   min-height: 0;
   overflow-y: auto;
@@ -1360,6 +1350,21 @@ body.modal-open {
 .modal-panel .field-record .record-title {
   padding-bottom: 6px;
   margin-bottom: 6px;
+}
+
+.modal-panel.field-record {
+  background:
+    /* Shadow Cover BOTTOM */ linear-gradient(
+    rgba(3, 3, 3, 0),
+    white 70%
+  );
+  background-repeat: no-repeat;
+  background-size:
+    100% 40px,
+    100% 40px,
+    100% 14px,
+    100% 14px;
+  background-attachment: local, local, scroll, scroll;
 }
 
 .modal-panel .field-record .record-row {
