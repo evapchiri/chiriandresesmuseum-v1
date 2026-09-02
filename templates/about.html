@@ -1,63 +1,82 @@
 <!DOCTYPE html>
 <html lang="en-GB">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About the project — Chiriandreses Museum</title>
-<meta name="description" content="How the Chiriandreses Museum project came to be, the process behind it, and where to find the full documentation.">
-<link rel="stylesheet" href="assets/styles.css">
-{{THEME_INIT}}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — Chiriandreses Museum</title>
+  <meta name="description"
+    content="How the Chiriandreses Museum project came to be, the process behind it, and where to find the full documentation.">
+  <link rel="stylesheet" href="assets/styles.css">
+  {{THEME_INIT}}
 </head>
+
 <body>
 
-{{THEME_TOGGLE}}
+  {{THEME_TOGGLE}}
 
-{{HERO}}
+  {{HERO}}
 
-<main class="wrap about-main">
-  <p class="page-intro">Here you can learn how the project came to be, the challenges and lessons along the way, and more detail about the project as a whole.</p>
+  <main class="wrap about-main">
 
-  <div class="about-layout">
-    <nav class="about-nav" aria-label="About page sections" role="tablist">
-      <button type="button" id="tab-about-me" class="active" data-panel="about-me" role="tab" aria-selected="true" aria-controls="panel-about-me">About me</button>
-      <button type="button" id="tab-about" data-panel="about" role="tab" aria-selected="false" aria-controls="panel-about">About the project</button>
-      <button type="button" id="tab-lab-notes" data-panel="lab-notes" role="tab" aria-selected="false" aria-controls="panel-lab-notes">Lab notes</button>
-      <button type="button" id="tab-lessons" data-panel="lessons" role="tab" aria-selected="false" aria-controls="panel-lessons">Lessons learned</button>
-      <button type="button" id="tab-documentation" data-panel="documentation" role="tab" aria-selected="false" aria-controls="panel-documentation">Documentation</button>
-    </nav>
+    <div class="about-layout">
+      <nav class="about-nav" aria-label="About page sections" role="tablist">
+        <button type="button" id="tab-intro" class="active" data-panel="intro" role="tab" aria-selected="true"
+          aria-controls="panel-intro">What is Chiriandreses Museum?</button>
+        <button type="button" id="tab-about-me" data-panel="about-me" role="tab" aria-selected="false"
+          aria-controls="panel-about-me">About me</button>
+        <button type="button" id="tab-about" data-panel="about" role="tab" aria-selected="false"
+          aria-controls="panel-about">The technical details</button>
+        <button type="button" id="tab-lab-notes" data-panel="lab-notes" role="tab" aria-selected="false"
+          aria-controls="panel-lab-notes">Lab notes</button>
+        <button type="button" id="tab-lessons" data-panel="lessons" role="tab" aria-selected="false"
+          aria-controls="panel-lessons">Lessons learned</button>
+        <button type="button" id="tab-documentation" data-panel="documentation" role="tab" aria-selected="false"
+          aria-controls="panel-documentation">Project archive</button>
+      </nav>
 
-    <div class="about-content">
+      <div class="about-content">
 
-      <section id="panel-about-me" data-panel-content="about-me" role="tabpanel" aria-labelledby="tab-about-me" tabindex="-1">
-        {{ABOUT_ME}}
-      </section>
+        <section id="panel-intro" data-panel-content="intro" role="tabpanel" aria-labelledby="tab-intro" tabindex="-1">
+          {{ABOUT_INTRO}}
+        </section>
 
-      <section id="panel-about" data-panel-content="about" role="tabpanel" aria-labelledby="tab-about" hidden tabindex="-1">
-        {{ABOUT_CONTENT}}
-      </section>
+        <section id="panel-about-me" data-panel-content="about-me" role="tabpanel" aria-labelledby="tab-about-me" hidden
+          tabindex="-1">
+          {{ABOUT_ME}}
+        </section>
 
-      <section id="panel-lab-notes" data-panel-content="lab-notes" role="tabpanel" aria-labelledby="tab-lab-notes" hidden tabindex="-1">
-        {{LAB_NOTES}}
-      </section>
+        <section id="panel-about" data-panel-content="about" role="tabpanel" aria-labelledby="tab-about" hidden
+          tabindex="-1">
+          {{ABOUT_CONTENT}}
+        </section>
 
-      <section id="panel-lessons" data-panel-content="lessons" role="tabpanel" aria-labelledby="tab-lessons" hidden tabindex="-1">
-        {{LESSONS_LEARNED}}
-      </section>
+        <section id="panel-lab-notes" data-panel-content="lab-notes" role="tabpanel" aria-labelledby="tab-lab-notes"
+          hidden tabindex="-1">
+          {{LAB_NOTES}}
+        </section>
 
-      <section id="panel-documentation" data-panel-content="documentation" role="tabpanel" aria-labelledby="tab-documentation" hidden tabindex="-1">
-        {{DOCUMENTATION}}
-      </section>
+        <section id="panel-lessons" data-panel-content="lessons" role="tabpanel" aria-labelledby="tab-lessons" hidden
+          tabindex="-1">
+          {{LESSONS_LEARNED}}
+        </section>
 
+        <section id="panel-documentation" data-panel-content="documentation" role="tabpanel"
+          aria-labelledby="tab-documentation" hidden tabindex="-1">
+          {{DOCUMENTATION}}
+        </section>
+
+      </div>
     </div>
-  </div>
-</main>
+  </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    {{FOOTER_META}}
-  </div>
-</footer>
+  <footer class="site-footer">
+    <div class="wrap">
+      {{FOOTER_META}}
+    </div>
+  </footer>
 
-<script src="assets/site.js"></script>
+  <script src="assets/site.js"></script>
 </body>
+
 </html>

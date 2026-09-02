@@ -100,8 +100,11 @@ function buildLandingPage(template) {
 }
 
 /* ---------- About page ----------
- * All five About-section panels are plain HTML fragments in templates/partials/,
- * each read verbatim into its template token. Edit those files directly — no
+ * Every About-section panel is a plain HTML fragment in templates/partials/,
+ * each read verbatim into its template token. about-intro.html is the default
+ * panel shown on load (the section's short "what is this?" landing view) and
+ * has no button in the sidebar; the rest are the tabbed panels. Edit those
+ * files directly — no
  * markdown step, no HTML-in-JS-string-literal. Each fragment starts with its
  * own <h2>. Lab-note photo galleries are written inline as
  * <div class="lab-gallery"> blocks (styled in assets/styles.css); the images
@@ -112,6 +115,7 @@ function partialHTML(name) {
 }
 
 const ABOUT_PANELS = {
+  ABOUT_INTRO: 'about-intro.html',
   ABOUT_ME: 'about-me.html',
   ABOUT_CONTENT: 'about-project.html',
   LAB_NOTES: 'lab-notes.html',

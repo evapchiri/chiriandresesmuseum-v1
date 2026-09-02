@@ -8,6 +8,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initCursorTooltips();
   initAboutTabs();
+  initFolderTabs();
   initAboutCarousel();
   initCollectionFilters();
   initObjectModal();
@@ -133,6 +134,51 @@ function initAboutTabs() {
       // Keep focus + scroll position sane for keyboard/screen-reader users.
       const activePanel = document.querySelector(`[data-panel-content="${target}"]`);
       if (activePanel) activePanel.focus({ preventScroll: true });
+    });
+  });
+}
+
+/* ---------- Folder tabs (filing-folder strip inside an About panel) ----------
+ * A second, self-contained tab layer nested inside one of the About page's
+ * panels (used by Lab notes to split the log by date). Scoped to each
+ * [data-folder-tabs] block so it never collides with the outer About nav:
+ * the outer nav keys off .about-nav / [data-panel-content], this keys off
+ * role="tab"/"tabpanel" within its own root. Ships with the first tab active
+ * and the rest hidden, so it still reads fine with JS disabled. */
+
+function initFolderTabs() {
+  document.querySelectorAll('[data-folder-tabs]').forEach((root) => {
+    const tabs = [...root.querySelectorAll('[role="tab"]')];
+    if (!tabs.length) return;
+
+    function select(tab, { focus = false } = {}) {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !on;
+      });
+      if (focus) tab.focus();
+    }
+
+    root.addEventListener('click', (e) => {
+      const tab = e.target.closest('[role="tab"]');
+      if (tab) select(tab);
+    });
+
+    root.addEventListener('keydown', (e) => {
+      const i = tabs.indexOf(document.activeElement);
+      if (i === -1) return;
+      let next = null;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = tabs.length - 1;
+      if (next === null) return;
+      e.preventDefault();
+      select(tabs[next], { focus: true });
     });
   });
 }
