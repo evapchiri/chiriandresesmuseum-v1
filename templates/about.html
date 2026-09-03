@@ -25,14 +25,20 @@
           aria-controls="panel-intro">What is Chiriandreses Museum?</button>
         <button type="button" id="tab-about-me" data-panel="about-me" role="tab" aria-selected="false"
           aria-controls="panel-about-me">About me</button>
-        <button type="button" id="tab-about" data-panel="about" role="tab" aria-selected="false"
-          aria-controls="panel-about">The technical details</button>
-        <button type="button" id="tab-lab-notes" data-panel="lab-notes" role="tab" aria-selected="false"
-          aria-controls="panel-lab-notes">Lab notes</button>
-        <button type="button" id="tab-lessons" data-panel="lessons" role="tab" aria-selected="false"
-          aria-controls="panel-lessons">Lessons learned</button>
+
+        <p class="about-nav-group" role="presentation">The project</p>
+        <button type="button" id="tab-lifecycle" data-panel="lifecycle" role="tab" aria-selected="false"
+          aria-controls="panel-lifecycle">Project lifecycle</button>
+        <button type="button" id="tab-stage-by-stage" data-panel="stage-by-stage" role="tab" aria-selected="false"
+          aria-controls="panel-stage-by-stage">Stage-by-stage</button>
         <button type="button" id="tab-documentation" data-panel="documentation" role="tab" aria-selected="false"
           aria-controls="panel-documentation">Project archive</button>
+
+        <p class="about-nav-group" role="presentation">The journey</p>
+        <button type="button" id="tab-lab-notes" data-panel="lab-notes" role="tab" aria-selected="false"
+          aria-controls="panel-lab-notes">Lab journal</button>
+        <button type="button" id="tab-lessons" data-panel="lessons" role="tab" aria-selected="false"
+          aria-controls="panel-lessons">Lessons learned</button>
       </nav>
 
       <div class="about-content">
@@ -46,9 +52,19 @@
           {{ABOUT_ME}}
         </section>
 
-        <section id="panel-about" data-panel-content="about" role="tabpanel" aria-labelledby="tab-about" hidden
-          tabindex="-1">
-          {{ABOUT_CONTENT}}
+        <section id="panel-lifecycle" data-panel-content="lifecycle" role="tabpanel" aria-labelledby="tab-lifecycle"
+          hidden tabindex="-1">
+          {{LIFECYCLE}}
+        </section>
+
+        <section id="panel-stage-by-stage" data-panel-content="stage-by-stage" role="tabpanel"
+          aria-labelledby="tab-stage-by-stage" hidden tabindex="-1">
+          {{STAGE_BY_STAGE}}
+        </section>
+
+        <section id="panel-documentation" data-panel-content="documentation" role="tabpanel"
+          aria-labelledby="tab-documentation" hidden tabindex="-1">
+          {{DOCUMENTATION}}
         </section>
 
         <section id="panel-lab-notes" data-panel-content="lab-notes" role="tabpanel" aria-labelledby="tab-lab-notes"
@@ -59,11 +75,6 @@
         <section id="panel-lessons" data-panel-content="lessons" role="tabpanel" aria-labelledby="tab-lessons" hidden
           tabindex="-1">
           {{LESSONS_LEARNED}}
-        </section>
-
-        <section id="panel-documentation" data-panel-content="documentation" role="tabpanel"
-          aria-labelledby="tab-documentation" hidden tabindex="-1">
-          {{DOCUMENTATION}}
         </section>
 
       </div>

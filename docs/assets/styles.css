@@ -395,6 +395,27 @@ h3 {
   font-weight: 500;
 }
 
+/* Non-clickable grouping labels between sets of tabs ("The project" etc.) */
+.about-nav-group {
+  margin: 20px 0 4px;
+  padding: 0 0 6px;
+  border-bottom: 1px solid var(--ink-soft);
+  font-family: "Onest", system-ui, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 50%;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 720px) {
+  .about-nav-group {
+    flex-basis: 100%;
+    margin: 12px 0 2px;
+    padding-left: 0;
+  }
+}
+
 .about-content h2 {
   font-size: 1.6rem;
 }

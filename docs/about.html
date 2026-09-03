@@ -34,14 +34,20 @@
           aria-controls="panel-intro">What is Chiriandreses Museum?</button>
         <button type="button" id="tab-about-me" data-panel="about-me" role="tab" aria-selected="false"
           aria-controls="panel-about-me">About me</button>
-        <button type="button" id="tab-about" data-panel="about" role="tab" aria-selected="false"
-          aria-controls="panel-about">The technical details</button>
-        <button type="button" id="tab-lab-notes" data-panel="lab-notes" role="tab" aria-selected="false"
-          aria-controls="panel-lab-notes">Lab notes</button>
-        <button type="button" id="tab-lessons" data-panel="lessons" role="tab" aria-selected="false"
-          aria-controls="panel-lessons">Lessons learned</button>
+
+        <p class="about-nav-group" role="presentation">The project</p>
+        <button type="button" id="tab-lifecycle" data-panel="lifecycle" role="tab" aria-selected="false"
+          aria-controls="panel-lifecycle">Project lifecycle</button>
+        <button type="button" id="tab-stage-by-stage" data-panel="stage-by-stage" role="tab" aria-selected="false"
+          aria-controls="panel-stage-by-stage">Stage-by-stage</button>
         <button type="button" id="tab-documentation" data-panel="documentation" role="tab" aria-selected="false"
           aria-controls="panel-documentation">Project archive</button>
+
+        <p class="about-nav-group" role="presentation">The journey</p>
+        <button type="button" id="tab-lab-notes" data-panel="lab-notes" role="tab" aria-selected="false"
+          aria-controls="panel-lab-notes">Lab journal</button>
+        <button type="button" id="tab-lessons" data-panel="lessons" role="tab" aria-selected="false"
+          aria-controls="panel-lessons">Lessons learned</button>
       </nav>
 
       <div class="about-content">
@@ -82,7 +88,7 @@
       archive</em> where you will find all the outputted paradata and metadata documents from the project and each
     object digitisation journey. The full, very detailed and VIGIE-aligned paradata and metadata record of every object
     and how each 3D model came to exist (or how it didn't!).</li>
-  <li><em>Lab notes</em> is where the personal side lives — a day-by-day journal of the
+  <li><em>Lab journal</em> is where the personal side lives — a day-by-day journal of the
     challenges, the dead ends, and what I actually from them along the way. I then captured my biggest takeaways from
     the project in <em>Lessons learned</em>. Hopefully it helps other peers avoid my same mistakes!</li>
 </ul>
@@ -253,57 +259,41 @@
 </div>
         </section>
 
-        <section id="panel-about" data-panel-content="about" role="tabpanel" aria-labelledby="tab-about" hidden
-          tabindex="-1">
-          <h2 class="partial-title">The technical details</h2>
+        <section id="panel-lifecycle" data-panel-content="lifecycle" role="tabpanel" aria-labelledby="tab-lifecycle"
+          hidden tabindex="-1">
+          <h2 class="partial-title">Project lifecycle</h2>
 
-<p>This project followed the European Commission's VIGIE 2020/654 study on quality in 3D digitisation of tangible
-  cultural heritage, adapted throughout for a solo practitioner working with personal, non-fragile objects rather than
-  an institutional team and archival-grade holdings. Planning and capture practice also drew on the 3D4CH Competence
-  Centre's <em>Essential Guide to 3D Digitised Heritage</em> training series, alongside photogrammetry community
-  guidance on preparing models for reuse in VR, AR, and web-based viewing.</p>
+<p class="placeholder-note">Coming soon — an overview of how the project ran end to end, from first contact with the
+  collection through to published models.</p>
+        </section>
 
-<h3>Scope &amp; team</h3>
-<p>The objective was to generate high-quality 3D models of a family heirloom and travel-souvenir collection, following
-  Europeana-aligned standards for model, metadata, and paradata, and to make them accessible through a purpose-built web
-  experience. I led capture, processing, and documentation. Custom tooling was developed in collaboration with my
-  partner, <strong>Robert Upson</strong>, a Senior Software Engineer, to address reconstruction failures the standard
-  pipeline couldn't resolve.</p>
+        <section id="panel-stage-by-stage" data-panel-content="stage-by-stage" role="tabpanel"
+          aria-labelledby="tab-stage-by-stage" hidden tabindex="-1">
+          <h2 class="partial-title">Stage-by-stage</h2>
 
-<h3>Equipment &amp; software</h3>
-<ul class="spec-list">
-  <li><strong>Camera:</strong> Canon DSLR 2000D, EF-S 18-55mm IS II lens</li>
-  <li><strong>Lighting:</strong> 2× NEEWER portable lights, dimmable 5600K 1000LM, white diffuser filter</li>
-  <li><strong>Turntable:</strong> Home turntable rig, white background</li>
-  <li><strong>Scale reference:</strong> Homemade, accurate to ±1mm</li>
-  <li><strong>Photogrammetry:</strong> Agisoft Metashape Standard v2.2.2</li>
-  <li><strong>Supplementary tooling:</strong> HeritageScan — a custom CLI built on Apple's RealityKit SDK, for cases the
-    standard pipeline couldn't resolve</li>
-  <li><strong>3D authoring:</strong> Blender</li>
-  <li><strong>Compute:</strong> MacBook M2 2022, 16GB</li>
+<p class="placeholder-note">Coming soon — a walk through each stage of the digitisation pipeline, and what happens to an
+  object at every step.</p>
+        </section>
+
+        <section id="panel-documentation" data-panel-content="documentation" role="tabpanel"
+          aria-labelledby="tab-documentation" hidden tabindex="-1">
+          <h2 class="partial-title">Project archive</h2>
+<p>The source records behind this site. Some links are still being connected — see the note below.</p>
+<ul class="doc-list">
+  <li><a href="REPLACE_WITH_LINK">Methodology &amp; Paradata document (full)</a></li>
+  <li><a href="REPLACE_WITH_LINK">Digitisation journal — dated process log, 16 Feb–19 May 2026</a></li>
+  <li><a href="REPLACE_WITH_LINK">Object digitisation notes (spreadsheet, per-object capture &amp; processing
+      sheets)</a></li>
+  <li><a href="REPLACE_WITH_LINK">Object metadata info (spreadsheet, family-sourced raw metadata + narrative
+      descriptions)</a></li>
+  <li><a href="REPLACE_WITH_LINK">Final Metashape processing reports (PDF, one per object)</a></li>
+  <li><a href="REPLACE_WITH_LINK">Project planning table (EP-001 / EP-002)</a></li>
 </ul>
-
-<h3>The capture campaign</h3>
-<p>18 objects were photographed across a single week's access to the family collection at my parents' home in Spain
-  (16–22 February 2026), immediately before my relocation to Japan. Re-photographing wasn't possible afterwards — the
-  objects aren't accessible for recapture — which shaped several decisions along the way. Target accuracy was ±5mm,
-  target resolution 1.5mm, target reprojection error 1.5px. Nine objects reached finished status: technical success (a
-  model exists) was treated as necessary but not sufficient — a model also had to remain a credible representation of
-  the object without disproportionate manual reconstruction to count.</p>
-
-<h3>Custom tooling: HeritageScan</h3>
-<p>Where Metashape's standard reconstruction failed — high-specularity or dark textures, low-featured surfaces — Robert
-  built HeritageScan to test an alternative reconstruction algorithm against the same source images. It didn't resolve
-  every alignment challenge Metashape struggled with, but for one object in particular it produced a better result in
-  roughly a fifth of the time and effort.</p>
-
-<p>The full methodology and per-object paradata record goes into considerably more depth than fits here — see the
-  Project archive tab for the complete document.</p>
         </section>
 
         <section id="panel-lab-notes" data-panel-content="lab-notes" role="tabpanel" aria-labelledby="tab-lab-notes"
           hidden tabindex="-1">
-          <h2 class="partial-title">Lab notes</h2>
+          <h2 class="partial-title">Lab journal</h2>
 
 <p>Day-to-day notes from the capture and processing sessions, kept close to how they actually happened — dead ends
   included. Use the tabs to move between dates.</p>
@@ -661,22 +651,6 @@
   question actually started, and I only have it preserved because I happened to write a public post about it.
   Undocumented process is a real risk, not just an inconvenience, on a project whose whole point is a documented
   process.</p>
-        </section>
-
-        <section id="panel-documentation" data-panel-content="documentation" role="tabpanel"
-          aria-labelledby="tab-documentation" hidden tabindex="-1">
-          <h2 class="partial-title">Project archive</h2>
-<p>The source records behind this site. Some links are still being connected — see the note below.</p>
-<ul class="doc-list">
-  <li><a href="REPLACE_WITH_LINK">Methodology &amp; Paradata document (full)</a></li>
-  <li><a href="REPLACE_WITH_LINK">Digitisation journal — dated process log, 16 Feb–19 May 2026</a></li>
-  <li><a href="REPLACE_WITH_LINK">Object digitisation notes (spreadsheet, per-object capture &amp; processing
-      sheets)</a></li>
-  <li><a href="REPLACE_WITH_LINK">Object metadata info (spreadsheet, family-sourced raw metadata + narrative
-      descriptions)</a></li>
-  <li><a href="REPLACE_WITH_LINK">Final Metashape processing reports (PDF, one per object)</a></li>
-  <li><a href="REPLACE_WITH_LINK">Project planning table (EP-001 / EP-002)</a></li>
-</ul>
         </section>
 
       </div>

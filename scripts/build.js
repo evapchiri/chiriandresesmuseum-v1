@@ -114,13 +114,17 @@ function partialHTML(name) {
   return readFile(path.join(ROOT, 'templates', 'partials', name)).trim();
 }
 
+/* Panel order here is cosmetic; the sidebar order lives in templates/about.html.
+ * about-project.html ("The technical details") is retired from the built page
+ * for now — kept on disk as source to fold into the two new project panels. */
 const ABOUT_PANELS = {
   ABOUT_INTRO: 'about-intro.html',
   ABOUT_ME: 'about-me.html',
-  ABOUT_CONTENT: 'about-project.html',
+  LIFECYCLE: 'project-lifecycle.html',
+  STAGE_BY_STAGE: 'stage-by-stage.html',
+  DOCUMENTATION: 'documentation.html',
   LAB_NOTES: 'lab-notes.html',
   LESSONS_LEARNED: 'lessons-learned.html',
-  DOCUMENTATION: 'documentation.html',
 };
 
 function buildAboutPage(template) {
