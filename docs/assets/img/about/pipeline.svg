@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1560" role="img" aria-labelledby="pipe-title pipe-desc">
+  <title id="pipe-title">The Chiriandreses Museum digitisation pipeline</title>
+  <desc id="pipe-desc">Six stages, from a family object to a documented, reusable 3D model: planning and standards, photography, alignment and reconstruction, post-processing, metadata and paradata, and publishing.</desc>
+
+  <style><![CDATA[
+    @import url("https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&family=Geist+Mono:wght@400;500&family=Onest:wght@400;500&display=swap");
+    .serif   { font-family: "Cactus Classical Serif", Georgia, "Times New Roman", serif; }
+    .mono    { font-family: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace; }
+    .sans    { font-family: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .eyebrow { letter-spacing: 2.4px; }
+    .kicker  { letter-spacing: 1.7px; }
+  ]]></style>
+
+  <!-- ground -->
+  <rect x="0" y="0" width="1000" height="1560" fill="#181818"/>
+  <rect x="8" y="8" width="984" height="1544" rx="6" fill="none" stroke="#434955" stroke-width="1"/>
+
+  <!-- header -->
+  <text x="64" y="92"  class="mono eyebrow" font-size="12" fill="#adb2ba">CHIRIANDRESES MUSEUM &#8194;&#183;&#8194; METHODOLOGY</text>
+  <text x="62" y="152" class="serif" font-size="42" fill="#eeeeee">The digitisation pipeline</text>
+  <text x="64" y="186" class="sans" font-size="15" fill="#adb2ba">Six stages, from a family object to a documented, reusable 3D model.</text>
+  <line x1="64" y1="210" x2="936" y2="210" stroke="#434955" stroke-width="1"/>
+
+  <!-- connecting spine -->
+  <line x1="100" y1="313" x2="100" y2="1374" stroke="#76abae" stroke-width="2" opacity="0.45"/>
+  <polygon points="100,1400 92,1386 108,1386" fill="#76abae" opacity="0.55"/>
+
+  <!-- ================= STAGE 1 ================= -->
+  <g>
+    <rect x="150" y="240" width="786" height="188" rx="3" fill="#31363f" stroke="#434955" stroke-width="1"/>
+    <rect x="150" y="240" width="5" height="188" fill="#76abae"/>
+    <text x="190" y="280" class="mono kicker" font-size="10.5" fill="#adb2ba">STAGE 01</text>
+    <text x="190" y="310" class="serif" font-size="23" fill="#eeeeee">Planning &amp; standards</text>
+    <text x="190" y="338" class="sans" font-size="13.5" fill="#c4c8ce">
+      <tspan x="190" dy="0">Project morphology designed to follow the EC&#8217;s VIGIE 2020/654 study</tspan>
+      <tspan x="190" dy="21">framework and 3D4CH guidelines for 3D digitisation projects in Cultural</tspan>
+      <tspan x="190" dy="21">Heritage. Drawn out timelines, requirements, and individual object</tspan>
+      <tspan x="190" dy="21">complexity prior to the start of their photography.</tspan>
+    </text>
+    <circle cx="100" cy="334" r="21" fill="#181818" stroke="#76abae" stroke-width="1.6"/>
+    <text x="100" y="340" text-anchor="middle" class="mono" font-size="16" font-weight="500" fill="#76abae">01</text>
+  </g>
+
+  <!-- ================= STAGE 2 ================= -->
+  <g>
+    <rect x="150" y="448" width="786" height="188" rx="3" fill="#31363f" stroke="#434955" stroke-width="1"/>
+    <rect x="150" y="448" width="5" height="188" fill="#6fd19d"/>
+    <text x="190" y="488" class="mono kicker" font-size="10.5" fill="#adb2ba">STAGE 02</text>
+    <text x="190" y="518" class="serif" font-size="23" fill="#eeeeee">Photography</text>
+    <text x="190" y="546" class="sans" font-size="13.5" fill="#c4c8ce">
+      <tspan x="190" dy="0">Turntable photogrammetry capture &#8212; 18 objects photographed within</tspan>
+      <tspan x="190" dy="21">1 week of access at the end of February 2026. Both experimental and</tspan>
+      <tspan x="190" dy="21">result-driven approaches were used.</tspan>
+    </text>
+    <circle cx="100" cy="542" r="21" fill="#181818" stroke="#6fd19d" stroke-width="1.6"/>
+    <text x="100" y="548" text-anchor="middle" class="mono" font-size="16" font-weight="500" fill="#6fd19d">02</text>
+  </g>
+
+  <!-- ================= STAGE 3 ================= -->
+  <g>
+    <rect x="150" y="656" width="786" height="188" rx="3" fill="#31363f" stroke="#434955" stroke-width="1"/>
+    <rect x="150" y="656" width="5" height="188" fill="#e0b45c"/>
+    <text x="190" y="696" class="mono kicker" font-size="10.5" fill="#adb2ba">STAGE 03</text>
+    <text x="190" y="726" class="serif" font-size="23" fill="#eeeeee">Alignment &amp; reconstruction</text>
+    <text x="190" y="754" class="sans" font-size="13.5" fill="#c4c8ce">
+      <tspan x="190" dy="0">Using Agisoft Metashape: tie points, point cloud, mesh and texture</tspan>
+      <tspan x="190" dy="21">reconstruction, implementing AI-masking workflows. Developed</tspan>
+      <tspan x="190" dy="21">&#8216;HeritageScan&#8217; (custom RealityKit CLI) &#8212; as an experimental second</tspan>
+      <tspan x="190" dy="21">algorithm where the standard pipeline failed.</tspan>
+    </text>
+    <circle cx="100" cy="750" r="21" fill="#181818" stroke="#e0b45c" stroke-width="1.6"/>
+    <text x="100" y="756" text-anchor="middle" class="mono" font-size="16" font-weight="500" fill="#e0b45c">03</text>
+  </g>
+
+  <!-- ================= STAGE 4 ================= -->
+  <g>
+    <rect x="150" y="864" width="786" height="188" rx="3" fill="#31363f" stroke="#434955" stroke-width="1"/>
+    <rect x="150" y="864" width="5" height="188" fill="#e2705c"/>
+    <text x="190" y="904" class="mono kicker" font-size="10.5" fill="#adb2ba">STAGE 04</text>
+    <text x="190" y="934" class="serif" font-size="23" fill="#eeeeee">Post-processing</text>
+    <text x="190" y="962" class="sans" font-size="13.5" fill="#c4c8ce">
+      <tspan x="190" dy="0">Blender: retopology, UV unwrap, normal / AO bakes, mesh cleanup.</tspan>
+      <tspan x="190" dy="21">Roughness and metallic maps are authored here &#8212; measured where</tspan>
+      <tspan x="190" dy="21">possible, judged by eye where not, and flagged as such.</tspan>
+    </text>
+    <circle cx="100" cy="958" r="21" fill="#181818" stroke="#e2705c" stroke-width="1.6"/>
+    <text x="100" y="964" text-anchor="middle" class="mono" font-size="16" font-weight="500" fill="#e2705c">04</text>
+  </g>
+
+  <!-- ================= STAGE 5 ================= -->
+  <g>
+    <rect x="150" y="1072" width="786" height="188" rx="3" fill="#31363f" stroke="#434955" stroke-width="1"/>
+    <rect x="150" y="1072" width="5" height="188" fill="#c4c8ce"/>
+    <text x="190" y="1112" class="mono kicker" font-size="10.5" fill="#adb2ba">STAGE 05</text>
+    <text x="190" y="1142" class="serif" font-size="23" fill="#eeeeee">Metadata &amp; paradata</text>
+    <text x="190" y="1170" class="sans" font-size="13.5" fill="#c4c8ce">
+      <tspan x="190" dy="0">One merged record per object: family metadata, capture paradata</tspan>
+      <tspan x="190" dy="21">(equipment, angles, image counts, Metashape figures) and the</tspan>
+      <tspan x="190" dy="21">post-processing log. Every value graded, not just stated.</tspan>
+    </text>
+    <circle cx="100" cy="1166" r="21" fill="#181818" stroke="#c4c8ce" stroke-width="1.6"/>
+    <text x="100" y="1172" text-anchor="middle" class="mono" font-size="16" font-weight="500" fill="#c4c8ce">05</text>
+  </g>
+
+  <!-- ================= STAGE 6 ================= -->
+  <g>
+    <rect x="150" y="1280" width="786" height="188" rx="3" fill="#31363f" stroke="#434955" stroke-width="1"/>
+    <rect x="150" y="1280" width="5" height="188" fill="#76abae"/>
+    <text x="190" y="1320" class="mono kicker" font-size="10.5" fill="#adb2ba">STAGE 06</text>
+    <text x="190" y="1350" class="serif" font-size="23" fill="#eeeeee">Publishing</text>
+    <text x="190" y="1378" class="sans" font-size="13.5" fill="#c4c8ce">
+      <tspan x="190" dy="0">Nine finished models on Sketchfab, embedded in a purpose-built</tspan>
+      <tspan x="190" dy="21">site with the full provenance record beside each one.</tspan>
+      <tspan x="190" dy="21">Released under CC BY-NC-SA 4.0.</tspan>
+    </text>
+    <circle cx="100" cy="1374" r="21" fill="#181818" stroke="#76abae" stroke-width="1.6"/>
+    <text x="100" y="1380" text-anchor="middle" class="mono" font-size="16" font-weight="500" fill="#76abae">06</text>
+  </g>
+
+  <!-- footer -->
+  <line x1="64" y1="1500" x2="936" y2="1500" stroke="#434955" stroke-width="1"/>
+  <text x="64"  y="1526" class="mono kicker" font-size="10.5" fill="#adb2ba">CHIRIANDRESES MUSEUM &#8212; DIGITISATION METHODOLOGY</text>
+  <text x="936" y="1526" text-anchor="end" class="mono" font-size="11" fill="#adb2ba">CC BY-NC-SA 4.0</text>
+</svg>
