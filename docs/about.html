@@ -263,7 +263,8 @@
           hidden tabindex="-1">
           <h2 class="partial-title">Project lifecycle</h2>
 
-<p class="lifecycle-lead">Six stages, from a family object to a documented, reusable 3D model.</p>
+<p class="lifecycle-lead">An overview of the six stages that involved turning a family object to a documented, reusable
+  3D model:</p>
 
 <ol class="lifecycle">
 
@@ -271,7 +272,7 @@
     <span class="lifecycle-marker" aria-hidden="true">01</span>
     <div class="lifecycle-card">
       <p class="lifecycle-kicker">Stage 01</p>
-      <h3 class="lifecycle-title">Planning &amp; standards</h3>
+      <h3 class="lifecycle-title">Project planning</h3>
       <p class="lifecycle-desc">Project morphology designed to follow the EC's VIGIE 2020/654 study framework and 3D4CH
         guidelines for 3D digitisation projects in Cultural Heritage. Drew out timelines, requirements, and individual
         object complexity prior to the start of their photography.</p>
@@ -344,7 +345,8 @@
     <div class="lifecycle-card">
       <p class="lifecycle-kicker">Stage 05</p>
       <h3 class="lifecycle-title">Metadata &amp; paradata</h3>
-      <p class="lifecycle-desc">One merged record per object: family metadata, capture paradata (equipment, angles, image
+      <p class="lifecycle-desc">One merged record per object: family metadata, capture paradata (equipment, angles,
+        image
         counts, Metashape figures) and the post-processing log. Every value graded, not just stated.</p>
       <svg class="lifecycle-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -363,7 +365,7 @@
     <span class="lifecycle-marker" aria-hidden="true">06</span>
     <div class="lifecycle-card">
       <p class="lifecycle-kicker">Stage 06</p>
-      <h3 class="lifecycle-title">Publishing</h3>
+      <h3 class="lifecycle-title">The website</h3>
       <p class="lifecycle-desc">Nine finished models on Sketchfab, embedded in a purpose-built site with the full
         provenance record beside each one. Released under CC BY-NC-SA 4.0.</p>
       <svg class="lifecycle-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"
@@ -382,8 +384,95 @@
           aria-labelledby="tab-stage-by-stage" hidden tabindex="-1">
           <h2 class="partial-title">Stage-by-stage</h2>
 
-<p class="placeholder-note">Coming soon — a walk through each stage of the digitisation pipeline, and what happens to an
-  object at every step.</p>
+<p>A closer walkthrough of what happened at each stage of the digitisation pipeline:</p>
+
+<div class="stage-nav" data-folder-tabs>
+
+  <div class="stage-strip-wrap">
+    <div class="stage-strip" role="tablist" aria-label="Pipeline stages" aria-orientation="horizontal">
+
+      <button type="button" id="sbs-tab-1" class="active" role="tab" aria-selected="true" aria-controls="sbs-panel-1"
+        style="--stage-accent: var(--patina-deep);">
+        <span class="stage-strip-num">01</span>
+        <span class="stage-strip-label">Project planning</span>
+      </button>
+
+      <button type="button" id="sbs-tab-2" role="tab" aria-selected="false" aria-controls="sbs-panel-2" tabindex="-1"
+        style="--stage-accent: var(--measured);">
+        <span class="stage-strip-num">02</span>
+        <span class="stage-strip-label">Photography</span>
+      </button>
+
+      <button type="button" id="sbs-tab-3" role="tab" aria-selected="false" aria-controls="sbs-panel-3" tabindex="-1"
+        style="--stage-accent: var(--estimated);">
+        <span class="stage-strip-num">03</span>
+        <span class="stage-strip-label">Photogrammetry processing</span>
+      </button>
+
+      <button type="button" id="sbs-tab-4" role="tab" aria-selected="false" aria-controls="sbs-panel-4" tabindex="-1"
+        style="--stage-accent: var(--flagged);">
+        <span class="stage-strip-num">04</span>
+        <span class="stage-strip-label">Post-processing</span>
+      </button>
+
+      <button type="button" id="sbs-tab-5" role="tab" aria-selected="false" aria-controls="sbs-panel-5" tabindex="-1"
+        style="--stage-accent: var(--patina);">
+        <span class="stage-strip-num">05</span>
+        <span class="stage-strip-label">Metadata &amp; paradata</span>
+      </button>
+
+      <button type="button" id="sbs-tab-6" role="tab" aria-selected="false" aria-controls="sbs-panel-6" tabindex="-1"
+        style="--stage-accent: var(--brass);">
+        <span class="stage-strip-num">06</span>
+        <span class="stage-strip-label">The website</span>
+      </button>
+
+    </div>
+  </div>
+
+  <section id="sbs-panel-1" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-1" tabindex="0"
+    style="--stage-accent: var(--patina-deep);">
+    <p class="stage-panel-kicker">Stage 01</p>
+    <h3>Project planning</h3>
+    <p class="placeholder-note">Coming soon.</p>
+  </section>
+
+  <section id="sbs-panel-2" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-2" tabindex="0" hidden
+    style="--stage-accent: var(--measured);">
+    <p class="stage-panel-kicker">Stage 02</p>
+    <h3>Photography</h3>
+    <p class="placeholder-note">Coming soon.</p>
+  </section>
+
+  <section id="sbs-panel-3" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-3" tabindex="0" hidden
+    style="--stage-accent: var(--estimated);">
+    <p class="stage-panel-kicker">Stage 03</p>
+    <h3>Photogrammetry processing</h3>
+    <p class="placeholder-note">Coming soon.</p>
+  </section>
+
+  <section id="sbs-panel-4" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-4" tabindex="0" hidden
+    style="--stage-accent: var(--flagged);">
+    <p class="stage-panel-kicker">Stage 04</p>
+    <h3>Post-processing</h3>
+    <p class="placeholder-note">Coming soon.</p>
+  </section>
+
+  <section id="sbs-panel-5" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-5" tabindex="0" hidden
+    style="--stage-accent: var(--patina);">
+    <p class="stage-panel-kicker">Stage 05</p>
+    <h3>Metadata &amp; paradata</h3>
+    <p class="placeholder-note">Coming soon.</p>
+  </section>
+
+  <section id="sbs-panel-6" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-6" tabindex="0" hidden
+    style="--stage-accent: var(--brass);">
+    <p class="stage-panel-kicker">Stage 06</p>
+    <h3>The website</h3>
+    <p class="placeholder-note">Coming soon.</p>
+  </section>
+
+</div>
         </section>
 
         <section id="panel-documentation" data-panel-content="documentation" role="tabpanel"

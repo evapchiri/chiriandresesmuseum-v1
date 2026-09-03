@@ -745,6 +745,136 @@ ol.lifecycle {
   }
 }
 
+/* ---------- Stage-by-stage panel ----------
+ * A nested tab layer inside the About page (wired by initFolderTabs, same as
+ * Lab journal): the six lifecycle bubbles laid out as a horizontal, sticky
+ * sub-menu, each switching an in-place stage section below it. Per-bubble
+ * accent colour comes in as --stage-accent, matching the Project lifecycle
+ * page. */
+
+.stage-strip-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  margin: 1.6em 0 2em;
+  padding: 14px 0 12px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.stage-strip {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  padding: 3px 0 4px;
+}
+
+/* dotted connector threading the bubbles, matching the Project lifecycle spine.
+   Inset to the centre of the first / last of six evenly-spread bubbles. */
+.stage-strip::before {
+  content: "";
+  position: absolute;
+  left: 8.33%;
+  right: 8.33%;
+  top: 20px;
+  border-top: 2px dotted var(--brass);
+  opacity: 0.5;
+}
+
+.stage-strip button {
+  position: relative;
+  z-index: 1;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  min-width: 84px;
+  max-width: 130px;
+  padding: 0 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.stage-strip-num {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1.5px solid var(--stage-accent);
+  color: var(--stage-accent);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.stage-strip-label {
+  font-size: 0.7rem;
+  line-height: 1.25;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.stage-strip button:hover .stage-strip-label {
+  color: var(--ink);
+}
+
+.stage-strip button.active .stage-strip-num {
+  background: var(--stage-accent);
+  color: var(--paper);
+}
+
+.stage-strip button.active .stage-strip-label {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.stage-strip button:focus-visible {
+  outline: none;
+}
+
+.stage-strip button:focus-visible .stage-strip-num {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+.stage-panel {
+  padding-top: 0.2em;
+}
+
+.stage-panel:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 4px;
+}
+
+.stage-panel-kicker {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stage-accent);
+  margin: 0 0 6px;
+}
+
+.about-content .stage-panel h3 {
+  margin-top: 0;
+}
+
+@media (max-width: 720px) {
+  .stage-strip::before {
+    display: none;
+  }
+  .stage-strip button {
+    min-width: 76px;
+  }
+}
+
 /* ---------- About me panel ---------- */
 
 /* Portrait, as a wide band in the top-right of the panel. The photo is a
