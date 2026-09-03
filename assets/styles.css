@@ -5,7 +5,7 @@
    condition-report card, with provenance stated as stamped, plain-language
    flags rather than hidden in a spec sheet. */
 
-@import url("https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Onest:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Onest:wght@300..600&display=swap");
 
 /* Palette — single fixed dark scheme (Chiriandreses v1).
    Built on a four-colour set: #222831 / #31363F / #76ABAE / #EEEEEE, with the
@@ -334,8 +334,21 @@ h3 {
 
 /* ---------- About / BTS page ---------- */
 
+#about-what-is-h3 {
+  color: var(--brass);
+  font-size: 1.4em;
+}
+
 .about-main {
   padding-bottom: 60px;
+  /* Lighter body text across the whole About page so <strong> carries more
+     weight by contrast. Headings keep their own 400 (see h1,h2,h3 rule). */
+  font-weight: 300;
+}
+/* <strong> needs an explicit weight here: its default `bolder` is relative,
+   so against the 300 body above it would only resolve to 400. */
+.about-main strong {
+  font-weight: 600;
 }
 
 .about-layout {
@@ -426,33 +439,110 @@ h3 {
 .about-content p {
   max-width: 66ch;
   color: var(--ink);
+  text-align: justify;
 }
 .about-content p.placeholder-note {
   color: var(--ink-soft);
   font-style: italic;
 }
 
+/* Very slight tracking on About-page reading text (headings keep their own). */
+.about-content p,
+.about-content li {
+  letter-spacing: 0.01em;
+}
+
+/* Inline highlight in the intro copy: a brass keyword, not bold (replaces
+   the <strong> emphasis for everything except the opening "Chiriandreses
+   Museum"). */
+.about-content .hl {
+  color: var(--brass);
+}
+
+/* Inline reference to a top-level About section — echoes the sidebar group
+   labels: Onest, lightly tracked. */
+.about-content .about-section-ref {
+  font-family: "Onest", system-ui, sans-serif;
+  letter-spacing: 0.05em;
+}
+
 .partial-title {
   color: var(--brass);
 }
 
-/* About landing panel: the opening line reads a touch larger, like a standfirst.
-   max-width compensates for the 1.1x font-size so the ch-measure still lines up
-   with the 66ch body copy below it (66 / 1.1 = 60). */
+/* About landing panel: the opening line. Same 16px / 66ch measure as the
+   body copy below it — it just leads with a bold clause. */
 .about-content p.about-intro-lead {
-  font-family: "Onest", Georgia, serif;
-  font-size: 1.1rem;
-  max-width: 60ch;
+  font-size: 1rem;
+  max-width: 66ch;
+}
+.about-content p.about-intro-lead strong {
+  color: var(--brass);
 }
 
-.about-page-quote {
-  text-align: center;
-  padding: 2em 0 2em;
-}
-.about-page-quote p:first-child + p + p {
-  padding: 1em 0 0;
-  text-align: right;
+/* Not a <blockquote> (that element is used elsewhere on the About page) —
+   this rule carries the styling that used to come from `.about-content
+   blockquote` plus the earlier size edits. */
+.about-content .about-page-quote {
+  /* Same left edge and 66ch measure as the body copy (base font-size kept at
+     1rem so `ch` resolves identically; the visible text is sized per line
+     below). The quotation is centred across that measure; the attribution
+     sits to the right, tucked just inside the brass rule. */
+  max-width: 66ch;
+  margin: 3em 0;
+  padding: 0.6em 0;
+  font-size: 1rem;
+  font-style: normal;
   color: var(--ink-soft);
+  /* border-right: 1px solid var(--rule); */
+}
+.about-content .about-page-quote p {
+  margin: 0;
+  max-width: none; /* fill the block so text-align actually centres on it */
+  color: var(--ink-soft);
+}
+/* The quotation: centred across the measure, upright, a touch smaller. */
+.about-content .about-page-quote p:first-child,
+.about-content .about-page-quote p:first-child + p {
+  text-align: center;
+  font-style: italic;
+  font-size: 14px;
+}
+/* Author + book: right-aligned, smaller, padded off the brass rule. */
+.about-content .about-page-quote p:first-child + p + p {
+  text-align: right;
+  font-size: 12px;
+  padding: 0.9em 1.4ch 0 0;
+  color: var(--ink-soft);
+}
+
+/* The opening statement, boxed. Holds only the lead paragraph. */
+.about-intro-targets {
+  max-width: 66ch;
+  margin: 1.6em 0;
+  padding: 1em 1.3em;
+  border: 1px solid var(--brass);
+  border-radius: var(--radius);
+}
+.about-intro-targets > :first-child {
+  margin-top: 0;
+}
+.about-intro-targets > :last-child {
+  margin-bottom: 0;
+}
+
+/* "To achieve these targets" + the two framework bullets: inset from both
+   sides and centred, so it reads as a set-apart aside from the body copy. */
+.about-intro-method {
+  max-width: 66ch;
+  margin: 1.6em 0;
+  padding: 1em 1.3em;
+}
+.about-intro-method > :first-child {
+  margin-top: 0;
+}
+.about-intro-method > :last-child {
+  margin-bottom: 0;
 }
 
 /* Closing image on the About landing panel — a medium-width band, forced to a
@@ -492,6 +582,7 @@ h3 {
   max-width: 60ch;
   color: var(--ink-soft);
   font-style: italic;
+  text-align: center;
 }
 .about-content blockquote p {
   margin: 0;
