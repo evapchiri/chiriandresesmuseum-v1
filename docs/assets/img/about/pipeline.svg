@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1560" role="img" aria-labelledby="pipe-title pipe-desc">
-  <title id="pipe-title">The Chiriandreses Museum digitisation pipeline</title>
+  <title id="pipe-title">Chiriandreses Museum &#8212; Project&#8217;s lifecycle</title>
   <desc id="pipe-desc">Six stages, from a family object to a documented, reusable 3D model: planning and standards, photography, alignment and reconstruction, post-processing, metadata and paradata, and publishing.</desc>
 
   <style><![CDATA[
@@ -16,8 +16,8 @@
   <rect x="8" y="8" width="984" height="1544" rx="6" fill="none" stroke="#434955" stroke-width="1"/>
 
   <!-- header -->
-  <text x="64" y="92"  class="mono eyebrow" font-size="12" fill="#adb2ba">CHIRIANDRESES MUSEUM &#8194;&#183;&#8194; METHODOLOGY</text>
-  <text x="62" y="152" class="serif" font-size="42" fill="#eeeeee">The digitisation pipeline</text>
+  <text x="64" y="92"  class="mono eyebrow" font-size="12" fill="#adb2ba">CHIRIANDRESES MUSEUM &#8194;&#183;&#8194; THE PROJECT</text>
+  <text x="62" y="152" class="serif" font-size="42" fill="#eeeeee">Project&#8217;s lifecycle</text>
   <text x="64" y="186" class="sans" font-size="15" fill="#adb2ba">Six stages, from a family object to a documented, reusable 3D model.</text>
   <line x1="64" y1="210" x2="936" y2="210" stroke="#434955" stroke-width="1"/>
 
@@ -119,6 +119,6 @@
 
   <!-- footer -->
   <line x1="64" y1="1500" x2="936" y2="1500" stroke="#434955" stroke-width="1"/>
-  <text x="64"  y="1526" class="mono kicker" font-size="10.5" fill="#adb2ba">CHIRIANDRESES MUSEUM &#8212; DIGITISATION METHODOLOGY</text>
+  <text x="64"  y="1526" class="mono kicker" font-size="10.5" fill="#adb2ba">CHIRIANDRESES MUSEUM &#8212; PROJECT&#8217;S LIFECYCLE</text>
   <text x="936" y="1526" text-anchor="end" class="mono" font-size="11" fill="#adb2ba">CC BY-NC-SA 4.0</text>
 </svg>
