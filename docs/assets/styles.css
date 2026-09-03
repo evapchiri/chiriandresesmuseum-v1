@@ -612,6 +612,139 @@ h3 {
   outline-offset: 4px;
 }
 
+/* ---------- Project lifecycle panel ----------
+ * The vertical six-stage pipeline (formerly an exported pipeline.svg). Each
+ * stage is a raised card with an accent left-bar; numbered markers sit in a
+ * gutter to the left, threaded by a single connecting spine drawn behind them.
+ * Per-stage accent colour is passed in as --stage-accent on each <li>. */
+
+.lifecycle-lead {
+  color: var(--ink-soft);
+  margin-bottom: 1.5em;
+}
+
+ol.lifecycle {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.lifecycle-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  column-gap: 16px;
+  align-items: start;
+}
+
+/* connecting spine — a dotted line down the centre of the marker gutter,
+   drawn per-stage from this marker into the next so it stops the moment it
+   meets the sixth (last) bubble. The opaque markers lift above it. */
+.lifecycle-stage::before {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 18px;
+  height: calc(100% + 12px);
+  width: 0;
+  border-left: 2px dotted var(--brass);
+  opacity: 0.5;
+}
+
+.lifecycle-stage:last-child::before {
+  display: none;
+}
+
+.lifecycle-marker {
+  position: relative;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1.5px solid var(--stage-accent);
+  color: var(--stage-accent);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.lifecycle-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 16px 84px 18px 22px;
+}
+
+.lifecycle-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--stage-accent);
+}
+
+.lifecycle-kicker {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 5px;
+}
+
+.about-content h3.lifecycle-title {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.about-content p.lifecycle-desc {
+  margin: 0;
+  max-width: 58ch;
+  font-size: 0.88rem;
+  color: var(--patina);
+}
+
+.lifecycle-icon {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 46px;
+  height: 46px;
+  color: var(--stage-accent);
+  opacity: 0.5;
+}
+
+@media (max-width: 720px) {
+  .lifecycle-stage {
+    grid-template-columns: 30px 1fr;
+    column-gap: 12px;
+  }
+  .lifecycle-stage::before {
+    left: 14px;
+    top: 15px;
+  }
+  .lifecycle-marker {
+    width: 30px;
+    height: 30px;
+    font-size: 0.76rem;
+  }
+  .lifecycle-card {
+    padding: 15px 16px 16px;
+  }
+  .lifecycle-icon {
+    display: none;
+  }
+}
+
 /* ---------- About me panel ---------- */
 
 /* Portrait, as a wide band in the top-right of the panel. The photo is a
