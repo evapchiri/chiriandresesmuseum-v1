@@ -30,6 +30,7 @@
   --estimated-bg: #38301c;
   --flagged: #e2705c;
   --flagged-bg: #3a251f;
+  --lilac: #c8b6e6;
   --na: #b8bdc6;
   --na-bg: #333842;
   --max-width: 1080px;
@@ -452,15 +453,19 @@ h3 {
   letter-spacing: 0.01em;
 }
 
-/* Inline highlight in the intro copy: a brass keyword, not bold (replaces
-   the <strong> emphasis for everything except the opening "Chiriandreses
-   Museum"). */
+/* Inline highlight: a brass keyword, not bold (replaces the <strong>
+   emphasis for everything except the opening "Chiriandreses Museum").
+   Scoped to .about-content, so it's available in every About panel, not
+   just the intro — and because it targets the inline span directly it
+   still wins over the panel-specific paragraph colours (.lifecycle-desc
+   etc.), which only reach the span by inheritance. */
 .about-content .hl {
   color: var(--brass);
 }
 
 /* Inline reference to a top-level About section — echoes the sidebar group
-   labels: Onest, lightly tracked. */
+   labels: Onest, lightly tracked. Also .about-content-wide, usable in any
+   panel. */
 .about-content .about-section-ref {
   font-family: "Onest", system-ui, sans-serif;
   letter-spacing: 0.05em;
@@ -714,6 +719,10 @@ h3 {
   margin-bottom: 1.5em;
 }
 
+.lifecycle-stage h3 {
+  color: var(--stage-accent);
+}
+
 ol.lifecycle {
   list-style: none;
   margin: 0;
@@ -847,7 +856,7 @@ ol.lifecycle {
   position: sticky;
   top: 0;
   z-index: 5;
-  margin: 1.6em 0 2em;
+  margin: 1.6em 0 1.5em;
   padding: 14px 0 12px;
   background: var(--paper);
   border-bottom: 1px solid var(--rule);
@@ -860,6 +869,11 @@ ol.lifecycle {
   overflow-x: auto;
   scrollbar-width: thin;
   padding: 3px 0 4px;
+}
+
+.stage-panel h3 {
+  color: var(--stage-accent);
+  font-size: 1.3em;
 }
 
 /* dotted connector threading the bubbles, matching the Project lifecycle spine.
@@ -953,8 +967,41 @@ ol.lifecycle {
   margin: 0 0 6px;
 }
 
-.about-content .stage-panel h3 {
-  margin-top: 0;
+/* Stage heading block — kicker + title lifted into a raised card with an
+   accent left-bar, matching the Project lifecycle cards. --stage-accent is
+   inherited from the .stage-panel section. */
+.stage-panel-head {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 10px 22px 10px;
+  margin-bottom: 1.5em;
+}
+
+.stage-panel-head::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--stage-accent);
+}
+
+.stage-panel-head .stage-panel-kicker {
+  margin: 0 0 5px;
+}
+
+.about-content .stage-panel-head h3 {
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .stage-panel-head {
+    padding: 13px 16px 14px;
+  }
 }
 
 @media (max-width: 720px) {
@@ -1002,6 +1049,10 @@ ol.lifecycle {
   .about-me-portrait {
     display: none;
   }
+}
+
+#about-me-quote {
+  border: 0px solid var(--rule);
 }
 
 /* LinkedIn / GitHub row (third paragraph of the panel) */

@@ -49,7 +49,7 @@ This project's methodology aimed to follow the European Commission's VIGIE 2020/
 | Colour profile          | sRGB IEC61966-2.1                                                                                                                 |
 | Photogrammetry software | Agisoft Metashape Standard v2.2.2                                                                                                 |
 | Supplementary tooling   | HeritageScan (custom CLI, RealityKit-based) for different algorithm usage in already photography alignment failures in Metashape. |
-| 3D authoring            | Blender                                                                                                                           |
+| 3D post-processing      | Blender                                                                                                                           |
 | Compute                 | MacBook M2 2022, 16GB                                                                                                             |
 
 ### 4. Capture campaign summary
@@ -65,7 +65,7 @@ Re-photographing the objects was not possible after the fact — the objects are
 **COMPLETED OBJECT MODELS (9):**
 
 | ID       | Object                        | Notes                                                                                                                 |
-| -------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| -------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | CHAN-001 | Marrakech's Koutoubia replica | No post-capture textural correction required                                                                          |
 | CHAN-003 | Berber candlestick            | Blender-retouched: small missing texture areas from an uncaptured surface section                                     |
 | CHAN-006 | Chinese personal seal         | Clean processing, no significant issues                                                                               |
@@ -133,7 +133,7 @@ Each entry below merges four sources:
 The field key for post-processing terms used throughout:
 
 | Field                | What it records                                                       |
-| --------------------- | ----------------------------------------------------------------------- |
+| -------------------- | --------------------------------------------------------------------- |
 | Retopology           | Method/tool, high-poly vs. final poly counts, delivery target         |
 | UV unwrapping        | Approach, notable seams or compromises                                |
 | Normal / AO map      | Baked from geometry, or hand-adjusted, and in what software           |
@@ -149,7 +149,7 @@ The field key for post-processing terms used throughout:
 **Metadata**
 
 | Field        | Detail                                                  |
-| ------------ | -------------------------------------------------------- |
+| ------------ | ------------------------------------------------------- |
 | Type         | Souvenir, architectural replica                         |
 | Materials    | Limestone (soapstone/steatite), hand-carved             |
 | Measurements | Height 335mm, base 62×55mm, mid-section approx. 45×45mm |
@@ -165,7 +165,7 @@ The field key for post-processing terms used throughout:
 **Capture paradata**
 
 | Field                                | Detail                                                                   |
-| -------------------------------------- | --------------------------------------------------------------------------- |
+| ------------------------------------ | ------------------------------------------------------------------------ |
 | Dates of access                      | 18 February 2026                                                         |
 | Complexity (object/surface/material) | Low / Low / Low                                                          |
 | Recording challenge                  | Slightly reflective surface                                              |
@@ -186,13 +186,13 @@ The field key for post-processing terms used throughout:
 **Metadata**
 
 | Field        | Detail                                                             |
-| ------------ | --------------------------------------------------------------------- |
+| ------------ | ------------------------------------------------------------------ |
 | Type         | Souvenir, ceremonial-style candlestick with bird motifs at the top |
 | Materials    | Soapstone (steatite), hand-carved                                  |
 | Measurements | Height 220mm, width 170mm, depth 32mm                              |
-| Weight       | 909g                                                                |
+| Weight       | 909g                                                               |
 | Condition    | As new                                                             |
-| Chronology   | 1991                                                                |
+| Chronology   | 1991                                                               |
 | Geography    | Morocco, Rabat                                                     |
 
 **The story**:
@@ -202,7 +202,7 @@ The field key for post-processing terms used throughout:
 **Capture paradata**
 
 | Field                                | Detail                                                                                                                                     |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | Dates of access                      | 19 February 2026                                                                                                                           |
 | Complexity (object/surface/material) | Medium / Low / Medium                                                                                                                      |
 | Recording challenges                 | Deep holes at the top (bird attachment points) may not record fully; slightly reflective, dark brown surface in places; many inner corners |
@@ -222,7 +222,7 @@ The field key for post-processing terms used throughout:
 **Metadata**
 
 | Field        | Detail                                                                                                                                                                                                                                                                                                          |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Materials    | Family source data records this cautiously as "probably a soft stone, likely serpentine ('modern jade')" — the public Sketchfab description below uses the more specific attribution of Shoushan stone for narrative purposes; treat this row as the more epistemically honest version for a technical audience |
 | Type         | Personal seal/stamp                                                                                                                                                                                                                                                                                             |
 | Measurements | Height 150mm, diameter 50mm                                                                                                                                                                                                                                                                                     |
@@ -238,7 +238,7 @@ The field key for post-processing terms used throughout:
 **Capture paradata**
 
 | Field                                | Detail                                                              |
-| --------------------------------------- | ---------------------------------------------------------------------- |
+| ------------------------------------ | ------------------------------------------------------------------- |
 | Dates of access                      | 19 February 2026                                                    |
 | Complexity (object/surface/material) | Medium / Medium / Low                                               |
 | Recording challenge                  | Cavities at the top may not record perfectly                        |
@@ -274,7 +274,7 @@ The field key for post-processing terms used throughout:
 **Capture paradata**
 
 | Field                                             | Detail                                                                                                                                            |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Dates of access                                   | 19 February 2026                                                                                                                                  |
 | Complexity (object/surface/material)              | Medium / Medium / Medium                                                                                                                          |
 | Recording challenges                              | Gold paint causing shine in places; complex clothing detail                                                                                       |
@@ -293,7 +293,7 @@ The field key for post-processing terms used throughout:
 **Metadata**
 
 | Field        | Detail                                                                                           |
-| ------------ | --------------------------------------------------------------------------------------------------- |
+| ------------ | ------------------------------------------------------------------------------------------------ |
 | Type         | Ceremonial vessel replica                                                                        |
 | Materials    | Carved haematite                                                                                 |
 | Measurements | Height 158mm                                                                                     |
@@ -309,8 +309,8 @@ The field key for post-processing terms used throughout:
 **Capture paradata**
 
 | Field                        | Detail                                                                                                                |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| Capture-stage planning sheet | None exists for this object                                                                                          |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Capture-stage planning sheet | None exists for this object                                                                                           |
 | Raw images / focal lengths   | 256 images across three focal lengths (21mm/32mm/25mm), suggesting multiple angle passes similar to the other objects |
 | Tie points                   | 350,988                                                                                                               |
 | Reprojection error           | 0.595px                                                                                                               |
@@ -326,7 +326,7 @@ The field key for post-processing terms used throughout:
 **Metadata**
 
 | Field        | Detail                                                        |
-| ------------ | ---------------------------------------------------------------- |
+| ------------ | ------------------------------------------------------------- |
 | Type         | Decorative box with carved figures                            |
 | Materials    | Hand-carved and painted wood, 12 individually patterned birds |
 | Measurements | Not logged                                                    |
@@ -342,7 +342,7 @@ The field key for post-processing terms used throughout:
 **Capture paradata**
 
 | Field                        | Detail                                                                                                                      |
-| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | Capture-stage planning sheet | None exists for this object                                                                                                 |
 | Raw images / focal lengths   | 319 images across three focal lengths (28mm/41mm/35mm)                                                                      |
 | Tie points                   | 174,372                                                                                                                     |
@@ -359,7 +359,7 @@ The field key for post-processing terms used throughout:
 **Metadata**
 
 | Field        | Detail                                 |
-| ------------ | ----------------------------------------- |
+| ------------ | -------------------------------------- |
 | Type         | Toy/souvenir                           |
 | Materials    | Polychrome wood and card               |
 | Measurements | Length 175mm, height 115mm, width 70mm |
@@ -375,8 +375,8 @@ The field key for post-processing terms used throughout:
 **Capture paradata**
 
 | Field                        | Detail                                                                                                          |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------- |
-| Capture-stage planning sheet | None exists for this object                                                                                    |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Capture-stage planning sheet | None exists for this object                                                                                     |
 | Raw images / focal lengths   | 327 images across three focal lengths (30mm/27mm/29mm)                                                          |
 | Tie points                   | 235,617                                                                                                         |
 | Reprojection error           | 0.524px                                                                                                         |
@@ -392,7 +392,7 @@ The field key for post-processing terms used throughout:
 **Metadata**
 
 | Field        | Detail                                                                                                                                                                                                                                                                                                                                                                                         |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Type         | Mineral collection/decorative set                                                                                                                                                                                                                                                                                                                                                              |
 | Materials    | 20 different hand-carved and polished stone types — aventurine, brown opaline, pale lepidolite, wood stone, dolomite, granite, feldspar, calcrete, leopard rock, spider jasper, butterscotch, dark lepidolite, rose quartz, green unakite, [asbestos — flagged as worth double-checking, unusual for a decorative object], cream dolomite, opal stone, white opaline, winter jasper, soapstone |
 | Measurements | Not logged                                                                                                                                                                                                                                                                                                                                                                                     |
@@ -408,7 +408,7 @@ The field key for post-processing terms used throughout:
 **Capture paradata**
 
 | Field                        | Detail                                                                                                                                         |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | Capture-stage planning sheet | None exists for this object                                                                                                                    |
 | Raw images / focal lengths   | 178 images across two focal lengths (30mm/42mm)                                                                                                |
 | Tie points                   | 83,090                                                                                                                                         |
@@ -425,8 +425,8 @@ The field key for post-processing terms used throughout:
 **Metadata**
 
 | Field        | Detail                                                                                               |
-| ------------ | --------------------------------------------------------------------------------------------------- |
-| Type         | Possible sculptural fragment                                                                        |
+| ------------ | ---------------------------------------------------------------------------------------------------- |
+| Type         | Possible sculptural fragment                                                                         |
 | Materials    | Unidentified stone                                                                                   |
 | Measurements | Length 295mm, width 215mm, height 110mm                                                              |
 | Weight       | Approx. 6,900g                                                                                       |
@@ -441,7 +441,7 @@ The field key for post-processing terms used throughout:
 **Capture paradata**
 
 | Field                        | Detail                                          |
-| ------------------------------ | ------------------------------------------------ |
+| ---------------------------- | ----------------------------------------------- |
 | Capture-stage planning sheet | None exists for this object                     |
 | Raw images / focal lengths   | 129 images across two focal lengths (32mm/25mm) |
 | Tie points                   | 210,851                                         |
@@ -465,4 +465,4 @@ This document is a synthesis. The following source materials fed into it and are
 
 ---
 
-*Copied into this repo from "The Repositioning" Claude project on 25 August 2026, as the authoritative reference source for this site's content. If the source document in that project is later revised, re-sync this copy.*
+_Copied into this repo from "The Repositioning" Claude project on 25 August 2026, as the authoritative reference source for this site's content. If the source document in that project is later revised, re-sync this copy._

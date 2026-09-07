@@ -32,7 +32,7 @@
       </button>
 
       <button type="button" id="sbs-tab-5" role="tab" aria-selected="false" aria-controls="sbs-panel-5" tabindex="-1"
-        style="--stage-accent: var(--patina);">
+        style="--stage-accent: var(--lilac);">
         <span class="stage-strip-num">05</span>
         <span class="stage-strip-label">Metadata &amp; paradata</span>
       </button>
@@ -48,44 +48,209 @@
 
   <section id="sbs-panel-1" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-1" tabindex="0"
     style="--stage-accent: var(--patina-deep);">
-    <p class="stage-panel-kicker">Stage 01</p>
-    <h3>Project planning</h3>
-    <p class="placeholder-note">Coming soon.</p>
+    <div class="stage-panel-head">
+      <p class="stage-panel-kicker">Stage 01</p>
+      <h3>Project planning</h3>
+    </div>
+
+    <p><span class="hl">The project's aim</span> is quite straight-forward:</p>
+    <em>"To generate high-quality 3D models of a family heirloom and
+      travel-souvenir
+      collection to museum-standards for model, metadata and paradata, and make them accessible through a
+      purpose-built web experience."</em>
+
+    <p>The project was originally divided as two initial strands:</p>
+    <ul class="spec-list">
+      <li><span class="hl">EP-D001 &mdash;</span> <strong>Digitisation campaigns</strong>:
+        generating the 3D models
+      </li>
+      <li><span class="hl">EP-W001 &mdash;</span> <strong>Webapp</strong>: developing the digital platform to showcase
+        the
+        generated 3D models</li>
+    </ul>
+
+    <p><span class="hl">These strands were designed to be both reiterated if needed </span>(re-capturing
+      objects that didn't
+      work the first time)<span class="hl"> and expanded </span> (e.g. EP-D002, etc...) as I do more digitisation rounds
+      in the future, or I roll out new
+      versions of the website.</span></p>
+    <p>As of
+      the end of EP-001, the successfully digitised bunch (9 objects) is roughly only 1/6 of my parents' 60+ full
+      collection, and I aim to expand their digital footprint in the future.</p>
+    <p>Because of this ever-expanding aim, there were <span class="hl">a handful of objects that were
+        also photographed purely as experiments</span>, with no expectation of generating usable models to be exposed
+      this first instance.</p>
+
+    <p><span class="hl">The project's documentation framework</span> (i.e. deciding what and how things should be
+      documented) was designed,
+      adapted for a solo practitioner,
+      following:</p>
+    <ul>
+      <li>Best-practice standards set by the European
+        Commission for best-quality digitisation processes in Cultural Heritage (set in the VIGIE
+        2020/654 study) which heavily focus on high-traceability.</li>
+      <li>The professional
+        guidance provided by the 3D4CH
+        Competence Centre's guidance &mdash; in particular its <em>Essential Guide to 3D Digitised Heritage</em>
+        training
+        series and the &ldquo;Capturing and Processing 3D Data&rdquo; session presented by Catherine Anne Cassidy of
+        CARARE.</li>
+    </ul>
+
+    <p>Every object was assessed for their
+      complexity &mdash; its shape, its surface, its material &mdash; and that assessment decided both its capture
+      approach
+      and its minimum 'what good looks like' targets. The available non-professional equipment, needing to increase my
+      photography and 3D modelling knowledge, and the narrow access window to the objects (< 2 weeks) influenced against
+        these quality targets and completion deadlines. </p>
   </section>
 
   <section id="sbs-panel-2" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-2" tabindex="0" hidden
     style="--stage-accent: var(--measured);">
-    <p class="stage-panel-kicker">Stage 02</p>
-    <h3>Photography</h3>
-    <p class="placeholder-note">Coming soon.</p>
+    <div class="stage-panel-head">
+      <p class="stage-panel-kicker">Stage 02</p>
+      <h3>Photography</h3>
+    </div>
+
+    <p>Eighteen objects, photographed over a single week of access at my parents' home in Spain (16&ndash;22 February
+      2026), immediately before I moved to Japan. That deadline shaped everything that followed: the objects aren't
+      reachable for a re-shoot, so whatever the photographs captured &mdash; or missed &mdash; is what every later stage
+      had to work with. Several decisions further down the pipeline trace straight back to it.</p>
+
+    <p>Capture was turntable photogrammetry on a home rig against a white background, with the same kit across the whole
+      set:</p>
+
+    <ul class="spec-list">
+      <li><strong>Camera:</strong> Canon 2000D DSLR, EF-S 18&ndash;55mm IS II lens</li>
+      <li><strong>Lighting:</strong> 2&times; NEEWER dimmable LED panels, 5600K, with a white diffuser</li>
+      <li><strong>Scale reference:</strong> homemade, accurate to &plusmn;1mm</li>
+      <li><strong>Colour profile:</strong> sRGB IEC61966-2.1</li>
+    </ul>
+
+    <p>Each object was shot in front, top and bottom passes, turning the turntable by hand in roughly 10&ndash;15&deg;
+      steps &mdash; around 15&ndash;20 minutes of shooting per object once the manual turning is counted in. Some
+      objects
+      doubled as deliberate tests: very shiny or reflective surfaces, handheld sequences, boxes photographed both open
+      and
+      closed.</p>
+
+    <p>I went in with a working but non-specialist grasp of photogrammetry, and a few techniques I now consider
+      essential
+      simply weren't on my radar yet. No cross-polarising filter was used &mdash; I didn't know the technique at the
+      time
+      &mdash; and no dedicated specularity capture was done. Both are planned for future campaigns, and both are the
+      reason some of this set's material properties had to be reconstructed by hand later rather than measured from the
+      capture itself.</p>
   </section>
 
   <section id="sbs-panel-3" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-3" tabindex="0" hidden
     style="--stage-accent: var(--estimated);">
-    <p class="stage-panel-kicker">Stage 03</p>
-    <h3>Photogrammetry processing</h3>
-    <p class="placeholder-note">Coming soon.</p>
+    <div class="stage-panel-head">
+      <p class="stage-panel-kicker">Stage 03</p>
+      <h3>Photogrammetry processing</h3>
+    </div>
+
+    <p>This is where the week's photographs became models, using <span class="hl">Agisoft Metashape Standard</span>:
+      aligning images into tie points, building the dense point cloud, then the mesh and the texture.</p>
+
+    <p>I came in knowing the broad shape of the process but not its settings, and much of this stage was learning
+      &mdash;
+      in real depth &mdash; what each parameter does and which ones matter for which kind of object. The workflow kept
+      changing as challenges came up and got solved. The single biggest shift was moving from hand-made masks to an
+      AI-assisted automatic masking step; together with a tidied-up order of operations, it brought a typical model down
+      from about an hour and a half to roughly forty minutes, compute time included.</p>
+
+    <p>Not everything cooperated. The homemade scale markers, useful for accuracy, were themselves a recurring nuisance
+      in
+      alignment and masking. And three objects &mdash; CHAN-002, CHAN-004 and CHAN-005 &mdash; never reached a usable
+      state; they're documented plainly as &ldquo;what didn't survive, and why&rdquo; rather than folded away.</p>
+
+    <p>This stage is also where <span class="hl">HeritageScan</span> came in &mdash; a small command-line tool Robert
+      built on Apple's RealityKit, run against the same source images as a second opinion when Metashape struggled. It
+      rescued none of the genuinely failed captures. Its one clear win was CHAN-013, which it reconstructed faster and
+      more cleanly than the standard pipeline had managed. The lesson was blunt: a different algorithm can't make up for
+      data the camera never recorded. Get the capture right &mdash; or at least shoot RAW.</p>
+
+    <p>A model was only counted among the finished nine if it hit the accuracy target <em>and</em> still read as a
+      credible representation of the object without disproportionate manual repair. A model that merely existed wasn't
+      enough. Nine cleared that bar.</p>
   </section>
 
   <section id="sbs-panel-4" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-4" tabindex="0" hidden
     style="--stage-accent: var(--flagged);">
-    <p class="stage-panel-kicker">Stage 04</p>
-    <h3>Post-processing</h3>
-    <p class="placeholder-note">Coming soon.</p>
+    <div class="stage-panel-head">
+      <p class="stage-panel-kicker">Stage 04</p>
+      <h3>Post-processing</h3>
+    </div>
+
+    <p>Every finished model then passed through <span class="hl">Blender</span> for cleanup and finishing &mdash;
+      retopology, UV unwrapping, normal and ambient-occlusion bakes, mesh repair &mdash; with InstantMeshes handling the
+      retopology step. I'd never opened Blender before this project, so this stage was learnt from scratch.</p>
+
+    <p>The guiding rule was restraint. Geometry and texture fixes were kept to the minimum needed to make a model a fair
+      representation of its object; if a model needed more than that, it wasn't treated as successful. The first
+      versions
+      I put on Sketchfab were the raw, un-retopologised meshes &mdash; heavy and inefficient &mdash; and were later
+      replaced with clean-topology versions carrying coherent UV maps.</p>
+
+    <p>Roughness and metallic maps are authored at this stage, and this is where the project's central open question
+      sits. Where the capture gave me something to work from, those values are derived from it; where it didn't, they're
+      judged by eye against the physical object and <span class="hl">flagged</span> plainly as estimated. Two objects
+      needed that hand-authoring &mdash; CHAN-007's gilding and CHAN-016's polished stones. The honest fix lies
+      upstream:
+      cross-polarised capture for a cleaner albedo, and empirical specularity methods such as Kintsugi 3D for roughness
+      and metalness. That gap is what the next phase of the project is meant to close.</p>
   </section>
 
   <section id="sbs-panel-5" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-5" tabindex="0" hidden
-    style="--stage-accent: var(--patina);">
-    <p class="stage-panel-kicker">Stage 05</p>
-    <h3>Metadata &amp; paradata</h3>
-    <p class="placeholder-note">Coming soon.</p>
+    style="--stage-accent: var(--lilac);">
+    <div class="stage-panel-head">
+      <p class="stage-panel-kicker">Stage 05</p>
+      <h3>Metadata &amp; paradata</h3>
+    </div>
+
+    <p>With the models done, the records had to be pulled together. The principle here is <span class="hl">one merged
+        source of truth per object</span>: the family-held metadata (materials, dates, measurements, provenance) and the
+      paradata from digitisation (equipment, angles, image counts, Metashape's tie-point and reprojection figures, and
+      the final deliverables) kept side by side rather than in separate silos.</p>
+
+    <p>Each finished object keeps its Metashape processing report as part of that record. Every value is marked for how
+      it
+      was arrived at &mdash; <span class="hl">measured</span> from the capture, <span class="hl">estimated</span> by
+      eye,
+      <span class="hl">n/a</span>, or <span class="hl">flagged</span> as a known limitation &mdash; so the confidence
+      behind each number is visible rather than assumed.
+    </p>
+
+    <p>This stage also carried the non-technical work: translating the family's accounts from Spanish into English,
+      writing the story behind each object, and sorting the collection into categories and shared labels. The result is
+      a
+      single structured record per object, and a project archive holding the planning tables, journals and reports that
+      the public pages are drawn from.</p>
   </section>
 
   <section id="sbs-panel-6" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-6" tabindex="0" hidden
     style="--stage-accent: var(--brass);">
-    <p class="stage-panel-kicker">Stage 06</p>
-    <h3>The website</h3>
-    <p class="placeholder-note">Coming soon.</p>
+    <div class="stage-panel-head">
+      <p class="stage-panel-kicker">Stage 06</p>
+      <h3>'Chiriandreses Museum' website</h3>
+    </div>
+
+    <p>A 3D model on its own doesn't carry much. In cultural heritage especially, a scan without its context &mdash;
+      where the object came from, what it meant, how it was captured and what that capture can and can't tell you
+      &mdash;
+      is a shape without a story. This site exists to put that context back around each model.</p>
+
+    <p>Version 1 is deliberately plain: hand-written HTML, CSS and JavaScript, no framework and no build step beyond a
+      few
+      small scripts. Two earlier attempts at this same site were built on heavier stacks and abandoned once the tooling
+      outweighed the need. The scope here is the nine finished objects, each with its story, its &ldquo;how it was
+      made&rdquo; panel and its full provenance record, linking out to the complete methodology. Later versions can add
+      interactivity and other ways to move through the collection &mdash; better planned for once the collection has
+      actually grown.</p>
+
+    <p>The build was co-created with a large language model, used as a working collaborator throughout &mdash; which
+      feels fitting for a project whose second thread is about trust in digitally-mediated heritage.</p>
   </section>
 
 </div>
