@@ -8,6 +8,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initCursorTooltips();
   initAboutTabs();
+  initAboutNav();
   initFolderTabs();
   initAboutCarousel();
   initCollectionFilters();
@@ -109,7 +110,7 @@ function initCursorTooltips() {
   });
 }
 
-/* ---------- About page: tab-style sidebar (swap in place, no scroll) ---------- */
+/* ---------- About page: tab-style sidebar (swap panel, reset scroll) ---------- */
 
 function initAboutTabs() {
   const nav = document.querySelector('.about-nav');
@@ -117,6 +118,25 @@ function initAboutTabs() {
 
   const buttons = nav.querySelectorAll('[data-panel]');
   const panels = document.querySelectorAll('[data-panel-content]');
+
+  // After switching panel: on wide layouts jump back to the very top; on
+  // narrow ones scroll just far enough to tuck the hero away, leaving the
+  // section's own <h2> near the top of the viewport. Honours the CSS
+  // `scroll-behavior` (smooth, or instant under prefers-reduced-motion)
+  // by not passing an explicit behavior.
+  function repositionForPanel() {
+    if (window.innerWidth > 900) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    const anchor = document.querySelector('.about-main');
+    if (!anchor) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    const y = anchor.getBoundingClientRect().top + window.scrollY - 10;
+    window.scrollTo(0, Math.max(0, y));
+  }
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -131,11 +151,104 @@ function initAboutTabs() {
         p.hidden = p.dataset.panelContent !== target;
       });
 
-      // Keep focus + scroll position sane for keyboard/screen-reader users.
       const activePanel = document.querySelector(`[data-panel-content="${target}"]`);
       if (activePanel) activePanel.focus({ preventScroll: true });
+      repositionForPanel();
     });
   });
+}
+
+/* ---------- About page: collapsed sidebar → centred popup ----------
+ * On wide viewports the About sidebar is a normal sticky column and this does
+ * nothing visible. Below the CSS breakpoint (≤900px) the sidebar is styled as
+ * a centred popup: this adds the `nav-drawer` marker class (so the CSS only
+ * engages when JS is here to drive it), builds the backdrop and the icon-only
+ * floating trigger, and toggles `nav-open`. Opening/closing is driven by the
+ * "Explore the project" pill, the floating button (which fades in once the
+ * pill scrolls out of view), the cancel button, a backdrop tap, the Escape
+ * key, and picking a section. If JS is off, the CSS falls back to a plain
+ * stacked nav. */
+
+function initAboutNav() {
+  const layout = document.querySelector('.about-layout');
+  const nav = document.querySelector('.about-nav');
+  const toggle = document.querySelector('.about-nav-toggle');
+  const closeBtn = document.querySelector('.about-nav-close');
+  if (!layout || !nav || !toggle || !closeBtn) return;
+
+  layout.classList.add('nav-drawer');
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'about-nav-backdrop';
+  layout.appendChild(backdrop);
+
+  // Icon-only trigger, fixed bottom-right, revealed on scroll (see updateFab).
+  const fab = document.createElement('button');
+  fab.type = 'button';
+  fab.className = 'about-nav-fab';
+  fab.setAttribute('aria-label', 'Explore the project');
+  document.body.appendChild(fab);
+
+  const drawerMode = window.matchMedia('(max-width: 900px)');
+  let pillOnScreen = true;
+  let opener = toggle;
+
+  const isOpen = () => layout.classList.contains('nav-open');
+
+  // The FAB shows only while collapsed, scrolled past the pill, and closed.
+  function updateFab() {
+    fab.classList.toggle(
+      'visible',
+      drawerMode.matches && !pillOnScreen && !isOpen()
+    );
+  }
+
+  function open(via) {
+    opener = via || toggle;
+    layout.classList.add('nav-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    updateFab();
+    closeBtn.focus();
+  }
+
+  function close({ restoreFocus = false } = {}) {
+    if (!isOpen()) return;
+    layout.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    updateFab();
+    if (restoreFocus) {
+      const target = opener === fab && !fab.classList.contains('visible') ? toggle : opener;
+      target.focus();
+    }
+  }
+
+  toggle.addEventListener('click', () => (isOpen() ? close() : open(toggle)));
+  fab.addEventListener('click', () => (isOpen() ? close() : open(fab)));
+  closeBtn.addEventListener('click', () => close({ restoreFocus: true }));
+  backdrop.addEventListener('click', () => close({ restoreFocus: true }));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) close({ restoreFocus: true });
+  });
+
+  // Picking a section dismisses the popup (it stays put on wide layouts,
+  // where the popup chrome is hidden and this class is inert anyway).
+  nav.addEventListener('click', (e) => {
+    if (drawerMode.matches && e.target.closest('[data-panel]')) close();
+  });
+
+  drawerMode.addEventListener('change', (e) => {
+    if (!e.matches) close();
+    updateFab();
+  });
+
+  // Reveal the FAB once the in-flow pill has scrolled out of view.
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      pillOnScreen = entries[0].isIntersecting;
+      updateFab();
+    }, { rootMargin: '-8px 0px 0px 0px' }).observe(toggle);
+  }
 }
 
 /* ---------- Folder tabs (filing-folder strip inside an About panel) ----------

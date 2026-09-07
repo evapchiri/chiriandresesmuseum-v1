@@ -20,7 +20,9 @@
   <main class="wrap about-main">
 
     <div class="about-layout">
-      <nav class="about-nav" aria-label="About page sections" role="tablist">
+      <button type="button" class="about-nav-toggle" aria-controls="about-nav" aria-expanded="false">Explore the project</button>
+      <div class="about-nav-dialog">
+      <nav class="about-nav" id="about-nav" aria-label="About page sections" role="tablist">
         <button type="button" id="tab-intro" class="active" data-panel="intro" role="tab" aria-selected="true"
           aria-controls="panel-intro">What is Chiriandreses Museum?</button>
         <button type="button" id="tab-about-me" data-panel="about-me" role="tab" aria-selected="false"
@@ -40,6 +42,8 @@
         <button type="button" id="tab-lessons" data-panel="lessons" role="tab" aria-selected="false"
           aria-controls="panel-lessons">Lessons learned</button>
       </nav>
+      <button type="button" class="about-nav-close" aria-label="Close menu">&times;</button>
+      </div>
 
       <div class="about-content">
 
