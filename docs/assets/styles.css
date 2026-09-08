@@ -1333,12 +1333,50 @@ ol.lifecycle {
 }
 
 /* "Other experiences" / "Awards & recognition": the two bold-italic headings
-   and their lists, dropped to ~70% so they sit visually below the narrative.
-   For a flat grey instead, swap the `opacity` line for:
-   color: var(--ink-soft);  (and add `.about-extras * { color: inherit; }`). */
+   and their lists, dimmed to ink-soft so they sit visually below the
+   narrative. Done with `color` rather than `opacity` so a footnote target can
+   briefly rise back to full-strength ink when jumped to (.about-ref-flash
+   below) — opacity on the container would cap every descendant. */
 .about-extras {
-  opacity: 0.7;
+  color: var(--ink-soft);
   margin-top: 2.2em;
+}
+
+/* Footnote target flash: following a "*n" superscript link in the About-me
+   narrative smooth-scrolls to its bullet here; this lifts that bullet to full
+   ink + a faint brass wash for ~2s, then settles it back. The class is
+   added/removed by initAboutRefFlash() in site.js. Colour is driven entirely
+   by the keyframes (which start and end at the resting ink-soft) — no static
+   `color` here, so when the animation ends the bullet is already back to rest
+   and the slightly-later class removal causes no second flash. */
+.about-extras li.about-ref-flash {
+  animation: about-ref-flash 2.6s ease;
+}
+@keyframes about-ref-flash {
+  0% {
+    color: var(--ink-soft);
+    background-color: transparent;
+  }
+  8% {
+    color: var(--ink);
+    background-color: rgba(118, 171, 174, 0.16);
+  }
+  77% {
+    color: var(--ink);
+    background-color: rgba(118, 171, 174, 0.16);
+  }
+  100% {
+    color: var(--ink-soft);
+    background-color: transparent;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* No animation to carry the colour, so hold a static lift for the ~2.7s the
+     class is present (initAboutRefFlash removes it on a timer). */
+  .about-extras li.about-ref-flash {
+    animation: none;
+    color: var(--ink);
+  }
 }
 .about-extras li {
   font-size: small;

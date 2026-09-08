@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursorTooltips();
   initAboutTabs();
   initAboutNav();
+  initAboutRefFlash();
   initFolderTabs();
   initAboutCarousel();
   initCollectionFilters();
@@ -154,6 +155,34 @@ function initAboutTabs() {
       const activePanel = document.querySelector(`[data-panel-content="${target}"]`);
       if (activePanel) activePanel.focus({ preventScroll: true });
       repositionForPanel();
+    });
+  });
+}
+
+/* ---------- About-me: flash the footnote target on jump ----------
+ * The "*n" superscript links in the About-me narrative jump to a bullet in
+ * the "Other relevant experience" / "Awards & recognition" lists, which sit
+ * dimmed (ink-soft) at rest. On click, briefly lift the destination bullet
+ * to full ink + a faint brass wash so the eye lands on it once the smooth
+ * scroll settles. Pure affordance; no-ops where the panel isn't present. */
+
+function initAboutRefFlash() {
+  const panel = document.getElementById('panel-about-me');
+  if (!panel) return;
+
+  let timer;
+  function flash(el) {
+    if (!el) return;
+    clearTimeout(timer);
+    el.classList.remove('about-ref-flash');
+    void el.offsetWidth; // reflow, so a repeat click restarts the animation
+    el.classList.add('about-ref-flash');
+    timer = setTimeout(() => el.classList.remove('about-ref-flash'), 2700);
+  }
+
+  panel.querySelectorAll('#main-text a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      flash(document.getElementById(link.getAttribute('href').slice(1)));
     });
   });
 }
