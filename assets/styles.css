@@ -50,8 +50,37 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: "Onest", system-ui, sans-serif;
-  font-size: 16px;
+  /* 1rem (= the 16px browser default) rather than a fixed px, so the whole
+     type scale — which is almost entirely rem/em based — lifts together with
+     the root on small screens (see the max-width: 600px block below). */
+  font-size: 1rem;
   line-height: 1.55;
+}
+
+/* ---------- Responsive type: bump the root on phones ----------
+   Everything on the site sizes in rem/em, so raising the root font-size here
+   scales the entire hierarchy up proportionally for small screens, where the
+   desktop scale reads too small. Medium and larger are untouched. The handful
+   of decorative mono labels that would drop below ~12px get a floor. */
+@media (max-width: 600px) {
+  html {
+    font-size: 17.5px;
+  }
+
+  /* `html` prefix only to out-specify each element's own base rule. */
+  html .lifecycle-kicker,
+  html .stage-panel-kicker,
+  html .filter-field label,
+  html .stamp {
+    font-size: 0.72rem;
+  }
+
+  /* The larger nav type can't sit on one row on the narrowest phones
+     (esp. the object header, which also carries a home link). */
+  .site-nav {
+    flex-wrap: wrap;
+    gap: 12px 20px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -788,12 +817,12 @@ h3 {
 .about-content .about-page-quote p:first-child + p {
   text-align: center;
   font-style: italic;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 /* Author + book: right-aligned, smaller, padded off the brass rule. */
 .about-content .about-page-quote p:first-child + p + p {
   text-align: right;
-  font-size: 12px;
+  font-size: 0.75rem;
   padding: 0.9em 1.4ch 0 0;
   color: var(--ink-soft);
 }
@@ -1426,7 +1455,7 @@ ol.lifecycle {
 }
 
 #about-me-quote {
-  border: 0px solid var(--rule);
+  border: 1px solid var(--rule);
 }
 
 /* LinkedIn / GitHub row (third paragraph of the panel) */
@@ -1527,7 +1556,8 @@ ol.lifecycle {
   }
 }
 .about-extras li {
-  font-size: small;
+  /* rem, not the `small` keyword, so it scales with the root on phones */
+  font-size: 0.83rem;
 }
 .about-extras .about-extras-heading {
   margin-bottom: 0.4em;
@@ -1535,7 +1565,7 @@ ol.lifecycle {
 .about-extras .about-extra-note {
   display: block;
   margin-top: 0.25em;
-  font-size: smaller;
+  font-size: 0.85em;
 }
 
 /* About-me image carousel (progressive-enhancement: with JS off, the first
