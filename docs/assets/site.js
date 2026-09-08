@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursorTooltips();
   initAboutTabs();
   initAboutNav();
+  initBackToTop();
   initAboutRefFlash();
   initFolderTabs();
   initAboutCarousel();
@@ -218,18 +219,27 @@ function initAboutNav() {
   fab.setAttribute('aria-label', 'Explore the project');
   document.body.appendChild(fab);
 
+  // "Back to top" companion, stacked just above the nav FAB. Shares the FAB's
+  // reveal condition so the two read as a pair; jumps to the very top of the
+  // page, hero included.
+  const topFab = document.createElement('button');
+  topFab.type = 'button';
+  topFab.className = 'about-top-fab';
+  topFab.setAttribute('aria-label', 'Back to top');
+  document.body.appendChild(topFab);
+  topFab.addEventListener('click', () => window.scrollTo({ top: 0 }));
+
   const drawerMode = window.matchMedia('(max-width: 900px)');
   let pillOnScreen = true;
   let opener = toggle;
 
   const isOpen = () => layout.classList.contains('nav-open');
 
-  // The FAB shows only while collapsed, scrolled past the pill, and closed.
+  // Both FABs show only while collapsed, scrolled past the pill, and closed.
   function updateFab() {
-    fab.classList.toggle(
-      'visible',
-      drawerMode.matches && !pillOnScreen && !isOpen()
-    );
+    const show = drawerMode.matches && !pillOnScreen && !isOpen();
+    fab.classList.toggle('visible', show);
+    topFab.classList.toggle('visible', show);
   }
 
   function open(via) {
@@ -280,6 +290,35 @@ function initAboutNav() {
   }
 }
 
+/* ---------- Back-to-top bubble ----------
+ * A standalone floating control that returns the reader to the very top of the
+ * page, hero included. Revealed once the hero has scrolled out of view. The
+ * About page has its own version, paired with the nav FAB (see initAboutNav),
+ * so this one bows out there to avoid a duplicate.  */
+
+function initBackToTop() {
+  if (document.querySelector('.about-layout')) return;
+
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  document.body.appendChild(btn);
+  btn.addEventListener('click', () => window.scrollTo({ top: 0 }));
+
+  const hero = document.querySelector('.site-hero');
+  if (hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      btn.classList.toggle('visible', !entries[0].isIntersecting);
+    }, { rootMargin: '-8px 0px 0px 0px' }).observe(hero);
+  } else {
+    const onScroll = () =>
+      btn.classList.toggle('visible', window.scrollY > 600);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+}
+
 /* ---------- Folder tabs (filing-folder strip inside an About panel) ----------
  * A second, self-contained tab layer nested inside one of the About page's
  * panels (used by Lab notes to split the log by date). Scoped to each
@@ -292,6 +331,19 @@ function initFolderTabs() {
   document.querySelectorAll('[data-folder-tabs]').forEach((root) => {
     const tabs = [...root.querySelectorAll('[role="tab"]')];
     if (!tabs.length) return;
+
+    // The Stage-by-stage strip is a full-page navigation: switching stage
+    // should drop the reader back to the top of the About content (hero
+    // tucked away) so each stage is read from its own beginning. Other
+    // folder-tab strips (Lab journal dates) stay where they are.
+    const isPageNav = root.classList.contains('stage-nav');
+    function scrollPastHero() {
+      const anchor = document.querySelector('.about-main');
+      const y = anchor
+        ? anchor.getBoundingClientRect().top + window.scrollY - 10
+        : 0;
+      window.scrollTo(0, Math.max(0, y));
+    }
 
     function select(tab, { focus = false } = {}) {
       tabs.forEach((t) => {
@@ -307,7 +359,9 @@ function initFolderTabs() {
 
     root.addEventListener('click', (e) => {
       const tab = e.target.closest('[role="tab"]');
-      if (tab) select(tab);
+      if (!tab) return;
+      select(tab);
+      if (isPageNav) scrollPastHero();
     });
 
     root.addEventListener('keydown', (e) => {

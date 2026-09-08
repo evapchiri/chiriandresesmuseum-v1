@@ -112,35 +112,81 @@
       <h3>Photography</h3>
     </div>
 
-    <p>Eighteen objects, photographed over a single week of access at my parents' home in Spain (16&ndash;22 February
-      2026), immediately before I moved to Japan. That deadline shaped everything that followed: the objects aren't
-      reachable for a re-shoot, so whatever the photographs captured &mdash; or missed &mdash; is what every later stage
-      had to work with. Several decisions further down the pipeline trace straight back to it.</p>
+    <p>A total of <span class="hl">18 objects were photographed over a single week of access</span> at my parents' home
+      in Spain
+      (16&ndash;22 February 2026), immediately before I moved to Japan. That means that <span class="hl">the objects
+        were not reachable for a re-shoot during the rest of the project</span> &mdash; so whatever the photographs
+      captured (or missed) is what I had to work with at every later stage.</p>
 
-    <p>Capture was turntable photogrammetry on a home rig against a white background, with the same kit across the whole
-      set:</p>
+    <p>As this was carried out without access to professional imaging equipment, <span class="hl">some standard
+        calibration tools were absent or substituted with practical alternatives</span>: a hand-measured cardboard scale
+      in place of a calibrated one, and no colour calibration chart at all. This means that <span class="hl">colour
+        accuracy and precise measurements shouldn't be treated as lab-grade, though they're adequate for the exploratory
+        purposes of this project</span>, which is understanding what's needed to achieve high-fidelity object models in
+      an
+      end-to-end museum digitisation workflow.</p>
 
+    <h4>The equipment</h4>
+    <p>Maintained through the capture stage of EP-D001:</p>
     <ul class="spec-list">
-      <li><strong>Camera:</strong> Canon 2000D DSLR, EF-S 18&ndash;55mm IS II lens</li>
-      <li><strong>Lighting:</strong> 2&times; NEEWER dimmable LED panels, 5600K, with a white diffuser</li>
-      <li><strong>Scale reference:</strong> homemade, accurate to &plusmn;1mm</li>
-      <li><strong>Colour profile:</strong> sRGB IEC61966-2.1</li>
+      <li><span class="hl">Camera:</span> Canon 2000D DSLR, EF-S 18&ndash;55mm IS II lens</li>
+      <li><span class="hl">Lighting:</span> 2&times; NEEWER dimmable LED panels, 5600K, with a white diffuser</li>
+      <li><span class="hl">Scale reference:</span> hand-measured cardboard scale, accurate to &plusmn;1mm</li>
+      <li><span class="hl">Colour calibration chart:</span> none used. White balance done manually.</li>
+      <li><span class="hl">Set-up:</span> 30cm wide manual turntable</li>
+      <li><span class="hl">Background:</span> two A4 80gsm papers covering the turntable, and white rubbercloth behind
+      </li>
     </ul>
 
-    <p>Each object was shot in front, top and bottom passes, turning the turntable by hand in roughly 10&ndash;15&deg;
-      steps &mdash; around 15&ndash;20 minutes of shooting per object once the manual turning is counted in. Some
-      objects
-      doubled as deliberate tests: very shiny or reflective surfaces, handheld sequences, boxes photographed both open
-      and
-      closed.</p>
+    <h4>The capture process</h4>
+    <p>During capture I turned the turntable by hand in roughly 10&ndash;15&deg; steps, taking around
+      15&ndash;20 minutes of shooting per object. Although each object required different angles depending on its
+      geometry, in general, <span class="hl">objects were shot in 3&ndash;4 rings</span>. From top to bottom:</p>
+    <div class="rings-figure">
+      <ul class="rings-list">
+        <li>&ldquo;Half-Top&rdquo;: ~70&deg;</li>
+        <li>&ldquo;Front&rdquo;: ~0&deg;</li>
+        <li>&ldquo;Half-Bottom&rdquo;: ~&minus;10&deg;</li>
+        <li>&ldquo;Bottom&rdquo; (when the underside was captured): ~45&deg;</li>
+      </ul>
 
-    <p>I went in with a working but non-specialist grasp of photogrammetry, and a few techniques I now consider
-      essential
-      simply weren't on my radar yet. No cross-polarising filter was used &mdash; I didn't know the technique at the
-      time
-      &mdash; and no dedicated specularity capture was done. Both are planned for future campaigns, and both are the
-      reason some of this set's material properties had to be reconstructed by hand later rather than measured from the
-      capture itself.</p>
+      <figure class="stage-figure">
+        <img src="assets/img/about/photography-capture-rings.png" loading="lazy" alt="Side-on plot of camera positions from one object's alignment: several roughly horizontal rings of points
+          encircling a placeholder model at the centre.">
+        <figcaption style="text-align: center;">The capture rings seen side-on &mdash; each dot is one camera position
+          around a single object.
+        </figcaption>
+      </figure>
+    </div>
+
+    <p style="text-align: center;">Below is a list of the <span class="hl">6 objects that were deliberate experimental
+        capture
+        subjects, and like such, there was no expectation of generating usable models:</span></p>
+    <ul>
+      <li>CHAN-005 &ldquo;House models&rdquo; &mdash; chosen to test high colour reflectivity.</li>
+      <li>CHAN-008 &ldquo;Kumkum powder box&rdquo; and CHAN-010 &ldquo;Silver quill&rdquo; &mdash; chosen to test how to
+        generate a model that could later be animated opening and closing.</li>
+      <li>CHAN-011 &ldquo;Ornamental carving of African scenes&rdquo; &mdash; captured handheld, to experiment with
+        different set-up approaches.</li>
+      <li>CHAN-014 &ldquo;Caravaca cross&rdquo; and CHAN-015 &ldquo;Dual-scale mercury thermometer&rdquo; &mdash; chosen
+        to experiment with very reflective, almost mirror-like, metallic surfaces.</li>
+    </ul>
+    <p><em>None of the above objects resulted in a successfully processed model.</em></p>
+
+    <aside class="stage-afternote">
+      <p><span class="hl">An important, skill-focused afternote:</span></p>
+      <p>I went in the photography stage with a working but non-specialist grasp of photogrammetry, photography. Some
+        photography techniques and photogrammetry &lsquo;must-haves&rsquo; that I now (at the end of the project)
+        consider
+        essential, were simply not on my radar at the time.</p>
+      <p>As a result, <span class="hl">no cross-polarisation was used</span> &mdash; a technique that's critical for
+        reflective or shiny surfaces &mdash; and <span class="hl">some objects lacked full ring coverage</span>, meaning
+        that a few more angles should have been captured to avoid as much as possible any possible camera misalignment.
+      </p>
+      <p>These gaps in technique are the reason that some of this set's geometry and textures needed manual tweaking in
+        the post-processing stage. The lessons learned here have helped me built up a more adequate equipment, and
+        consider different technique choices in future capture campaigns.</p>
+    </aside>
   </section>
 
   <section id="sbs-panel-3" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-3" tabindex="0" hidden

@@ -386,7 +386,8 @@ h3 {
 .about-nav-toggle,
 .about-nav-close,
 .about-nav-backdrop,
-.about-nav-fab {
+.about-nav-fab,
+.about-top-fab {
   display: none;
 }
 .about-nav-dialog {
@@ -526,13 +527,14 @@ h3 {
     color: var(--brass);
   }
 
-  /* Icon-only trigger that fades in bottom-right once the pill scrolls away. */
-  .about-nav-fab {
+  /* Icon-only controls that fade in bottom-right once the pill scrolls away:
+     the nav trigger, and a "back to top" bubble stacked directly above it. */
+  .about-nav-fab,
+  .about-top-fab {
     display: grid;
     place-items: center;
     position: fixed;
     right: 18px;
-    bottom: 18px;
     z-index: 55;
     width: 52px;
     height: 52px;
@@ -550,12 +552,21 @@ h3 {
       visibility 0.2s;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   }
-  .about-nav-fab.visible {
+  .about-nav-fab {
+    bottom: 18px;
+  }
+  /* 18 (nav FAB bottom) + 52 (its height) + 10 (gap) */
+  .about-top-fab {
+    bottom: 80px;
+  }
+  .about-nav-fab.visible,
+  .about-top-fab.visible {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
-  .about-nav-fab:hover {
+  .about-nav-fab:hover,
+  .about-top-fab:hover {
     border-color: var(--brass);
     color: var(--brass);
   }
@@ -568,11 +579,70 @@ h3 {
       0 5px currentColor,
       0 -5px currentColor;
   }
+  /* Up-chevron */
+  .about-top-fab::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    border-top: 2px solid currentColor;
+    border-left: 2px solid currentColor;
+    transform: translateY(3px) rotate(45deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .about-layout.nav-drawer .about-nav-dialog,
-  .about-nav-fab {
+  .about-nav-fab,
+  .about-top-fab {
+    transition: none;
+  }
+}
+
+/* Standalone back-to-top bubble — used on pages without the About sidebar's
+   own paired FAB (the Collection page, object pages). Fixed bottom-right,
+   shown at every width once the hero scrolls away (see initBackToTop). */
+.back-to-top {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 55;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--paper-raised);
+  color: var(--ink);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+.back-to-top::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  transform: translateY(3px) rotate(45deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
     transition: none;
   }
 }
@@ -1091,6 +1161,84 @@ ol.lifecycle {
   font-size: 1.3em;
 }
 
+/* In-panel sub-heading: carries the stage accent like the panel title, but a
+   step down in size so section breaks within a stage read as subordinate.
+   --stage-accent is inherited from the .stage-panel section, so this is reusable
+   across every stage sub-page without a per-heading colour override. */
+.stage-panel h4 {
+  color: var(--stage-accent);
+  font-family: "Cactus Classical Serif", Georgia, serif;
+  font-weight: 400;
+  font-size: 1.12em;
+  line-height: 1.2;
+  margin: 1.9em 0 0.5em;
+}
+
+/* Diagram inside a Stage-by-stage panel. Kept within the body text measure and
+   shown whole (no crop). The source plots are drawn on white, so they sit on a
+   deliberate white mat rather than fighting the dark page. */
+.stage-figure {
+  margin: 1.8em 0;
+  max-width: 66ch;
+}
+.stage-figure img {
+  display: block;
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+.stage-figure figcaption {
+  margin-top: 0.6em;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* Capture-rings list sitting alongside its diagram. Row on wide viewports
+   (list left, plot right); stacks back to list-then-figure when the column
+   gets too narrow to hold both. */
+.rings-figure {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2em 2.2em;
+  margin: 1.4em 0;
+  max-width: 66ch;
+}
+.rings-figure .rings-list {
+  flex: 1 1 13em;
+  margin: 0;
+}
+.rings-figure .stage-figure {
+  flex: 1.7 1 20em;
+  margin: 0;
+}
+@media (max-width: 560px) {
+  .rings-figure {
+    display: block;
+  }
+  .rings-figure .rings-list {
+    margin-bottom: 1.2em;
+  }
+}
+
+/* Afternote — a reflective aside set apart from the stage walkthrough:
+   narrower, centred, a touch smaller and quieter than the body copy. */
+.stage-afternote {
+  max-width: 54ch;
+  margin: 2.4em auto 0;
+  padding-top: 1.3em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.92em;
+}
+.about-content .stage-afternote p {
+  max-width: none;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
 /* dotted connector threading the bubbles, matching the Project lifecycle spine.
    Inset to the centre of the first / last of six evenly-spread bubbles. */
 .stage-strip::before {
@@ -1284,7 +1432,7 @@ ol.lifecycle {
 /* LinkedIn / GitHub row (third paragraph of the panel) */
 
 .about-me-myname {
-  margin: 85px 0 50px;
+  margin: 95px 0 50px;
   display: flex;
   align-items: center;
   text-align: center;
