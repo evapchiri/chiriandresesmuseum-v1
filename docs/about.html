@@ -612,30 +612,327 @@
       <h3>Photogrammetry processing</h3>
     </div>
 
-    <p>This is where the week's photographs became models, using <span class="hl">Agisoft Metashape Standard</span>:
-      aligning images into tie points, building the dense point cloud, then the mesh and the texture.</p>
+    <p>This is where the week's photographs became 3D models.</p>
 
-    <p>I came in knowing the broad shape of the process but not its settings, and much of this stage was learning
-      &mdash;
-      in real depth &mdash; what each parameter does and which ones matter for which kind of object. The workflow kept
-      changing as challenges came up and got solved. The single biggest shift was moving from hand-made masks to an
-      AI-assisted automatic masking step; together with a tidied-up order of operations, it brought a typical model down
-      from about an hour and a half to roughly forty minutes, compute time included.</p>
+    <p><span class="hl">Two processing software tools</span> were used and tested during this stage:</p>
+    <ul class="spec-list spec-list--center">
+      <li><span class="hl">Agisoft Metashape (Standard version)</span> &mdash; the standard, first-instance
+        photogrammetry processing tool.</li>
+      <li><span class="hl">HeritageScan</span> &mdash; a custom CLI tool developed to try different algorithms for
+        full-set photo-alignment where Metashape failed.</li>
+    </ul>
 
-    <p>Not everything cooperated. The homemade scale markers, useful for accuracy, were themselves a recurring nuisance
-      in
-      alignment and masking. And three objects &mdash; CHAN-002, CHAN-004 and CHAN-005 &mdash; never reached a usable
-      state; they're documented plainly as &ldquo;what didn't survive, and why&rdquo; rather than folded away.</p>
+    <p>Generally speaking, a basic photogrammetry pipeline involves:</p>
+    <svg class="pipeline-svg" viewBox="0 0 380 150" role="img"
+      aria-label="A basic photogrammetry pipeline in five steps, each leading to the next: 1, preparing the images to optimise alignment (exposure and masking); 2, aligning images to build a tie-point (sparse) cloud; 3, refining this cloud by removing low-confidence points; 4, reconstructing the geometric mesh; 5, reconstructing the texture maps (albedo, normal and ambient occlusion).">
+      <defs>
+        <marker id="pipe-arrow-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5"
+          orient="auto">
+          <path class="pipe-arrow-head" d="M0,1 L9,5 L0,9 Z" />
+        </marker>
+      </defs>
 
-    <p>This stage is also where <span class="hl">HeritageScan</span> came in &mdash; a small command-line tool Robert
-      built on Apple's RealityKit, run against the same source images as a second opinion when Metashape struggled. It
-      rescued none of the genuinely failed captures. Its one clear win was CHAN-013, which it reconstructed faster and
-      more cleanly than the standard pipeline had managed. The lesson was blunt: a different algorithm can't make up for
-      data the camera never recorded. Get the capture right &mdash; or at least shoot RAW.</p>
+      <g>
+        <rect class="pipe-box" x="1" y="0" width="378" height="21" rx="4" />
+        <text class="pipe-label" x="190" y="14" text-anchor="middle">Preparing the images to optimise alignment
+          (exposure + masking)</text>
+      </g>
+      <line class="pipe-arrow" x1="190" y1="22.5" x2="190" y2="30.5" marker-end="url(#pipe-arrow-head)" />
 
-    <p>A model was only counted among the finished nine if it hit the accuracy target <em>and</em> still read as a
-      credible representation of the object without disproportionate manual repair. A model that merely existed wasn't
-      enough. Nine cleared that bar.</p>
+      <g>
+        <rect class="pipe-box" x="1" y="32" width="378" height="21" rx="4" />
+        <text class="pipe-label" x="190" y="46" text-anchor="middle">Aligning images to build a tie-point (sparse)
+          cloud</text>
+      </g>
+      <line class="pipe-arrow" x1="190" y1="54.5" x2="190" y2="62.5" marker-end="url(#pipe-arrow-head)" />
+
+      <g>
+        <rect class="pipe-box" x="1" y="64" width="378" height="21" rx="4" />
+        <text class="pipe-label" x="190" y="78" text-anchor="middle">Refining this cloud by removing low-confidence
+          points</text>
+      </g>
+      <line class="pipe-arrow" x1="190" y1="86.5" x2="190" y2="94.5" marker-end="url(#pipe-arrow-head)" />
+
+      <g>
+        <rect class="pipe-box" x="1" y="96" width="378" height="21" rx="4" />
+        <text class="pipe-label" x="190" y="110" text-anchor="middle">Reconstructing the geometric mesh</text>
+      </g>
+      <line class="pipe-arrow" x1="190" y1="118.5" x2="190" y2="126.5" marker-end="url(#pipe-arrow-head)" />
+
+      <g>
+        <rect class="pipe-box" x="1" y="128" width="378" height="21" rx="4" />
+        <text class="pipe-label" x="190" y="142" text-anchor="middle">Reconstructing the texture maps (albedo, normal,
+          and ambient occlusion)</text>
+      </g>
+    </svg>
+
+    <p>Much of this stage was experimenting and learning what each setting actually does, and which ones matter for
+      which kind of object. As a result, <span class="hl">the processing workflow kept evolving as challenges came up
+        and got solved.</span></p>
+
+    <p>My biggest workflow improvement was introducing an <span class="hl">AI-assisted automatic masking step</span> (a
+      tool built into Metashape) right at the start of the pipeline, instead of generating masks from an already-built
+      model to refine alignment after the fact. This change, together with other tidied-up steps, <span
+        class="hl">brought
+        a model's processing time down from about 1.5 hours to roughly 40 minutes</span> (compute time included),
+      <span class="hl">and improved final mesh quality.</span>
+    </p>
+
+    <!-- TODO: image illustrating the AI-assisted masking improvement — source not yet provided -->
+
+    <p>However, not everything cooperated, <span class="hl">and a few &ldquo;fiascos&rdquo; happened too,</span>
+      <span class="hl">particularly on very shiny objects and unreferenced, feature-less objects.</span>
+      Metashape
+      struggled to align chunks on some objects (CHAN-004, CHAN-005, CHAN-008, CHAN-010), and failed to align them
+      completely on others (CHAN-002, CHAN-011, CHAN-014, CHAN-015). This can be down to several reasons; apart from
+      inherently difficult textures, it can also be due to a lack of ring coverage or lack of scene references to aid
+      the alignment &mdash; which was certainly the case for some of these objects.
+    </p>
+
+    <p>This is where <span class="hl">HeritageScan</span> came in &mdash; <span class="hl">a small command-line tool,
+        developed by my partner and software engineer, Robert Upson, built on Apple's RealityKit.</span> With this tool
+      we aim to use a different algorithm against the same source images, and see if it produced better results.</p>
+
+    <p>HeritageScan didn't rescue most of Metashape's failed alignments, but succeeded in some ways with particular
+      objects. With CHAN-013 (Senegalese bus), it reconstructed the model faster and more cleanly than the standard
+      Metashape pipeline had managed. With CHAN-004a (Akua&rsquo;ba wooden fertility doll) it did manage to align
+      perfectly compared to Metashape, but the geometry was still not correct, and the textures were really poor
+      quality.</p>
+
+    <p>The lesson here was that a <span class="hl">different algorithm can't make up for data the camera never
+        recorded.</span> Getting the capture right &mdash; or at least capturing enough data to experiment with &mdash;
+      is crucial to have some manoeuvring space in the case of bumping into issues.</p>
+
+    <aside class="stage-afternote">
+      <p>A model was only counted as 'successful completion' if the geometry and texture was good as-is, or only needed
+        minor
+        manual correction. A model that needed circumstantial mesh or texture tweaking or some sort of albedo texture
+        interpretation
+        to be considered a completed job would not be considered a 'successful' model. 9 out of 18 objects
+        met that standard..</p>
+    </aside>
+
+    <details class="stage-collapse">
+      <summary>Digitisation results table</summary>
+      <div class="stage-table-wrap">
+        <table class="stage-table results-table">
+          <thead>
+            <tr>
+              <th scope="col">Object</th>
+              <th scope="col">Metashape</th>
+              <th scope="col">HeritageScan</th>
+              <th scope="col">Final set</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-001</span>
+                <span class="res-name">Marrakech&rsquo;s Koutoubia replica souvenir</span>
+              </th>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">Great model, barely any
+                  issues</span></td>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">Great, though texture generation
+                  weaker than Metashape's</span></td>
+              <td><span class="res-chip is-ok">Yes</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-002</span>
+                <span class="res-name">Bijagós totemic figure</span>
+              </th>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Alignment failed from the start;
+                  poor masking</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Bottom alignment incorrect</span>
+              </td>
+              <td><span class="res-chip is-none">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-003</span>
+                <span class="res-name">Berber candlestick</span>
+              </th>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">Small unrecorded area (white gap),
+                  correctable in Blender</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Same white gap plus blobs at the
+                  bottom</span></td>
+              <td><span class="res-chip is-ok">Yes</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-004a</span>
+                <span class="res-name">Akua&rsquo;ba wooden fertility doll</span>
+              </th>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Dark leg areas misread as holes;
+                  corrected surface reduced accuracy</span></td>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">Spiderwebs / bottom gunk remain, but
+                  legs even out &mdash; better overall</span></td>
+              <td><span class="res-chip is-none">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-004b</span>
+                <span class="res-name">Akua&rsquo;ba wooden fertility doll</span>
+              </th>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Groin gaps couldn't be resolved;
+                  abandoned</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Good-looking model but hip
+                  alignment
+                  incorrect</span></td>
+              <td><span class="res-chip is-none">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-005</span>
+                <span class="res-name">House models</span>
+                <span class="res-chip is-exp">Experiment</span>
+              </th>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Alignment impossible despite trying
+                  different settings</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Better alignment than Metashape,
+                  but
+                  still incorrect</span></td>
+              <td><span class="res-chip is-none">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-006</span>
+                <span class="res-name">Chinese personal seal</span>
+              </th>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">Great, minor roughness on top corner
+                  / shaft</span></td>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">Even better than Metashape</span>
+              </td>
+              <td><span class="res-chip is-ok">Yes</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-007</span>
+                <span class="res-name">Thai dancer</span>
+              </th>
+              <td><span class="res-chip is-part">Partial</span><span class="res-note">Group failed (merged parts, arm
+                  gaps); middle figure alone succeeded</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Cleaner group model, but textures
+                  too blurry</span></td>
+              <td><span class="res-chip is-part">Partial</span><span class="res-note">Single figure only</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-008</span>
+                <span class="res-name">Kumkum powder box</span>
+                <span class="res-chip is-exp">Experiment</span>
+              </th>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Too few bottom images; both open
+                  and
+                  closed poor</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Many blind spots on both</span>
+              </td>
+              <td><span class="res-chip is-none">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-009</span>
+                <span class="res-name">Chinese rython</span>
+              </th>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">Minor texture hiccup on the
+                  tail</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Worse textures, same tail
+                  issue</span></td>
+              <td><span class="res-chip is-ok">Yes</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-010</span>
+                <span class="res-name">Silver quill</span>
+                <span class="res-chip is-exp">Experiment</span>
+              </th>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Top part moved during capture
+                  &mdash; flawed from the start</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Same underlying capture
+                  issue</span>
+              </td>
+              <td><span class="res-chip is-none">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-011</span>
+                <span class="res-name">Ornamental carving of African scenes</span>
+                <span class="res-chip is-exp">Experiment</span>
+              </th>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Poor data acquisition</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Not good, though reasonable given
+                  the
+                  data</span></td>
+              <td><span class="res-chip is-none">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-012</span>
+                <span class="res-name">Box of little birds</span>
+              </th>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">&ldquo;Perfect model&rdquo;</span>
+              </td>
+              <td><span class="res-chip is-skip">Not run</span></td>
+              <td><span class="res-chip is-ok">Yes</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-013</span>
+                <span class="res-name">Senegalese toy bus</span>
+              </th>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">Good (with and without wheel
+                  holes)</span></td>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">Even better, though missing the
+                  wheel
+                  holes</span></td>
+              <td><span class="res-chip is-ok">Yes</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-014</span>
+                <span class="res-name">Caravaca cross</span>
+                <span class="res-chip is-exp">Experiment</span>
+              </th>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Not good</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Struggled with the bottom
+                  parts</span></td>
+              <td><span class="res-chip is-none">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-015</span>
+                <span class="res-name">Dual-scale mercury thermometer</span>
+                <span class="res-chip is-exp">Experiment</span>
+              </th>
+              <td><span class="res-chip is-skip">Not run</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Struggled with the bottom
+                  parts</span></td>
+              <td><span class="res-chip is-none">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-016</span>
+                <span class="res-name">Box of stone eggs</span>
+              </th>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">Great model</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Unexpectedly wrong alignment</span>
+              </td>
+              <td><span class="res-chip is-ok">Yes</span></td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-017</span>
+                <span class="res-name">Mysterious stone foot</span>
+              </th>
+              <td><span class="res-chip is-ok">Success</span><span class="res-note">Great model</span></td>
+              <td><span class="res-chip is-fail">Failed</span><span class="res-note">Another unexpectedly wrong
+                  alignment</span></td>
+              <td><span class="res-chip is-ok">Yes</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
   </section>
 
   <section id="sbs-panel-4" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-4" tabindex="0" hidden

@@ -886,6 +886,16 @@ h3 {
   padding-left: 0.2em;
 }
 
+.about-content ol {
+  padding-left: 1.4em;
+  max-width: 66ch;
+  display: grid;
+  gap: 0.5em;
+}
+.about-content ol li {
+  padding-left: 0.2em;
+}
+
 .about-content blockquote {
   margin: 1.2em 0;
   padding: 4px 0 4px 18px;
@@ -910,7 +920,18 @@ h3 {
 .spec-list li {
   padding-bottom: 8px;
   border-bottom: 1px dashed var(--rule);
-  max-width: 60ch;
+  max-width: 65ch;
+}
+
+/* Centred variant — items and their text sit centred in the column, and the
+   per-item rule is dropped (a left-anchored dash under centred text reads
+   oddly). */
+.spec-list--center {
+  margin-left: 20px;
+}
+.spec-list--center li {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .doc-list {
@@ -1266,6 +1287,192 @@ ol.lifecycle {
   max-width: none;
   text-align: center;
   color: var(--ink-soft);
+}
+
+/* Vertical pipeline diagram — five stacked steps with a connector arrow
+   between each. Deliberately short: a wide, flat block rather than a tall
+   column. Parts are theme tokens so it tracks the stage accent and dark
+   palette. */
+.pipeline-svg {
+  display: block;
+  width: 100%;
+  max-width: 34rem;
+  height: auto;
+  margin: 1.1em auto 1.5em;
+}
+.pipeline-svg .pipe-box {
+  fill: var(--paper-raised);
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.pipeline-svg .pipe-label {
+  fill: var(--ink);
+  font:
+    400 9px "Inter",
+    system-ui,
+    sans-serif;
+}
+.pipeline-svg .pipe-arrow {
+  stroke: var(--brass);
+  stroke-width: 1.4;
+}
+.pipeline-svg .pipe-arrow-head {
+  fill: var(--brass);
+}
+
+/* Collapsed "Digitisation results table" — a disclosure panel that matches the
+   About-page chrome, with its own rotating caret in place of the UA marker. */
+.stage-collapse {
+  margin: 1.3em 0 1.7em;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+}
+.stage-collapse > summary {
+  display: block;
+  cursor: pointer;
+  padding: 10px 14px;
+  font-family: "Geist Mono", monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+  list-style: none;
+}
+.stage-collapse > summary::-webkit-details-marker {
+  display: none;
+}
+.stage-collapse > summary::before {
+  content: "\25B8";
+  display: inline-block;
+  width: 1em;
+  margin-right: 6px;
+  color: var(--stage-accent);
+  transition: transform 0.15s ease;
+}
+.stage-collapse[open] > summary::before {
+  transform: rotate(90deg);
+}
+.stage-collapse[open] > summary {
+  border-bottom: 1px solid var(--rule);
+}
+@media (prefers-reduced-motion: reduce) {
+  .stage-collapse > summary::before {
+    transition: none;
+  }
+}
+
+/* Reference table inside a stage panel — scrolls horizontally within its own
+   wrapper so the page body never does. */
+.stage-table-wrap {
+  margin: 1.2em 0 1.8em;
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+.stage-collapse .stage-table-wrap {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+.stage-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 52rem;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+.stage-table th,
+.stage-table td {
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--rule);
+}
+.stage-table thead th {
+  background: var(--paper-raised);
+  color: var(--ink);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.stage-table tbody th {
+  min-width: 7rem;
+  font-weight: 600;
+  color: var(--stage-accent);
+}
+.stage-table tbody tr:last-child th,
+.stage-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Digitisation results table specifics: narrower, zebra rows, and the same
+   stamped-flag vocabulary the object pages use for provenance status. */
+.results-table {
+  min-width: 42rem;
+  background: var(--paper);
+}
+.results-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+.results-table tbody th {
+  min-width: 9.5rem;
+  white-space: normal;
+}
+.results-table .res-id {
+  display: block;
+  color: var(--stage-accent);
+}
+.results-table .res-name {
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+}
+.results-table tbody th .res-chip {
+  margin-top: 5px;
+}
+.results-table .res-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+.res-chip {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-family: "Geist Mono", monospace;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.res-chip.is-ok {
+  background: var(--measured-bg);
+  color: var(--measured);
+}
+.res-chip.is-part {
+  background: var(--estimated-bg);
+  color: var(--estimated);
+}
+.res-chip.is-fail {
+  background: var(--flagged-bg);
+  color: var(--flagged);
+}
+.res-chip.is-none,
+.res-chip.is-skip,
+.res-chip.is-std {
+  background: var(--na-bg);
+  color: var(--na);
+}
+.res-chip.is-exp {
+  background: rgba(200, 182, 230, 0.16);
+  color: var(--lilac);
 }
 
 /* dotted connector threading the bubbles, matching the Project lifecycle spine.
