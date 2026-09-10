@@ -870,6 +870,17 @@ h3 {
   width: 100%;
   max-width: 34rem;
   margin-inline: auto;
+  aspect-ratio: 1.8 / 1.2;
+  object-fit: cover;
+  object-position: center 0%;
+  border: 1px solid var(--rule);
+}
+
+.about-me-figure img {
+  display: block;
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
   aspect-ratio: 3.5 / 1;
   object-fit: cover;
   object-position: center 35%;
@@ -1239,7 +1250,8 @@ ol.lifecycle {
   border-radius: var(--radius);
   padding: 12px;
 }
-.stage-figure figcaption {
+
+figcaption {
   margin-top: 0.6em;
   font-size: 0.85rem;
   font-style: italic;
@@ -1406,6 +1418,23 @@ ol.lifecycle {
 .stage-table tbody tr:last-child th,
 .stage-table tbody tr:last-child td {
   border-bottom: none;
+}
+
+/* Freeze the first column so the object each row belongs to stays visible
+   while the rest of the table scrolls horizontally inside .stage-table-wrap.
+   Sticky only takes effect once the wrapper actually overflows; the inset
+   shadow gives the frozen column a hairline right edge that travels with it
+   (a real border can drop out under border-collapse during scroll). */
+.stage-table thead th:first-child,
+.stage-table tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--paper-raised);
+  box-shadow: inset -1px 0 0 var(--rule);
+}
+.stage-table thead th:first-child {
+  z-index: 2;
 }
 
 /* Digitisation results table specifics: narrower, zebra rows, and the same
@@ -1670,15 +1699,33 @@ ol.lifecycle {
   border: 1px solid var(--rule);
 }
 
-/* LinkedIn / GitHub row (third paragraph of the panel) */
-
-.about-me-myname {
+/* Name / tagline / LinkedIn + GitHub links, overlaid on the portrait band.
+   Held to a narrow measure and nudged in from the left so the block reads
+   over the empty-wall side of the photo, clear of Eva's face on the right.
+   Stays in normal flow so it keeps reserving the vertical space that pushes
+   #main-text below the 250px band. */
+.about-me-myheader {
   margin: 95px 0 50px;
+  max-width: 42ch;
+  padding-left: 2ch;
+  box-sizing: border-box;
+
   display: flex;
-  align-items: center;
-  text-align: center;
   flex-direction: column;
-  max-width: 66ch;
+  align-items: center;
+}
+/* Small screens: the portrait band is clipped down onto Eva's face and faded
+   right back (the max-width: 900px rule above), so there's no empty-wall side
+   left to sit beside — centre the whole block instead of offsetting it left. */
+@media (max-width: 600px) {
+  .about-me-myheader {
+    max-width: none;
+    padding-left: 0;
+    text-align: center;
+  }
+  #panel-about-me .about-me-links {
+    justify-content: center;
+  }
 }
 
 #panel-about-me .mytag {
