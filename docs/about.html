@@ -29,29 +29,30 @@
   <main class="wrap about-main">
 
     <div class="about-layout">
-      <button type="button" class="about-nav-toggle" aria-controls="about-nav" aria-expanded="false">Explore the project</button>
+      <button type="button" class="about-nav-toggle" aria-controls="about-nav" aria-expanded="false">Explore the
+        project</button>
       <div class="about-nav-dialog">
-      <nav class="about-nav" id="about-nav" aria-label="About page sections" role="tablist">
-        <button type="button" id="tab-intro" class="active" data-panel="intro" role="tab" aria-selected="true"
-          aria-controls="panel-intro">What is Chiriandreses Museum?</button>
-        <button type="button" id="tab-about-me" data-panel="about-me" role="tab" aria-selected="false"
-          aria-controls="panel-about-me">About me</button>
+        <nav class="about-nav" id="about-nav" aria-label="About page sections" role="tablist">
+          <button type="button" id="tab-intro" class="active" data-panel="intro" role="tab" aria-selected="true"
+            aria-controls="panel-intro">What is Chiriandreses Museum?</button>
+          <button type="button" id="tab-about-me" data-panel="about-me" role="tab" aria-selected="false"
+            aria-controls="panel-about-me">About me</button>
 
-        <p class="about-nav-group" role="presentation">The project</p>
-        <button type="button" id="tab-lifecycle" data-panel="lifecycle" role="tab" aria-selected="false"
-          aria-controls="panel-lifecycle">Project lifecycle</button>
-        <button type="button" id="tab-stage-by-stage" data-panel="stage-by-stage" role="tab" aria-selected="false"
-          aria-controls="panel-stage-by-stage">Stage-by-stage</button>
-        <button type="button" id="tab-documentation" data-panel="documentation" role="tab" aria-selected="false"
-          aria-controls="panel-documentation">Project archive</button>
+          <p class="about-nav-group" role="presentation">The project</p>
+          <button type="button" id="tab-lifecycle" data-panel="lifecycle" role="tab" aria-selected="false"
+            aria-controls="panel-lifecycle">Project lifecycle</button>
+          <button type="button" id="tab-stage-by-stage" data-panel="stage-by-stage" role="tab" aria-selected="false"
+            aria-controls="panel-stage-by-stage">Stage-by-stage</button>
+          <button type="button" id="tab-documentation" data-panel="documentation" role="tab" aria-selected="false"
+            aria-controls="panel-documentation">Project archive</button>
 
-        <p class="about-nav-group" role="presentation">The journey</p>
-        <button type="button" id="tab-lab-notes" data-panel="lab-notes" role="tab" aria-selected="false"
-          aria-controls="panel-lab-notes">Lab journal</button>
-        <button type="button" id="tab-lessons" data-panel="lessons" role="tab" aria-selected="false"
-          aria-controls="panel-lessons">Lessons learned</button>
-      </nav>
-      <button type="button" class="about-nav-close" aria-label="Close menu">&times;</button>
+          <p class="about-nav-group" role="presentation">My journey</p>
+          <button type="button" id="tab-lab-notes" data-panel="lab-notes" role="tab" aria-selected="false"
+            aria-controls="panel-lab-notes">Lab journal</button>
+          <button type="button" id="tab-lessons" data-panel="lessons" role="tab" aria-selected="false"
+            aria-controls="panel-lessons">Lessons learned</button>
+        </nav>
+        <button type="button" class="about-nav-close" aria-label="Close menu">&times;</button>
       </div>
 
       <div class="about-content">
@@ -106,7 +107,7 @@
   <span class="hl">Project archive</span> gathers all the detailed, outputted technical records.
 </p>
 
-<p><span class="hl about-section-ref">THE JOURNEY</span> section contains the more personal side of the project.
+<p><span class="hl about-section-ref">MY JOURNEY</span> section contains the more personal side of the project.
   <span class="hl">Lab journal</span> is a day-by-day journal of the challenges I faced, my honest dead ends, and what
   I learned from these along the way. I captured my biggest takeaways and questions in
   <span class="hl">Lessons learned</span> — hopefully, it can help other peers avoid my same mistakes!
@@ -683,7 +684,7 @@
         alt="Two greyscale clay renders of the same column capital side by side. On the left, labelled
           &ldquo;Old workflow &mdash; model-based masking&rdquo;; on the right, labelled &ldquo;New workflow
           &mdash; AI-masking&rdquo;, with visibly crisper carved scrollwork and a cleaner top edge.">
-      <figcaption style="text-align: center;">Comparison of processing workflows results on CHAN-009 (Chinese seal).
+      <figcaption style="text-align: center;">Comparison of processing workflows results on CHAN-006 (Chinese seal).
       </figcaption>
     </figure>
 
@@ -709,15 +710,6 @@
     <p>The lesson here was that a <span class="hl">different algorithm can't make up for data the camera never
         recorded.</span> Getting the capture right &mdash; or at least capturing enough data to experiment with &mdash;
       is crucial to have some manoeuvring space in the case of bumping into issues.</p>
-
-    <aside class="stage-afternote">
-      <p>A model was only counted as 'successful completion' if the geometry and texture was good as-is, or only needed
-        minor
-        manual correction. A model that needed circumstantial mesh or texture tweaking or some sort of albedo texture
-        interpretation
-        to be considered a completed job would not be considered a 'successful' model. 9 out of 18 objects
-        met that standard..</p>
-    </aside>
 
     <details class="stage-collapse">
       <summary>Digitisation results table</summary>
@@ -839,7 +831,7 @@
             <tr>
               <th scope="row">
                 <span class="res-id">CHAN-009</span>
-                <span class="res-name">Chinese rython</span>
+                <span class="res-name">Chinese rhyton</span>
               </th>
               <td><span class="res-chip is-ok">Success</span><span class="res-note">Minor texture hiccup on the
                   tail</span></td>
@@ -940,6 +932,15 @@
         </table>
       </div>
     </details>
+    <aside class="stage-afternote">
+      <p>A model was only counted as 'successful completion' if the geometry and texture was good as-is, or only needed
+        minor
+        manual correction. A model that needed circumstantial mesh or texture tweaking or some sort of albedo texture
+        interpretation
+        to be considered a completed job would not be considered a 'successful' model. 9 out of 18 objects
+        met that standard..</p>
+    </aside>
+
   </section>
 
   <section id="sbs-panel-4" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-4" tabindex="0" hidden
@@ -949,75 +950,203 @@
       <h3>Post-processing</h3>
     </div>
 
-    <p>Every finished model then passed through <span class="hl">Blender</span> for cleanup and finishing &mdash;
-      retopology, UV unwrapping, normal and ambient-occlusion bakes, mesh repair &mdash; with InstantMeshes handling the
-      retopology step. I'd never opened Blender before this project, so this stage was learnt from scratch.</p>
+    <p>Every successfully processed model will then pass through Blender for any needed mesh cleanup and texture
+      polishing &mdash; mesh repair, local smoothing, and any missed albedo texture corners. Below is a table that
+      gathers any object that required mesh and/or texture polishing, what was done to it, and why this was needed:</p>
 
-    <p>The guiding rule was restraint. Geometry and texture fixes were kept to the minimum needed to make a model a fair
-      representation of its object; if a model needed more than that, it wasn't treated as successful. The first
-      versions
-      I put on Sketchfab were the raw, un-retopologised meshes &mdash; heavy and inefficient &mdash; and were later
-      replaced with clean-topology versions carrying coherent UV maps.</p>
+    <details class="stage-collapse">
+      <summary>Mesh or texture polishing record</summary>
+      <div class="stage-table-wrap">
+        <table class="stage-table results-table results-table--wide">
+          <thead>
+            <tr>
+              <th scope="col">Object</th>
+              <th scope="col">Mesh / geometry work</th>
+              <th scope="col">Texture / albedo work</th>
+              <th scope="col">Roughness / metallic map</th>
+              <th scope="col">Why it was needed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-003</span>
+                <span class="res-name">Berber candlestick</span>
+              </th>
+              <td><span class="res-chip is-none">None</span></td>
+              <td><span class="res-chip is-part">Patched</span><span class="res-note">Manually patched missing texture
+                  under the bird-attachment holes, clone-sampled from adjacent surface</span></td>
+              <td><span class="res-chip is-none">Not created</span></td>
+              <td>White-feathered areas where the texture was not fully reconstructed</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-006</span>
+                <span class="res-name">Chinese personal seal</span>
+              </th>
+              <td><span class="res-chip is-none">None</span></td>
+              <td><span class="res-chip is-none">None</span></td>
+              <td><span class="res-chip is-part">Recreated</span><span class="res-note">Tweaked roughness and IOR
+                  levels</span></td>
+              <td>The object&rsquo;s material has a smooth shine that&rsquo;s part of its quality</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-007</span>
+                <span class="res-name">Thai dancer</span>
+              </th>
+              <td><span class="res-chip is-part">Reshaped</span><span class="res-note">Minor manual reshaping of the
+                  underarm geometry</span></td>
+              <td><span class="res-chip is-none">None</span></td>
+              <td><span class="res-chip is-part">Recreated</span><span class="res-note">Manually painted metallic map
+                  for
+                  the gilded areas; shine judged by eye against the object</span></td>
+              <td>Self-occluded joint was misread during reconstruction; focus limitations on fine extremities</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-009</span>
+                <span class="res-name">Chinese rhyton</span>
+              </th>
+              <td><span class="res-chip is-none">None</span></td>
+              <td><span class="res-chip is-part">Patched</span><span class="res-note">Manually corrected the dragon-tail
+                  motif area, clone-sampled</span></td>
+              <td><span class="res-chip is-none">Not created</span></td>
+              <td>Self-occlusion where the motif twists back on itself</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <span class="res-id">CHAN-016</span>
+                <span class="res-name">Box of stone eggs</span>
+              </th>
+              <td><span class="res-chip is-part">Reshaped</span><span class="res-note">Manual smoothing / reshaping of
+                  the
+                  eggs&rsquo; surface geometry</span></td>
+              <td><span class="res-chip is-none">None</span></td>
+              <td><span class="res-chip is-part">Recreated</span><span class="res-note">Manually reconstructed roughness
+                  map across the 20 stone types, informed by memory and reference photos</span></td>
+              <td>No cross-polarisation used; the naturally shiny stone produced an uneven, bumpy reconstruction</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
 
-    <p>Roughness and metallic maps are authored at this stage, and this is where the project's central open question
-      sits. Where the capture gave me something to work from, those values are derived from it; where it didn't, they're
-      judged by eye against the physical object and <span class="hl">flagged</span> plainly as estimated. Two objects
-      needed that hand-authoring &mdash; CHAN-007's gilding and CHAN-016's polished stones. The honest fix lies
-      upstream:
-      cross-polarised capture for a cleaner albedo, and empirical specularity methods such as Kintsugi 3D for roughness
-      and metalness. That gap is what the next phase of the project is meant to close.</p>
-  </section>
+    <figure class="stage-figure" data-expandable style="max-width: 32rem; margin-inline: auto;">
+      <img src="assets/img/about/texture_polishing.png" loading="lazy" style="background: transparent; padding: 0;" alt="Before and after a clone-sampled texture repair: two close-ups of the same carved motif side by side. On the
+          left the diamond and cross-hatched carving has pale, under-reconstructed patches; on the right those areas are
+          filled in cleanly to match the surrounding surface.">
+      <figcaption style="text-align: center;">Before / after a clone-sampled albedo texture repair of CHAN-003 (Berber
+        candlestick).</figcaption>
+    </figure>
 
-  <section id="sbs-panel-5" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-5" tabindex="0" hidden
-    style="--stage-accent: var(--lilac);">
-    <div class="stage-panel-head">
-      <p class="stage-panel-kicker">Stage 05</p>
-      <h3>Metadata &amp; paradata</h3>
-    </div>
+    <p>At the start of this stage, I had never opened Blender before, so best practices for 3D modelling and
+      model-optimisation workflows for web-sharing were completely new to me. As a result, this stage is inherently
+      taking longer to complete: at the time Chiriandreses Museum Version 1 is published, a <span class="hl">retopology
+        workflow</span> &mdash; i.e. reducing model face count (and, with it, file weight), alongside producing a
+      cleaner UV unwrap and re-baked normal maps &mdash; is still ongoing.</p>
 
-    <p>With the models done, the records had to be pulled together. The principle here is <span class="hl">one merged
-        source of truth per object</span>: the family-held metadata (materials, dates, measurements, provenance) and the
-      paradata from digitisation (equipment, angles, image counts, Metashape's tie-point and reprojection figures, and
-      the final deliverables) kept side by side rather than in separate silos.</p>
+    <p>As such, the model versions currently uploaded to Sketchfab are the raw, un-optimised (i.e.
+      &lsquo;un-retopologised&rsquo;) 3D models of the objects &mdash; meaning they're heavy and technically inefficient
+      for web-sharing or VR/AR reuse.</p>
 
-    <p>Each finished object keeps its Metashape processing report as part of that record. Every value is marked for how
-      it
-      was arrived at &mdash; <span class="hl">measured</span> from the capture, <span class="hl">estimated</span> by
-      eye,
-      <span class="hl">n/a</span>, or <span class="hl">flagged</span> as a known limitation &mdash; so the confidence
-      behind each number is visible rather than assumed.
-    </p>
+    <aside class="stage-afternote">
+      <p><em>The results and &lsquo;behind-the-scenes&rsquo; details of this retopology process will be rolled into a
+          future version of this website, alongside a visual comparison space for both &lsquo;raw&rsquo; and
+          &lsquo;optimised&rsquo; models.</em></p>
+    </aside>
 
-    <p>This stage also carried the non-technical work: translating the family's accounts from Spanish into English,
-      writing the story behind each object, and sorting the collection into categories and shared labels. The result is
-      a
-      single structured record per object, and a project archive holding the planning tables, journals and reports that
-      the public pages are drawn from.</p>
-  </section>
+    <p><span class="hl">Roughness and metallic maps (specularity maps)</span> aren't generated during the photogrammetry
+      process itself, but you'll notice some objects in this collection with a surface shine or reflection. That visible
+      shine comes from specularity values/maps that were generated at this stage using PBR shaders in Blender &mdash;
+      through a mix of
+      interpretation, reference photographs, and memory, rather than empirical measurement.</p>
 
-  <section id="sbs-panel-6" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-6" tabindex="0" hidden
-    style="--stage-accent: var(--brass);">
-    <div class="stage-panel-head">
-      <p class="stage-panel-kicker">Stage 06</p>
-      <h3>'Chiriandreses Museum' website</h3>
-    </div>
+    <aside class="stage-afternote">
+      <p><em>This particular topic &mdash; the<span class="hl"> empirical capture and processing of an object's
+            specularity
+            texture maps</span>
+          &mdash; has sparked a deep interest in me, one born out of this project and that I'm currently researching as
+          I
+          prepare
+          this website's V1 roll-out in September 2026.</em></p>
+      <p><em>I'm currently carrying out digitisation experiments using the open-source, pioneering
+          <a href="https://forums.culturalheritageimaging.org/topic/4790-kintsugi-3d-builder-overview/">Kintsugi 3D
+            Builder</a>, co-developed by the University of Wisconsin&ndash;Stout, the Minneapolis Institute of Art
+          (Mia), and Cultural Heritage Imaging (CHI), which aims to give digitisation specialists an avenue to do
+          exactly
+          this. </em></p>
+      <p><em>The photographic workflow that this software requires will be implemented in future
+          digitisation campaigns.</em></p>
+    </aside>
 
-    <p>A 3D model on its own doesn't carry much. In cultural heritage especially, a scan without its context &mdash;
-      where the object came from, what it meant, how it was captured and what that capture can and can't tell you
-      &mdash;
-      is a shape without a story. This site exists to put that context back around each model.</p>
+    <!-- <p>This particular topic &mdash; the<span class="hl"> empirical capture and processing of an object's specularity
+        texture maps</span>
+      &mdash; has sparked a deep interest in me, one born out of this project, which I continue to research as I prepare
+      this website's V1 roll-out in September 2026. I'm currently experimenting with the open-source, pioneering
+      <a href="https://forums.culturalheritageimaging.org/topic/4790-kintsugi-3d-builder-overview/">Kintsugi 3D
+        Builder</a>, co-developed by the University of Wisconsin&ndash;Stout, the Minneapolis Institute of Art
+      (Mia), and Cultural Heritage Imaging (CHI), which aims to give digitisation specialists an avenue to do exactly
+      this. The photographic workflow that this software requires will be implemented in future
+      digitisation campaigns.
+  </section> -->
 
-    <p>Version 1 is deliberately plain: hand-written HTML, CSS and JavaScript, no framework and no build step beyond a
-      few
-      small scripts. Two earlier attempts at this same site were built on heavier stacks and abandoned once the tooling
-      outweighed the need. The scope here is the nine finished objects, each with its story, its &ldquo;how it was
-      made&rdquo; panel and its full provenance record, linking out to the complete methodology. Later versions can add
-      interactivity and other ways to move through the collection &mdash; better planned for once the collection has
-      actually grown.</p>
+    <section id="sbs-panel-5" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-5" tabindex="0" hidden
+      style="--stage-accent: var(--lilac);">
+      <div class="stage-panel-head">
+        <p class="stage-panel-kicker">Stage 05</p>
+        <h3>Metadata &amp; paradata</h3>
+      </div>
 
-    <p>The build was co-created with a large language model, used as a working collaborator throughout &mdash; which
-      feels fitting for a project whose second thread is about trust in digitally-mediated heritage.</p>
-  </section>
+      <p>With the models done, the records had to be pulled together. The principle here is <span class="hl">one merged
+          source of truth per object</span>: the family-held metadata (materials, dates, measurements, provenance) and
+        the
+        paradata from digitisation (equipment, angles, image counts, Metashape's tie-point and reprojection figures, and
+        the final deliverables) kept side by side rather than in separate silos.</p>
+
+      <p>Each finished object keeps its Metashape processing report as part of that record. Every value is marked for
+        how
+        it
+        was arrived at &mdash; <span class="hl">measured</span> from the capture, <span class="hl">estimated</span> by
+        eye,
+        <span class="hl">n/a</span>, or <span class="hl">flagged</span> as a known limitation &mdash; so the confidence
+        behind each number is visible rather than assumed.
+      </p>
+
+      <p>This stage also carried the non-technical work: translating the family's accounts from Spanish into English,
+        writing the story behind each object, and sorting the collection into categories and shared labels. The result
+        is
+        a
+        single structured record per object, and a project archive holding the planning tables, journals and reports
+        that
+        the public pages are drawn from.</p>
+    </section>
+
+    <section id="sbs-panel-6" class="stage-panel" role="tabpanel" aria-labelledby="sbs-tab-6" tabindex="0" hidden
+      style="--stage-accent: var(--brass);">
+      <div class="stage-panel-head">
+        <p class="stage-panel-kicker">Stage 06</p>
+        <h3>'Chiriandreses Museum' website</h3>
+      </div>
+
+      <p>A 3D model on its own doesn't carry much. In cultural heritage especially, a scan without its context &mdash;
+        where the object came from, what it meant, how it was captured and what that capture can and can't tell you
+        &mdash;
+        is a shape without a story. This site exists to put that context back around each model.</p>
+
+      <p>Version 1 is deliberately plain: hand-written HTML, CSS and JavaScript, no framework and no build step beyond a
+        few
+        small scripts. Two earlier attempts at this same site were built on heavier stacks and abandoned once the
+        tooling
+        outweighed the need. The scope here is the nine finished objects, each with its story, its &ldquo;how it was
+        made&rdquo; panel and its full provenance record, linking out to the complete methodology. Later versions can
+        add
+        interactivity and other ways to move through the collection &mdash; better planned for once the collection has
+        actually grown.</p>
+
+      <p>The build was co-created with a large language model, used as a working collaborator throughout &mdash; which
+        feels fitting for a project whose second thread is about trust in digitally-mediated heritage.</p>
+    </section>
 
 </div>
         </section>
