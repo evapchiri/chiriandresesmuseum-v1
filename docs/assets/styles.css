@@ -1895,6 +1895,44 @@ ol.lifecycle {
   stroke-width: 2;
 }
 
+/* Standalone expandable figures (figure[data-expandable]) — a zoom-in
+   cursor on the image plus a discoverable corner button, both wired in
+   assets/site.js to open the shared .carousel-lightbox. */
+figure[data-expandable] img {
+  cursor: zoom-in;
+}
+.figure-expand-frame {
+  position: relative;
+  display: block;
+  line-height: 0;
+}
+.figure-expand {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: rgba(24, 24, 24, 0.78);
+  color: var(--ink);
+  cursor: pointer;
+}
+.figure-expand:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+.figure-expand svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
 /* Image lightbox — an in-page popup, above everything, that pages through
    the same carousel images. Scroll lock reuses body.modal-open. */
 .carousel-lightbox {

@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAboutRefFlash();
   initFolderTabs();
   initAboutCarousel();
+  initExpandableFigures();
   initCollectionFilters();
   initObjectModal();
   initViewerLoading();
@@ -505,6 +506,87 @@ function initAboutCarousel() {
     });
 
     go(0);
+  });
+}
+
+/* ---------- Expandable figures ----------
+ * Any figure[data-expandable] holding an <img> gets a discoverable corner
+ * "expand" button plus click-to-enlarge on the image itself, opening one
+ * shared in-page lightbox (same look as the About-me carousel's, minus the
+ * paging). Progressive enhancement: with JS off the figure is just a figure.
+ * Scroll lock reuses body.modal-open. */
+
+function initExpandableFigures() {
+  const figures = [...document.querySelectorAll('figure[data-expandable]')];
+  if (!figures.length) return;
+
+  const lightbox = document.createElement('div');
+  lightbox.className = 'carousel-lightbox';
+  lightbox.hidden = true;
+  lightbox.innerHTML =
+    '<div class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Enlarged image" tabindex="-1">' +
+    '<button class="lightbox-close" type="button" aria-label="Close">&times;</button>' +
+    '<figure class="lightbox-figure"><img class="lightbox-img" alt=""><figcaption class="lightbox-caption"></figcaption></figure>' +
+    '</div>';
+  document.body.appendChild(lightbox);
+
+  const lbImg = lightbox.querySelector('.lightbox-img');
+  const lbCaption = lightbox.querySelector('.lightbox-caption');
+  const lbDialog = lightbox.querySelector('.lightbox-dialog');
+  const lbClose = lightbox.querySelector('.lightbox-close');
+  let returnFocus = null;
+
+  function openLightbox(img, captionText) {
+    lbImg.src = img.currentSrc || img.src;
+    lbImg.alt = img.alt || '';
+    lbCaption.textContent = captionText || '';
+    returnFocus = document.activeElement;
+    lightbox.hidden = false;
+    document.body.classList.add('modal-open');
+    lbDialog.focus({ preventScroll: true });
+  }
+
+  function closeLightbox() {
+    if (lightbox.hidden) return;
+    lightbox.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (returnFocus) returnFocus.focus();
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  lightbox.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeLightbox(); return; }
+    /* only two focusables (dialog + close) — keep focus inside */
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      (document.activeElement === lbClose ? lbDialog : lbClose).focus();
+    }
+  });
+
+  figures.forEach((fig) => {
+    const img = fig.querySelector('img');
+    if (!img) return;
+    const capEl = fig.querySelector('figcaption');
+    const captionText = (capEl && capEl.textContent.trim()) || img.alt || '';
+
+    /* wrap just the image so the corner button anchors to the image box,
+       not the figure (which also holds the caption below) */
+    const frame = document.createElement('span');
+    frame.className = 'figure-expand-frame';
+    img.insertAdjacentElement('beforebegin', frame);
+    frame.appendChild(img);
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'figure-expand';
+    btn.setAttribute('aria-label', 'View image larger');
+    btn.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5"/></svg>';
+    btn.addEventListener('click', () => openLightbox(img, captionText));
+    frame.appendChild(btn);
+
+    img.addEventListener('click', () => openLightbox(img, captionText));
   });
 }
 
