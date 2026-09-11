@@ -103,7 +103,7 @@
 <p>You can learn about the project from two angles — the pure technical record, and my personal learning journey
   behind it:</p>
 
-<p><span class="about-section-ref">THE PROJECT</span> section you will find a friendlier, stage-by-stage walkthrough
+<p>In <span class="about-section-ref">THE PROJECT</span> section you will find a friendlier, stage-by-stage walkthrough
   of the digitisation pipeline, what happened in each step of the way. Within this section, the
   <em>Project archive</em> gathers all the detailed, outputted technical records.
 </p>
@@ -1158,23 +1158,57 @@
       <h3>'Chiriandreses Museum' website</h3>
     </div>
 
-    <p>A 3D model on its own doesn't carry much. In cultural heritage especially, a scan without its context &mdash;
-      where the object came from, what it meant, how it was captured and what that capture can and can't tell you
-      &mdash;
-      is a shape without a story. This site exists to put that context back around each model.</p>
+    <p>A 3D model on its own doesn't carry much value in Cultural Heritage. A scan without its context &mdash; where
+      the object came from, what it meant, how it was captured, and what that capture can and can't tell you &mdash;
+      is a shape without a story.</p>
+    <p>As <strong>Dr. Marinos Ioannides</strong> put it at the <em>Digital Heritage Summit 2026</em>:</p>
 
-    <p>Version 1 is deliberately plain: hand-written HTML, CSS and JavaScript, no framework and no build step beyond a
-      few
-      small scripts. Two earlier attempts at this same site were built on heavier stacks and abandoned once the
-      tooling
-      outweighed the need. The scope here is the nine finished objects, each with its story, its &ldquo;how it was
-      made&rdquo; panel and its full provenance record, linking out to the complete methodology. Later versions can
-      add
-      interactivity and other ways to move through the collection &mdash; better planned for once the collection has
-      actually grown.</p>
+    <blockquote>
+      <p>&ldquo;(In Digital Heritage) we create <span class="hl">knowledge</span>, not just geometric data.&rdquo;</p>
+    </blockquote>
 
-    <p>The build was co-created with a large language model, used as a working collaborator throughout &mdash; which
-      feels fitting for a project whose second thread is about trust in digitally-mediated heritage.</p>
+    <p><span class="hl">This site exists to put that context back around each model.</span></p>
+
+    <p><span class="hl">Version 1 is deliberately a &lsquo;plain&rsquo; portal aimed for a first, quick deliverable to
+        be reiterated
+        on</span> &mdash; HTML, CSS, and JavaScript, with no framework and
+      no build step beyond a few small scripts.</p>
+    <p>Hosting the models in a third-party (Sketchfab) was a result from this proof-of-concept focus. It keeps this
+      first repository
+      small, and leaves
+      the structuring and performance of a the 3D viewer to a platform built specifically for that
+      such, rather
+      than something to carefully build at this time.</p>
+
+    <p>I directed the build of this website myself, using Claude Code (Anthropic's agentic coding tool)
+      as a coding collaborator to move delivery along faster. UI, UX, structural design, and the storytelling
+      throughout are all my own work.</p>
+
+    <p>All choices in the design of the wireframe and the UI carry the same principle as the research behind the
+      project. For such, provenance is displayed as stamped labels on each record rather than hidden in
+      a spec sheet, so the confidence behind every value is visible at a glance.</p>
+
+    <p><span class="hl">Responsiveness and Accessibility </span>were also taken into account in the design of the
+      website, with ARIA roles
+      across every tab and panel,
+      full keyboard support for the tab strips and image carousels, respect for reduced-motion preferences, and a
+      layout that reflows &mdash; down to the type scale &mdash; for phone-sized screens.</p>
+
+    <p>In later versions of this portal, <span class="hl">further interactivity and structural designs are
+        planned.</span> Some changes will
+      include:</p>
+    <ul>
+      <li>a curated way of exploring the collection</li>
+      <li>self-hosting the models instead, to experiment with different model visualisations</li>
+    </ul>
+
+    <figure class="stage-figure" style="max-width: 52ch; margin-inline: auto; margin-top: 4em;">
+      <img src="assets/img/about/website_wireframe.png" loading="lazy" alt="An early design wireframe board: a colour palette swatch, wireframes for the landing and About pages, and
+          two candidate ways to browse the collection &mdash; a clickable object timeline and a filterable catalogue
+          grid with object cards &mdash; plus card and filter-bar mockups.">
+      <figcaption style="text-align: center;">An early wireframe board for the envisioned Chiriandreses V2 layout and
+        browsing components</figcaption>
+    </figure>
   </section>
 
 </div>
