@@ -141,22 +141,35 @@ function initAboutTabs() {
     window.scrollTo(0, Math.max(0, y));
   }
 
+  function selectPanel(target, btn) {
+    buttons.forEach((b) => {
+      const isActive = b === btn;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-selected', String(isActive));
+    });
+    panels.forEach((p) => {
+      p.hidden = p.dataset.panelContent !== target;
+    });
+
+    const activePanel = document.querySelector(`[data-panel-content="${target}"]`);
+    if (activePanel) activePanel.focus({ preventScroll: true });
+    repositionForPanel();
+  }
+
   buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.panel;
+    btn.addEventListener('click', () => selectPanel(btn.dataset.panel, btn));
+  });
 
-      buttons.forEach((b) => {
-        const isActive = b === btn;
-        b.classList.toggle('active', isActive);
-        b.setAttribute('aria-selected', String(isActive));
-      });
-      panels.forEach((p) => {
-        p.hidden = p.dataset.panelContent !== target;
-      });
-
-      const activePanel = document.querySelector(`[data-panel-content="${target}"]`);
-      if (activePanel) activePanel.focus({ preventScroll: true });
-      repositionForPanel();
+  // In-content cross-references, e.g. "see the Project archive" from deep
+  // inside another panel (Stage-by-stage, Lessons learned, ...): jump the
+  // reader to that section the same way clicking its sidebar tab would.
+  document.querySelectorAll('[data-panel-jump]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const target = link.dataset.panelJump;
+      const btn = nav.querySelector(`[data-panel="${target}"]`);
+      if (!btn) return;
+      e.preventDefault();
+      selectPanel(target, btn);
     });
   });
 }
