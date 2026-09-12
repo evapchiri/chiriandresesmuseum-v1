@@ -176,7 +176,7 @@
       advanced imagery to enhance accessibility, dissemination and research in Cultural Heritage.</span></p>
   <aside class="stage-afternote">
     <p>This excavation's digitisation work earned me the &lsquo;Peter Dorell Prize&rsquo; 2022 from
-      the Institute of Archaeology<a href="#award-1"><sup> *4 </sup></a>, and some of my artefact
+      the Institute of Archaeology<a href="#award-1"><sup> *5 </sup></a>, and some of my artefact
       photographs were later displayed at a temporary exhibition in the Weald &amp; Downland Living Museum in
       2023.</p>
   </aside>
@@ -215,7 +215,7 @@
   </div>
 
   <p>Managing media and data across this excavation and other Digital Archaeology
-    projects<a href="#exp-marea"><sup> *2 </sup></a>|<a href="#exp-monumentality"><sup> *3 </sup></a> taught
+    projects<a href="#exp-marea" data-ref-also="exp-monumentality"><sup> *3,4 </sup></a> taught
     me how to successfully navigate the real-world struggles of generating digital media within tight
     budgets, timelines, and not the most &ldquo;cushy&rdquo; environments.</p>
   <p> I experienced the
@@ -229,11 +229,11 @@
 
   <p><span class="hl">I decided to stop being just a &lsquo;user&rsquo; of software and really get to understand how it
       gets built.</span> After a deep dive in software programming and Cloud
-    architecture<a href="#exp-cfg"><sup> *1 </sup></a> <a href="#award-3"><sup> *6 </sup></a>I spent the last couple of
+    architecture<a href="#exp-cfg" data-ref-also="award-3"><sup> *1,7 </sup></a>I spent the last couple of
     years working in SaaS
     software technical support, learning first-hand how web apps get deployed and iterated on in the real world,
     and how digital experiences get curated. I got pretty good at helping both internal and client teams
-    do their best work when problems arose<a href="#award-2"><sup> *5 </sup></a>, eventually supporting the
+    do their best work when problems arose<a href="#award-2"><sup> *6 </sup></a>, eventually supporting the
     documentation and development of a Digital Asset Management cloud platform.</p>
 
   <p>Ultimately, <span class="hl">Chiriandreses Museum is where all of that technical
@@ -257,14 +257,18 @@
       <span class="about-extra-note"><em>Back-end and front-end programming skills, Cloud
           software architecture knowledge, and UX/UI notions</em></span>
     </li>
-    <li id="exp-marea">
-      (*2) <strong>Contributed to the University of Oxford&rsquo;s &ldquo;<em>MarEA Project</em>&rdquo;.</strong>
+    <li id="exp-europeana">(*2) <strong>Europeana's Digital Storytelling Residency 2026</strong></li>
+    <li id="exp-marea"><span class="about-extra-note"><em>Produced a video exploring the existential dread caused by the
+          loss of authenticity in the age of AI, designed and developed under the mentorship of Europeana professionals
+          on
+          storytelling techniques to reuse digital cultural heritage.</em></span>
+      (*3) <strong>Contributed to the University of Oxford&rsquo;s &ldquo;<em>MarEA Project</em>&rdquo;.</strong>
       <span class="about-extra-note"><em>Researching cyclonic impacts on Omani maritime heritage. My work was <a
             href="https://marea.soton.ac.uk/2021/10/26/examining-omans-cyclonic-activity-and-its-impact-on-maritime-cultural-heritage-student-project/"
             target="_blank" rel="noopener">published in the project&rsquo;s website.</a></em></span>
     </li>
     <li id="exp-monumentality">
-      (*3) <strong>Assistant to &ldquo;<em>Monumentality and Landscape: Linear Earthworks in
+      (*4) <strong>Assistant to &ldquo;<em>Monumentality and Landscape: Linear Earthworks in
           Britain</em>&rdquo;</strong>
       (UCL Institute of Archaeology &amp; Durham University, Leverhulme Trust-funded)
       <span class="about-extra-note"><em>Database development and grey literature retrieval.</em></span>
@@ -274,20 +278,20 @@
   <h3 class="about-extras-heading"><strong>Awards &amp; recognition:</strong></h3>
   <ul>
     <li id="award-1">
-      (*4) Awarded the <strong>2022 Peter Dorell Prize</strong> (UCL Institute of Archaeology)
+      (*5) Awarded the <strong>2022 Peter Dorell Prize</strong> (UCL Institute of Archaeology)
       <span class="about-extra-note"><em>For the "high quality" of the photographic dataset produced - including 3D
           photogrammetry and RTI models - which enhanced the
           accessibility of key excavation's artefacts for further specialist research.</em></span>
     </li>
     <li id="award-2">
-      (*5) Avalara &ldquo;<strong>Customer Champion&rdquo; award</strong> for Q1 2025
+      (*6) Avalara &ldquo;<strong>Customer Champion&rdquo; award</strong> for Q1 2025
       <span class="about-extra-note"><em>For my &ldquo;unwavering commitment to putting customers first. With nearly
           90%
           of Avalara Europe&rsquo;s glowing Trustpilot reviews and continues to set the gold standard for CSAT across
           the team.&rdquo;</em></span>
     </li>
     <li id="award-3">
-      (*6) <strong>'Highly commended candidate' award x2</strong>
+      (*7) <strong>'Highly commended candidate' award x2</strong>
       <span class="about-extra-note"><em>For my work on the group final projects of two of CodeFirstGirls Kickstarter
           short-courses: Python &amp;
           Apps | Javascript</em></span>
@@ -1169,37 +1173,37 @@
 
     <p><span class="hl">This site exists to put that context back around each model.</span></p>
 
-    <p><span class="hl">Version 1 is deliberately a &lsquo;plain&rsquo; portal aimed for a first, quick deliverable to
-        be reiterated
+    <p><span class="hl">Version 1 has a deliberately simple tech stack to focus on an initial, quick deliverable to
+        iterate
         on</span> &mdash; HTML, CSS, and JavaScript, with no framework and
       no build step beyond a few small scripts.</p>
-    <p>Hosting the models in a third-party (Sketchfab) was a result from this proof-of-concept focus. It keeps this
-      first repository
-      small, and leaves
-      the structuring and performance of a the 3D viewer to a platform built specifically for that
-      such, rather
-      than something to carefully build at this time.</p>
+    <p>Hosting the models on a third-party site like Sketchfab is a result of this proof-of-concept focus. It keeps the
+      repository small and, rather than building something custom right now, leaves the 3D viewer's performance and
+      structure to a platform designed specifically for it.</p>
 
-    <p>I directed the build of this website myself, using Claude Code (Anthropic's agentic coding tool)
-      as a coding collaborator to move delivery along faster. UI, UX, structural design, and the storytelling
-      throughout are all my own work.</p>
+    <p>Similarly, to accelerate delivery, I directed the build of this website alongside Claude Code. While the LLM
+      helped speed up the coding, the UI, UX, structural design, and storytelling are entirely my work. The narrative
+      approach in particular draws on digital storytelling techniques I picked up during my Europeana
+      DigitalStorytelling residency, which
+      ran alongside this project.</p>
 
-    <p>All choices in the design of the wireframe and the UI carry the same principle as the research behind the
-      project. For such, provenance is displayed as stamped labels on each record rather than hidden in
+    <p>All choices involved in the design of the UI and user journey carry the same principle as the research behind
+      the
+      project. As such, provenance is displayed as stamped labels on each record rather than hidden in
       a spec sheet, so the confidence behind every value is visible at a glance.</p>
 
-    <p><span class="hl">Responsiveness and Accessibility </span>were also taken into account in the design of the
+    <p><span class="hl">Responsiveness and accessibility </span>were also taken into account in the design of the
       website, with ARIA roles
       across every tab and panel,
       full keyboard support for the tab strips and image carousels, respect for reduced-motion preferences, and a
       layout that reflows &mdash; down to the type scale &mdash; for phone-sized screens.</p>
 
-    <p>In later versions of this portal, <span class="hl">further interactivity and structural designs are
+    <p>In later versions of this portal, <span class="hl">further interactivity and structural changes are
         planned.</span> Some changes will
       include:</p>
     <ul>
       <li>a curated way of exploring the collection</li>
-      <li>self-hosting the models instead, to experiment with different model visualisations</li>
+      <li>self-hosting the models instead, to experiment with different visualisation approaches</li>
     </ul>
 
     <figure class="stage-figure" style="max-width: 52ch; margin-inline: auto; margin-top: 4em;">

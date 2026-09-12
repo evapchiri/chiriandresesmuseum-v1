@@ -174,30 +174,46 @@ function initAboutTabs() {
   });
 }
 
-/* ---------- About-me: flash the footnote target on jump ----------
+/* ---------- About-me: flash the footnote target(s) on jump ----------
  * The "*n" superscript links in the About-me narrative jump to a bullet in
  * the "Other relevant experience" / "Awards & recognition" lists, which sit
  * dimmed (ink-soft) at rest. On click, briefly lift the destination bullet
  * to full ink + a faint brass wash so the eye lands on it once the smooth
- * scroll settles. Pure affordance; no-ops where the panel isn't present. */
+ * scroll settles. Pure affordance; no-ops where the panel isn't present.
+ *
+ * A couple of spots in the narrative have two footnote markers sitting right
+ * next to each other (e.g. "*3,4"); those are authored as one merged link
+ * with a data-ref-also="other-id" attribute, so a single click flashes both
+ * destinations together instead of the reader clicking one, landing on it,
+ * and never realising the other reference exists. */
 
 function initAboutRefFlash() {
   const panel = document.getElementById('panel-about-me');
   if (!panel) return;
 
-  let timer;
-  function flash(el) {
-    if (!el) return;
-    clearTimeout(timer);
-    el.classList.remove('about-ref-flash');
-    void el.offsetWidth; // reflow, so a repeat click restarts the animation
-    el.classList.add('about-ref-flash');
-    timer = setTimeout(() => el.classList.remove('about-ref-flash'), 2700);
+  let active = [];
+  function flash(elements) {
+    // Cancel whatever was still highlighted from a previous click.
+    active.forEach(({ el, timer }) => {
+      clearTimeout(timer);
+      el.classList.remove('about-ref-flash');
+    });
+    // A merged pair flashes a little longer than a single reference — the two
+    // targets can sit far apart on the page, so the reader needs more time to
+    // scroll from one to the other while both are still lit.
+    const duration = elements.length > 1 ? 4200 : 2700;
+    active = elements.map((el) => {
+      void el.offsetWidth; // reflow, so a repeat click restarts the animation
+      el.classList.add('about-ref-flash');
+      return { el, timer: setTimeout(() => el.classList.remove('about-ref-flash'), duration) };
+    });
   }
 
   panel.querySelectorAll('#main-text a[href^="#"]').forEach((link) => {
+    const extraIds = (link.dataset.refAlso || '').split(/\s+/).filter(Boolean);
+    const ids = [link.getAttribute('href').slice(1), ...extraIds];
     link.addEventListener('click', () => {
-      flash(document.getElementById(link.getAttribute('href').slice(1)));
+      flash(ids.map((id) => document.getElementById(id)).filter(Boolean));
     });
   });
 }
