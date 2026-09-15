@@ -119,7 +119,11 @@ rebuild('startup');
 for (const dir of WATCH) {
   fs.watch(dir, { recursive: true }, (_event, file) => {
     // Skip editor scratch files / dotfiles so a save doesn't double-fire.
-    if (file && (/[~]$/.test(file) || /(^|\/)\.[^/]/.test(file))) return;
+    // Also skip build.js's own write of data/objects.resolved.json — a
+    // debug artifact regenerated on every build — otherwise that write
+    // re-triggers the watcher, which rebuilds, which writes it again,
+    // forever (this is the infinite-rebuild loop).
+    if (file && (/[~]$/.test(file) || /(^|\/)\.[^/]/.test(file) || /objects\.resolved\.json$/.test(file))) return;
     scheduleRebuild(file || path.basename(dir));
   });
 }
