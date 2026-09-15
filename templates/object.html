@@ -1,82 +1,128 @@
 <!DOCTYPE html>
 <html lang="en-GB">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{TITLE}} — Chiriandreses Museum</title>
-<meta name="description" content="{{TEASER}}">
-<link rel="stylesheet" href="../assets/styles.css">
-{{THEME_INIT}}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}} — Chiriandreses Museum</title>
+  <meta name="description" content="{{TEASER}}">
+  <link rel="stylesheet" href="../assets/styles.css">
+  {{THEME_INIT}}
 </head>
+
 <body>
 
-{{THEME_TOGGLE}}
+  {{THEME_TOGGLE}}
 
-<header class="object-header">
-  <div class="wrap object-header-nav">
-    {{SITE_NAV}}
-  </div>
-  <div class="wrap object-header-body">
-    <a class="back-link" href="../collection.html">&larr; Back to the collection</a>
-    <h1>{{TITLE}}</h1>
-    <p class="tag-row"><span>{{ID}}</span><span>{{TYPE}}</span><span>{{CHRONOLOGY_SHORT}}</span><span>{{GEOGRAPHY}}</span></p>
-  </div>
-</header>
+  {{HERO}}
 
-<main class="wrap">
+  <main class="wrap">
 
-  <div class="viewer-wrap">
-    <div class="viewer-frame">
-      <div class="viewer-loading" aria-hidden="true"></div>
-      <iframe title="3D model of {{TITLE}}" src="https://sketchfab.com/models/{{SKETCHFAB_UID}}/embed?ui_theme=dark&ui_infos=0" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe>
+    <div class="object-intro">
+      <a class="back-link" href="../collection.html">&larr; Back to the collection</a>
+      <h2 class="object-title">{{TITLE}}</h2>
+      <p class="tag-row">
+        <span>{{ID}}</span><span>{{TYPE}}</span><span>{{CHRONOLOGY_SHORT}}</span><span>{{GEOGRAPHY}}</span></p>
     </div>
-    <p class="viewer-caption">Drag to rotate · scroll to zoom · tap the AR icon on supported devices</p>
 
-    <div class="story">
-      {{STORY}}
+    <div class="viewer-wrap">
+      <div class="viewer-frame">
+        <div class="viewer-loading" aria-hidden="true"></div>
+        <iframe title="3D model of {{TITLE}}"
+          src="https://sketchfab.com/models/{{SKETCHFAB_UID}}/embed?ui_theme=dark&ui_infos=0"
+          allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="viewer-caption">Drag to rotate · scroll to zoom · tap the AR icon on supported devices</p>
+
+      <div class="story">
+        {{STORY}}
+      </div>
     </div>
-  </div>
 
-  <section class="record-full-page">
-    <h2 class="record-full-title">Full record — {{ID}}</h2>
+    <section class="record-full-page">
+      <h2 class="record-full-title">Full Metadata & Paradata record — {{ID}}</h2>
 
-    <dl>
-      <div class="record-row"><dt>Type</dt><dd>{{TYPE}}</dd></div>
-      <div class="record-row"><dt>Use</dt><dd>{{USE}}</dd></div>
-      <div class="record-row"><dt>Materials</dt><dd>{{MATERIALS}}{{MATERIALS_NOTE}}</dd></div>
-      <div class="record-row"><dt>Measurements</dt><dd>{{MEASUREMENTS}}</dd></div>
-      <div class="record-row"><dt>Weight</dt><dd>{{WEIGHT}}</dd></div>
-      <div class="record-row"><dt>Condition</dt><dd>{{CONDITION}}</dd></div>
-      <div class="record-row"><dt>Integrity</dt><dd>{{INTEGRITY}}</dd></div>
-      <div class="record-row"><dt>Chronology</dt><dd>{{CHRONOLOGY}}</dd></div>
-      <div class="record-row"><dt>Geography</dt><dd>{{GEOGRAPHY}}</dd></div>
-    </dl>
+      <dl>
+        <div class="record-row">
+          <dt>Type</dt>
+          <dd>{{TYPE}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Use</dt>
+          <dd>{{USE}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Materials</dt>
+          <dd>{{MATERIALS}}{{MATERIALS_NOTE}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Measurements</dt>
+          <dd>{{MEASUREMENTS}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Weight</dt>
+          <dd>{{WEIGHT}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Condition</dt>
+          <dd>{{CONDITION}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Integrity</dt>
+          <dd>{{INTEGRITY}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Chronology</dt>
+          <dd>{{CHRONOLOGY}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Geography</dt>
+          <dd>{{GEOGRAPHY}}</dd>
+        </div>
+      </dl>
 
-    <p class="record-section-label">Photogrammetry processing</p>
-    <dl>
-      <div class="record-row"><dt>Captured</dt><dd>{{CAPTURE_DATE}}</dd></div>
-      <div class="record-row"><dt>Complexity</dt><dd>{{COMPLEXITY}}</dd></div>
-      <div class="record-row"><dt>Surface</dt><dd>{{COMPLEXITY_SURFACE}}</dd></div>
-      <div class="record-row"><dt>Material</dt><dd>{{COMPLEXITY_MATERIAL}}</dd></div>
-      <div class="record-row"><dt>Geometric data</dt><dd>{{GEOMETRIC_DATA}}</dd></div>
-      <div class="record-row"><dt>Software</dt><dd>{{SOFTWARE}}</dd></div>
-    </dl>
+      <p class="record-section-label">Photogrammetry processing</p>
+      <dl>
+        <div class="record-row">
+          <dt>Captured</dt>
+          <dd>{{CAPTURE_DATE}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Complexity</dt>
+          <dd>{{COMPLEXITY}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Surface</dt>
+          <dd>{{COMPLEXITY_SURFACE}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Material</dt>
+          <dd>{{COMPLEXITY_MATERIAL}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Geometric data</dt>
+          <dd>{{GEOMETRIC_DATA}}</dd>
+        </div>
+        <div class="record-row">
+          <dt>Software</dt>
+          <dd>{{SOFTWARE}}</dd>
+        </div>
+      </dl>
 
-    <p class="record-section-label">Field provenance</p>
-    {{PROVENANCE}}
+      <p class="record-section-label">Field provenance</p>
+      {{PROVENANCE}}
 
-    {{FULL_RECORD}}
+      {{FULL_RECORD}}
+    </section>
+  </main>
 
-    <a class="methodology-link" href="https://github.com/REPLACE_ME/chiriandreses-museum" target="_blank" rel="noopener">Read the full methodology &amp; paradata record →</a>
-  </section>
-</main>
+  <footer class="site-footer">
+    <div class="wrap">
+      {{FOOTER_META}}
+    </div>
+  </footer>
 
-<footer class="site-footer">
-  <div class="wrap">
-    {{FOOTER_META}}
-  </div>
-</footer>
-
-<script src="../assets/site.js"></script>
+  <script src="../assets/site.js"></script>
 </body>
+
 </html>

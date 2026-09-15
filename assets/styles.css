@@ -2289,22 +2289,14 @@ figure[data-expandable] img {
   color: var(--brass);
 }
 
-/* ---------- Object page ---------- */
+/* ---------- Object page ----------
+ * The page's header is the same shared .site-hero every other page uses
+ * (build.js's heroHTML()) — centered "Chiriandreses Museum" title, subtitle,
+ * and About/Collection nav — so this page matches the rest of the site's
+ * layout, responsiveness and accessibility instead of a bespoke header. */
 
-.object-header-nav {
-  padding: 50px 0;
-  border-bottom: 1px solid var(--rule);
-  text-align: center;
-}
-
-.object-header .site-nav {
-  justify-content: flex-start;
-  margin-top: 0;
-}
-
-.object-header-body {
+.object-intro {
   padding: 20px 0 22px;
-  border-bottom: 1px solid var(--rule);
 }
 
 .back-link {
@@ -2315,8 +2307,8 @@ figure[data-expandable] img {
   margin-top: 4px;
 }
 
-.object-header h1 {
-  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+.object-title {
+  font-size: clamp(1.8rem, 3.4vw, 2rem);
   margin-top: 10px;
 }
 
@@ -2324,7 +2316,7 @@ figure[data-expandable] img {
   margin-top: 10px;
   font-family: "Geist Mono", monospace;
   font-size: 0.82rem;
-  color: var(--ink-soft);
+  color: var(--brass);
 }
 .tag-row span:not(:last-child)::after {
   content: " · ";
@@ -2430,6 +2422,11 @@ main.wrap > .viewer-wrap .viewer-caption {
   max-width: 62ch;
 }
 
+.story {
+  margin: 2em;
+  text-align: justify;
+}
+
 /* The standalone object page's story runs full-width (matching the page's
  * body margins) now that it's not sharing a column with a viewer beside it —
  * the 62ch cap above stays as the default for the modal's narrower column. */
@@ -2483,6 +2480,10 @@ main.wrap > .viewer-wrap .story p {
   font-size: 0.8rem;
   color: var(--ink-soft);
   margin-top: 4px;
+}
+
+.record-subrow {
+  text-align: right;
 }
 
 .record-section-label {

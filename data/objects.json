@@ -37,7 +37,11 @@
       "overallDescription": "Souvenir limestone replica of Marrakech's Koutoubia.",
       "recordingChallenges": "The surface can be slightly reflective.",
       "captureSolution": "Photogrammetry — turntable, white background",
-      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "tolerances": {
+        "accuracy": "± 1mm",
+        "resolution": "< 0.8mm",
+        "error": "< 0.8px"
+      },
       "equipment": {
         "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
         "sensorOutput": "24 megapixels (6000×4000px)",
@@ -50,14 +54,52 @@
         "gsd": "0.054 mm/px"
       },
       "acquisition": [
-        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "23mm – f/8", "rotationalSteps": "15–20°", "imageCount": 74 },
-        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "36mm – f/8", "rotationalSteps": "15–20°", "imageCount": 73 },
-        { "chunk": "Half-bottom, focused (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "18mm – f/8", "rotationalSteps": "15–20°", "imageCount": 32 }
+        {
+          "chunk": "Half-top (~70°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "23mm – f/8",
+          "rotationalSteps": "15–20°",
+          "imageCount": 74
+        },
+        {
+          "chunk": "Front (~0°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "36mm – f/8",
+          "rotationalSteps": "15–20°",
+          "imageCount": 73
+        },
+        {
+          "chunk": "Half-bottom, focused (~10°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "18mm – f/8",
+          "rotationalSteps": "15–20°",
+          "imageCount": 32
+        }
       ],
       "processingSoftware": "Agisoft Metashape Standard 2.2.2",
       "derivedAssets": [
-        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 81535, "vertexCount": 129621, "faceCount": 259238, "filename": "CHAN-001.fbx", "format": ".fbx (packed)", "size": "180.7 MB" },
-        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 81535, "vertexCount": 129621, "faceCount": 259238, "filename": "CHAN-001_FBX_HIGH.fbx", "format": ".fbx (unpacked)", "size": "184 MB (directory)" }
+        {
+          "label": "Asset 1",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 81535,
+          "vertexCount": 129621,
+          "faceCount": 259238,
+          "filename": "CHAN-001.fbx",
+          "format": ".fbx (packed)",
+          "size": "180.7 MB"
+        },
+        {
+          "label": "Asset 2",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 81535,
+          "vertexCount": 129621,
+          "faceCount": 259238,
+          "filename": "CHAN-001_FBX_HIGH.fbx",
+          "format": ".fbx (unpacked)",
+          "size": "184 MB (directory)"
+        }
       ],
       "postProcessingNotes": "The photogrammetry processing of this model was very smooth, and uncomplicated. There were no issues during alignment, and textures were recreated correctly apart from the bottom side that is laid on the table (which was not captured) — no mesh or texture retouch was needed.",
       "experiment": false
@@ -84,7 +126,11 @@
       "The shopkeeper insisted it was a ‘ceremonial Berber artefact’, but my mother was sure that was said to every tourist passing by. Sacred object or modern souvenir, it remains a memento from the very beginning of my parents' relationship."
     ],
     "captureDate": "19 February 2026",
-    "complexity": { "object": "Medium", "surface": "Low", "material": "Medium" },
+    "complexity": {
+      "object": "Medium",
+      "surface": "Low",
+      "material": "Medium"
+    },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
@@ -107,7 +153,11 @@
       "overallDescription": "Moroccan soapstone chandelier (souvenir).",
       "recordingChallenges": "Deep holes at the top may not get recorded accordingly. Slightly reflective surface, very dark brown in some parts. Many inner corners.",
       "captureSolution": "Photogrammetry — turntable, white background",
-      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "tolerances": {
+        "accuracy": "± 1mm",
+        "resolution": "< 0.8mm",
+        "error": "< 0.8px"
+      },
       "equipment": {
         "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
         "sensorOutput": "24 megapixels (6000×4000px)",
@@ -120,14 +170,52 @@
         "gsd": "0.057 mm/px"
       },
       "acquisition": [
-        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "20mm – f/11", "rotationalSteps": "15–20°", "imageCount": 74 },
-        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "29mm – f/11", "rotationalSteps": "15–20°", "imageCount": 78 },
-        { "chunk": "Half-bottom (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "20mm – f/11", "rotationalSteps": "15–20°", "imageCount": 88 }
+        {
+          "chunk": "Half-top (~70°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "20mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 74
+        },
+        {
+          "chunk": "Front (~0°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "29mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 78
+        },
+        {
+          "chunk": "Half-bottom (~0°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "20mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 88
+        }
       ],
       "processingSoftware": "Agisoft Metashape Standard 2.2.2",
       "derivedAssets": [
-        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 72047, "vertexCount": 349316, "faceCount": 698660, "filename": "CHAN-003.fbx", "format": ".fbx (packed)", "size": "108 MB" },
-        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 72047, "vertexCount": 349316, "faceCount": 349316, "filename": "CHAN-003_FBX_HIGH.fbx", "format": ".fbx (unpacked)", "size": "114.5 MB" }
+        {
+          "label": "Asset 1",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 72047,
+          "vertexCount": 349316,
+          "faceCount": 698660,
+          "filename": "CHAN-003.fbx",
+          "format": ".fbx (packed)",
+          "size": "108 MB"
+        },
+        {
+          "label": "Asset 2",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 72047,
+          "vertexCount": 349316,
+          "faceCount": 349316,
+          "filename": "CHAN-003_FBX_HIGH.fbx",
+          "format": ".fbx (unpacked)",
+          "size": "114.5 MB"
+        }
       ],
       "postProcessingNotes": "The model is 90% correct — there are some under parts from where the birds are attached to the candle holders that weren't correctly photographed (so the software can't know what's in there), so it currently shows white parts.\n\nMay be possible to correct with some model processing (adding the texture manually) — but that will always be a flawed (not accurate) part.\n\nTexture was corrected via clone-stamping in Blender. Could say that is now 97% correct and was significantly enhanced visually.",
       "experiment": false
@@ -154,7 +242,11 @@
       "If you look at the base, you can still see traces of red ink from when it was used. Carved on the surface is a snippet of 8th-century exile poetry by Han Yu, about a song so bitter the listener's tears fall like rain — signed by the seal master Lin Gao."
     ],
     "captureDate": "19 February 2026",
-    "complexity": { "object": "Medium", "surface": "Medium", "material": "Low" },
+    "complexity": {
+      "object": "Medium",
+      "surface": "Medium",
+      "material": "Low"
+    },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
@@ -177,7 +269,11 @@
       "overallDescription": "Cylindrical shape with plenty of unique points of reference, hopefully an easy piece.",
       "recordingChallenges": "The cavities at the top may not be perfectly recorded.",
       "captureSolution": "Photogrammetry — turntable, white background",
-      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "tolerances": {
+        "accuracy": "± 1mm",
+        "resolution": "< 0.8mm",
+        "error": "< 0.8px"
+      },
       "equipment": {
         "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
         "sensorOutput": "24 megapixels (6000×4000px)",
@@ -190,14 +286,52 @@
         "gsd": "0.046 mm/px"
       },
       "acquisition": [
-        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "24mm – f/11", "rotationalSteps": "10°", "imageCount": 125 },
-        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "25mm – f/11", "rotationalSteps": "10°", "imageCount": 137 },
-        { "chunk": "Half-bottom (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "24mm – f/11", "rotationalSteps": "15°", "imageCount": 107 }
+        {
+          "chunk": "Half-top (~70°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "24mm – f/11",
+          "rotationalSteps": "10°",
+          "imageCount": 125
+        },
+        {
+          "chunk": "Front (~0°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "25mm – f/11",
+          "rotationalSteps": "10°",
+          "imageCount": 137
+        },
+        {
+          "chunk": "Half-bottom (~70°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "24mm – f/11",
+          "rotationalSteps": "15°",
+          "imageCount": 107
+        }
       ],
       "processingSoftware": "Agisoft Metashape Standard 2.2.2",
       "derivedAssets": [
-        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 383319, "vertexCount": 37081, "faceCount": 74158, "filename": "CHAN-006.fbx", "format": ".fbx (packed)", "size": "47.6 MB" },
-        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 383319, "vertexCount": 37081, "faceCount": 74158, "filename": "CHAN-006_HIGH.fbx", "format": ".fbx (unpacked)", "size": "51.7 MB" }
+        {
+          "label": "Asset 1",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 383319,
+          "vertexCount": 37081,
+          "faceCount": 74158,
+          "filename": "CHAN-006.fbx",
+          "format": ".fbx (packed)",
+          "size": "47.6 MB"
+        },
+        {
+          "label": "Asset 2",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 383319,
+          "vertexCount": 37081,
+          "faceCount": 74158,
+          "filename": "CHAN-006_HIGH.fbx",
+          "format": ".fbx (unpacked)",
+          "size": "51.7 MB"
+        }
       ],
       "postProcessingNotes": "Very smooth processing, no issues at all.\n\nThe surface of the final High quality model (PLY) is slightly rugged, as well as the top edge. Could be tad bit enhanced.",
       "experiment": false
@@ -224,7 +358,11 @@
       "It doesn't have a dramatic story behind it, but it's one of my mother's favourite travelling mementos, and one of the consistent decor pieces from our house."
     ],
     "captureDate": "19 February 2026",
-    "complexity": { "object": "Medium", "surface": "Medium", "material": "Medium" },
+    "complexity": {
+      "object": "Medium",
+      "surface": "Medium",
+      "material": "Medium"
+    },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
@@ -253,7 +391,11 @@
       "overallDescription": "Medium complexity.",
       "recordingChallenges": "It has gold paint which can cause some shine in places. Complex details in the figurines' clothing.",
       "captureSolution": "Photogrammetry — turntable, white background",
-      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "tolerances": {
+        "accuracy": "± 1mm",
+        "resolution": "< 0.8mm",
+        "error": "< 0.8px"
+      },
       "equipment": {
         "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
         "sensorOutput": "24 megapixels (6000×4000px)",
@@ -266,13 +408,45 @@
         "gsd": "0.078 mm/px"
       },
       "acquisition": [
-        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "30mm – f/11", "rotationalSteps": "20°", "imageCount": 48 },
-        { "chunk": "Front (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "24mm – f/11", "rotationalSteps": "10°", "imageCount": 87 }
+        {
+          "chunk": "Half-top (~70°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "30mm – f/11",
+          "rotationalSteps": "20°",
+          "imageCount": 48
+        },
+        {
+          "chunk": "Front (~10°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "24mm – f/11",
+          "rotationalSteps": "10°",
+          "imageCount": 87
+        }
       ],
       "processingSoftware": "Agisoft Metashape Standard 2.2.2",
       "derivedAssets": [
-        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 360850, "vertexCount": 49998, "faceCount": 100000, "filename": "CHAN-007.fbx", "format": ".fbx (packed)", "size": "71.8 MB" },
-        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 360850, "vertexCount": 49998, "faceCount": 100000, "filename": "CHAN-007_HIGH.fbx", "format": ".fbx (unpacked)", "size": "77.1 MB" }
+        {
+          "label": "Asset 1",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 360850,
+          "vertexCount": 49998,
+          "faceCount": 100000,
+          "filename": "CHAN-007.fbx",
+          "format": ".fbx (packed)",
+          "size": "71.8 MB"
+        },
+        {
+          "label": "Asset 2",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 360850,
+          "vertexCount": 49998,
+          "faceCount": 100000,
+          "filename": "CHAN-007_HIGH.fbx",
+          "format": ".fbx (unpacked)",
+          "size": "77.1 MB"
+        }
       ],
       "postProcessingNotes": "** Completed only the middle figurine: the alignment process went pretty well, especially using the front-oblique and bottom chunks, but the final model quality is unfortunately a bit \"mid.\" The biggest hurdles were the lack of close-up detail and a bunch of out-of-focus shots, which left the software struggling to reconstruct sharp edges where the arms bend and other corners. I tried focusing on the best figurine of the bunch (the middle one) to save the set, but even after cleaning up the extra \"white chunks,\" the quality isn't quite where it needs to be.\n\nI might try using this model to re-mask the original photos for a better result later, but for now, I'm calling this one done and moving on to the next subject.",
       "experiment": false
@@ -299,7 +473,11 @@
       "Getting it wasn't as simple as buying a standard souvenir — the antiques dealer seemed reluctant to let it go to a foreigner, and there was a real sense of cultural gravity around the piece that made the purchase feel particularly special."
     ],
     "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
-    "complexity": { "object": "Medium", "surface": "Medium", "material": "Low" },
+    "complexity": {
+      "object": "Medium",
+      "surface": "Medium",
+      "material": "Low"
+    },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
@@ -322,7 +500,11 @@
       "overallDescription": "Carved hematite ceremonial vessel with a self-occluding dragon-tail motif on one side.",
       "recordingChallenges": "Self-occlusion where the carved motif twists back on itself.",
       "captureSolution": "Photogrammetry — turntable, white background",
-      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "tolerances": {
+        "accuracy": "± 1mm",
+        "resolution": "< 0.8mm",
+        "error": "< 0.8px"
+      },
       "equipment": {
         "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
         "sensorOutput": "24 megapixels (6000×4000px)",
@@ -335,14 +517,52 @@
         "gsd": "0.054 mm/px"
       },
       "acquisition": [
-        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "25mm – f/11", "rotationalSteps": "20°", "imageCount": 67 },
-        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "32mm – f/11", "rotationalSteps": "15°", "imageCount": 85 },
-        { "chunk": "Half-bottom, focused (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "29mm – f/11", "rotationalSteps": "15°", "imageCount": 104 }
+        {
+          "chunk": "Half-top (~70°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "25mm – f/11",
+          "rotationalSteps": "20°",
+          "imageCount": 67
+        },
+        {
+          "chunk": "Front (~0°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "32mm – f/11",
+          "rotationalSteps": "15°",
+          "imageCount": 85
+        },
+        {
+          "chunk": "Half-bottom, focused (~10°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "29mm – f/11",
+          "rotationalSteps": "15°",
+          "imageCount": 104
+        }
       ],
       "processingSoftware": "Agisoft Metashape Standard 2.2.2",
       "derivedAssets": [
-        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 350988, "vertexCount": 200000, "faceCount": 100000, "filename": "CHAN-009.fbx", "format": ".fbx (packed)", "size": "91.5 MB" },
-        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 350988, "vertexCount": 200000, "faceCount": 100000, "filename": "CHAN-009_HIGH.fbx", "format": ".fbx (unpacked)", "size": "98.3 MB" }
+        {
+          "label": "Asset 1",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 350988,
+          "vertexCount": 200000,
+          "faceCount": 100000,
+          "filename": "CHAN-009.fbx",
+          "format": ".fbx (packed)",
+          "size": "91.5 MB"
+        },
+        {
+          "label": "Asset 2",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 350988,
+          "vertexCount": 200000,
+          "faceCount": 100000,
+          "filename": "CHAN-009_HIGH.fbx",
+          "format": ".fbx (unpacked)",
+          "size": "98.3 MB"
+        }
       ],
       "postProcessingNotes": "Processing went well, with only a minor texture hiccup on the inner twist of the dragon-tail motif, where the carving folds back on itself and self-occludes, with a very dark black tone. This was manually patched in Blender by clone-sampling from the adjacent surface.",
       "experiment": false
@@ -391,7 +611,11 @@
       "overallDescription": "Small wooden box containing twelve individually carved and painted birds.",
       "recordingChallenges": "None significant.",
       "captureSolution": "Photogrammetry — turntable, white background",
-      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "tolerances": {
+        "accuracy": "± 1mm",
+        "resolution": "< 0.8mm",
+        "error": "< 0.8px"
+      },
       "equipment": {
         "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
         "sensorOutput": "24 megapixels (6000×4000px)",
@@ -404,14 +628,52 @@
         "gsd": "0.044 mm/px"
       },
       "acquisition": [
-        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "35mm – f/11", "rotationalSteps": "10–15°", "imageCount": 111 },
-        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "41mm – f/11", "rotationalSteps": "10–15°", "imageCount": 105 },
-        { "chunk": "Half-bottom, focused (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "28mm – f/11", "rotationalSteps": "10–15°", "imageCount": 106 }
+        {
+          "chunk": "Half-top (~70°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "35mm – f/11",
+          "rotationalSteps": "10–15°",
+          "imageCount": 111
+        },
+        {
+          "chunk": "Front (~0°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "41mm – f/11",
+          "rotationalSteps": "10–15°",
+          "imageCount": 105
+        },
+        {
+          "chunk": "Half-bottom, focused (~10°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "28mm – f/11",
+          "rotationalSteps": "10–15°",
+          "imageCount": 106
+        }
       ],
       "processingSoftware": "Agisoft Metashape Standard 2.2.2",
       "derivedAssets": [
-        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 174372, "vertexCount": 390569, "faceCount": 781148, "filename": "CHAN-012.fbx", "format": ".fbx (packed)", "size": "74.3 MB" },
-        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 174372, "vertexCount": 390569, "faceCount": 781148, "filename": "CHAN-012_HIGH.fbx", "format": ".fbx (unpacked)", "size": "82.3 MB" }
+        {
+          "label": "Asset 1",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 174372,
+          "vertexCount": 390569,
+          "faceCount": 781148,
+          "filename": "CHAN-012.fbx",
+          "format": ".fbx (packed)",
+          "size": "74.3 MB"
+        },
+        {
+          "label": "Asset 2",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 174372,
+          "vertexCount": 390569,
+          "faceCount": 781148,
+          "filename": "CHAN-012_HIGH.fbx",
+          "format": ".fbx (unpacked)",
+          "size": "82.3 MB"
+        }
       ],
       "postProcessingNotes": "Very smooth processing throughout — a clean, near-perfect model with no issues to correct.",
       "experiment": false
@@ -455,7 +717,11 @@
       "overallDescription": "Small painted wood-and-card toy bus, modelled on Senegal's 'car rapide' minibuses.",
       "recordingChallenges": "None significant.",
       "captureSolution": "Photogrammetry — turntable, white background",
-      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "tolerances": {
+        "accuracy": "± 1mm",
+        "resolution": "< 0.8mm",
+        "error": "< 0.8px"
+      },
       "equipment": {
         "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
         "sensorOutput": "24 megapixels (6000×4000px)",
@@ -468,15 +734,59 @@
         "gsd": "0.051 mm/px"
       },
       "acquisition": [
-        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "27mm – f/11", "rotationalSteps": "15–20°", "imageCount": 104 },
-        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "30mm – f/11", "rotationalSteps": "15–20°", "imageCount": 89 },
-        { "chunk": "Half-bottom, focused (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "30mm – f/11", "rotationalSteps": "15–20°", "imageCount": 72 },
-        { "chunk": "Bottom / underside, focused (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "29mm – f/11", "rotationalSteps": "15–20°", "imageCount": 66 }
+        {
+          "chunk": "Half-top (~70°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "27mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 104
+        },
+        {
+          "chunk": "Front (~0°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "30mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 89
+        },
+        {
+          "chunk": "Half-bottom, focused (~10°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "30mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 72
+        },
+        {
+          "chunk": "Bottom / underside, focused (~10°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "29mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 66
+        }
       ],
       "processingSoftware": "Agisoft Metashape Standard 2.2.2, cross-checked against HeritageScan",
       "derivedAssets": [
-        { "label": "Asset 1 (Metashape, archived — with wheel cut-outs)", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 235617, "vertexCount": 577073, "faceCount": 1152476, "filename": "CHAN-013.fbx", "format": ".fbx (packed)", "size": "138.4 MB" },
-        { "label": "Asset 2 (Metashape, archived, unpacked)", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 235617, "vertexCount": 577073, "faceCount": 1152476, "filename": "CHAN-013_HIGH.fbx", "format": ".fbx (unpacked)", "size": "146.5 MB" }
+        {
+          "label": "Asset 1 (Metashape, archived — with wheel cut-outs)",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 235617,
+          "vertexCount": 577073,
+          "faceCount": 1152476,
+          "filename": "CHAN-013.fbx",
+          "format": ".fbx (packed)",
+          "size": "138.4 MB"
+        },
+        {
+          "label": "Asset 2 (Metashape, archived, unpacked)",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 235617,
+          "vertexCount": 577073,
+          "faceCount": 1152476,
+          "filename": "CHAN-013_HIGH.fbx",
+          "format": ".fbx (unpacked)",
+          "size": "146.5 MB"
+        }
       ],
       "postProcessingNotes": "Metashape produced two good versions — one with the wheel-hole details, one without. HeritageScan's result was even cleaner than Metashape's particularly around the wheels' edges, though it lost the wheel-hole in the process (having a black cover instead of a hole).\n\nBoth HeritageScan's and Metashape's models had issues with the bottom's textures, slightly smooshed in some areas — left uncorrected to avoid faking the textures.\n\nThe HeritageScan version without wheel holes was kept as the final PUBLIC model due to its smaller size — the Metashape one was way too large for Sketchfab (>100MB). The bigger ones, with wheel holes, were kept for archiving due to being more geometrically accurate.",
       "experiment": false
@@ -493,7 +803,7 @@
     "measurements": "Height 14.6cm, width 6.3cm, depth 0.8cm",
     "weight": "113g",
     "condition": "Good",
-    "integrity": "Possibly a later reproduction - both faces are riveted rather than cast in one piece",
+    "integrity": "Original - as bought, likely not modified. Both sides match and look untampered with",
     "chronology": "Approx. 1990s",
     "locationId": "spain",
     "periodId": "1990s",
@@ -503,7 +813,11 @@
       "The original relic was stolen in 1934 and never recovered; the version now venerated there was reassembled after the Spanish Civil War from fragments gifted by the Vatican. My father bought this smaller reproduction from an antiques dealer, probably in the 1990s, as a nod to that family connection."
     ],
     "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
-    "complexity": { "object": "Medium", "surface": "Medium", "material": "Medium" },
+    "complexity": {
+      "object": "Medium",
+      "surface": "Medium",
+      "material": "Medium"
+    },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
@@ -526,7 +840,11 @@
       "overallDescription": "Brass double-armed patriarchal cross with velvet backing, carrying the traditional Caravaca iconography on both faces.",
       "recordingChallenges": "Fine relief detail on both faces of the cross. Made out of brass, so quite reflective.",
       "captureSolution": "Photogrammetry — turntable, white background",
-      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "tolerances": {
+        "accuracy": "± 1mm",
+        "resolution": "< 0.8mm",
+        "error": "< 0.8px"
+      },
       "equipment": {
         "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
         "sensorOutput": "24 megapixels (6000×4000px)",
@@ -539,14 +857,52 @@
         "gsd": "0.048 mm/px"
       },
       "acquisition": [
-        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "27mm – f/11", "rotationalSteps": "15–20°", "imageCount": 96 },
-        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "40mm – f/11", "rotationalSteps": "15–20°", "imageCount": 109 },
-        { "chunk": "Close-up, focused (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "27mm – f/11", "rotationalSteps": "15–20°", "imageCount": 80 }
+        {
+          "chunk": "Half-top (~70°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "27mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 96
+        },
+        {
+          "chunk": "Front (~0°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "40mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 109
+        },
+        {
+          "chunk": "Close-up, focused (~0°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "27mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 80
+        }
       ],
       "processingSoftware": "Agisoft Metashape Standard 2.2.2",
       "derivedAssets": [
-        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 183234, "vertexCount": 83532, "faceCount": 167076, "filename": "CHAN-014.fbx", "format": ".fbx (packed)", "size": "74.8 MB" },
-        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 183234, "vertexCount": 83532, "faceCount": 167076, "filename": "CHAN-014_HIGH.fbx", "format": ".fbx (unpacked)", "size": "74.6 MB" }
+        {
+          "label": "Asset 1",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 183234,
+          "vertexCount": 83532,
+          "faceCount": 167076,
+          "filename": "CHAN-014.fbx",
+          "format": ".fbx (packed)",
+          "size": "74.8 MB"
+        },
+        {
+          "label": "Asset 2",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 183234,
+          "vertexCount": 83532,
+          "faceCount": 167076,
+          "filename": "CHAN-014_HIGH.fbx",
+          "format": ".fbx (unpacked)",
+          "size": "74.6 MB"
+        }
       ],
       "postProcessingNotes": "A last-minute processing run saved the successful completion of this object. Mostly achieved by optimising photogrammetry alignment parameters (adjusting key- and tie-point limits) and using a hybrid mix of masked and unmasked photographs to correct automated segmentation errors. With the standard point-cloud cleanup and reprojection adjustments, the resulting geometry and texture fidelity were significantly improved over previous failed attempts.\n\nMinor visual artefacts remain along the object's edges due to background light bleed and sub-optimal, non-polarised illumination during capture. To approximate physical material properties, a non-empirical roughness map was manually painted using photo references to isolate the reflective metallic surfaces from the matte interior fabric. While lower in overall resolution compared to top-tier captures in the dataset, the final model meets acceptable standards for retention.",
       "experiment": true
@@ -573,7 +929,11 @@
       "My mother is an avid egg collector, but usually of the regular-sized kind — making this her especially cute miniature collection."
     ],
     "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
-    "complexity": { "object": "Medium", "surface": "High", "material": "Medium" },
+    "complexity": {
+      "object": "Medium",
+      "surface": "High",
+      "material": "Medium"
+    },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
@@ -597,7 +957,11 @@
       "overallDescription": "Boxed collection of 20 miniature stone eggs, each a different named mineral: 1) Aventurine. 2) Brown opaline. 3) Pale lepidolite. 4) Wood stone. 5) Dolomite. 6) Granite. 7) Felspar. 8) Calcrete. 9) Leopard rock. 10) Spider jasper. 11) Butter chete. 12) Dark lepidolite. 13) Rose quartz. 14) Green unakite. 15) Asbestos. 16) Cream dolomite. 17) Opal stone. 18) White opaline. 19) Winter jasper. 20) Soap stone.",
       "recordingChallenges": "Naturally shiny stone surfaces; no cross-polarisation used.",
       "captureSolution": "Photogrammetry — turntable, white background",
-      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "tolerances": {
+        "accuracy": "± 1mm",
+        "resolution": "< 0.8mm",
+        "error": "< 0.8px"
+      },
       "equipment": {
         "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
         "sensorOutput": "24 megapixels (6000×4000px)",
@@ -610,13 +974,45 @@
         "gsd": "0.048 mm/px"
       },
       "acquisition": [
-        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "30mm – f/8", "rotationalSteps": "15–20°", "imageCount": 90 },
-        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "42mm – f/8", "rotationalSteps": "15–20°", "imageCount": 90 }
+        {
+          "chunk": "Half-top (~70°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "30mm – f/8",
+          "rotationalSteps": "15–20°",
+          "imageCount": 90
+        },
+        {
+          "chunk": "Front (~0°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "42mm – f/8",
+          "rotationalSteps": "15–20°",
+          "imageCount": 90
+        }
       ],
       "processingSoftware": "Agisoft Metashape Standard 2.2.2",
       "derivedAssets": [
-        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 83090, "vertexCount": 125798, "faceCount": 251548, "filename": "CHAN-016.fbx", "format": ".fbx (packed)", "size": "56 MB" },
-        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 83090, "vertexCount": 125798, "faceCount": 251548, "filename": "CHAN-016_HIGH.fbx", "format": ".fbx (unpacked)", "size": "62.9 MB" }
+        {
+          "label": "Asset 1",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 83090,
+          "vertexCount": 125798,
+          "faceCount": 251548,
+          "filename": "CHAN-016.fbx",
+          "format": ".fbx (packed)",
+          "size": "56 MB"
+        },
+        {
+          "label": "Asset 2",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 83090,
+          "vertexCount": 125798,
+          "faceCount": 251548,
+          "filename": "CHAN-016_HIGH.fbx",
+          "format": ".fbx (unpacked)",
+          "size": "62.9 MB"
+        }
       ],
       "postProcessingNotes": "Metashape's reconstruction of the stone surfaces came out uneven and slightly bumpy — a direct result of not using cross-polarisation on this naturally shiny material. The geometry was manually smoothed in Blender, and the roughness map across all 20 stone types was hand-reconstructed from memory and reference photographs rather than measured — an interpretation, not an empirical capture, and flagged as such.",
       "experiment": false
@@ -643,7 +1039,11 @@
       "If it really is an ancient fragment, we believe it's likely Roman, given how close Meco beach is to the ruins of Baelo Claudia — a town that thrived from the late 2nd century BC until an earthquake triggered its decline in the 2nd century AD. If so, though, the original statue would have been unusually large even for a major Roman monument. Genuine artefact or a natural trick, it was my very first ‘archaeological find’ — and looking back, possibly the spark that led to my career in cultural heritage."
     ],
     "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
-    "complexity": { "object": "Medium", "surface": "Medium", "material": "Low" },
+    "complexity": {
+      "object": "Medium",
+      "surface": "Medium",
+      "material": "Low"
+    },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
@@ -660,7 +1060,11 @@
       "overallDescription": "Large, heavy stone fragment resembling a foot, of uncertain origin.",
       "recordingChallenges": "Large size and weight.",
       "captureSolution": "Photogrammetry — turntable, white background",
-      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "tolerances": {
+        "accuracy": "± 1mm",
+        "resolution": "< 0.8mm",
+        "error": "< 0.8px"
+      },
       "equipment": {
         "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
         "sensorOutput": "24 megapixels (6000×4000px)",
@@ -673,13 +1077,45 @@
         "gsd": "0.067 mm/px"
       },
       "acquisition": [
-        { "chunk": "Top (~45°)", "exposureMode": "Aperture priority", "opticsFocus": "32mm – f/11", "rotationalSteps": "15–20°", "imageCount": 47 },
-        { "chunk": "Bottom (~45°)", "exposureMode": "Aperture priority", "opticsFocus": "25mm – f/11", "rotationalSteps": "15–20°", "imageCount": 82 }
+        {
+          "chunk": "Top (~45°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "32mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 47
+        },
+        {
+          "chunk": "Bottom (~45°)",
+          "exposureMode": "Aperture priority",
+          "opticsFocus": "25mm – f/11",
+          "rotationalSteps": "15–20°",
+          "imageCount": 82
+        }
       ],
       "processingSoftware": "Agisoft Metashape Standard 2.2.2",
       "derivedAssets": [
-        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 210851, "vertexCount": 122487, "faceCount": 244966, "filename": "CHAN-017.fbx", "format": ".fbx (packed)", "size": "73.3 MB" },
-        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 210851, "vertexCount": 122487, "faceCount": 244966, "filename": "CHAN-017_HIGH.fbx", "format": ".fbx (unpacked)", "size": "81.3 MB" }
+        {
+          "label": "Asset 1",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 210851,
+          "vertexCount": 122487,
+          "faceCount": 244966,
+          "filename": "CHAN-017.fbx",
+          "format": ".fbx (packed)",
+          "size": "73.3 MB"
+        },
+        {
+          "label": "Asset 2",
+          "meshResolution": "High-poly, raw",
+          "alignmentQuality": "High",
+          "tiePointCount": 210851,
+          "vertexCount": 122487,
+          "faceCount": 244966,
+          "filename": "CHAN-017_HIGH.fbx",
+          "format": ".fbx (unpacked)",
+          "size": "81.3 MB"
+        }
       ],
       "postProcessingNotes": "Processing went smoothly and produced a clean model with Metashape. HeritageScan, unexpectedly, produced an incorrectly aligned result on this one despite the object's relatively simple geometry — no clear cause identified.",
       "experiment": false

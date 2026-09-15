@@ -350,6 +350,9 @@ function fullRecordHTML(obj) {
       <div class="record-row"><dt>Digitisation campaign</dt><dd>${obj.campaign.label}</dd></div>
     </dl>
 
+    <p class="record-section-label">Post-processing lab notes</p>
+    ${storyHTML(r.postProcessingNotes.split('\n\n'))}
+
     <p class="record-section-label">Capture tolerances &amp; equipment</p>
     <dl>
       <div class="record-row"><dt>Capture solution</dt><dd>${r.captureSolution}</dd></div>
@@ -387,17 +390,14 @@ function fullRecordHTML(obj) {
         </thead>
         <tbody>${assetRows}</tbody>
       </table>
-    </div>
-
-    <p class="record-section-label">Post-processing lab notes</p>
-    ${storyHTML(r.postProcessingNotes.split('\n\n'))}`;
+    </div>`;
 }
 
 function buildObjectPage(obj, template) {
   const materialsNote = materialsNoteHTML(obj);
 
   return fill(template, {
-    SITE_NAV: siteNavHTML('../', 'collection', { withHome: true }),
+    HERO: heroHTML('../', 'collection'),
     TITLE: obj.title,
     ID: obj.id,
     TYPE: obj.type,
@@ -451,7 +451,6 @@ function buildObjectsDataJSON(objects) {
     condition: obj.condition,
     integrity: obj.integrity,
     digitisedIn: `${obj.campaign.label} - ${obj.campaign.digitisedDate}`,
-    captureDate: obj.captureDate,
     complexity: complexityValue(obj.complexity, 'object'),
     complexitySurface: complexityValue(obj.complexity, 'surface'),
     complexityMaterial: complexityValue(obj.complexity, 'material'),

@@ -792,7 +792,6 @@ function initObjectModal() {
     modal.querySelector('#modal-chronology').textContent = obj.chronology;
     modal.querySelector('#modal-geography').textContent = obj.geography;
     modal.querySelector('#modal-digitised-in').textContent = obj.digitisedIn;
-    modal.querySelector('#modal-captured').textContent = obj.captureDate;
     modal.querySelector('#modal-complexity').textContent = obj.complexity;
     modal.querySelector('#modal-complexity-surface').textContent = obj.complexitySurface;
     modal.querySelector('#modal-complexity-material').textContent = obj.complexityMaterial;
