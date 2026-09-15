@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initExpandableFigures();
   initCollectionFilters();
   initObjectModal();
+  initObjectBackLink();
   initViewerLoading();
   initLandingBackgroundVideo();
 });
@@ -619,6 +620,24 @@ function initExpandableFigures() {
   });
 }
 
+/* ---------- Object page: restore the filtered collection on "back" ----------
+ * The back-link's static href is just "../collection.html" (a correct,
+ * always-working fallback). If we arrived here from a filtered collection
+ * page, document.referrer carries that exact URL (query string included) —
+ * use it instead so filters survive the round trip. */
+
+function initObjectBackLink() {
+  const backLink = document.querySelector('.back-link');
+  if (!backLink) return;
+  const ref = document.referrer;
+  if (!ref) return;
+  let refURL;
+  try { refURL = new URL(ref); } catch { return; }
+  if (refURL.origin !== location.origin) return;
+  if (!refURL.pathname.endsWith('/collection.html')) return;
+  backLink.href = refURL.pathname + refURL.search;
+}
+
 /* ---------- Collection page: dropdown filters ---------- */
 
 function initCollectionFilters() {
@@ -721,6 +740,36 @@ function initCollectionFilters() {
       if (matches) visibleCount += 1;
     });
     if (emptyState) emptyState.hidden = visibleCount !== 0;
+    syncFiltersToURL();
+  }
+
+  // Reflect the settled selections in the URL (non-'all' values only, so
+  // Reset naturally collapses back to a bare collection.html). Uses
+  // replaceState — filter changes shouldn't create history entries — and
+  // carries the current history.state/hash through untouched so this never
+  // fights with the object-modal's own pushState/hash handling.
+  function syncFiltersToURL() {
+    const params = new URLSearchParams();
+    selects.forEach((select) => {
+      if (select.value !== 'all') params.set(select.dataset.filter, select.value);
+    });
+    const qs = params.toString();
+    const newURL = location.pathname + (qs ? `?${qs}` : '') + location.hash;
+    history.replaceState(history.state, '', newURL);
+  }
+
+  // Pre-apply filters from a shared/bookmarked/back-navigated URL. Ignores
+  // any param whose value isn't a real option for that select, so a stale
+  // or hand-edited URL degrades to 'all' instead of matching nothing.
+  function restoreFiltersFromURL() {
+    const params = new URLSearchParams(location.search);
+    selects.forEach((select) => {
+      const key = select.dataset.filter;
+      if (!params.has(key)) return;
+      const value = params.get(key);
+      const validValues = fullOptions.get(select).map((o) => o.value);
+      if (validValues.includes(value)) select.value = value;
+    });
   }
 
   function update() {
@@ -737,6 +786,7 @@ function initCollectionFilters() {
     });
   }
 
+  restoreFiltersFromURL();
   update();
 }
 
