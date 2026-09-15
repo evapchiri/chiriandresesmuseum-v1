@@ -2291,14 +2291,20 @@ figure[data-expandable] img {
 
 /* ---------- Object page ---------- */
 
-.object-header {
-  padding: 24px 0 22px;
+.object-header-nav {
+  padding: 50px 0;
   border-bottom: 1px solid var(--rule);
+  text-align: center;
 }
 
 .object-header .site-nav {
   justify-content: flex-start;
-  margin-top: 18px;
+  margin-top: 0;
+}
+
+.object-header-body {
+  padding: 20px 0 22px;
+  border-bottom: 1px solid var(--rule);
 }
 
 .back-link {
@@ -2339,7 +2345,12 @@ figure[data-expandable] img {
   }
 }
 
-.viewer-wrap {
+/* Sticky positioning only makes sense where .viewer-wrap sits beside a
+ * scrollable sidebar in a two-column .object-body grid (the Collection
+ * modal). The standalone object page is single-column (viewer, then story,
+ * then the full-width Full record below) so its .viewer-wrap just flows
+ * normally — see .modal-panel .viewer-wrap below for the modal's own rule. */
+.object-body .viewer-wrap {
   position: sticky;
   top: 24px;
 }
@@ -2347,7 +2358,7 @@ figure[data-expandable] img {
 /* Sticky viewer is a medium-and-up affordance only; on small screens it
    just sits in the normal flow above the field record. */
 @media (max-width: 600px) {
-  .viewer-wrap {
+  .object-body .viewer-wrap {
     position: static;
   }
 }
@@ -2358,6 +2369,17 @@ figure[data-expandable] img {
   aspect-ratio: 4 / 3;
   border: 1px solid var(--rule);
   background: var(--paper-raised);
+}
+
+/* On the standalone object page (.viewer-wrap is a direct child of the page's
+ * <main class="wrap"> — the modal has its own .object-body wrapper instead),
+ * the viewer is capped to a modest, centered size rather than stretching to
+ * the full content width now that there's no sidebar beside it to share that
+ * width with. The story text underneath stays full-width — see .story below. */
+main.wrap > .viewer-wrap .viewer-frame,
+main.wrap > .viewer-wrap .viewer-caption {
+  max-width: 640px;
+  margin-inline: auto;
 }
 .viewer-frame iframe {
   width: 100%;
@@ -2406,6 +2428,13 @@ figure[data-expandable] img {
 .story p {
   margin: 0 0 1em;
   max-width: 62ch;
+}
+
+/* The standalone object page's story runs full-width (matching the page's
+ * body margins) now that it's not sharing a column with a viewer beside it —
+ * the 62ch cap above stays as the default for the modal's narrower column. */
+main.wrap > .viewer-wrap .story p {
+  max-width: none;
 }
 
 /* Field Record docket — the signature element */
@@ -2517,6 +2546,74 @@ figure[data-expandable] img {
   display: block;
   margin-top: 20px;
   font-size: 0.86rem;
+}
+
+/* Full record — a full-width, always-expanded section below .object-body
+ * (not nested in the narrow field-record aside, and not a collapsed
+ * <details> — see the object page layout). Reuses the same visual language
+ * as .field-record (border, brass section labels, .record-row/.stamp), sized
+ * to match the same compact density the Collection modal already uses for
+ * this content (.modal-panel .field-record .record-row etc.) rather than
+ * the roomier sizing that only worked when this content sat in a narrow
+ * sidebar — a full page of it at that scale read as oversized. */
+.record-full-page {
+  --stage-accent: var(--brass);
+  margin: 10px 0 40px;
+  padding: 16px 20px 20px;
+  border: 1px solid var(--rule);
+  background: var(--paper-raised);
+  font-size: 0.78rem;
+}
+.record-full-title {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass);
+  border-bottom: 1px dashed var(--rule);
+  padding-bottom: 8px;
+  margin: 0 0 10px;
+}
+.record-full-page .record-section-label {
+  margin: 14px 0 6px;
+  font-size: 0.72rem;
+}
+.record-full-page .record-section-label:first-of-type {
+  margin-top: 0;
+}
+.record-full-page dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 24px;
+}
+.record-full-page .record-row {
+  grid-template-columns: 120px 1fr;
+  font-size: 0.78rem;
+  padding: 3px 0;
+}
+.record-full-page .provenance-item {
+  padding: 5px 0;
+  font-size: 0.78rem;
+}
+.record-full-page .methodology-link {
+  font-size: 0.78rem;
+  margin-top: 12px;
+}
+.record-full-page .stage-table {
+  font-size: 0.76rem;
+}
+.record-full-page .stage-table th,
+.record-full-page .stage-table td {
+  padding: 6px 10px;
+}
+@media (max-width: 700px) {
+  .record-full-page dl {
+    grid-template-columns: 1fr;
+  }
+  .record-full-page {
+    padding: 16px 16px 18px;
+  }
 }
 
 /* ---------- Object detail modal (Collection page) ---------- */

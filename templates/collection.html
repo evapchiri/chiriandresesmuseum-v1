@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Collection — Chiriandreses Museum</title>
-<meta name="description" content="Nine 3D-digitised family heirlooms — filter by acquisition year, country, continent, ID, or object name.">
+<meta name="description" content="Ten 3D-digitised family heirlooms — filter by acquisition year, country, continent, ID, or object name.">
 <link rel="stylesheet" href="assets/styles.css">
 {{THEME_INIT}}
 </head>
@@ -15,7 +15,7 @@
 {{HERO}}
 
 <main class="wrap collection-main">
-  <p class="page-intro">Currently there are nine 3D objects for you to explore: their story, and the decisions behind their photography and processing journeys. Check them all, or filter by what tickles your interest!</p>
+  <p class="page-intro">Currently there are ten 3D objects for you to explore: their story, and the decisions behind their photography and processing journeys. Check them all, or filter by what tickles your interest!</p>
 
   <form class="filter-bar" aria-label="Filter the collection">
     <div class="filter-field">
@@ -92,22 +92,28 @@
 
           <dl>
             <div class="record-row"><dt>Type</dt><dd id="modal-type"></dd></div>
+            <div class="record-row"><dt>Use</dt><dd id="modal-use"></dd></div>
             <div class="record-row"><dt>Materials</dt><dd id="modal-materials"></dd></div>
             <div class="record-row"><dt>Measurements</dt><dd id="modal-measurements"></dd></div>
             <div class="record-row"><dt>Weight</dt><dd id="modal-weight"></dd></div>
+            <div class="record-row"><dt>Condition</dt><dd id="modal-condition"></dd></div>
+            <div class="record-row"><dt>Integrity</dt><dd id="modal-integrity"></dd></div>
             <div class="record-row"><dt>Chronology</dt><dd id="modal-chronology"></dd></div>
             <div class="record-row"><dt>Geography</dt><dd id="modal-geography"></dd></div>
           </dl>
 
-          <p class="record-section-label">How this was made</p>
+          <p class="record-section-label">Photogrammetry processing</p>
           <dl>
+            <div class="record-row"><dt>Digitised in</dt><dd id="modal-digitised-in"></dd></div>
             <div class="record-row"><dt>Captured</dt><dd id="modal-captured"></dd></div>
             <div class="record-row"><dt>Complexity</dt><dd id="modal-complexity"></dd></div>
-            <div class="record-row"><dt>Route</dt><dd id="modal-route"></dd></div>
+            <div class="record-row"><dt>Surface</dt><dd id="modal-complexity-surface"></dd></div>
+            <div class="record-row"><dt>Material</dt><dd id="modal-complexity-material"></dd></div>
+            <div class="record-row"><dt>Geometric data</dt><dd id="modal-geometric-data"></dd></div>
             <div class="record-row"><dt>Software</dt><dd id="modal-software"></dd></div>
           </dl>
 
-          <p class="record-section-label">Material property provenance</p>
+          <p class="record-section-label">Field provenance</p>
           <div id="modal-provenance"></div>
 
           <a class="methodology-link" id="modal-full-link" href="">View this object's own page &rarr;</a>

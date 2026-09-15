@@ -4,23 +4,23 @@
     "sketchfabUid": "feed8bbe68e442279524be33a7ab8d28",
     "slug": "koutoubia-replica",
     "title": "Marrakech's Koutoubia replica souvenir",
-    "type": "Souvenir, architectural replica",
-    "materials": "Limestone (soapstone/steatite), hand-carved",
-    "measurements": "Height 335mm, base 62×55mm",
+    "type": "Travel memento",
+    "use": "Decorative",
+    "materials": "Limestone, hand-carved",
+    "measurements": "Height 33.5cm, base 6.2×5.5cm, middle section approx. 4.5×4.5cm",
     "weight": "1,216g",
-    "chronology": "1990s (acquired August 1990)",
-    "geography": "Morocco, Marrakech",
+    "condition": "Good, no damage",
+    "integrity": "Original - no modifications",
+    "chronology": "1990",
+    "locationId": "morocco",
+    "periodId": "1990s",
+    "campaignId": "cm-d001",
     "story": [
       "Architectural replica of the Koutoubia minaret in Marrakech, a 12th-century Almohad landmark known as the ‘sister’ to the Giralda in Seville. It carries particular sentimental value for my family — my mother bought two of these in the summer of 1990: one for herself, and one as a gift for a man she had recently met in Seville, who would later become her husband, my father.",
       "At the time she was living in Madrid, and hoped this replica would serve as a persistent reminder of her every time he looked at it. A classic move, and a memento of her persistence."
     ],
     "captureDate": "18 February 2026",
-    "complexity": {
-      "object": "Low",
-      "surface": "Low",
-      "material": "Low"
-    },
-    "route": "Standard Metashape",
+    "complexity": { "object": "Low", "surface": "Low", "material": "Low" },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
@@ -29,38 +29,69 @@
         "note": "Direct Metashape output. No manual PBR intervention or geometry repair required."
       }
     ],
-    "country": "Morocco",
-    "continent": "Africa",
-    "decade": "1990s"
+    "fullRecord": {
+      "initialReview": "It's a souvenir, so it's really well preserved.",
+      "conditionDetail": "Very good, no damages or missing parts",
+      "obstructions": "None",
+      "physicalChallenges": "None",
+      "overallDescription": "Souvenir limestone replica of Marrakech's Koutoubia.",
+      "recordingChallenges": "The surface can be slightly reflective.",
+      "captureSolution": "Photogrammetry — turntable, white background",
+      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "equipment": {
+        "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
+        "sensorOutput": "24 megapixels (6000×4000px)",
+        "lighting": "2× NEEWER portable lights, dimmable 5600K 1000LM, with the kit's white filter",
+        "colourProfile": "sRGB IEC61966-2.1",
+        "colourTarget": "None",
+        "scaleType": "Homemade, accurate to ±1mm",
+        "scaleLength": "20mm",
+        "pixelCount": 368.7,
+        "gsd": "0.054 mm/px"
+      },
+      "acquisition": [
+        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "23mm – f/8", "rotationalSteps": "15–20°", "imageCount": 74 },
+        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "36mm – f/8", "rotationalSteps": "15–20°", "imageCount": 73 },
+        { "chunk": "Half-bottom, focused (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "18mm – f/8", "rotationalSteps": "15–20°", "imageCount": 32 }
+      ],
+      "processingSoftware": "Agisoft Metashape Standard 2.2.2",
+      "derivedAssets": [
+        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 81535, "vertexCount": 129621, "faceCount": 259238, "filename": "CHAN-001.fbx", "format": ".fbx (packed)", "size": "180.7 MB" },
+        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 81535, "vertexCount": 129621, "faceCount": 259238, "filename": "CHAN-001_FBX_HIGH.fbx", "format": ".fbx (unpacked)", "size": "184 MB (directory)" }
+      ],
+      "postProcessingNotes": "The photogrammetry processing of this model was very smooth, and uncomplicated. There were no issues during alignment, and textures were recreated correctly apart from the bottom side that is laid on the table (which was not captured) — no mesh or texture retouch was needed.",
+      "experiment": false
+    }
   },
   {
     "id": "CHAN-003",
     "sketchfabUid": "e628ad5a3d8e43d1bdb2615674615a2b",
     "slug": "berber-candlestick",
     "title": "Berber candlestick",
-    "type": "Souvenir, ceremonial-style candlestick with bird motifs",
-    "materials": "Soapstone (steatite), hand-carved",
-    "measurements": "Height 220mm, width 170mm, depth 32mm",
+    "type": "Travel memento",
+    "use": "Decorative",
+    "materials": "Soapstone (steatite)",
+    "measurements": "Height 22cm, width 17cm, depth 3.2cm",
     "weight": "909g",
+    "condition": "Good",
+    "integrity": "Original - no modifications",
     "chronology": "1991",
-    "geography": "Morocco, Rabat",
+    "locationId": "morocco",
+    "periodId": "1990s",
+    "campaignId": "cm-d001",
     "story": [
       "A souvenir purchased by my parents on their first ever trip together as a couple, in the Medina of Rabat. This traditional steatite carving, normally associated with the Berber culture of the Anti-Atlas, was historically favoured because soapstone is exceptionally heat-resistant — an ideal medium for lighting objects like this one.",
       "The shopkeeper insisted it was a ‘ceremonial Berber artefact’, but my mother was sure that was said to every tourist passing by. Sacred object or modern souvenir, it remains a memento from the very beginning of my parents' relationship."
     ],
     "captureDate": "19 February 2026",
-    "complexity": {
-      "object": "Medium",
-      "surface": "Low",
-      "material": "Medium"
-    },
-    "route": "Standard Metashape",
+    "complexity": { "object": "Medium", "surface": "Low", "material": "Medium" },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
         "property": "Albedo / diffuse",
         "status": "estimated",
-        "note": "A small area under the bird attachment points was clone-sampled by hand in Blender, where source image coverage was incomplete. Visually consistent, not independently verified against the object."
+        "note": "A small area under the bird attachment points was clone-sampled by hand in Blender, where source image coverage was incomplete. Visually consistent, not independently verified against the object.",
+        "chip": "Patched"
       },
       {
         "property": "Roughness / metallic",
@@ -68,78 +99,145 @@
         "note": "Not created for this object."
       }
     ],
-    "country": "Morocco",
-    "continent": "Africa",
-    "decade": "1990s"
+    "fullRecord": {
+      "initialReview": "It's a souvenir, so it's in good condition.",
+      "conditionDetail": "Perfect, as new.",
+      "obstructions": "None",
+      "physicalChallenges": "None",
+      "overallDescription": "Moroccan soapstone chandelier (souvenir).",
+      "recordingChallenges": "Deep holes at the top may not get recorded accordingly. Slightly reflective surface, very dark brown in some parts. Many inner corners.",
+      "captureSolution": "Photogrammetry — turntable, white background",
+      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "equipment": {
+        "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
+        "sensorOutput": "24 megapixels (6000×4000px)",
+        "lighting": "2× NEEWER portable lights, dimmable 5600K 1000LM, with the kit's white filter",
+        "colourProfile": "sRGB IEC61966-2.1",
+        "colourTarget": "None",
+        "scaleType": "Homemade, accurate to ±1mm",
+        "scaleLength": "100mm",
+        "pixelCount": 1745.0,
+        "gsd": "0.057 mm/px"
+      },
+      "acquisition": [
+        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "20mm – f/11", "rotationalSteps": "15–20°", "imageCount": 74 },
+        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "29mm – f/11", "rotationalSteps": "15–20°", "imageCount": 78 },
+        { "chunk": "Half-bottom (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "20mm – f/11", "rotationalSteps": "15–20°", "imageCount": 88 }
+      ],
+      "processingSoftware": "Agisoft Metashape Standard 2.2.2",
+      "derivedAssets": [
+        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 72047, "vertexCount": 349316, "faceCount": 698660, "filename": "CHAN-003.fbx", "format": ".fbx (packed)", "size": "108 MB" },
+        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 72047, "vertexCount": 349316, "faceCount": 349316, "filename": "CHAN-003_FBX_HIGH.fbx", "format": ".fbx (unpacked)", "size": "114.5 MB" }
+      ],
+      "postProcessingNotes": "The model is 90% correct — there are some under parts from where the birds are attached to the candle holders that weren't correctly photographed (so the software can't know what's in there), so it currently shows white parts.\n\nMay be possible to correct with some model processing (adding the texture manually) — but that will always be a flawed (not accurate) part.\n\nTexture was corrected via clone-stamping in Blender. Could say that is now 97% correct and was significantly enhanced visually.",
+      "experiment": false
+    }
   },
   {
     "id": "CHAN-006",
     "sketchfabUid": "36d3e33e97c248fb8c366dd477356738",
     "slug": "chinese-personal-seal",
     "title": "Chinese personal seal",
-    "type": "Personal seal / stamp",
-    "materials": "Probably a soft stone, likely serpentine (‘modern jade’)",
-    "materialsNote": "The public narrative below uses the more specific attribution of Shoushan stone. The two accounts — and the two proposed dates — haven't been reconciled; this row states the more cautious version for a technical audience.",
-    "measurements": "Height 150mm, diameter 50mm",
+    "type": "Travel memento",
+    "use": "Personal seal",
+    "materials": "Serpentine stone ('modern jade')",
+    "measurements": "Height 15cm, diameter 5cm",
     "weight": "853g",
-    "chronology": "Family record: unknown, probably 20th century. Public narrative: c. 19th century",
-    "geography": "China, acquired at Hong Kong's Jade Street Market, 1989",
+    "condition": "Good - shows genuine wear, with traces of ink still visible on the carved base",
+    "integrity": "Original - no modifications",
+    "chronology": "1989",
+    "locationId": "hong-kong",
+    "periodId": "1980s",
+    "campaignId": "cm-d001",
     "story": [
       "A heavy, ink-stained piece of Chinese history my father got from a version of Hong Kong that doesn't really exist anymore, bought at a stall in the Jade Street Market while the city was buzzing for its founding anniversary. It was part of a ‘jade haul’ that also included the rhyton (CHAN-009) in this collection.",
       "If you look at the base, you can still see traces of red ink from when it was used. Carved on the surface is a snippet of 8th-century exile poetry by Han Yu, about a song so bitter the listener's tears fall like rain — signed by the seal master Lin Gao."
     ],
     "captureDate": "19 February 2026",
-    "complexity": {
-      "object": "Medium",
-      "surface": "Medium",
-      "material": "Low"
-    },
-    "route": "Standard Metashape",
+    "complexity": { "object": "Medium", "surface": "Medium", "material": "Low" },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
         "property": "Overall model",
         "status": "measured",
-        "note": "Clean processing, no manual PBR intervention required. Known limitation: the top edge is slightly rugged compared to the physical object."
+        "note": "Clean processing, no manual geometry repair required. Known limitation: the top edge is slightly rugged compared to the physical object."
+      },
+      {
+        "property": "Roughness / metallic",
+        "status": "estimated",
+        "note": "Roughness and IOR levels tweaked by hand in Blender to match the object's genuine smooth shine, which is part of the material's quality — not derived empirically.",
+        "chip": "Recreated"
       }
     ],
-    "country": "China / Hong Kong",
-    "continent": "Asia",
-    "decade": "1980s"
+    "fullRecord": {
+      "initialReview": "Very good condition with a fair, 'simple' shape.",
+      "conditionDetail": "Very good",
+      "obstructions": "None",
+      "physicalChallenges": "The surface has some shine on it that could hinder the reconstruction, but it's very scattered so hopefully not too much.",
+      "overallDescription": "Cylindrical shape with plenty of unique points of reference, hopefully an easy piece.",
+      "recordingChallenges": "The cavities at the top may not be perfectly recorded.",
+      "captureSolution": "Photogrammetry — turntable, white background",
+      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "equipment": {
+        "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
+        "sensorOutput": "24 megapixels (6000×4000px)",
+        "lighting": "2× NEEWER portable lights, dimmable 5600K 1000LM, with the kit's white filter",
+        "colourProfile": "sRGB IEC61966-2.1",
+        "colourTarget": "None",
+        "scaleType": "Homemade, accurate to ±1mm",
+        "scaleLength": "50mm",
+        "pixelCount": 1080.0,
+        "gsd": "0.046 mm/px"
+      },
+      "acquisition": [
+        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "24mm – f/11", "rotationalSteps": "10°", "imageCount": 125 },
+        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "25mm – f/11", "rotationalSteps": "10°", "imageCount": 137 },
+        { "chunk": "Half-bottom (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "24mm – f/11", "rotationalSteps": "15°", "imageCount": 107 }
+      ],
+      "processingSoftware": "Agisoft Metashape Standard 2.2.2",
+      "derivedAssets": [
+        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 383319, "vertexCount": 37081, "faceCount": 74158, "filename": "CHAN-006.fbx", "format": ".fbx (packed)", "size": "47.6 MB" },
+        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 383319, "vertexCount": 37081, "faceCount": 74158, "filename": "CHAN-006_HIGH.fbx", "format": ".fbx (unpacked)", "size": "51.7 MB" }
+      ],
+      "postProcessingNotes": "Very smooth processing, no issues at all.\n\nThe surface of the final High quality model (PLY) is slightly rugged, as well as the top edge. Could be tad bit enhanced.",
+      "experiment": false
+    }
   },
   {
     "id": "CHAN-007",
     "sketchfabUid": "4f0b77b63ced4502ac8c4d2e5e538d1f",
     "slug": "thai-dancer",
     "title": "Thai dancer",
-    "type": "Ornamental figurine (middle pose of a set of three)",
+    "type": "Travel memento",
+    "use": "Decorative",
     "materials": "Bronze alloy, green and gold patina",
-    "measurements": "180mm, 506g (this pose)",
+    "measurements": "18cm",
     "weight": "506g",
-    "chronology": "Late 1980s (c. 1988–89)",
-    "geography": "Thailand, Chiang Mai",
+    "condition": "Good",
+    "integrity": "Original - no modifications",
+    "chronology": "1989",
+    "locationId": "thailand",
+    "periodId": "1980s",
+    "campaignId": "cm-d001",
     "story": [
       "An ornamental figurine of a traditional Thai dancer, bought by my mother around 1988 or 1989 from one of the market stalls that line the streets of Chiang Mai. Cast in a patinated metal alloy with a gold decorative patina, it's the classic artisanal souvenir found throughout Northern Thailand.",
       "It doesn't have a dramatic story behind it, but it's one of my mother's favourite travelling mementos, and one of the consistent decor pieces from our house."
     ],
     "captureDate": "19 February 2026",
-    "complexity": {
-      "object": "Medium",
-      "surface": "Medium",
-      "material": "Medium"
-    },
-    "route": "Standard Metashape",
+    "complexity": { "object": "Medium", "surface": "Medium", "material": "Medium" },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
         "property": "Metallic",
         "status": "estimated",
-        "note": "Manually painted for the gilded areas in Blender; shine intensity judged by eye against the physical object, not measured."
+        "note": "Manually painted for the gilded areas in Blender; shine intensity judged by eye against the physical object, not measured.",
+        "chip": "Recreated"
       },
       {
         "property": "Geometry (underarm)",
         "status": "estimated",
-        "note": "Minor manual reshaping of a self-occluded joint the source images couldn't see into."
+        "note": "Minor manual reshaping of a self-occluded joint the source images couldn't see into.",
+        "chip": "Reshaped"
       },
       {
         "property": "Confidence",
@@ -147,34 +245,68 @@
         "note": "Source images had focus limitations on fine extremities. Selected as the best result of three related figurines photographed for this slot."
       }
     ],
-    "country": "Thailand",
-    "continent": "Asia",
-    "decade": "1980s"
+    "fullRecord": {
+      "initialReview": "Souvenir, good condition.",
+      "conditionDetail": "Good",
+      "obstructions": "None",
+      "physicalChallenges": "None",
+      "overallDescription": "Medium complexity.",
+      "recordingChallenges": "It has gold paint which can cause some shine in places. Complex details in the figurines' clothing.",
+      "captureSolution": "Photogrammetry — turntable, white background",
+      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "equipment": {
+        "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
+        "sensorOutput": "24 megapixels (6000×4000px)",
+        "lighting": "2× NEEWER portable lights, dimmable 5600K 1000LM, with the kit's white filter",
+        "colourProfile": "sRGB IEC61966-2.1",
+        "colourTarget": "None",
+        "scaleType": "Homemade, accurate to ±1mm",
+        "scaleLength": "50mm",
+        "pixelCount": 639.2,
+        "gsd": "0.078 mm/px"
+      },
+      "acquisition": [
+        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "30mm – f/11", "rotationalSteps": "20°", "imageCount": 48 },
+        { "chunk": "Front (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "24mm – f/11", "rotationalSteps": "10°", "imageCount": 87 }
+      ],
+      "processingSoftware": "Agisoft Metashape Standard 2.2.2",
+      "derivedAssets": [
+        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 360850, "vertexCount": 49998, "faceCount": 100000, "filename": "CHAN-007.fbx", "format": ".fbx (packed)", "size": "71.8 MB" },
+        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 360850, "vertexCount": 49998, "faceCount": 100000, "filename": "CHAN-007_HIGH.fbx", "format": ".fbx (unpacked)", "size": "77.1 MB" }
+      ],
+      "postProcessingNotes": "** Completed only the middle figurine: the alignment process went pretty well, especially using the front-oblique and bottom chunks, but the final model quality is unfortunately a bit \"mid.\" The biggest hurdles were the lack of close-up detail and a bunch of out-of-focus shots, which left the software struggling to reconstruct sharp edges where the arms bend and other corners. I tried focusing on the best figurine of the bunch (the middle one) to save the set, but even after cleaning up the extra \"white chunks,\" the quality isn't quite where it needs to be.\n\nI might try using this model to re-mask the original photos for a better result later, but for now, I'm calling this one done and moving on to the next subject.",
+      "experiment": false
+    }
   },
   {
     "id": "CHAN-009",
     "sketchfabUid": "fde9e7ab95f9400badfe8aa6370baacf",
     "slug": "chinese-rhyton",
     "title": "Chinese rhyton",
-    "type": "Ceremonial vessel replica",
-    "materials": "Carved haematite",
-    "measurements": "Height 158mm",
+    "type": "Travel memento",
+    "use": "Ceremonial",
+    "materials": "Haematite, carved",
+    "measurements": "Height 15.8cm",
     "weight": "1,017g",
-    "chronology": "Styled after a late Ming / early Qing dynasty rhyton (late 16th–early 17th c.), acquired 1989",
-    "geography": "China, Hong Kong Jade Street Market",
+    "condition": "Very good, no damage",
+    "integrity": "Original - no modifications",
+    "chronology": "1989",
+    "locationId": "hong-kong",
+    "periodId": "1980s",
+    "campaignId": "cm-d001",
     "story": [
       "Based on its intricate iconography and material, we believe this to be a replica of a late Ming / early Qing dynasty-style rhyton — a traditional Chinese ceremonial vessel. My father got it in 1989 from a stall in the old Hong Kong Jade Street Market, a few years before the handover to China and the transformations that followed.",
       "Getting it wasn't as simple as buying a standard souvenir — the antiques dealer seemed reluctant to let it go to a foreigner, and there was a real sense of cultural gravity around the piece that made the purchase feel particularly special."
     ],
     "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
-    "complexity": null,
-    "route": "Standard Metashape (resolved after initial reconstruction difficulty)",
+    "complexity": { "object": "Medium", "surface": "Medium", "material": "Low" },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
         "property": "Albedo / diffuse",
         "status": "estimated",
-        "note": "The self-occluded area where the dragon-tail motif twists back on itself was clone-sampled by hand in Blender."
+        "note": "The self-occluded area where the dragon-tail motif twists back on itself was clone-sampled by hand in Blender.",
+        "chip": "Patched"
       },
       {
         "property": "Roughness / metallic",
@@ -182,123 +314,336 @@
         "note": "Not created for this object."
       }
     ],
-    "country": "China / Hong Kong",
-    "continent": "Asia",
-    "decade": "1980s"
+    "fullRecord": {
+      "initialReview": "Antique carved ceremonial vessel, purchased from an antiques dealer; well preserved.",
+      "conditionDetail": "Very good, no damage or missing parts",
+      "obstructions": "None",
+      "physicalChallenges": "None",
+      "overallDescription": "Carved hematite ceremonial vessel with a self-occluding dragon-tail motif on one side.",
+      "recordingChallenges": "Self-occlusion where the carved motif twists back on itself.",
+      "captureSolution": "Photogrammetry — turntable, white background",
+      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "equipment": {
+        "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
+        "sensorOutput": "24 megapixels (6000×4000px)",
+        "lighting": "2× NEEWER portable lights, dimmable 5600K 1000LM, with the kit's white filter",
+        "colourProfile": "sRGB IEC61966-2.1",
+        "colourTarget": "None",
+        "scaleType": "Homemade, accurate to ±1mm",
+        "scaleLength": "20mm",
+        "pixelCount": 369.5,
+        "gsd": "0.054 mm/px"
+      },
+      "acquisition": [
+        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "25mm – f/11", "rotationalSteps": "20°", "imageCount": 67 },
+        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "32mm – f/11", "rotationalSteps": "15°", "imageCount": 85 },
+        { "chunk": "Half-bottom, focused (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "29mm – f/11", "rotationalSteps": "15°", "imageCount": 104 }
+      ],
+      "processingSoftware": "Agisoft Metashape Standard 2.2.2",
+      "derivedAssets": [
+        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 350988, "vertexCount": 200000, "faceCount": 100000, "filename": "CHAN-009.fbx", "format": ".fbx (packed)", "size": "91.5 MB" },
+        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 350988, "vertexCount": 200000, "faceCount": 100000, "filename": "CHAN-009_HIGH.fbx", "format": ".fbx (unpacked)", "size": "98.3 MB" }
+      ],
+      "postProcessingNotes": "Processing went well, with only a minor texture hiccup on the inner twist of the dragon-tail motif, where the carving folds back on itself and self-occludes, with a very dark black tone. This was manually patched in Blender by clone-sampling from the adjacent surface.",
+      "experiment": false
+    }
   },
   {
     "id": "CHAN-012",
     "sketchfabUid": "4639789be1f045fe9a800f6fa2493137",
     "slug": "box-of-little-birds",
     "title": "Box of little birds",
-    "type": "Decorative box with carved figures",
-    "materials": "Hand-carved and painted wood, 12 individually patterned birds",
-    "measurements": "Not logged",
-    "weight": "Not logged",
-    "chronology": "c. 1987",
-    "geography": "Egypt (gift from my aunt)",
+    "type": "Keepsake",
+    "use": "Decorative",
+    "materials": "Wood, hand-carved and painted",
+    "measurements": "Height 12.1cm, width 5cm, depth 2.7cm",
+    "weight": "Not recorded",
+    "condition": "Very good",
+    "integrity": "Original - no modifications",
+    "chronology": "1987",
+    "locationId": "egypt",
+    "periodId": "1980s",
+    "campaignId": "cm-d001",
     "story": [
       "A charming wooden box filled with 12 little hand-carved birds, each painted with its own unique pattern — a traditional souvenir from Egypt, given to my mother by her sister around 1987.",
       "Known in the family as part of ‘the trip from hell’: my aunt and uncle got stranded in Egypt's airport for two weeks after their flights were cancelled, with barely any food or embassy help. This little box survived the journey — a piece my mother holds dear, both as a memento of a wild travel story and of the sister she was very close to."
     ],
     "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
-    "complexity": null,
-    "route": "Standard Metashape",
+    "complexity": { "object": "Low", "surface": "Low", "material": "Low" },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
         "property": "Overall model",
         "status": "measured",
         "note": "Clean processing, no manual PBR intervention or retouching required."
+      },
+      {
+        "property": "Measurements",
+        "status": "estimated",
+        "note": "Not physically measured — calculated digitally from the capture's photo-scale reference."
       }
     ],
-    "country": "Egypt",
-    "continent": "Africa",
-    "decade": "1980s"
+    "fullRecord": {
+      "initialReview": "Wooden box holding twelve small hand-carved and painted birds, each with its own pattern; souvenir from Egypt.",
+      "conditionDetail": "Very good, all original",
+      "obstructions": "None",
+      "physicalChallenges": "None",
+      "overallDescription": "Small wooden box containing twelve individually carved and painted birds.",
+      "recordingChallenges": "None significant.",
+      "captureSolution": "Photogrammetry — turntable, white background",
+      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "equipment": {
+        "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
+        "sensorOutput": "24 megapixels (6000×4000px)",
+        "lighting": "2× NEEWER portable lights, dimmable 5600K 1000LM, with the kit's white filter",
+        "colourProfile": "sRGB IEC61966-2.1",
+        "colourTarget": "None",
+        "scaleType": "Homemade, accurate to ±1mm",
+        "scaleLength": "50mm",
+        "pixelCount": 1146.4,
+        "gsd": "0.044 mm/px"
+      },
+      "acquisition": [
+        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "35mm – f/11", "rotationalSteps": "10–15°", "imageCount": 111 },
+        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "41mm – f/11", "rotationalSteps": "10–15°", "imageCount": 105 },
+        { "chunk": "Half-bottom, focused (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "28mm – f/11", "rotationalSteps": "10–15°", "imageCount": 106 }
+      ],
+      "processingSoftware": "Agisoft Metashape Standard 2.2.2",
+      "derivedAssets": [
+        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 174372, "vertexCount": 390569, "faceCount": 781148, "filename": "CHAN-012.fbx", "format": ".fbx (packed)", "size": "74.3 MB" },
+        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 174372, "vertexCount": 390569, "faceCount": 781148, "filename": "CHAN-012_HIGH.fbx", "format": ".fbx (unpacked)", "size": "82.3 MB" }
+      ],
+      "postProcessingNotes": "Very smooth processing throughout — a clean, near-perfect model with no issues to correct.",
+      "experiment": false
+    }
   },
   {
     "id": "CHAN-013",
     "sketchfabUid": "3e70d0be70b7418ab93d46ef62240cdd",
     "slug": "senegalese-toy-bus",
     "title": "Senegalese toy bus",
-    "type": "Toy / souvenir",
+    "type": "Keepsake",
+    "use": "Toy",
     "materials": "Polychrome wood and card",
-    "measurements": "Length 175mm, height 115mm, width 70mm",
+    "measurements": "Length 17.5cm, height 11.5cm, width 7cm",
     "weight": "122g",
-    "chronology": "c. 2019",
-    "geography": "Senegal",
+    "condition": "Good",
+    "integrity": "Original - no modifications",
+    "chronology": "2019",
+    "locationId": "senegal",
+    "periodId": "2010s",
+    "campaignId": "cm-d001",
     "story": [
       "A vibrant little bus made from wood and card, mimicking the colourful ‘car rapides’ seen everywhere in cities like Saint-Louis. It was given to my mother around 2019 by a dear friend and former colleague — a Spaniard from Cádiz living as an expat in Senegal, who helped her both personally and professionally.",
       "There's a good chance it belonged to his young son first, which is why it has that lovely, personal ‘played-with’ feel. My mother treasures it not only as a reminder of that friendship, but of her first steps in her career, and the support she received at the time."
     ],
     "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
-    "complexity": null,
-    "route": "HeritageScan",
+    "complexity": { "object": "Low", "surface": "Low", "material": "Low" },
     "software": "HeritageScan (custom CLI, Apple RealityKit SDK)",
     "provenance": [
       {
         "property": "Overall model",
         "status": "measured",
-        "note": "Resolved via HeritageScan — a custom RealityKit-based tool built to test an alternative reconstruction algorithm against the same source images — in roughly a fifth of the time and effort Metashape alone had taken. No Blender retouching required beyond the alignment itself."
+        "note": "Resolved via HeritageScan — a custom RealityKit-based tool built to test an alternative reconstruction algorithm against the same source images — in roughly a fifth of the time and effort Metashape alone had taken. The HeritageScan version (without the wheel cut-outs) was published as the public model because Sketchfab's >100MB size limit ruled out the larger, more geometrically accurate Metashape version, which is kept in the archive instead."
       }
     ],
-    "country": "Senegal",
-    "continent": "Africa",
-    "decade": "2010s"
+    "fullRecord": {
+      "initialReview": "Painted wood and card toy bus, a gift from a close family friend.",
+      "conditionDetail": "Good, all original",
+      "obstructions": "None",
+      "physicalChallenges": "None",
+      "overallDescription": "Small painted wood-and-card toy bus, modelled on Senegal's 'car rapide' minibuses.",
+      "recordingChallenges": "None significant.",
+      "captureSolution": "Photogrammetry — turntable, white background",
+      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "equipment": {
+        "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
+        "sensorOutput": "24 megapixels (6000×4000px)",
+        "lighting": "2× NEEWER portable lights, dimmable 5600K 1000LM, with the kit's white filter",
+        "colourProfile": "sRGB IEC61966-2.1",
+        "colourTarget": "None",
+        "scaleType": "Homemade, accurate to ±1mm",
+        "scaleLength": "50mm",
+        "pixelCount": 978.0,
+        "gsd": "0.051 mm/px"
+      },
+      "acquisition": [
+        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "27mm – f/11", "rotationalSteps": "15–20°", "imageCount": 104 },
+        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "30mm – f/11", "rotationalSteps": "15–20°", "imageCount": 89 },
+        { "chunk": "Half-bottom, focused (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "30mm – f/11", "rotationalSteps": "15–20°", "imageCount": 72 },
+        { "chunk": "Bottom / underside, focused (~10°)", "exposureMode": "Aperture priority", "opticsFocus": "29mm – f/11", "rotationalSteps": "15–20°", "imageCount": 66 }
+      ],
+      "processingSoftware": "Agisoft Metashape Standard 2.2.2, cross-checked against HeritageScan",
+      "derivedAssets": [
+        { "label": "Asset 1 (Metashape, archived — with wheel cut-outs)", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 235617, "vertexCount": 577073, "faceCount": 1152476, "filename": "CHAN-013.fbx", "format": ".fbx (packed)", "size": "138.4 MB" },
+        { "label": "Asset 2 (Metashape, archived, unpacked)", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 235617, "vertexCount": 577073, "faceCount": 1152476, "filename": "CHAN-013_HIGH.fbx", "format": ".fbx (unpacked)", "size": "146.5 MB" }
+      ],
+      "postProcessingNotes": "Metashape produced two good versions — one with the wheel-hole details, one without. HeritageScan's result was even cleaner than Metashape's particularly around the wheels' edges, though it lost the wheel-hole in the process (having a black cover instead of a hole).\n\nBoth HeritageScan's and Metashape's models had issues with the bottom's textures, slightly smooshed in some areas — left uncorrected to avoid faking the textures.\n\nThe HeritageScan version without wheel holes was kept as the final PUBLIC model due to its smaller size — the Metashape one was way too large for Sketchfab (>100MB). The bigger ones, with wheel holes, were kept for archiving due to being more geometrically accurate.",
+      "experiment": false
+    }
+  },
+  {
+    "id": "CHAN-014",
+    "sketchfabUid": "838372880c9f41efadb9f4c63cf97ba3",
+    "slug": "caravaca-cross",
+    "title": "Caravaca cross",
+    "type": "Personal memento",
+    "use": "Religious/devotional object",
+    "materials": "Brass and velvet",
+    "measurements": "Height 14.6cm, width 6.3cm, depth 0.8cm",
+    "weight": "113g",
+    "condition": "Good",
+    "integrity": "Possibly a later reproduction - both faces are riveted rather than cast in one piece",
+    "chronology": "Approx. 1990s",
+    "locationId": "spain",
+    "periodId": "1990s",
+    "campaignId": "cm-d001",
+    "story": [
+      "This brass Caravaca cross — a patriarchal, double-armed cross carrying an elaborate traditional iconography — is a reproduction of one of Spain's most famous devotional relics. The original silver cross, said to contain a fragment of the True Cross, was kept in the church at Caravaca de la Cruz and was traditionally linked to a 13th-century miracle attributed to a friar named Ginés Pérez-Chirinos — making it something of a family namesake cross, quite apart from any religious significance.",
+      "The original relic was stolen in 1934 and never recovered; the version now venerated there was reassembled after the Spanish Civil War from fragments gifted by the Vatican. My father bought this smaller reproduction from an antiques dealer, probably in the 1990s, as a nod to that family connection."
+    ],
+    "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
+    "complexity": { "object": "Medium", "surface": "Medium", "material": "Medium" },
+    "software": "Agisoft Metashape Standard 2.2.2",
+    "provenance": [
+      {
+        "property": "Overall model",
+        "status": "flagged",
+        "note": "Rescued by a last-minute reprocessing pass — optimised alignment parameters and a hybrid mix of masked and unmasked photographs — after earlier attempts failed. Minor visual artefacts remain along the object's edges from background light bleed and non-polarised lighting during capture."
+      },
+      {
+        "property": "Roughness / metallic",
+        "status": "estimated",
+        "note": "Manually painted using photo references to separate the reflective brass surfaces from the matte velvet backing; not derived empirically.",
+        "chip": "Recreated"
+      }
+    ],
+    "fullRecord": {
+      "initialReview": "Brass and velvet double-armed Caravaca cross, bought from an antiques dealer; both faces riveted, likely a later reproduction of the original relic-cross type.",
+      "conditionDetail": "Good, no visible damage",
+      "obstructions": "None",
+      "physicalChallenges": "None",
+      "overallDescription": "Brass double-armed patriarchal cross with velvet backing, carrying the traditional Caravaca iconography on both faces.",
+      "recordingChallenges": "Fine relief detail on both faces of the cross. Made out of brass, so quite reflective.",
+      "captureSolution": "Photogrammetry — turntable, white background",
+      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "equipment": {
+        "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
+        "sensorOutput": "24 megapixels (6000×4000px)",
+        "lighting": "2× NEEWER portable lights, dimmable 5600K 1000LM, with the kit's white filter",
+        "colourProfile": "sRGB IEC61966-2.1",
+        "colourTarget": "None",
+        "scaleType": "Homemade, accurate to ±1mm",
+        "scaleLength": "50mm",
+        "pixelCount": 1041.7,
+        "gsd": "0.048 mm/px"
+      },
+      "acquisition": [
+        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "27mm – f/11", "rotationalSteps": "15–20°", "imageCount": 96 },
+        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "40mm – f/11", "rotationalSteps": "15–20°", "imageCount": 109 },
+        { "chunk": "Close-up, focused (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "27mm – f/11", "rotationalSteps": "15–20°", "imageCount": 80 }
+      ],
+      "processingSoftware": "Agisoft Metashape Standard 2.2.2",
+      "derivedAssets": [
+        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 183234, "vertexCount": 83532, "faceCount": 167076, "filename": "CHAN-014.fbx", "format": ".fbx (packed)", "size": "74.8 MB" },
+        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 183234, "vertexCount": 83532, "faceCount": 167076, "filename": "CHAN-014_HIGH.fbx", "format": ".fbx (unpacked)", "size": "74.6 MB" }
+      ],
+      "postProcessingNotes": "A last-minute processing run saved the successful completion of this object. Mostly achieved by optimising photogrammetry alignment parameters (adjusting key- and tie-point limits) and using a hybrid mix of masked and unmasked photographs to correct automated segmentation errors. With the standard point-cloud cleanup and reprojection adjustments, the resulting geometry and texture fidelity were significantly improved over previous failed attempts.\n\nMinor visual artefacts remain along the object's edges due to background light bleed and sub-optimal, non-polarised illumination during capture. To approximate physical material properties, a non-empirical roughness map was manually painted using photo references to isolate the reflective metallic surfaces from the matte interior fabric. While lower in overall resolution compared to top-tier captures in the dataset, the final model meets acceptable standards for retention.",
+      "experiment": true
+    }
   },
   {
     "id": "CHAN-016",
     "sketchfabUid": "f980220be7574a779fce78cd065f4fd7",
     "slug": "box-of-stone-eggs",
     "title": "Box of stone eggs",
-    "type": "Mineral collection / decorative set",
-    "materials": "20 different hand-carved and polished stone types (aventurine, opaline, lepidolite, jasper, quartz, dolomite, and others)",
-    "measurements": "Not logged",
-    "weight": "Not logged",
-    "chronology": "c. 1987",
-    "geography": "Egypt (gift from my aunt)",
+    "type": "Personal memento",
+    "use": "Collectible",
+    "materials": "Various stones (20 types)",
+    "measurements": "Not recorded",
+    "weight": "Not recorded",
+    "condition": "Good",
+    "integrity": "Original - no modifications",
+    "chronology": "1987",
+    "locationId": "egypt",
+    "periodId": "1980s",
+    "campaignId": "cm-d001",
     "story": [
       "My mother's precious collection of miniature stones, each hand-carved and polished into the shape of an egg — a souvenir from Egypt, brought back by her sister in 1987, made from twenty different mineral types.",
       "My mother is an avid egg collector, but usually of the regular-sized kind — making this her especially cute miniature collection."
     ],
     "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
-    "complexity": null,
-    "route": "Standard Metashape",
+    "complexity": { "object": "Medium", "surface": "High", "material": "Medium" },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
         "property": "Roughness",
         "status": "estimated",
-        "note": "Hand-reconstructed in Blender to reflect the differing natural shine across the set's stone types, informed by memory and reference photographs — not derived empirically from the capture."
+        "note": "Hand-reconstructed in Blender to reflect the differing natural shine across the set's stone types, informed by memory and reference photographs — not derived empirically from the capture.",
+        "chip": "Recreated"
       },
       {
         "property": "Geometry",
         "status": "estimated",
-        "note": "Manual smoothing of surface geometry: without cross-polarisation, the shiny stone surface initially reconstructed as uneven and bumpy rather than smooth."
+        "note": "Manual smoothing of surface geometry: without cross-polarisation, the shiny stone surface initially reconstructed as uneven and bumpy rather than smooth.",
+        "chip": "Reshaped"
       }
     ],
-    "country": "Egypt",
-    "continent": "Africa",
-    "decade": "1980s"
+    "fullRecord": {
+      "initialReview": "Collection of twenty miniature stone eggs, each carved from a different mineral, kept in a labelled box; souvenir from Egypt.",
+      "conditionDetail": "Good, all original",
+      "obstructions": "None",
+      "physicalChallenges": "None",
+      "overallDescription": "Boxed collection of 20 miniature stone eggs, each a different named mineral: 1) Aventurine. 2) Brown opaline. 3) Pale lepidolite. 4) Wood stone. 5) Dolomite. 6) Granite. 7) Felspar. 8) Calcrete. 9) Leopard rock. 10) Spider jasper. 11) Butter chete. 12) Dark lepidolite. 13) Rose quartz. 14) Green unakite. 15) Asbestos. 16) Cream dolomite. 17) Opal stone. 18) White opaline. 19) Winter jasper. 20) Soap stone.",
+      "recordingChallenges": "Naturally shiny stone surfaces; no cross-polarisation used.",
+      "captureSolution": "Photogrammetry — turntable, white background",
+      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "equipment": {
+        "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
+        "sensorOutput": "24 megapixels (6000×4000px)",
+        "lighting": "2× NEEWER portable lights, dimmable 5600K 1000LM, with the kit's white filter",
+        "colourProfile": "sRGB IEC61966-2.1",
+        "colourTarget": "None",
+        "scaleType": "Homemade, accurate to ±1mm",
+        "scaleLength": "20mm",
+        "pixelCount": 418.6,
+        "gsd": "0.048 mm/px"
+      },
+      "acquisition": [
+        { "chunk": "Half-top (~70°)", "exposureMode": "Aperture priority", "opticsFocus": "30mm – f/8", "rotationalSteps": "15–20°", "imageCount": 90 },
+        { "chunk": "Front (~0°)", "exposureMode": "Aperture priority", "opticsFocus": "42mm – f/8", "rotationalSteps": "15–20°", "imageCount": 90 }
+      ],
+      "processingSoftware": "Agisoft Metashape Standard 2.2.2",
+      "derivedAssets": [
+        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 83090, "vertexCount": 125798, "faceCount": 251548, "filename": "CHAN-016.fbx", "format": ".fbx (packed)", "size": "56 MB" },
+        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 83090, "vertexCount": 125798, "faceCount": 251548, "filename": "CHAN-016_HIGH.fbx", "format": ".fbx (unpacked)", "size": "62.9 MB" }
+      ],
+      "postProcessingNotes": "Metashape's reconstruction of the stone surfaces came out uneven and slightly bumpy — a direct result of not using cross-polarisation on this naturally shiny material. The geometry was manually smoothed in Blender, and the roughness map across all 20 stone types was hand-reconstructed from memory and reference photographs rather than measured — an interpretation, not an empirical capture, and flagged as such.",
+      "experiment": false
+    }
   },
   {
     "id": "CHAN-017",
     "sketchfabUid": "538a7490e3514e67aebd0659cf0e13bf",
     "slug": "mysterious-stone-foot",
     "title": "Mysterious stone foot",
-    "type": "Possible sculptural fragment",
+    "type": "Personal memento",
+    "use": "Archaeological? / Currently decorative",
     "materials": "Unidentified stone",
-    "measurements": "Length 295mm, width 215mm, height 110mm",
+    "measurements": "Length 29.5cm, width 21.5cm, height 11cm",
     "weight": "Approx. 6,900g",
-    "chronology": "Found c. 2008–09; if genuinely a fragment, possibly Roman, given proximity to the Baelo Claudia ruins",
-    "geography": "Found at Meco beach, Cádiz, Spain",
+    "condition": "Good",
+    "integrity": "Original - as found, no modifications",
+    "chronology": "2008",
+    "locationId": "spain",
+    "periodId": "2000s",
+    "campaignId": "cm-d001",
     "story": [
       "One of our dearest family treasures. I spotted this stone in 2008, as a little girl, sitting among the breakwater rocks by Meco beach, Cádiz. To us it resembled a sculpted foot — intriguing enough that we brought it home to Seville, no small feat given how much it weighs.",
-      "If it really is an ancient fragment, we believe it's likely Roman, given how close Meco beach is to the ruins of Baelo Claudia. Genuine artefact or a natural trick, it was my very first ‘archaeological find’ — and looking back, possibly the spark that led to my career in cultural heritage."
+      "If it really is an ancient fragment, we believe it's likely Roman, given how close Meco beach is to the ruins of Baelo Claudia — a town that thrived from the late 2nd century BC until an earthquake triggered its decline in the 2nd century AD. If so, though, the original statue would have been unusually large even for a major Roman monument. Genuine artefact or a natural trick, it was my very first ‘archaeological find’ — and looking back, possibly the spark that led to my career in cultural heritage."
     ],
     "captureDate": "Not individually logged (campaign: 16–22 February 2026)",
-    "complexity": null,
-    "route": "Standard Metashape",
+    "complexity": { "object": "Medium", "surface": "Medium", "material": "Low" },
     "software": "Agisoft Metashape Standard 2.2.2",
     "provenance": [
       {
@@ -307,8 +652,37 @@
         "note": "Clean processing, no manual PBR intervention or retouching required."
       }
     ],
-    "country": "Spain",
-    "continent": "Europe",
-    "decade": "2000s"
+    "fullRecord": {
+      "initialReview": "Unidentified carved(?) stone fragment resembling a sculpted foot.",
+      "conditionDetail": "Good, as found",
+      "obstructions": "None",
+      "physicalChallenges": "None",
+      "overallDescription": "Large, heavy stone fragment resembling a foot, of uncertain origin.",
+      "recordingChallenges": "Large size and weight.",
+      "captureSolution": "Photogrammetry — turntable, white background",
+      "tolerances": { "accuracy": "± 1mm", "resolution": "< 0.8mm", "error": "< 0.8px" },
+      "equipment": {
+        "cameraLens": "Canon DSLR 2000D, EF-S 18–55mm IS II lens",
+        "sensorOutput": "24 megapixels (6000×4000px)",
+        "lighting": "2× NEEWER portable lights, dimmable 5600K 1000LM, with the kit's white filter",
+        "colourProfile": "sRGB IEC61966-2.1",
+        "colourTarget": "None",
+        "scaleType": "Homemade, accurate to ±1mm",
+        "scaleLength": "100mm",
+        "pixelCount": 1489.9,
+        "gsd": "0.067 mm/px"
+      },
+      "acquisition": [
+        { "chunk": "Top (~45°)", "exposureMode": "Aperture priority", "opticsFocus": "32mm – f/11", "rotationalSteps": "15–20°", "imageCount": 47 },
+        { "chunk": "Bottom (~45°)", "exposureMode": "Aperture priority", "opticsFocus": "25mm – f/11", "rotationalSteps": "15–20°", "imageCount": 82 }
+      ],
+      "processingSoftware": "Agisoft Metashape Standard 2.2.2",
+      "derivedAssets": [
+        { "label": "Asset 1", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 210851, "vertexCount": 122487, "faceCount": 244966, "filename": "CHAN-017.fbx", "format": ".fbx (packed)", "size": "73.3 MB" },
+        { "label": "Asset 2", "meshResolution": "High-poly, raw", "alignmentQuality": "High", "tiePointCount": 210851, "vertexCount": 122487, "faceCount": 244966, "filename": "CHAN-017_HIGH.fbx", "format": ".fbx (unpacked)", "size": "81.3 MB" }
+      ],
+      "postProcessingNotes": "Processing went smoothly and produced a clean model with Metashape. HeritageScan, unexpectedly, produced an incorrectly aligned result on this one despite the object's relatively simple geometry — no clear cause identified.",
+      "experiment": false
+    }
   }
 ]

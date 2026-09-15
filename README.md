@@ -1,7 +1,7 @@
 # Chiriandreses Museum
 
 A personal case study in 3D-digitising family heirlooms and travel souvenirs —
-nine objects captured, processed, and published to a genuinely thought-through,
+ten objects captured, processed, and published to a genuinely thought-through,
 Europeana-aligned methodology, with an honest paper trail for every object:
 what was measured directly from the capture, what was estimated by eye, and
 where. The point is the process behind the models being trustworthy and
@@ -74,13 +74,14 @@ npx serve docs
 
 The About page's Documentation panel lists source documents (methodology
 doc, spreadsheets, Metashape reports, planning table), some still pointing at
-`REPLACE_WITH_LINK` in `scripts/build.js` → `documentationLinksHTML()`. Update
+`REPLACE_WITH_LINK` in `templates/partials/documentation.html`. Update
 the `href` values there once each document has a home, then re-run
 `npm run build`.
 
 ## Editing content
 
 - **Object data, story text, provenance flags** → `data/objects.json`
+- **Locations, periods, digitisation campaigns (lookup tables)** → `data/locations.json`, `data/periods.json`, `data/campaigns.json`
 - **Page structure / layout** → `templates/index.html`, `templates/object.html`
 - **Look and feel** → `assets/styles.css`
 

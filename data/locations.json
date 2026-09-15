@@ -1,0 +1,8 @@
+[
+  { "id": "morocco", "country": "Morocco", "continent": "Africa" },
+  { "id": "hong-kong", "country": "Hong Kong", "continent": "Asia" },
+  { "id": "thailand", "country": "Thailand", "continent": "Asia" },
+  { "id": "egypt", "country": "Egypt", "continent": "Africa" },
+  { "id": "senegal", "country": "Senegal", "continent": "Africa" },
+  { "id": "spain", "country": "Spain", "continent": "Europe" }
+]

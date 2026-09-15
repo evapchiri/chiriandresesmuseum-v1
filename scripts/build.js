@@ -8,12 +8,56 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { validate: validateData } = require('./validate-data');
 
 const ROOT = path.join(__dirname, '..');
 const DOCS = path.join(ROOT, 'docs');
 
 function readJSON(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
 function readFile(p) { return fs.readFileSync(p, 'utf8'); }
+
+/* ---------- Data loading + lookup resolution ----------
+ * data/objects.json is the single source of truth (curated tier-1/2 fields,
+ * a nested fullRecord for tier 3, and locationId/periodId/campaignId
+ * references). data/locations.json, periods.json and campaigns.json are
+ * lean lookup tables — see data restructuring instructions.md. Resolution
+ * happens once, in memory, right here: everything downstream (buildCard,
+ * buildCollectionPage, buildObjectPage) keeps reading obj.country /
+ * obj.continent / obj.decade exactly as before, so filter logic and
+ * templates never need to know lookup tables exist. campaignId resolves
+ * too, but only feeds the Full record panel — it's deliberately not wired
+ * into the Collection filter bar. */
+function loadResolvedObjects() {
+  const objects = readJSON(path.join(ROOT, 'data', 'objects.json'));
+  const locations = readJSON(path.join(ROOT, 'data', 'locations.json'));
+  const periods = readJSON(path.join(ROOT, 'data', 'periods.json'));
+  const campaigns = readJSON(path.join(ROOT, 'data', 'campaigns.json'));
+
+  const locationById = Object.fromEntries(locations.map((l) => [l.id, l]));
+  const periodById = Object.fromEntries(periods.map((p) => [p.id, p]));
+  const campaignById = Object.fromEntries(campaigns.map((c) => [c.id, c]));
+
+  const resolved = objects.map((obj) => {
+    const location = locationById[obj.locationId];
+    const period = periodById[obj.periodId];
+    const campaign = campaignById[obj.campaignId];
+    return {
+      ...obj,
+      country: location.country,
+      continent: location.continent,
+      decade: period.label,
+      campaign,
+    };
+  });
+
+  // Debug/diff aid only (gitignored) — never read back in as a source of truth.
+  fs.writeFileSync(
+    path.join(ROOT, 'data', 'objects.resolved.json'),
+    JSON.stringify(resolved, null, 2)
+  );
+
+  return resolved;
+}
 
 /* A site-root-relative asset path with a short content-hash query appended
  * (`assets/x.mp4?v=1a2b3c4d`), so a re-encoded file with the same name still
@@ -173,7 +217,7 @@ function buildCard(obj) {
         <ul class="card-meta">
           <li>${obj.materials}</li>
           <li>${chronologyShort(obj.chronology)}</li>
-          <li>${obj.geography}</li>
+          <li>${obj.country}</li>
         </ul>
       </div>
       <span class="card-icon">${CARD_SEARCH_ICON}</span>
@@ -214,21 +258,28 @@ const STATUS_LABEL = {
   na: 'N/A',
 };
 
+/* item.chip (Reshaped/Patched/Recreated) mirrors the same work-type chips
+ * used in the About page's Stage-by-stage "Mesh or texture polishing
+ * record" table (.res-chip.is-part there too) — only set on provenance
+ * entries that actually got that kind of manual post-processing work. */
 function provenanceHTML(items) {
   return items.map((item) => {
     const statusKey = item.status === 'n/a' ? 'na' : item.status;
     const label = STATUS_LABEL[statusKey] || item.status;
+    const chip = item.chip ? ` <span class="res-chip is-part">${item.chip}</span>` : '';
     return `<div class="provenance-item">
       <span class="stamp ${statusKey}">${label}</span>
-      <span class="prop">${item.property}</span>
+      <span class="prop">${item.property}</span>${chip}
       <span class="note">${item.note}</span>
     </div>`;
   }).join('\n');
 }
 
-function complexityText(c) {
-  if (!c) return 'Not individually recorded';
-  return `Object ${c.object} · Surface ${c.surface} · Material ${c.material}`;
+/* Complexity is rendered as three separate rows (Complexity/Surface/Material)
+ * rather than one combined string — see the "Complexity" row split in
+ * templates/object.html and templates/collection.html. */
+function complexityValue(c, key) {
+  return c ? c[key] : 'Not individually recorded';
 }
 
 function chronologyShort(chronology) {
@@ -245,6 +296,103 @@ function materialsNoteHTML(obj) {
     : '';
 }
 
+/* Tier-2 "Geometric data" row — condensed from the primary derived asset in
+ * fullRecord, rather than authored separately, so mesh stats never drift
+ * out of sync with the full record's own asset inventory. */
+function geometricDataText(fullRecord) {
+  const asset = fullRecord && fullRecord.derivedAssets && fullRecord.derivedAssets[0];
+  if (!asset) return 'Not individually recorded';
+  return `${asset.meshResolution} · ${asset.vertexCount.toLocaleString('en-GB')} vertices · ${asset.faceCount.toLocaleString('en-GB')} faces`;
+}
+
+/* Tier-3 "Full record" — everything from the digitisation record that
+ * doesn't belong in the curated tier-1/2 field record: initial assessment,
+ * capture tolerances, full equipment + per-chunk acquisition detail,
+ * derived-asset inventory, campaign info, and the post-processing lab
+ * notes. Rendered only on the standalone object page (see decision #1 in
+ * the restructuring plan) — the Collection modal never receives this data. */
+function fullRecordHTML(obj) {
+  const r = obj.fullRecord;
+  if (!r) return '';
+
+  const eq = r.equipment || {};
+  const acquisitionRows = (r.acquisition || []).map((a) => `
+        <tr>
+          <td>${a.chunk}</td>
+          <td>${a.exposureMode}</td>
+          <td>${a.opticsFocus}</td>
+          <td>${a.rotationalSteps}</td>
+          <td>${a.imageCount}</td>
+        </tr>`).join('');
+
+  const assetRows = (r.derivedAssets || []).map((a) => `
+        <tr>
+          <td>${a.label}</td>
+          <td>${a.meshResolution}</td>
+          <td>${a.alignmentQuality}</td>
+          <td>${a.tiePointCount.toLocaleString('en-GB')}</td>
+          <td>${a.vertexCount.toLocaleString('en-GB')}</td>
+          <td>${a.faceCount.toLocaleString('en-GB')}</td>
+          <td>${a.filename}</td>
+          <td>${a.format}</td>
+          <td>${a.size}</td>
+        </tr>`).join('');
+
+  return `<p class="record-section-label">Assessment</p>
+    <dl>
+      <div class="record-row"><dt>Initial review</dt><dd>${r.initialReview}</dd></div>
+      <div class="record-row"><dt>Condition</dt><dd>${r.conditionDetail}</dd></div>
+      <div class="record-row"><dt>Obstructions</dt><dd>${r.obstructions}</dd></div>
+      <div class="record-row"><dt>Physical challenges</dt><dd>${r.physicalChallenges}</dd></div>
+      <div class="record-row"><dt>Overall description</dt><dd>${r.overallDescription}</dd></div>
+      <div class="record-row"><dt>Recording challenges</dt><dd>${r.recordingChallenges}</dd></div>
+      <div class="record-row"><dt>Experiment?</dt><dd>${r.experiment ? 'Yes — deliberate technique experiment' : 'No'}</dd></div>
+      <div class="record-row"><dt>Digitisation campaign</dt><dd>${obj.campaign.label}</dd></div>
+    </dl>
+
+    <p class="record-section-label">Capture tolerances &amp; equipment</p>
+    <dl>
+      <div class="record-row"><dt>Capture solution</dt><dd>${r.captureSolution}</dd></div>
+      <div class="record-row"><dt>Agreed accuracy</dt><dd>${r.tolerances.accuracy}</dd></div>
+      <div class="record-row"><dt>Agreed resolution</dt><dd>${r.tolerances.resolution}</dd></div>
+      <div class="record-row"><dt>Agreed error</dt><dd>${r.tolerances.error}</dd></div>
+      <div class="record-row"><dt>Camera &amp; lens</dt><dd>${eq.cameraLens}</dd></div>
+      <div class="record-row"><dt>Sensor output</dt><dd>${eq.sensorOutput}</dd></div>
+      <div class="record-row"><dt>Lighting</dt><dd>${eq.lighting}</dd></div>
+      <div class="record-row"><dt>Colour profile</dt><dd>${eq.colourProfile}</dd></div>
+      <div class="record-row"><dt>Colour target</dt><dd>${eq.colourTarget}</dd></div>
+      <div class="record-row"><dt>Scale</dt><dd>${eq.scaleType}, ${eq.scaleLength} reference</dd></div>
+      <div class="record-row"><dt>Pixel count</dt><dd>${eq.pixelCount}</dd></div>
+      <div class="record-row"><dt>GSD</dt><dd>${eq.gsd}</dd></div>
+    </dl>
+
+    <p class="record-section-label">Acquisition, by chunk</p>
+    <div class="stage-table-wrap">
+      <table class="stage-table results-table">
+        <thead>
+          <tr><th scope="col">Chunk</th><th scope="col">Exposure</th><th scope="col">Optics &amp; focus</th><th scope="col">Rotational steps</th><th scope="col">Images</th></tr>
+        </thead>
+        <tbody>${acquisitionRows}</tbody>
+      </table>
+    </div>
+
+    <p class="record-section-label">Processing &amp; derived assets</p>
+    <dl>
+      <div class="record-row"><dt>Software</dt><dd>${r.processingSoftware}</dd></div>
+    </dl>
+    <div class="stage-table-wrap">
+      <table class="stage-table results-table results-table--wide">
+        <thead>
+          <tr><th scope="col">Asset</th><th scope="col">Mesh</th><th scope="col">Alignment</th><th scope="col">Tie points</th><th scope="col">Vertices</th><th scope="col">Faces</th><th scope="col">Filename</th><th scope="col">Format</th><th scope="col">Size</th></tr>
+        </thead>
+        <tbody>${assetRows}</tbody>
+      </table>
+    </div>
+
+    <p class="record-section-label">Post-processing lab notes</p>
+    ${storyHTML(r.postProcessingNotes.split('\n\n'))}`;
+}
+
 function buildObjectPage(obj, template) {
   const materialsNote = materialsNoteHTML(obj);
 
@@ -253,45 +401,61 @@ function buildObjectPage(obj, template) {
     TITLE: obj.title,
     ID: obj.id,
     TYPE: obj.type,
+    USE: obj.use,
     TEASER: obj.story[0].slice(0, 155) + '…',
     CHRONOLOGY: obj.chronology,
     CHRONOLOGY_SHORT: chronologyShort(obj.chronology),
-    GEOGRAPHY: obj.geography,
+    GEOGRAPHY: obj.country,
     MATERIALS: obj.materials,
     MATERIALS_NOTE: materialsNote,
     MEASUREMENTS: obj.measurements,
     WEIGHT: obj.weight,
+    CONDITION: obj.condition,
+    INTEGRITY: obj.integrity,
     CAPTURE_DATE: obj.captureDate,
-    COMPLEXITY: complexityText(obj.complexity),
-    ROUTE: obj.route,
+    COMPLEXITY: complexityValue(obj.complexity, 'object'),
+    COMPLEXITY_SURFACE: complexityValue(obj.complexity, 'surface'),
+    COMPLEXITY_MATERIAL: complexityValue(obj.complexity, 'material'),
+    GEOMETRIC_DATA: geometricDataText(obj.fullRecord),
     SOFTWARE: obj.software,
     SKETCHFAB_UID: obj.sketchfabUid,
     STORY: storyHTML(obj.story),
     PROVENANCE: provenanceHTML(obj.provenance),
+    FULL_RECORD: fullRecordHTML(obj),
     THEME_TOGGLE: themeToggleHTML(),
     THEME_INIT: themeInitScript(),
     FOOTER_META: footerMetaHTML(),
   });
 }
 
-/* Per-object data for the Collection page's detail modal — same fields as
- * the standalone object page, pre-rendered to HTML fragments so the client
- * JS only has to inject innerHTML, not re-implement the markup rules here. */
+/* Per-object data for the Collection page's detail modal — same tier-1/2
+ * fields as the standalone object page, pre-rendered to HTML fragments so
+ * the client JS only has to inject innerHTML, not re-implement the markup
+ * rules here. Deliberately excludes fullRecord — the modal always sends
+ * visitors to the object's own page for that (see decision #1). `digitisedIn`
+ * is the one field that only exists here, not on the object page's Full
+ * record (which has its own, more detailed "Digitisation campaign" row). */
 function buildObjectsDataJSON(objects) {
   const data = objects.map((obj) => ({
     id: obj.id,
     slug: obj.slug,
     title: obj.title,
     type: obj.type,
+    use: obj.use,
     chronology: obj.chronology,
     chronologyShort: chronologyShort(obj.chronology),
-    geography: obj.geography,
+    geography: obj.country,
     materialsHTML: obj.materials + materialsNoteHTML(obj),
     measurements: obj.measurements,
     weight: obj.weight,
+    condition: obj.condition,
+    integrity: obj.integrity,
+    digitisedIn: `${obj.campaign.label} - ${obj.campaign.digitisedDate}`,
     captureDate: obj.captureDate,
-    complexity: complexityText(obj.complexity),
-    route: obj.route,
+    complexity: complexityValue(obj.complexity, 'object'),
+    complexitySurface: complexityValue(obj.complexity, 'surface'),
+    complexityMaterial: complexityValue(obj.complexity, 'material'),
+    geometricData: geometricDataText(obj.fullRecord),
     software: obj.software,
     sketchfabUid: obj.sketchfabUid,
     storyHTML: storyHTML(obj.story),
@@ -305,7 +469,14 @@ function buildObjectsDataJSON(objects) {
 /* ---------- Main ---------- */
 
 function main() {
-  const objects = readJSON(path.join(ROOT, 'data', 'objects.json'));
+  const dataErrors = validateData();
+  if (dataErrors.length) {
+    console.error(`Build aborted — data validation failed with ${dataErrors.length} error(s):\n`);
+    dataErrors.forEach((e) => console.error(`  - ${e}`));
+    process.exit(1);
+  }
+
+  const objects = loadResolvedObjects();
 
   const landingTemplate = readFile(path.join(ROOT, 'templates', 'index.html'));
   const aboutTemplate = readFile(path.join(ROOT, 'templates', 'about.html'));

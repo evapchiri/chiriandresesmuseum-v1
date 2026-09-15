@@ -6,6 +6,10 @@
   "scripts": {
     "build": "node scripts/build.js",
     "dev": "node scripts/dev.js",
-    "serve": "node scripts/serve.js"
+    "serve": "node scripts/serve.js",
+    "validate": "node scripts/validate-data.js"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0"
   }
 }
