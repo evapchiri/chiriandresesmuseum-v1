@@ -58,7 +58,7 @@
       <li>To generate 'museum-aligned', high-quality 3D models of my family heirlooms and
         travel objects
         collection, given the available
-        hardware and my current skills. That means: aiming for optimal geometric data, best possible model-object
+        hardware and my current skills. That meant aiming for optimal geometric data, best possible model-object
         fidelity, and high-degree of traceability.</li>
       <li>Following digital storytelling techniques, make these 3D models publicly accessible through a
         curated, interactive and user-friendly web experience.</li>
@@ -98,8 +98,8 @@
 
     <p><span class="hl"><strong>The project's documentation framework</strong></span> (i.e. deciding what and how things
       should be
-      documented) was designed for a solo practitioner
-      following:</p>
+      documented) was designed for a solo practitioner,
+      following the below:</p>
     <ul>
       <li>Best-practice standards set by the European
         Commission for best-quality digitisation processes in Cultural Heritage (set in the <a
@@ -113,11 +113,13 @@
         CARARE.</li>
     </ul>
 
-    <p>As every object was assessed for their
-      complexity &mdash; its shape, its surface, its material &mdash; that assessment influenced the decisions taken for
-      both its capture
-      approach
-      and its minimum 'what good looks like' targets.</p>
+    <p><span class="hl">Each object was assessed individually at this stage for their capture
+        complexity</span> &mdash; considering how difficult may the processing be depending on its shape, surface, the
+      materials
+      its made of. That assessment influenced
+      both the object's capture
+      approach,
+      and its minimum 'what good looks like' 3D model targets.</p>
     <p>Likewise, the lack of professional-grade photographic equipment, evolving on-the-go my
       photography and 3D modelling skills, as well as the narrow and non-repeatable access to the objects (< 2 weeks)
         influenced these quality targets and completion deadlines. </p>
@@ -159,7 +161,8 @@
     <h4>The capture process</h4>
     <p>During capture I turned the turntable by hand in roughly 10&ndash;15&deg; steps, taking around
       15&ndash;20 minutes of shooting per object. Although each object required different angles depending on its
-      geometry, in general, <span class="hl">objects were shot in 3&ndash;4 rings</span>. From top to bottom:</p>
+      geometry and complexity, in general, <span class="hl">objects were shot in 3&ndash;4 rings</span>. From top to
+      bottom:</p>
     <div class="rings-figure">
       <ul class="rings-list">
         <li>&ldquo;Half-Top&rdquo;: ~70&deg;</li>
@@ -764,7 +767,8 @@
 
     <p><span class="hl">This site exists to put that context back around each model.</span></p>
 
-    <p><span class="hl">Version 1 has a deliberately simple tech stack to focus on an initial, quick deliverable to
+    <p>Chiriandreses V1 has a deliberately <span class="hl">simple tech stack to focus on an initial, quick deliverable
+        to
         iterate
         on</span> &mdash; HTML, CSS, and JavaScript, with no framework and
       no build step beyond a few small scripts.</p>
@@ -782,6 +786,15 @@
       the
       project. As such, provenance is displayed as stamped labels on each record rather than hidden in
       a spec sheet, so the confidence behind every value is visible at a glance.</p>
+
+    <p>The website's <span class="hl">data structure</span> is also deliberately lean: JSON files rather than a SQL
+      database, sized to fit its current
+      and projected scope rather than built for scale it doesn't need. It also skips a formal cultural-heritage ontology
+      like
+      CIDOC CRM. Even though the provenance vocabulary running through it aims to mirror museological convention,
+      adapting the
+      resources to the project and scoping them appropriately take priority. On top of that, a validation check step was
+      included at build-time so that every required field is confirmed present, avoiding retroactive work.</p>
 
     <p><span class="hl">Responsiveness and accessibility </span>were also taken into account in the design of the
       website, with ARIA roles

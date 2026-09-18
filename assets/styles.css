@@ -31,8 +31,15 @@
   --flagged: #e2705c;
   --flagged-bg: #3a251f;
   --lilac: #c8b6e6;
-  --na: #b8bdc6;
-  --na-bg: #333842;
+  /* "na" has no natural hue of its own to read against a dark card the way
+     measured/estimated/flagged's tinted darks do, and this chip shows up on
+     two different backgrounds (--paper-raised field-record cards, --paper
+     results tables) — a fixed bg close to either one blends into that
+     surface. --rule (the site's existing structural-grey divider colour)
+     sits between the two, so it stays a visibly muted grey chip against
+     both without reading as a loud, separate colour like the other stamps. */
+  --na: var(--patina);
+  --na-bg: var(--rule);
   --max-width: 1080px;
   --radius: 2px;
 }
@@ -2512,8 +2519,6 @@ main.wrap > .viewer-wrap .story p {
   text-transform: uppercase;
   padding: 2px 8px;
   border-radius: var(--radius);
-  transform: rotate(-1deg);
-  margin-bottom: 6px;
 }
 .stamp.measured {
   background: var(--measured-bg);
@@ -2532,15 +2537,25 @@ main.wrap > .viewer-wrap .story p {
   color: var(--na);
 }
 
+.provenance-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 .provenance-item .prop {
   font-weight: 600;
-  margin-right: 6px;
+  font-size: 1.05em;
+}
+.provenance-detail {
+  margin-top: 8px;
+}
+.provenance-detail .res-chip {
+  margin-bottom: 6px;
 }
 .provenance-item .note {
   display: block;
   color: var(--ink-soft);
   font-size: 0.88rem;
-  margin-top: 4px;
 }
 
 .methodology-link {

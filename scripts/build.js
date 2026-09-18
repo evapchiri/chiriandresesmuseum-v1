@@ -5,16 +5,20 @@
  * GitHub Pages). Run with: node scripts/build.js
  */
 
-const fs = require('fs');
-const path = require('path');
-const crypto = require('crypto');
-const { validate: validateData } = require('./validate-data');
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
+const { validate: validateData } = require("./validate-data");
 
-const ROOT = path.join(__dirname, '..');
-const DOCS = path.join(ROOT, 'docs');
+const ROOT = path.join(__dirname, "..");
+const DOCS = path.join(ROOT, "docs");
 
-function readJSON(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
-function readFile(p) { return fs.readFileSync(p, 'utf8'); }
+function readJSON(p) {
+  return JSON.parse(fs.readFileSync(p, "utf8"));
+}
+function readFile(p) {
+  return fs.readFileSync(p, "utf8");
+}
 
 /* ---------- Data loading + lookup resolution ----------
  * data/objects.json is the single source of truth (curated tier-1/2 fields,
@@ -28,10 +32,10 @@ function readFile(p) { return fs.readFileSync(p, 'utf8'); }
  * too, but only feeds the Full record panel — it's deliberately not wired
  * into the Collection filter bar. */
 function loadResolvedObjects() {
-  const objects = readJSON(path.join(ROOT, 'data', 'objects.json'));
-  const locations = readJSON(path.join(ROOT, 'data', 'locations.json'));
-  const periods = readJSON(path.join(ROOT, 'data', 'periods.json'));
-  const campaigns = readJSON(path.join(ROOT, 'data', 'campaigns.json'));
+  const objects = readJSON(path.join(ROOT, "data", "objects.json"));
+  const locations = readJSON(path.join(ROOT, "data", "locations.json"));
+  const periods = readJSON(path.join(ROOT, "data", "periods.json"));
+  const campaigns = readJSON(path.join(ROOT, "data", "campaigns.json"));
 
   const locationById = Object.fromEntries(locations.map((l) => [l.id, l]));
   const periodById = Object.fromEntries(periods.map((p) => [p.id, p]));
@@ -52,8 +56,8 @@ function loadResolvedObjects() {
 
   // Debug/diff aid only (gitignored) — never read back in as a source of truth.
   fs.writeFileSync(
-    path.join(ROOT, 'data', 'objects.resolved.json'),
-    JSON.stringify(resolved, null, 2)
+    path.join(ROOT, "data", "objects.resolved.json"),
+    JSON.stringify(resolved, null, 2),
   );
 
   return resolved;
@@ -66,14 +70,18 @@ function loadResolvedObjects() {
 function assetURL(relPath) {
   const abs = path.join(ROOT, relPath);
   if (!fs.existsSync(abs)) return relPath;
-  const hash = crypto.createHash('sha1').update(fs.readFileSync(abs)).digest('hex').slice(0, 8);
+  const hash = crypto
+    .createHash("sha1")
+    .update(fs.readFileSync(abs))
+    .digest("hex")
+    .slice(0, 8);
   return `${relPath}?v=${hash}`;
 }
 
 function fill(template, tokens) {
   let out = template;
   for (const [key, value] of Object.entries(tokens)) {
-    out = out.split(`{{${key}}}`).join(value ?? '');
+    out = out.split(`{{${key}}}`).join(value ?? "");
   }
   return out;
 }
@@ -85,19 +93,21 @@ function fill(template, tokens) {
  * 'index' | 'about' | 'collection', or '' if none apply). */
 function siteNavHTML(basePath, current, { withHome = false } = {}) {
   const link = (href, label, key) =>
-    `<a class="site-nav-link" href="${basePath}${href}"${current === key ? ' aria-current="page"' : ''}>${label}</a>`;
-  const home = withHome ? link('index.html', 'Chiriandreses Museum', 'index') : '';
+    `<a class="site-nav-link" href="${basePath}${href}"${current === key ? ' aria-current="page"' : ""}>${label}</a>`;
+  const home = withHome
+    ? link("index.html", "Chiriandreses Museum", "index")
+    : "";
   return `<nav class="site-nav" aria-label="Main">
-      ${home}${link('about.html', 'About', 'about')}
-      ${link('collection.html', 'The Collection', 'collection')}
+      ${home}${link("about.html", "About", "about")}
+      ${link("collection.html", "The Collection", "collection")}
     </nav>`;
 }
 
 function heroHTML(basePath, current, { showNav = true } = {}) {
-  const nav = showNav ? siteNavHTML(basePath, current) : '';
+  const nav = showNav ? siteNavHTML(basePath, current) : "";
   return `<header class="site-hero">
   <div class="wrap">
-    <h1 class="hero-title"><a href="${basePath}index.html"${current === 'index' ? ' aria-current="page"' : ''}>Chiriandreses Museum</a></h1>
+    <h1 class="hero-title"><a href="${basePath}index.html"${current === "index" ? ' aria-current="page"' : ""}>Chiriandreses Museum</a></h1>
     <p class="hero-subtitle">Explore our family's story in 3D</p>
     ${nav}
   </div>
@@ -110,16 +120,16 @@ function heroHTML(basePath, current, { showNav = true } = {}) {
  * button + init-script bodies from git history to bring switching back. */
 
 function themeToggleHTML() {
-  return '';
+  return "";
 }
 
 function themeInitScript() {
-  return '';
+  return "";
 }
 
 /* ---------- Shared footer credit line ---------- */
 
-const { version: SITE_VERSION } = readJSON(path.join(ROOT, 'package.json'));
+const { version: SITE_VERSION } = readJSON(path.join(ROOT, "package.json"));
 
 function footerMetaHTML() {
   const year = new Date().getFullYear();
@@ -129,14 +139,14 @@ function footerMetaHTML() {
 /* ---------- Landing page ---------- */
 
 const PROJECT_BLURB = `<p>A small family collection of heirlooms, travel mementos and precious treasures that capture my parents' love story, turned into interactive 3D models for you to explore.</p>
-<p>Each model comes with its own story of how it turned up here with us, alongside an honest record of its digitisation process that aims to closely follow the current European framework set out in the VIGIE 2020/654 study to achieve quality and traceability in 3D heritage digitisation.</p>`;
+<p>Each model comes with its own story of how it turned up here with us, alongside an honest record of their digitisation process. A record that aims to closely follow the current European metadata and paradata framework set out in the VIGIE 2020/654 study, to achieve high quality and traceability in 3D heritage digitisation projects.</p>`;
 
 function buildLandingPage(template) {
   return fill(template, {
-    HERO: heroHTML('', 'index', { showNav: false }),
+    HERO: heroHTML("", "index", { showNav: false }),
     PROJECT_BLURB,
-    LANDING_VIDEO_SRC: assetURL('assets/video/landing-bg.mp4'),
-    LANDING_VIDEO_POSTER: assetURL('assets/video/landing-bg-poster.jpg'),
+    LANDING_VIDEO_SRC: assetURL("assets/video/landing-bg.mp4"),
+    LANDING_VIDEO_POSTER: assetURL("assets/video/landing-bg-poster.jpg"),
     THEME_TOGGLE: themeToggleHTML(),
     THEME_INIT: themeInitScript(),
     FOOTER_META: footerMetaHTML(),
@@ -155,28 +165,31 @@ function buildLandingPage(template) {
  * they point at are copied from assets/img/lab-notes/ by main(). */
 
 function partialHTML(name) {
-  return readFile(path.join(ROOT, 'templates', 'partials', name)).trim();
+  return readFile(path.join(ROOT, "templates", "partials", name)).trim();
 }
 
 /* Panel order here is cosmetic; the sidebar order lives in templates/about.html.
  * about-project.html ("The technical details") is retired from the built page
  * for now — kept on disk as source to fold into the two new project panels. */
 const ABOUT_PANELS = {
-  ABOUT_INTRO: 'about-intro.html',
-  ABOUT_ME: 'about-me.html',
-  LIFECYCLE: 'project-lifecycle.html',
-  STAGE_BY_STAGE: 'stage-by-stage.html',
-  DOCUMENTATION: 'documentation.html',
-  LAB_NOTES: 'lab-notes.html',
-  LESSONS_LEARNED: 'lessons-learned.html',
+  ABOUT_INTRO: "about-intro.html",
+  ABOUT_ME: "about-me.html",
+  LIFECYCLE: "project-lifecycle.html",
+  STAGE_BY_STAGE: "stage-by-stage.html",
+  DOCUMENTATION: "documentation.html",
+  LAB_NOTES: "lab-notes.html",
+  LESSONS_LEARNED: "lessons-learned.html",
 };
 
 function buildAboutPage(template) {
   const panels = Object.fromEntries(
-    Object.entries(ABOUT_PANELS).map(([token, file]) => [token, partialHTML(file)])
+    Object.entries(ABOUT_PANELS).map(([token, file]) => [
+      token,
+      partialHTML(file),
+    ]),
   );
   return fill(template, {
-    HERO: heroHTML('', 'about'),
+    HERO: heroHTML("", "about"),
     ...panels,
     THEME_TOGGLE: themeToggleHTML(),
     THEME_INIT: themeInitScript(),
@@ -191,7 +204,9 @@ function uniqueSorted(values) {
 }
 
 function optionsHTML(values) {
-  return values.map((v) => `<option value="${v}">${v}</option>`).join('\n        ');
+  return values
+    .map((v) => `<option value="${v}">${v}</option>`)
+    .join("\n        ");
 }
 
 /* Card thumbnails are black line-art SVGs supplied per object, named by ID
@@ -201,8 +216,14 @@ function optionsHTML(values) {
  * a placeholder box via .card-thumb:empty, so the site builds fine before
  * the real assets arrive. */
 function cardThumbHTML(id) {
-  const file = path.join(ROOT, 'assets', 'img', 'cards', `${id.toLowerCase()}.svg`);
-  return fs.existsSync(file) ? readFile(file) : '';
+  const file = path.join(
+    ROOT,
+    "assets",
+    "img",
+    "cards",
+    `${id.toLowerCase()}.svg`,
+  );
+  return fs.existsSync(file) ? readFile(file) : "";
 }
 
 const CARD_SEARCH_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.8-4.8"/></svg>`;
@@ -232,15 +253,19 @@ function buildCollectionPage(template, objects) {
   const ids = objects.map((o) => o.id).sort();
   const names = uniqueSorted(objects.map((o) => o.title));
 
-  const cards = objects.map(buildCard).join('\n');
+  const cards = objects.map(buildCard).join("\n");
 
   return fill(template, {
-    HERO: heroHTML('', 'collection'),
+    HERO: heroHTML("", "collection"),
     YEAR_OPTIONS: optionsHTML(years),
     COUNTRY_OPTIONS: optionsHTML(countries),
     CONTINENT_OPTIONS: optionsHTML(continents),
-    ID_OPTIONS: ids.map((id) => `<option value="${id}">${id}</option>`).join('\n        '),
-    NAME_OPTIONS: names.map((n) => `<option value="${n}">${n}</option>`).join('\n        '),
+    ID_OPTIONS: ids
+      .map((id) => `<option value="${id}">${id}</option>`)
+      .join("\n        "),
+    NAME_OPTIONS: names
+      .map((n) => `<option value="${n}">${n}</option>`)
+      .join("\n        "),
     CARDS: cards,
     OBJECTS_DATA: buildObjectsDataJSON(objects),
     THEME_TOGGLE: themeToggleHTML(),
@@ -252,34 +277,58 @@ function buildCollectionPage(template, objects) {
 /* ---------- Object detail pages ---------- */
 
 const STATUS_LABEL = {
-  measured: 'Measured',
-  estimated: 'Estimated',
-  flagged: 'Flagged',
-  na: 'N/A',
+  measured: "Measured",
+  estimated: "Estimated",
+  flagged: "Flagged",
+  na: "N/A",
 };
 
 /* item.chip (Reshaped/Patched/Recreated) mirrors the same work-type chips
  * used in the About page's Stage-by-stage "Mesh or texture polishing
  * record" table (.res-chip.is-part there too) — only set on provenance
- * entries that actually got that kind of manual post-processing work. */
+ * entries that actually got that kind of manual post-processing work. It's
+ * grouped with .note in .provenance-detail (not with the status stamp in
+ * .provenance-head) because it explains *how* the note's disclosure
+ * happened, not the property's status.
+ *
+ * status: "n/a" is rendered as a bare "Not created" stamp chip on the same
+ * .provenance-head row as every other status (property name left, stamp
+ * right) — there's nothing to disclose about a map that was never
+ * generated, so the .provenance-detail block (chip + note, still required
+ * by the schema for internal record-keeping) is intentionally omitted. */
 function provenanceHTML(items) {
-  return items.map((item) => {
-    const statusKey = item.status === 'n/a' ? 'na' : item.status;
-    const label = STATUS_LABEL[statusKey] || item.status;
-    const chip = item.chip ? ` <span class="res-chip is-part">${item.chip}</span>` : '';
-    return `<div class="provenance-item">
-      <span class="stamp ${statusKey}">${label}</span>
-      <span class="prop">${item.property}</span>${chip}
-      <span class="note">${item.note}</span>
+  return items
+    .map((item) => {
+      if (item.status === "n/a") {
+        return `<div class="provenance-item">
+      <div class="provenance-head">
+        <span class="prop">${item.property}</span>
+        <span class="stamp na">Not created</span>
+      </div>
     </div>`;
-  }).join('\n');
+      }
+      const label = STATUS_LABEL[item.status] || item.status;
+      const chip = item.chip
+        ? `<span class="res-chip is-part">${item.chip}</span>`
+        : "";
+      return `<div class="provenance-item">
+      <div class="provenance-head">
+        <span class="prop">${item.property}</span>
+        <span class="stamp ${item.status}">${label}</span>
+      </div>
+      <div class="provenance-detail">${chip}
+        <span class="note">${item.note}</span>
+      </div>
+    </div>`;
+    })
+    .join("\n");
 }
 
 /* Complexity is rendered as three separate rows (Complexity/Surface/Material)
  * rather than one combined string — see the "Complexity" row split in
  * templates/object.html and templates/collection.html. */
 function complexityValue(c, key) {
-  return c ? c[key] : 'Not individually recorded';
+  return c ? c[key] : "Not individually recorded";
 }
 
 function chronologyShort(chronology) {
@@ -287,22 +336,23 @@ function chronologyShort(chronology) {
 }
 
 function storyHTML(paragraphs) {
-  return paragraphs.map((p) => `<p>${p}</p>`).join('\n');
+  return paragraphs.map((p) => `<p>${p}</p>`).join("\n");
 }
 
 function materialsNoteHTML(obj) {
   return obj.materialsNote
     ? `<span class="materials-note">${obj.materialsNote}</span>`
-    : '';
+    : "";
 }
 
 /* Tier-2 "Geometric data" row — condensed from the primary derived asset in
  * fullRecord, rather than authored separately, so mesh stats never drift
  * out of sync with the full record's own asset inventory. */
 function geometricDataText(fullRecord) {
-  const asset = fullRecord && fullRecord.derivedAssets && fullRecord.derivedAssets[0];
-  if (!asset) return 'Not individually recorded';
-  return `${asset.meshResolution} · ${asset.vertexCount.toLocaleString('en-GB')} vertices · ${asset.faceCount.toLocaleString('en-GB')} faces`;
+  const asset =
+    fullRecord && fullRecord.derivedAssets && fullRecord.derivedAssets[0];
+  if (!asset) return "Not individually recorded";
+  return `${asset.meshResolution} · ${asset.vertexCount.toLocaleString("en-GB")} vertices · ${asset.faceCount.toLocaleString("en-GB")} faces`;
 }
 
 /* Tier-3 "Full record" — everything from the digitisation record that
@@ -313,30 +363,38 @@ function geometricDataText(fullRecord) {
  * the restructuring plan) — the Collection modal never receives this data. */
 function fullRecordHTML(obj) {
   const r = obj.fullRecord;
-  if (!r) return '';
+  if (!r) return "";
 
   const eq = r.equipment || {};
-  const acquisitionRows = (r.acquisition || []).map((a) => `
+  const acquisitionRows = (r.acquisition || [])
+    .map(
+      (a) => `
         <tr>
           <td>${a.chunk}</td>
           <td>${a.exposureMode}</td>
           <td>${a.opticsFocus}</td>
           <td>${a.rotationalSteps}</td>
           <td>${a.imageCount}</td>
-        </tr>`).join('');
+        </tr>`,
+    )
+    .join("");
 
-  const assetRows = (r.derivedAssets || []).map((a) => `
+  const assetRows = (r.derivedAssets || [])
+    .map(
+      (a) => `
         <tr>
           <td>${a.label}</td>
           <td>${a.meshResolution}</td>
           <td>${a.alignmentQuality}</td>
-          <td>${a.tiePointCount.toLocaleString('en-GB')}</td>
-          <td>${a.vertexCount.toLocaleString('en-GB')}</td>
-          <td>${a.faceCount.toLocaleString('en-GB')}</td>
+          <td>${a.tiePointCount.toLocaleString("en-GB")}</td>
+          <td>${a.vertexCount.toLocaleString("en-GB")}</td>
+          <td>${a.faceCount.toLocaleString("en-GB")}</td>
           <td>${a.filename}</td>
           <td>${a.format}</td>
           <td>${a.size}</td>
-        </tr>`).join('');
+        </tr>`,
+    )
+    .join("");
 
   return `<p class="record-section-label">Assessment</p>
     <dl>
@@ -346,12 +404,12 @@ function fullRecordHTML(obj) {
       <div class="record-row"><dt>Physical challenges</dt><dd>${r.physicalChallenges}</dd></div>
       <div class="record-row"><dt>Overall description</dt><dd>${r.overallDescription}</dd></div>
       <div class="record-row"><dt>Recording challenges</dt><dd>${r.recordingChallenges}</dd></div>
-      <div class="record-row"><dt>Experiment?</dt><dd>${r.experiment ? 'Yes — deliberate technique experiment' : 'No'}</dd></div>
+      <div class="record-row"><dt>Experiment?</dt><dd>${r.experiment ? "Yes — deliberate technique experiment" : "No"}</dd></div>
       <div class="record-row"><dt>Digitisation campaign</dt><dd>${obj.campaign.label}</dd></div>
     </dl>
 
     <p class="record-section-label">Post-processing lab notes</p>
-    ${storyHTML(r.postProcessingNotes.split('\n\n'))}
+    ${storyHTML(r.postProcessingNotes.split("\n\n"))}
 
     <p class="record-section-label">Capture tolerances &amp; equipment</p>
     <dl>
@@ -397,12 +455,12 @@ function buildObjectPage(obj, template) {
   const materialsNote = materialsNoteHTML(obj);
 
   return fill(template, {
-    HERO: heroHTML('../', 'collection'),
+    HERO: heroHTML("../", "collection"),
     TITLE: obj.title,
     ID: obj.id,
     TYPE: obj.type,
     USE: obj.use,
-    TEASER: obj.story[0].slice(0, 155) + '…',
+    TEASER: obj.story[0].slice(0, 155) + "…",
     CHRONOLOGY: obj.chronology,
     CHRONOLOGY_SHORT: chronologyShort(obj.chronology),
     GEOGRAPHY: obj.country,
@@ -413,9 +471,9 @@ function buildObjectPage(obj, template) {
     CONDITION: obj.condition,
     INTEGRITY: obj.integrity,
     CAPTURE_DATE: obj.captureDate,
-    COMPLEXITY: complexityValue(obj.complexity, 'object'),
-    COMPLEXITY_SURFACE: complexityValue(obj.complexity, 'surface'),
-    COMPLEXITY_MATERIAL: complexityValue(obj.complexity, 'material'),
+    COMPLEXITY: complexityValue(obj.complexity, "object"),
+    COMPLEXITY_SURFACE: complexityValue(obj.complexity, "surface"),
+    COMPLEXITY_MATERIAL: complexityValue(obj.complexity, "material"),
     GEOMETRIC_DATA: geometricDataText(obj.fullRecord),
     SOFTWARE: obj.software,
     SKETCHFAB_UID: obj.sketchfabUid,
@@ -451,9 +509,9 @@ function buildObjectsDataJSON(objects) {
     condition: obj.condition,
     integrity: obj.integrity,
     digitisedIn: `${obj.campaign.label} - ${obj.campaign.digitisedDate}`,
-    complexity: complexityValue(obj.complexity, 'object'),
-    complexitySurface: complexityValue(obj.complexity, 'surface'),
-    complexityMaterial: complexityValue(obj.complexity, 'material'),
+    complexity: complexityValue(obj.complexity, "object"),
+    complexitySurface: complexityValue(obj.complexity, "surface"),
+    complexityMaterial: complexityValue(obj.complexity, "material"),
     geometricData: geometricDataText(obj.fullRecord),
     software: obj.software,
     sketchfabUid: obj.sketchfabUid,
@@ -462,7 +520,7 @@ function buildObjectsDataJSON(objects) {
   }));
   // Defuse a literal "</script" inside any authored field so it can't
   // terminate the embedding <script type="application/json"> early.
-  return JSON.stringify(data).replace(/<\/script/gi, '<\\/script');
+  return JSON.stringify(data).replace(/<\/script/gi, "<\\/script");
 }
 
 /* ---------- Main ---------- */
@@ -470,69 +528,107 @@ function buildObjectsDataJSON(objects) {
 function main() {
   const dataErrors = validateData();
   if (dataErrors.length) {
-    console.error(`Build aborted — data validation failed with ${dataErrors.length} error(s):\n`);
+    console.error(
+      `Build aborted — data validation failed with ${dataErrors.length} error(s):\n`,
+    );
     dataErrors.forEach((e) => console.error(`  - ${e}`));
     process.exit(1);
   }
 
   const objects = loadResolvedObjects();
 
-  const landingTemplate = readFile(path.join(ROOT, 'templates', 'index.html'));
-  const aboutTemplate = readFile(path.join(ROOT, 'templates', 'about.html'));
-  const collectionTemplate = readFile(path.join(ROOT, 'templates', 'collection.html'));
-  const objectTemplate = readFile(path.join(ROOT, 'templates', 'object.html'));
+  const landingTemplate = readFile(path.join(ROOT, "templates", "index.html"));
+  const aboutTemplate = readFile(path.join(ROOT, "templates", "about.html"));
+  const collectionTemplate = readFile(
+    path.join(ROOT, "templates", "collection.html"),
+  );
+  const objectTemplate = readFile(path.join(ROOT, "templates", "object.html"));
 
   fs.rmSync(DOCS, { recursive: true, force: true });
-  fs.mkdirSync(path.join(DOCS, 'objects'), { recursive: true });
-  fs.mkdirSync(path.join(DOCS, 'assets'), { recursive: true });
-  fs.mkdirSync(path.join(DOCS, 'assets', 'img', 'lab-notes'), { recursive: true });
-  fs.mkdirSync(path.join(DOCS, 'assets', 'img', 'about'), { recursive: true });
+  fs.mkdirSync(path.join(DOCS, "objects"), { recursive: true });
+  fs.mkdirSync(path.join(DOCS, "assets"), { recursive: true });
+  fs.mkdirSync(path.join(DOCS, "assets", "img", "lab-notes"), {
+    recursive: true,
+  });
+  fs.mkdirSync(path.join(DOCS, "assets", "img", "about"), { recursive: true });
 
-  fs.copyFileSync(path.join(ROOT, 'assets', 'styles.css'), path.join(DOCS, 'assets', 'styles.css'));
-  fs.copyFileSync(path.join(ROOT, 'assets', 'site.js'), path.join(DOCS, 'assets', 'site.js'));
+  fs.copyFileSync(
+    path.join(ROOT, "assets", "styles.css"),
+    path.join(DOCS, "assets", "styles.css"),
+  );
+  fs.copyFileSync(
+    path.join(ROOT, "assets", "site.js"),
+    path.join(DOCS, "assets", "site.js"),
+  );
 
-  const labImgDir = path.join(ROOT, 'assets', 'img', 'lab-notes');
+  const labImgDir = path.join(ROOT, "assets", "img", "lab-notes");
   if (fs.existsSync(labImgDir)) {
     for (const file of fs.readdirSync(labImgDir)) {
-      fs.copyFileSync(path.join(labImgDir, file), path.join(DOCS, 'assets', 'img', 'lab-notes', file));
+      fs.copyFileSync(
+        path.join(labImgDir, file),
+        path.join(DOCS, "assets", "img", "lab-notes", file),
+      );
     }
   }
 
-  const aboutImgDir = path.join(ROOT, 'assets', 'img', 'about');
+  const aboutImgDir = path.join(ROOT, "assets", "img", "about");
   if (fs.existsSync(aboutImgDir)) {
     for (const file of fs.readdirSync(aboutImgDir)) {
-      fs.copyFileSync(path.join(aboutImgDir, file), path.join(DOCS, 'assets', 'img', 'about', file));
+      fs.copyFileSync(
+        path.join(aboutImgDir, file),
+        path.join(DOCS, "assets", "img", "about", file),
+      );
     }
   }
 
   // Landing-page background video + poster (large-screen flourish, see
   // assets/site.js). Committed pre-encoded web assets, copied verbatim.
-  const videoDir = path.join(ROOT, 'assets', 'video');
+  const videoDir = path.join(ROOT, "assets", "video");
   if (fs.existsSync(videoDir)) {
-    fs.mkdirSync(path.join(DOCS, 'assets', 'video'), { recursive: true });
+    fs.mkdirSync(path.join(DOCS, "assets", "video"), { recursive: true });
     for (const file of fs.readdirSync(videoDir)) {
-      fs.copyFileSync(path.join(videoDir, file), path.join(DOCS, 'assets', 'video', file));
+      fs.copyFileSync(
+        path.join(videoDir, file),
+        path.join(DOCS, "assets", "video", file),
+      );
     }
   }
 
-  fs.writeFileSync(path.join(DOCS, 'index.html'), buildLandingPage(landingTemplate));
-  fs.writeFileSync(path.join(DOCS, 'about.html'), buildAboutPage(aboutTemplate));
-  fs.writeFileSync(path.join(DOCS, 'collection.html'), buildCollectionPage(collectionTemplate, objects));
+  fs.writeFileSync(
+    path.join(DOCS, "index.html"),
+    buildLandingPage(landingTemplate),
+  );
+  fs.writeFileSync(
+    path.join(DOCS, "about.html"),
+    buildAboutPage(aboutTemplate),
+  );
+  fs.writeFileSync(
+    path.join(DOCS, "collection.html"),
+    buildCollectionPage(collectionTemplate, objects),
+  );
 
   for (const obj of objects) {
     const html = buildObjectPage(obj, objectTemplate);
-    fs.writeFileSync(path.join(DOCS, 'objects', `${obj.slug}.html`), html);
+    fs.writeFileSync(path.join(DOCS, "objects", `${obj.slug}.html`), html);
   }
 
-  fs.writeFileSync(path.join(DOCS, '.nojekyll'), '');
+  fs.writeFileSync(path.join(DOCS, ".nojekyll"), "");
 
-  console.log(`Built landing, about, collection + ${objects.length} object pages into /docs`);
-  const missing = objects.filter((o) => o.sketchfabUid === 'REPLACE_WITH_SKETCHFAB_UID');
+  console.log(
+    `Built landing, about, collection + ${objects.length} object pages into /docs`,
+  );
+  const missing = objects.filter(
+    (o) => o.sketchfabUid === "REPLACE_WITH_SKETCHFAB_UID",
+  );
   if (missing.length) {
-    console.log(`\nReminder: ${missing.length} object(s) still need a real Sketchfab UID in data/objects.json:`);
+    console.log(
+      `\nReminder: ${missing.length} object(s) still need a real Sketchfab UID in data/objects.json:`,
+    );
     missing.forEach((o) => console.log(`  - ${o.id} (${o.slug})`));
   }
-  console.log('Reminder: Documentation links on the About page still use REPLACE_WITH_LINK placeholders.');
+  console.log(
+    "Reminder: Documentation links on the About page still use REPLACE_WITH_LINK placeholders.",
+  );
 }
 
 if (require.main === module) main();
