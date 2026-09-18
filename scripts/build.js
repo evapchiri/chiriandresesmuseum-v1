@@ -296,22 +296,20 @@ const STATUS_LABEL = {
  * right) — there's nothing to disclose about a map that was never
  * generated, so the .provenance-detail block (chip + note, still required
  * by the schema for internal record-keeping) is intentionally omitted. */
-function provenanceHTML(items) {
-  return items
-    .map((item) => {
-      if (item.status === "n/a") {
-        return `<div class="provenance-item">
+function renderProvenanceItem(item) {
+  if (item.status === "n/a") {
+    return `<div class="provenance-item">
       <div class="provenance-head">
         <span class="prop">${item.property}</span>
         <span class="stamp na">Not created</span>
       </div>
     </div>`;
-      }
-      const label = STATUS_LABEL[item.status] || item.status;
-      const chip = item.chip
-        ? `<span class="res-chip is-part">${item.chip}</span>`
-        : "";
-      return `<div class="provenance-item">
+  }
+  const label = STATUS_LABEL[item.status] || item.status;
+  const chip = item.chip
+    ? `<span class="res-chip is-part">${item.chip}</span>`
+    : "";
+  return `<div class="provenance-item">
       <div class="provenance-head">
         <span class="prop">${item.property}</span>
         <span class="stamp ${item.status}">${label}</span>
@@ -320,8 +318,48 @@ function provenanceHTML(items) {
         <span class="note">${item.note}</span>
       </div>
     </div>`;
-    })
-    .join("\n");
+}
+
+/* The Texture maps section is texture-only, despite obj.provenance carrying
+ * the object's full disclosed-fields record (Overall model, Geometry,
+ * Confidence, Measurements, etc. — real record data, kept in objects.json,
+ * just not this section's business). It always shows exactly these two
+ * rows, in this order, for every object: Albedo/diffuse, then Roughness/
+ * metallic — matched loosely (CHAN-007 discloses only "Metallic", CHAN-016
+ * only "Roughness") and normalised to the canonical property label so the
+ * heading reads the same everywhere.
+ *
+ * Undisclosed is meaningful, not absent: an object with no albedo/diffuse
+ * entry never had that map touched, so it's Metashape's unedited output
+ * ("Measured" / as-is); an object with no roughness/metallic entry never
+ * had one generated at all ("Not created"). Those defaults are synthesised
+ * here rather than the section silently dropping the row. */
+const ALBEDO_DEFAULT = {
+  property: "Albedo / diffuse",
+  status: "measured",
+  note: "As-is from processing.",
+};
+const ROUGHNESS_METALLIC_DEFAULT = {
+  property: "Roughness / metallic",
+  status: "n/a",
+  note: "Not created for this object.",
+};
+
+function provenanceHTML(items) {
+  const albedo = items.find((item) => /albedo|diffuse/i.test(item.property));
+  const roughnessMetallic = items.find((item) =>
+    /roughness|metallic/i.test(item.property),
+  );
+  return [
+    renderProvenanceItem({
+      ...(albedo || ALBEDO_DEFAULT),
+      property: "Albedo / diffuse",
+    }),
+    renderProvenanceItem({
+      ...(roughnessMetallic || ROUGHNESS_METALLIC_DEFAULT),
+      property: "Roughness / metallic",
+    }),
+  ].join("\n");
 }
 
 /* Complexity is rendered as three separate rows (Complexity/Surface/Material)
