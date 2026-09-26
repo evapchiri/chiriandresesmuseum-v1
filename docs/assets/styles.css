@@ -945,6 +945,23 @@ h3 {
   margin: 0;
 }
 
+.about-content pre {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin: 1em auto;
+  max-width: 66ch;
+  overflow-x: auto;
+  text-align: left;
+}
+.about-content pre code {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
 .spec-list {
   list-style: none;
   padding: 0;
@@ -984,28 +1001,43 @@ h3 {
   font-size: 0.92rem;
 }
 
-/* Lab notes photo galleries */
+/* Lab notes photo galleries — at most 2 thumbnails per row (overflow wraps
+   to further rows of 2), each expandable via figure[data-expandable] (see
+   initExpandableFigures() in assets/site.js). */
+
+.lab-journal-datestamp {
+  color: var(--brass);
+}
 
 .lab-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 6px;
   margin: 14px 0 4px;
   max-width: 66ch;
 }
 
-.lab-gallery a {
-  display: block;
+.lab-gallery-figure {
+  margin: 0;
+  flex: 0 1 calc(50% - 3px);
+  max-width: calc(50% - 3px);
   border: 1px solid var(--rule);
   background: var(--paper-raised);
-  line-height: 0;
 }
 
-.lab-gallery img {
+.lab-gallery-figure img {
   width: 100%;
-  height: 90px;
+  height: 200px;
   object-fit: cover;
   display: block;
+}
+
+@media (max-width: 520px) {
+  .lab-gallery-figure {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 }
 
 .lab-gallery-note {
@@ -1016,13 +1048,24 @@ h3 {
   max-width: 66ch;
 }
 
+.lab-video {
+  display: block;
+  width: 100%;
+  max-width: 66ch;
+  margin: 14px auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+}
+
 /* ---------- Folder tabs (dated strip inside Lab notes) ----------
  * Filing-folder metaphor: tabs sit on a shelf line; the active tab is boxed,
  * shares the page background, and drops its bottom edge so it reads as one
  * continuous surface with the panel below it. */
 
 .folder-tabs {
-  margin-top: 1.6em;
+  margin-top: 1em;
+  margin-bottom: 2em;
 }
 
 .folder-tab-strip {
@@ -1030,6 +1073,21 @@ h3 {
   flex-wrap: wrap;
   gap: 4px;
   border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--paper);
+}
+
+/* Nested folder-tabs (e.g. April's Early/Mid/Late sub-tabs, inside a
+   .folder-tab-panel) — centered, unlike the month-level strip above them,
+   and sticks just below it (rather than at top: 0) so both can be stuck at
+   once without overlapping. */
+.folder-tab-panel .folder-tab-strip {
+  margin-bottom: 2em;
+  justify-content: center;
+  top: 33px;
+  z-index: 4;
 }
 
 .folder-tab-strip button {
@@ -1045,6 +1103,7 @@ h3 {
   letter-spacing: 0.01em;
   color: var(--ink-soft);
   cursor: pointer;
+  text-align: center;
 }
 
 .folder-tab-strip button:hover {
@@ -1059,11 +1118,16 @@ h3 {
 }
 
 .folder-tab-panel {
-  padding-top: 0.4em;
+  text-align: center;
 }
 
-.folder-tab-panel > h3:first-child {
-  margin-top: 0.6em;
+.folder-tab-panel > h3 {
+  margin-top: 1em;
+  justify-content: center;
+}
+
+.folder-tab-panel li {
+  text-align: left;
 }
 
 .folder-tab-panel:focus-visible {
@@ -2540,11 +2604,11 @@ main.wrap > .viewer-wrap .story p {
 .provenance-head {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 1em;
 }
 .provenance-item .prop {
   font-weight: 600;
-  font-size: 1.05em;
+  font-size: 0.9em;
 }
 .provenance-detail {
   margin-top: 8px;

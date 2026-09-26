@@ -360,20 +360,40 @@ function initBackToTop() {
 
 function initFolderTabs() {
   document.querySelectorAll('[data-folder-tabs]').forEach((root) => {
-    const tabs = [...root.querySelectorAll('[role="tab"]')];
+    // A folder-tabs root can nest another one (e.g. April's Early/Mid/Late
+    // sub-tabs inside the month-level tabs) — querySelectorAll would
+    // otherwise pull the nested root's tabs into this root's own list, so
+    // keep only tabs whose closest [data-folder-tabs] ancestor is this root.
+    const tabs = [...root.querySelectorAll('[role="tab"]')].filter(
+      (t) => t.closest('[data-folder-tabs]') === root
+    );
     if (!tabs.length) return;
 
     // The Stage-by-stage strip is a full-page navigation: switching stage
     // should drop the reader back to the top of the About content (hero
-    // tucked away) so each stage is read from its own beginning. Other
-    // folder-tab strips (Lab journal dates) stay where they are.
+    // tucked away) so each stage is read from its own beginning, regardless
+    // of scroll position. Other folder-tab strips (Lab journal's month tabs
+    // and April's nested sub-tabs) are sticky too, but should only re-anchor
+    // the scroll position when the strip is actually stuck at the moment of
+    // the switch — if it's still sitting in its normal flow position (reader
+    // hasn't scrolled down to it yet), switching tabs shouldn't move the page.
     const isPageNav = root.classList.contains('stage-nav');
+    const strip = tabs[0].parentElement;
     function scrollPastHero() {
       const anchor = document.querySelector('.about-main');
       const y = anchor
         ? anchor.getBoundingClientRect().top + window.scrollY - 10
         : 0;
       window.scrollTo(0, Math.max(0, y));
+    }
+    function isStuck() {
+      const cssTop = parseFloat(getComputedStyle(strip).top) || 0;
+      return strip.getBoundingClientRect().top <= cssTop + 1;
+    }
+    function keepStripStuck() {
+      const cssTop = parseFloat(getComputedStyle(strip).top) || 0;
+      const delta = strip.getBoundingClientRect().top - cssTop;
+      if (delta !== 0) window.scrollTo(0, window.scrollY + delta);
     }
 
     function select(tab, { focus = false } = {}) {
@@ -390,9 +410,12 @@ function initFolderTabs() {
 
     root.addEventListener('click', (e) => {
       const tab = e.target.closest('[role="tab"]');
-      if (!tab) return;
+      if (!tab || !tabs.includes(tab)) return;
+      e.stopPropagation();
+      const wasStuck = !isPageNav && isStuck();
       select(tab);
       if (isPageNav) scrollPastHero();
+      else if (wasStuck) keepStripStuck();
     });
 
     root.addEventListener('keydown', (e) => {
@@ -405,7 +428,9 @@ function initFolderTabs() {
       else if (e.key === 'End') next = tabs.length - 1;
       if (next === null) return;
       e.preventDefault();
+      const wasStuck = !isPageNav && isStuck();
       select(tabs[next], { focus: true });
+      if (!isPageNav && wasStuck) keepStripStuck();
     });
   });
 }
