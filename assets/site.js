@@ -533,7 +533,7 @@ function initAboutCarousel() {
     expandBtn.className = 'carousel-expand';
     expandBtn.setAttribute('aria-label', 'View image larger');
     expandBtn.innerHTML =
-      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5"/></svg>';
+      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/icons.svg#icon-expand"></use></svg>';
     expandBtn.addEventListener('click', openLightbox);
     viewport.appendChild(expandBtn);
 
@@ -644,7 +644,7 @@ function initExpandableFigures() {
     btn.className = 'figure-expand';
     btn.setAttribute('aria-label', 'View image larger');
     btn.innerHTML =
-      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5"/></svg>';
+      '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/icons.svg#icon-expand"></use></svg>';
     btn.addEventListener('click', () => openLightbox(img, captionText));
     frame.appendChild(btn);
 
