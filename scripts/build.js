@@ -19,6 +19,18 @@ function readJSON(p) {
 function readFile(p) {
   return fs.readFileSync(p, "utf8");
 }
+function copyDirRecursive(srcDir, destDir) {
+  fs.mkdirSync(destDir, { recursive: true });
+  for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
+    const srcPath = path.join(srcDir, entry.name);
+    const destPath = path.join(destDir, entry.name);
+    if (entry.isDirectory()) {
+      copyDirRecursive(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
+}
 
 /* ---------- Data loading + lookup resolution ----------
  * data/objects.json is the single source of truth (curated tier-1/2 fields,
@@ -155,22 +167,22 @@ function buildLandingPage(template) {
 
 /* ---------- About page ----------
  * Every About-section panel is a plain HTML fragment in templates/partials/,
- * each read verbatim into its template token. about-intro.html is the default
- * panel shown on load (the section's short "what is this?" landing view) and
- * has no button in the sidebar; the rest are the tabbed panels. Edit those
- * files directly — no
- * markdown step, no HTML-in-JS-string-literal. Each fragment starts with its
- * own <h2>. Lab-note photo galleries are written inline as
- * <div class="lab-gallery"> blocks (styled in assets/styles.css); the images
- * they point at are copied from assets/img/lab-notes/ by main(). */
+ * read into its template token. about-intro.html is the default panel shown
+ * on load (the section's short "what is this?" landing view) and has no
+ * button in the sidebar; the rest are the tabbed panels. Edit those files
+ * directly — no markdown step, no HTML-in-JS-string-literal, with one
+ * exception: documentation.html carries a {{METASHAPE_REPORTS_GRID}} token,
+ * filled in per-object by buildAboutPage() since that's the one panel that
+ * needs data from objects.json. Each fragment starts with its own <h2>.
+ * Lab-note photo galleries are written inline as <div class="lab-gallery">
+ * blocks (styled in assets/styles.css); the images they point at are copied
+ * from assets/img/lab-notes/ by main(). */
 
 function partialHTML(name) {
   return readFile(path.join(ROOT, "templates", "partials", name)).trim();
 }
 
-/* Panel order here is cosmetic; the sidebar order lives in templates/about.html.
- * about-project.html ("The technical details") is retired from the built page
- * for now — kept on disk as source to fold into the two new project panels. */
+/* Panel order here is cosmetic; the sidebar order lives in templates/about.html. */
 const ABOUT_PANELS = {
   ABOUT_INTRO: "about-intro.html",
   ABOUT_ME: "about-me.html",
@@ -181,13 +193,36 @@ const ABOUT_PANELS = {
   LESSONS_LEARNED: "lessons-learned.html",
 };
 
-function buildAboutPage(template) {
+/* Documentation panel's "Metashape reports per object" grid — one button per
+ * published object, reusing the same per-object line-art SVG as the
+ * Collection cards (cardThumbHTML), recoloured stone-grey via CSS, linking
+ * to that object's archived Metashape PDF report in
+ * assets/documents/metashape-reports/. The only spot where a partial needs
+ * per-object data, so it's the one exception to "partials are read
+ * verbatim" — see buildAboutPage(). */
+function metashapeReportsGridHTML(objects) {
+  return objects
+    .map((obj) => {
+      const id = obj.id.toLowerCase();
+      return `      <a class="doc-report-btn" href="assets/documents/metashape-reports/${id}.pdf" download="${obj.id}-metashape-report.pdf" aria-label="Download the Metashape processing report for ${obj.id} — ${obj.title}">
+        <span class="doc-report-icon">${cardThumbHTML(obj.id)}</span>
+        <span class="doc-report-id">${obj.id}</span>
+        <span class="doc-report-name">${obj.title}</span>
+      </a>`;
+    })
+    .join("\n");
+}
+
+function buildAboutPage(template, objects) {
   const panels = Object.fromEntries(
     Object.entries(ABOUT_PANELS).map(([token, file]) => [
       token,
       partialHTML(file),
     ]),
   );
+  panels.DOCUMENTATION = fill(panels.DOCUMENTATION, {
+    METASHAPE_REPORTS_GRID: metashapeReportsGridHTML(objects),
+  });
   return fill(template, {
     HERO: heroHTML("", "about"),
     ...panels,
@@ -226,7 +261,7 @@ function cardThumbHTML(id) {
   return fs.existsSync(file) ? readFile(file) : "";
 }
 
-const CARD_SEARCH_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.8-4.8"/></svg>`;
+const CARD_SEARCH_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/icons.svg#icon-card-search"></use></svg>`;
 
 function buildCard(obj) {
   return `<article class="card" data-decade="${obj.decade}" data-country="${obj.country}" data-continent="${obj.continent}" data-id="${obj.id}" data-name="${obj.title}">
@@ -641,6 +676,10 @@ function main() {
     path.join(ROOT, "assets", "site.js"),
     path.join(DOCS, "assets", "site.js"),
   );
+  fs.copyFileSync(
+    path.join(ROOT, "assets", "icons.svg"),
+    path.join(DOCS, "assets", "icons.svg"),
+  );
 
   const labImgDir = path.join(ROOT, "assets", "img", "lab-notes");
   if (fs.existsSync(labImgDir)) {
@@ -675,13 +714,22 @@ function main() {
     }
   }
 
+  // Downloadable documents (Documentation panel / Project archive): the
+  // full project report, the project-planning spreadsheet, and the archived
+  // Metashape report per object. Copied recursively since this is the one
+  // asset folder with a subdirectory (metashape-reports/).
+  const documentsDir = path.join(ROOT, "assets", "documents");
+  if (fs.existsSync(documentsDir)) {
+    copyDirRecursive(documentsDir, path.join(DOCS, "assets", "documents"));
+  }
+
   fs.writeFileSync(
     path.join(DOCS, "index.html"),
     buildLandingPage(landingTemplate),
   );
   fs.writeFileSync(
     path.join(DOCS, "about.html"),
-    buildAboutPage(aboutTemplate),
+    buildAboutPage(aboutTemplate, objects),
   );
   fs.writeFileSync(
     path.join(DOCS, "collection.html"),
@@ -707,9 +755,6 @@ function main() {
     );
     missing.forEach((o) => console.log(`  - ${o.id} (${o.slug})`));
   }
-  console.log(
-    "Reminder: Documentation links on the About page still use REPLACE_WITH_LINK placeholders.",
-  );
 }
 
 if (require.main === module) main();
