@@ -1,60 +1,109 @@
-<h2 class="partial-title">Lessons learned</h2>
+<h2 class="partial-title">Lessons learned...</h2>
 
-<p>What worked, what didn't, and what I'd do differently next time.</p>
+<p>Here you will find my toughest lessons, thing's that worked, things that didn't, and what I'd do differently next
+  time
+  around:</p>
 
-<h3>On photography and capture</h3>
+<h3 style="color: var(--brass);">... on Photography:</h3>
+<ul>
+  <li>
+    <p>My biggest takeaway is that, particularly in this stage, "slow goes far". <span class="hl">Allowing myself more
+        time
+        to un-rust my
+        photography skills properly</span>, and get my fundamentals right (ISO, aperture etc...) would have given me
+      better
+      chances and tools to
+      overcome the difficulties that I experienced
+      during processing. I didn't take into account depth of field during the photography sessions, and that alone has
+      cost me
+      a
+      few objects in the process.</p>
+  </li>
+  <li>
+    <p>Also, another big lesson is <span class="hl">to not take angle coverage for granted</span> - because
+      unfortunately is very simple: the software cannot create something it doesn't know. Recovering or patching this
+      lack of information could hinder badly the standards that museum-professionals strive for. More
+      angle
+      coverage, and more steps for object-coverage itself are something that I know now are
+      very essential to allow the software do the best job that it can, and achieve that best quality (scientific
+      standard) of the 3D data.</p>
+  </li>
+  <li>
+    <p><span class="hl">Knowing about shine-control techniques like cross-polarisation</span> would've also help me save
+      quite a few objects too. So having this as an option back then, as I have it now, would've helped the software
+      generate much better quality models throughout.</p>
+  </li>
+</ul>
+<h3 style="color: var(--brass);">... on Processing:</h3>
 
-<p>Cross-polarisation would have saved a genuine object (CHAN-002) and a lot of hours on others. I didn't know about it
-  going in; I do now, and it's non-negotiable for anything dark, shiny, or metallic on the next capture. Working
-  distance and lens choice also matter more than I expected — backing off and using a longer lens beats getting close
-  with a kit lens, especially on reflective surfaces, and matters more than which specific flash or light source you
-  use.</p>
+<ul>
+  <li>
+    <p><span class="hl">Processing workflows are not universal, but taking the time to curate a good processing pipeline
+        that you (really) understand
+        can really make
+        a
+        difference.</span> Alignment/processing settings will unavoidably vary per object depending on it's geometric
+      and texture
+      needs,
+      but many small workflow polishes really stacked up for me. AI-assisted bulk-masking of images did (generally *) a
+      pretty good job,
+      and helped me enhance the quality of tie-point alignment, improve final mesh quality and cut down processing time
+      from
+      ~4 hours down to 45 minutes.</p>
+  </li>
+  <li>
+    <p>* BUT: AI automation isn't universally reliable. CHAN-014 (Caravaca cross) is a great case on that: this object
+      was only rescued because I used a hybrid of masked and unmasked photographs,
+      particularly where the AI masking wasn't very accurate. <span class="hl">Pipeline workflows, particularly
+        automated ones, will at
+        times
+        need
+        manual override, certainly not blind trust.</span></p>
+  </li>
+</ul>
 
-<p>Angle coverage and turning-degree discipline directly decided whether an object aligned at all. Roughly 10° steps
-  with genuine overlap was the difference between a write-off and a clean model in the very first week — worth getting
-  right before the "intense" photography sessions start, not worked out mid-campaign.</p>
+<h3 style="color: var(--brass);">... on Post-processing and material authenticity</h3>
+<ul>
+  <li>
+    <p>
+      <span class="hl">Empirically-measured specularity (true-to-object shiny and metallic levels) is still a major gap
+        in the sector
+        when it comes to achieving 'authenticity' in digitisation</span>. Roughness and metallic textures maps are
+      currently
+      generally recreated based on image references and the technician's personal judgement. This limitation, which I
+      only realised during the post-processing stage, is what new software like <em>Kintsugi 3D Builder</em> is aiming
+      to overcome, and allow museum-professionals to generate empirically-measured specularity maps.
+    </p>
+  </li>
+  <li>
+    <p>This has sparked a
+      true interest in me, and <span class="hl">at the time when I'm writing these lessons, I am currently experimenting
+        and building a new photography and processing pipeline to implement <em>Kintsugi 3D Builder</em> in my
+        Photogrammetry toolset.</span>
+    </p>
+  </li>
+</ul>
+<h3 style="color: var(--brass);">... on working habits:</h3>
+<ul>
+  <li>
+    <p><span class="hl">Knowing when to stop chasing a dead end</span> is really important, mostly to maintain my
+      sanity.
+      A clear example on this
+      was with the CHAN-004 set (the anthropomorphic figures), after exhausting settings/scripts/community advice, I had
+      to make a pragmatic decision on the trade offs of 'letting go' rather than spending further time into
+      an unproductive fight.</p>
+  </li>
 
-<h3>On processing and software</h3>
+  <li>
+    <p>On a similar note to strategic decisions, <span class="hl">shipping over perfectionism</span> is a big lesson for
+      me. A great advice was
+      given to me a while ago: <em>"Hardware is 'hard' - not easy to change, but software is 'soft' - meant to be
+        changed."</em> Delivering, failing, reiterating,... all is part of "the game", and likewise of the learning
+      journeys. It doesn't need to be perfect from the get go, it's all about the building, the journey.</p>
+  </li>
 
-<p>The single biggest efficiency gain of the whole project was switching from manually-derived masks to AI-based
-  automatic masking — a 4-hour process became a 45-minute one. If I'd found this earlier, several of the objects I gave
-  up on might have had another shot.</p>
-
-<p>Clean alignment statistics are not proof of a correct model. CHAN-004A's Metashape report reads as cleanly as any
-  successful object's — low reprojection error, solid tie-point count — and the model still needed extensive, imperfect
-  manual repair to look right. Reprojection error tells you the camera positions solved consistently; it says nothing
-  about whether the geometry is actually correct. I'd trust a clean report a lot less on its own now. In the end, that
-  gap between clean stats and correct geometry was exactly why CHAN-004A didn't make the finished set at all — see the
-  Lab notes above.</p>
-
-<p>Knowing when to stop is its own skill. CHAN-002, CHAN-004B, and CHAN-005 all got abandoned after genuinely trying
-  multiple approaches — and that was the right call each time, not a failure of persistence. A model that technically
-  "exists" but needs disproportionate manual reconstruction to look like its object isn't a finished model; it's a
-  different kind of failure that's easy to mistake for success.</p>
-
-<h3>On tooling</h3>
-
-<p>HeritageScan, the custom tool my partner built, is a real and useful differentiator — but a narrower one than I
-  originally thought. It resolved exactly one object (CHAN-013) that Metashape's standard pipeline couldn't. Two others
-  I initially credited to it were actually resolved through improved Metashape workflow instead. Worth remembering:
-  cross-check what a tool actually did against the output evidence, not against what you expected it to do.</p>
-
-<h3>On authenticity</h3>
-
-<p>Photogrammetry gives you geometry and colour from photographs; it doesn't give you material properties like roughness
-  or metallic reflectivity for free. Every one of this project's roughness/metallic maps that needed manual creation
-  (CHAN-007, CHAN-016) was judged by eye against the physical object, not measured — and that gap, not the modelling
-  itself, is what's driving the next phase of this project. I don't yet have a good answer to how professionals close it
-  without some degree of human interpretation. That's genuinely still open.</p>
-
-<h3>What I'd do differently</h3>
-
-<p>Slow down at the very start. A more deliberate first day or two testing camera settings and studio set-up, before the
-  "intense" photography sprint, would likely have paid for itself several times over in objects that didn't need to be
-  abandoned.</p>
-
-<p>Keep the notes going, even when nothing seems worth logging. The gap between 19 May and 1 July — where Sketchfab
-  uploads and a public LinkedIn post happened with zero written notes — is exactly the stretch where the authenticity
-  question actually started, and I only have it preserved because I happened to write a public post about it.
-  Undocumented process is a real risk, not just an inconvenience, on a project whose whole point is a documented
-  process.</p>
+  <li>
+    <p><span class="hl">Lessons are not penalties for mistakes - they are new blueprints to help you build stronger the
+        next time around!</span></p>
+  </li>
+</ul>

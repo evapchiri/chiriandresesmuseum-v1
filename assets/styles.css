@@ -788,6 +788,14 @@ h3 {
   color: var(--brass);
 }
 
+#pannel-lessons ul {
+  padding-left: 0;
+}
+
+#panel-lessons h3 {
+  text-align: center;
+}
+
 /* About landing panel: the opening line. Same 16px / 66ch measure as the
    body copy below it — it just leads with a bold clause. */
 
@@ -919,7 +927,12 @@ h3 {
   gap: 0.85em;
 }
 .about-content ul:not(.spec-list):not(.doc-list) li {
-  padding-left: 0.2em;
+  /* padding-left: 0.2em; */
+  margin: 0.7em 2em;
+  gap: 0;
+}
+.about-content ul:not(.spec-list):not(.doc-list) li p {
+  margin: 0;
 }
 
 .about-content ol {

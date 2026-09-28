@@ -164,6 +164,11 @@ function initAboutTabs() {
   // In-content cross-references, e.g. "see the Project archive" from deep
   // inside another panel (Stage-by-stage, Lessons learned, ...): jump the
   // reader to that section the same way clicking its sidebar tab would.
+  // A link can also carry data-stage-tab (e.g. the Project lifecycle cards,
+  // each pointing at its own Stage-by-stage entry): once the outer panel is
+  // showing, that inner folder-tab button is clicked too, so
+  // initFolderTabs' own select() logic (panel swap, scroll, focus) runs
+  // exactly as if the reader had clicked that tab themselves.
   document.querySelectorAll('[data-panel-jump]').forEach((link) => {
     link.addEventListener('click', (e) => {
       const target = link.dataset.panelJump;
@@ -171,6 +176,8 @@ function initAboutTabs() {
       if (!btn) return;
       e.preventDefault();
       selectPanel(target, btn);
+      const stageTab = document.getElementById(link.dataset.stageTab || '');
+      if (stageTab) stageTab.click();
     });
   });
 }
