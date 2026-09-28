@@ -283,23 +283,103 @@ const STATUS_LABEL = {
   na: "N/A",
 };
 
-/* item.chip (Reshaped/Patched/Recreated) mirrors the same work-type chips
+/* The Texture maps section is texture-only, despite obj.provenance carrying
+ * the object's full disclosed-fields record (Overall model, Geometry,
+ * Confidence, Measurements, etc. — real record data, kept in objects.json,
+ * just not this section's business). It always shows exactly these five
+ * rows, in this order, for every object: Albedo, Normal, AO, Roughness,
+ * Metallic — matched loosely against whatever obj.provenance discloses, and
+ * normalised to the canonical property label so the heading reads the same
+ * everywhere.
+ *
+ * Undisclosed is meaningful, not absent:
+ * - Albedo: an object with no albedo/diffuse entry never had that map
+ *   touched, so it's Metashape's unedited output ("Measured" / as-is).
+ * - Normal and AO: never hand-authored on any object in this collection —
+ *   both are always Metashape's unedited output, so these two rows are
+ *   Measured/as-is unconditionally (obj.provenance is still checked first,
+ *   in case a future object ever discloses an exception).
+ * - Roughness / Metallic: photogrammetry doesn't produce either map, so a
+ *   PBR shine on an object was hand-authored in Blender and disclosed under
+ *   one of three property names — "Roughness" alone, "Metallic" alone, or a
+ *   combined "Roughness / metallic" covering one hand-painted map that does
+ *   both jobs at once (e.g. CHAN-006, CHAN-014: a single roughness map used
+ *   to fake the material's shine, with no separate metallic map ever made).
+ *   A combined entry's data all goes to the Roughness row; Metallic then
+ *   has nothing left to match and defaults to "Not created" — never split
+ *   or duplicated across both rows.
+ * Those defaults are synthesised here rather than the section silently
+ * dropping a row. */
+const ALBEDO_DEFAULT = {
+  property: "Albedo",
+  status: "measured",
+  note: "As-is from processing.",
+};
+const NORMAL_DEFAULT = {
+  property: "Normal",
+  status: "measured",
+  note: "As-is from processing.",
+};
+const AO_DEFAULT = {
+  property: "AO",
+  status: "measured",
+  note: "As-is from processing.",
+};
+const ROUGHNESS_DEFAULT = {
+  property: "Roughness",
+  status: "n/a",
+  note: "Not created for this object.",
+};
+const METALLIC_DEFAULT = {
+  property: "Metallic",
+  status: "n/a",
+  note: "Not created for this object.",
+};
+
+function resolveTextureMapItems(items) {
+  const albedo = items.find((item) => /albedo|diffuse/i.test(item.property));
+  const normal = items.find((item) => /normal/i.test(item.property));
+  const ao = items.find((item) => /\bao\b|ambient occlusion/i.test(item.property));
+  // A "Roughness / metallic" combined entry matches here, and is excluded
+  // below from the metallic match — see the comment above.
+  const roughness = items.find((item) => /roughness/i.test(item.property));
+  const metallic = items.find(
+    (item) => /metallic/i.test(item.property) && !/roughness/i.test(item.property),
+  );
+  return [
+    { ...(albedo || ALBEDO_DEFAULT), property: "Albedo" },
+    { ...(normal || NORMAL_DEFAULT), property: "Normal" },
+    { ...(ao || AO_DEFAULT), property: "AO" },
+    { ...(roughness || ROUGHNESS_DEFAULT), property: "Roughness" },
+    { ...(metallic || METALLIC_DEFAULT), property: "Metallic" },
+  ];
+}
+
+/* Rendered as a grid rather than a stacked list in both places it appears —
+ * five short, mostly one-line entries read as a lot of dashed dividers and
+ * empty air as a list. Same five cells, same statuses, in both the Field
+ * record (Collection modal aside) and the Full record (standalone object
+ * page); only the column count differs, and that's CSS-only (.field-record
+ * .texture-maps-grid vs the wider default), not something this markup needs
+ * to know about.
+ *
+ * item.chip (Reshaped/Patched/Recreated) mirrors the same work-type chips
  * used in the About page's Stage-by-stage "Mesh or texture polishing
  * record" table (.res-chip.is-part there too) — only set on provenance
  * entries that actually got that kind of manual post-processing work. It's
- * grouped with .note in .provenance-detail (not with the status stamp in
- * .provenance-head) because it explains *how* the note's disclosure
+ * grouped with .note in .texture-map-detail (not with the status stamp in
+ * .texture-map-head) because it explains *how* the note's disclosure
  * happened, not the property's status.
  *
  * status: "n/a" is rendered as a bare "Not created" stamp chip on the same
- * .provenance-head row as every other status (property name left, stamp
+ * .texture-map-head row as every other status (property name left, stamp
  * right) — there's nothing to disclose about a map that was never
- * generated, so the .provenance-detail block (chip + note, still required
+ * generated, so the .texture-map-detail block (chip + note, still required
  * by the schema for internal record-keeping) is intentionally omitted. */
-function renderProvenanceItem(item) {
+function renderTextureMapCell(item) {
   if (item.status === "n/a") {
-    return `<div class="provenance-item">
-      <div class="provenance-head">
+    return `<div class="texture-map-cell">
+      <div class="texture-map-head">
         <span class="prop">${item.property}</span>
         <span class="stamp na">Not created</span>
       </div>
@@ -309,57 +389,20 @@ function renderProvenanceItem(item) {
   const chip = item.chip
     ? `<span class="res-chip is-part">${item.chip}</span>`
     : "";
-  return `<div class="provenance-item">
-      <div class="provenance-head">
+  return `<div class="texture-map-cell">
+      <div class="texture-map-head">
         <span class="prop">${item.property}</span>
         <span class="stamp ${item.status}">${label}</span>
       </div>
-      <div class="provenance-detail">${chip}
+      <div class="texture-map-detail">${chip}
         <span class="note">${item.note}</span>
       </div>
     </div>`;
 }
 
-/* The Texture maps section is texture-only, despite obj.provenance carrying
- * the object's full disclosed-fields record (Overall model, Geometry,
- * Confidence, Measurements, etc. — real record data, kept in objects.json,
- * just not this section's business). It always shows exactly these two
- * rows, in this order, for every object: Albedo/diffuse, then Roughness/
- * metallic — matched loosely (CHAN-007 discloses only "Metallic", CHAN-016
- * only "Roughness") and normalised to the canonical property label so the
- * heading reads the same everywhere.
- *
- * Undisclosed is meaningful, not absent: an object with no albedo/diffuse
- * entry never had that map touched, so it's Metashape's unedited output
- * ("Measured" / as-is); an object with no roughness/metallic entry never
- * had one generated at all ("Not created"). Those defaults are synthesised
- * here rather than the section silently dropping the row. */
-const ALBEDO_DEFAULT = {
-  property: "Albedo / diffuse",
-  status: "measured",
-  note: "As-is from processing.",
-};
-const ROUGHNESS_METALLIC_DEFAULT = {
-  property: "Roughness / metallic",
-  status: "n/a",
-  note: "Not created for this object.",
-};
-
-function provenanceHTML(items) {
-  const albedo = items.find((item) => /albedo|diffuse/i.test(item.property));
-  const roughnessMetallic = items.find((item) =>
-    /roughness|metallic/i.test(item.property),
-  );
-  return [
-    renderProvenanceItem({
-      ...(albedo || ALBEDO_DEFAULT),
-      property: "Albedo / diffuse",
-    }),
-    renderProvenanceItem({
-      ...(roughnessMetallic || ROUGHNESS_METALLIC_DEFAULT),
-      property: "Roughness / metallic",
-    }),
-  ].join("\n");
+function textureMapsGridHTML(items) {
+  const cells = resolveTextureMapItems(items).map(renderTextureMapCell).join("\n");
+  return `<div class="texture-maps-grid">${cells}</div>`;
 }
 
 /* Complexity is rendered as three separate rows (Complexity/Surface/Material)
@@ -516,7 +559,7 @@ function buildObjectPage(obj, template) {
     SOFTWARE: obj.software,
     SKETCHFAB_UID: obj.sketchfabUid,
     STORY: storyHTML(obj.story),
-    PROVENANCE: provenanceHTML(obj.provenance),
+    PROVENANCE: textureMapsGridHTML(obj.provenance),
     FULL_RECORD: fullRecordHTML(obj),
     THEME_TOGGLE: themeToggleHTML(),
     THEME_INIT: themeInitScript(),
@@ -554,7 +597,7 @@ function buildObjectsDataJSON(objects) {
     software: obj.software,
     sketchfabUid: obj.sketchfabUid,
     storyHTML: storyHTML(obj.story),
-    provenanceHTML: provenanceHTML(obj.provenance),
+    provenanceHTML: textureMapsGridHTML(obj.provenance),
   }));
   // Defuse a literal "</script" inside any authored field so it can't
   // terminate the embedding <script type="application/json"> early.

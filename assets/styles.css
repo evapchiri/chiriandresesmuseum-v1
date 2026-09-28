@@ -2576,14 +2576,6 @@ main.wrap > .viewer-wrap .story p {
   margin: 22px 0 12px;
 }
 
-.provenance-item {
-  padding: 10px 0;
-  border-bottom: 1px dashed var(--rule);
-}
-.provenance-item:last-child {
-  border-bottom: none;
-}
-
 .stamp {
   display: inline-block;
   font-family: "Geist Mono", monospace;
@@ -2609,31 +2601,6 @@ main.wrap > .viewer-wrap .story p {
 .stamp.na {
   background: var(--na-bg);
   color: var(--na);
-}
-
-.provenance-head {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-}
-.provenance-item .prop {
-  font-weight: 600;
-  font-size: 0.9em;
-}
-.provenance-item .prop-full {
-  font-weight: 600;
-  font-size: 0.9em;
-}
-.provenance-detail {
-  margin-top: 8px;
-}
-.provenance-detail .res-chip {
-  margin-bottom: 6px;
-}
-.provenance-item .note {
-  display: block;
-  color: var(--ink-soft);
-  font-size: 0.88rem;
 }
 
 .methodology-link {
@@ -2686,9 +2653,55 @@ main.wrap > .viewer-wrap .story p {
   font-size: 0.78rem;
   padding: 3px 0;
 }
-.record-full-page .provenance-item {
-  padding: 5px 0;
-  font-size: 0.78rem;
+/* Texture maps — shared base for both places this renders: the Full record
+ * (below, at 3 columns) and the Field record aside in the Collection modal
+ * (its own 2-column override lives with the rest of the modal's rules). Five
+ * short, mostly one-line entries read as a lot of dashed dividers and empty
+ * air as a stacked list, hence the grid; only the column count differs
+ * between the two contexts. .prop is set in rem rather than inheriting the
+ * em-of-0.78rem chain the rest of .record-full-page uses — that chain is
+ * what made these titles read smaller in the Full record than in the Field
+ * record, where the equivalent .prop sits in an unscaled, default-font-size
+ * context. rem keeps it tied to the root font size (so it still respects
+ * zoom/accessibility settings) without being shrunk further by either
+ * context's own compact sizing. */
+.texture-maps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 4px;
+}
+.texture-map-cell {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+}
+.texture-map-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.texture-map-cell .prop {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.texture-map-detail {
+  margin-top: 6px;
+}
+.texture-map-detail .res-chip {
+  margin-bottom: 4px;
+}
+.texture-map-cell .note {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+@media (max-width: 700px) {
+  .texture-maps-grid {
+    grid-template-columns: 1fr;
+  }
 }
 .record-full-page .methodology-link {
   font-size: 0.78rem;
@@ -2856,8 +2869,23 @@ body.modal-open {
   margin: 10px 0 5px;
 }
 
-.modal-panel .field-record .provenance-item {
-  padding: 5px 0;
+/* Field record's own texture-maps-grid override — narrower aside, so 2
+ * columns (3 rows) reads better than the Full record's 3-column default;
+ * see the shared .texture-maps-grid rule for why. Cards shrink to match this
+ * column's own tighter padding/gap; .prop keeps the same rem size as the
+ * Full record (and as the old stacked-list version here) — that size was
+ * already right for this context, it's only the layout that's changing. */
+.modal-panel .field-record .texture-maps-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.modal-panel .field-record .texture-map-cell {
+  padding: 8px 10px;
+}
+@media (max-width: 420px) {
+  .modal-panel .field-record .texture-maps-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .modal-panel .field-record .methodology-link {
