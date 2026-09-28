@@ -2,18 +2,16 @@
 
 ## What this project is about
 
-This site is the last stage of a personal 3D-digitisation project: capture
-and processing are done, and this is where the ten finished models actually
-live and get told properly, rather than sitting as a folder of Sketchfab
-links with no context. It's a curated space for my parents' living-room
-vitrine, digitised — each object with its own story and its own honest
-paper trail: what was measured directly from the capture, what I judged by
-eye, and where. Built to an actual Europeana-aligned methodology rather
-than assembled as a portfolio of nice renders, so the point is that the
-process behind the models can be trusted and reused, not just that they
-look good: every object's page states plainly which of its dimensions,
-materials and surface properties came straight out of the capture, and
-which were judged by eye and disclosed as such.
+Chiriandreses Museum is a curated portal to view and learn about ten 3D-digitised objects from my
+parents' living-room vitrine. Each object gets its own page pairing a Sketchfab embed with its
+story and an honest digitisation trail: what was measured directly from the
+capture, what I judged by eye, and where. The site is built to an actual
+VIGIE 2020/654 study-aligned methodology rather than assembled as a portfolio of nice
+renders, so the point is that the process behind the models can be trusted
+and reused, not just that they look good: every object's page states
+plainly which of its dimensions, materials and surface properties came
+straight out of the capture, and which were judged by eye and disclosed as
+such.
 
 Static site: plain HTML/CSS/JS, no framework, no client-side dependencies. A
 small Node build script turns `data/objects.json` plus four HTML templates
@@ -119,57 +117,6 @@ security model can be fussy with some setups):
 npx serve docs
 # or: python3 -m http.server 8080 --directory docs
 ```
-
-## Filling in the Documentation links
-
-The About page's Documentation panel lists source documents (methodology
-doc, spreadsheets, Metashape reports, planning table), some still pointing
-at `REPLACE_WITH_LINK` in `templates/partials/documentation.html`. Update
-the `href` values there once each document has a home, then re-run
-`npm run build`.
-
-## Editing content
-
-- **Object data, story text, provenance flags** → `data/objects.json`
-- **Locations, periods, digitisation campaigns (lookup tables)** →
-  `data/locations.json`, `data/periods.json`, `data/campaigns.json`
-- **About page copy** → `templates/partials/*.html`, one hand-authored
-  fragment per panel
-- **Page structure / layout** → `templates/index.html`, `templates/object.html`
-- **Look and feel** → `assets/styles.css`; icons are a shared sprite in
-  `assets/icons.svg`, referenced as `<use href="assets/icons.svg#icon-name">`
-  rather than pasted inline at every call site
-
-Run `npm run build` locally to preview your change before pushing. `/docs`
-is checked into git deliberately, so GitHub Pages has something to serve —
-but you don't need to commit the rebuilt `/docs` yourself:
-`.github/workflows/build-docs.yml` rebuilds and commits it automatically on
-every push to `main`, so pushing your source change is enough.
-
-## Publishing on GitHub Pages
-
-1. Push this repo to GitHub.
-2. In the repo, go to **Settings → Pages**.
-3. Under **Build and deployment → Source**, choose **Deploy from a branch**.
-4. Branch: **main**, folder: **/docs**. Save.
-5. GitHub gives you a `https://<username>.github.io/<repo>/` URL within a
-   minute or two.
-
-A custom domain can be added later under the same Pages settings without
-changing anything else here.
-
-## Known trade-offs (worth knowing, not fixing yet)
-
-- The free Sketchfab embed carries the Sketchfab watermark — removing it
-  needs a paid plan. Not worth solving for v1.
-- Object pages are generated from the same template, so an object that
-  needs different treatment (CHAN-007's "selected as the best of three"
-  caveat, for instance) is expressed through the data, not bespoke HTML. If
-  an object ever needs a fundamentally different layout, that's a sign to
-  add a second template, not to hand-edit generated output — hand edits get
-  wiped on the next build.
-- No 404 page, no sitemap.xml, no analytics. I'll add these if and when
-  they're actually needed, not before.
 
 ## About the author
 

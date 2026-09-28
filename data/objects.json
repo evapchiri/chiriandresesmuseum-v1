@@ -546,8 +546,8 @@
           "meshResolution": "High-poly, raw",
           "alignmentQuality": "High",
           "tiePointCount": 350988,
-          "vertexCount": 200000,
-          "faceCount": 100000,
+          "vertexCount": 100000,
+          "faceCount": 200000,
           "filename": "CHAN-009.fbx",
           "format": ".fbx (packed)",
           "size": "91.5 MB"
@@ -557,8 +557,8 @@
           "meshResolution": "High-poly, raw",
           "alignmentQuality": "High",
           "tiePointCount": 350988,
-          "vertexCount": 200000,
-          "faceCount": 100000,
+          "vertexCount": 100000,
+          "faceCount": 200000,
           "filename": "CHAN-009_HIGH.fbx",
           "format": ".fbx (unpacked)",
           "size": "98.3 MB"

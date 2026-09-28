@@ -700,7 +700,7 @@ Getting it wasn't as simple as buying a standard souvenir — the antiques deale
 - **Complexity:** Medium
 - **Surface:** Medium
 - **Material:** Low
-- **Geometric data:** High-poly, raw · 200,000 vertices · 100,000 faces
+- **Geometric data:** High-poly, raw · 100,000 vertices · 200,000 faces
 - **Software:** Agisoft Metashape Standard 2.2.2
 
 **Texture maps**
@@ -761,8 +761,8 @@ Getting it wasn't as simple as buying a standard souvenir — the antiques deale
 <tr><td style="border:0.75px solid #b7b7b7; padding:4px 6px; font-weight:bold; background:#e7eeee; text-align:left; vertical-align:top;">Mesh</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">High-poly, raw</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">High-poly, raw</td></tr>
 <tr><td style="border:0.75px solid #b7b7b7; padding:4px 6px; font-weight:bold; background:#e7eeee; text-align:left; vertical-align:top;">Alignment</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">High</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">High</td></tr>
 <tr><td style="border:0.75px solid #b7b7b7; padding:4px 6px; font-weight:bold; background:#e7eeee; text-align:left; vertical-align:top;">Tie points</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">350,988</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">350,988</td></tr>
-<tr><td style="border:0.75px solid #b7b7b7; padding:4px 6px; font-weight:bold; background:#e7eeee; text-align:left; vertical-align:top;">Vertices</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">200,000</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">200,000</td></tr>
-<tr><td style="border:0.75px solid #b7b7b7; padding:4px 6px; font-weight:bold; background:#e7eeee; text-align:left; vertical-align:top;">Faces</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">100,000</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">100,000</td></tr>
+<tr><td style="border:0.75px solid #b7b7b7; padding:4px 6px; font-weight:bold; background:#e7eeee; text-align:left; vertical-align:top;">Vertices</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">100,000</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">100,000</td></tr>
+<tr><td style="border:0.75px solid #b7b7b7; padding:4px 6px; font-weight:bold; background:#e7eeee; text-align:left; vertical-align:top;">Faces</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">200,000</td><td style="border:0.75px solid #b7b7b7; padding:4px 6px; text-align:left; vertical-align:top;">200,000</td></tr>
 </table>
 
 ---
