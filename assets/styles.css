@@ -2553,10 +2553,13 @@ main.wrap > .viewer-wrap .story p {
   gap: 8px;
 }
 html .texture-map-head .stamp {
-  font-size: 0.62rem;
-  letter-spacing: 0.04em;
-  padding: 2px 6px;
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
+  padding: 2px 5px;
   white-space: nowrap;
+}
+.texture-map-head {
+  gap: 6px;
 }
 .texture-map-cell .prop {
   font-weight: 600;
@@ -2567,6 +2570,10 @@ html .texture-map-head .stamp {
 }
 .texture-map-detail .res-chip {
   margin-bottom: 4px;
+}
+html .texture-map-detail .res-chip {
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
 }
 .texture-map-cell .note {
   display: block;
@@ -2740,7 +2747,7 @@ body.modal-open {
   gap: 8px;
 }
 .modal-panel .field-record .texture-map-cell {
-  padding: 8px 10px;
+  padding: 8px;
 }
 @media (max-width: 420px) {
   .modal-panel .field-record .texture-maps-grid {
