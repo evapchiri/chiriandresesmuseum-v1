@@ -2512,6 +2512,28 @@ main.wrap > .viewer-wrap .story p {
   padding: 3px 0;
 }
 
+/* Photogrammetry block: left column Captured/Software/Geometric data, right
+ * column Complexity then Material/Surface, whose values are indented. */
+.record-full-page .record-photogrammetry {
+  grid-auto-flow: column;
+  grid-template-rows: repeat(3, auto);
+}
+.record-full-page .record-photogrammetry .record-row-indent {
+  grid-template-columns: 120px 1fr;
+}
+.record-full-page .record-photogrammetry .record-row-indent dd {
+  padding-left: 136px;
+}
+@media (max-width: 700px) {
+  .record-full-page .record-photogrammetry {
+    grid-auto-flow: row;
+    grid-template-rows: none;
+  }
+  .record-full-page .record-photogrammetry .record-row-indent dd {
+    padding-left: 0;
+  }
+}
+
 .texture-maps-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2779,16 +2801,20 @@ body.modal-open {
    * viewBox, so width/height 100% scales them uniformly, never overflowing). */
   .card-link {
     align-items: stretch;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.3fr);
   }
   .card-thumb {
-    height: clamp(105px, 28vw, 135px);
+    height: clamp(130px, 36vw, 170px);
+    justify-content: center;
+    align-items: center;
     padding: clamp(8px, 3vw, 16px);
     box-sizing: border-box;
     min-width: 0;
     overflow: hidden;
   }
   .card-thumb svg {
+    display: block;
+    margin: 0 auto;
     width: 100%;
     height: 100%;
     max-width: 100%;
