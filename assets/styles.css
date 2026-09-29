@@ -2800,8 +2800,11 @@ body.modal-open {
   /* Card thumbnails: the thumb column stretches to the full card height
    * (set by the text) and the SVG is absolutely fitted inside it, so it
    * scales with the card instead of its own intrinsic size. */
+  .card-info {
+    align-self: center;
+  }
   .card-link {
-    align-items: stretch;
+    align-items: center;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
     gap: 12px;
     padding: 16px 20px;
@@ -2809,8 +2812,9 @@ body.modal-open {
   .card-thumb {
     position: relative;
     height: auto;
-    min-height: 200px;
-    align-self: stretch;
+    min-height: 170px;
+    max-height: 210px;
+    align-self: center;
     padding: 0;
     overflow: hidden;
   }
@@ -2865,5 +2869,23 @@ body.modal-open {
   }
   #panel-about-me .mytag {
     text-align: center;
+  }
+
+  /* Modal must never exceed the visible viewport (dvh excludes mobile
+   * browser toolbars, which 100vh does not) */
+  body.modal-open {
+    padding: 0;
+  }
+  .modal-overlay {
+    padding: 12px;
+    height: 100vh;
+    height: 100dvh;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .modal-panel {
+    padding: 0 16px;
+    max-height: calc(100vh - 24px);
+    max-height: calc(100dvh - 24px);
   }
 }
