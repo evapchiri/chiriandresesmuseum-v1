@@ -2552,6 +2552,12 @@ main.wrap > .viewer-wrap .story p {
   flex-wrap: wrap;
   gap: 8px;
 }
+html .texture-map-head .stamp {
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
 .texture-map-cell .prop {
   font-weight: 600;
   font-size: 0.9rem;
