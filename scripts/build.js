@@ -90,6 +90,16 @@ function assetURL(relPath) {
   return `${relPath}?v=${hash}`;
 }
 
+/* Same content-hash cache-busting as assetURL(), but for assets/styles.css
+ * specifically — every page links it with a different relative prefix
+ * ('' on top-level pages, '../' on generated object pages), so this takes
+ * that prefix rather than a full relative path. Without this, a redeploy
+ * that only changes styles.css can leave a visitor's browser serving a
+ * stale cached copy indefinitely, since the filename never changes. */
+function stylesHref(basePath) {
+  return `${basePath}${assetURL("assets/styles.css")}`;
+}
+
 function fill(template, tokens) {
   let out = template;
   for (const [key, value] of Object.entries(tokens)) {
@@ -155,6 +165,7 @@ const PROJECT_BLURB = `<p>A small family collection of heirlooms, travel memento
 
 function buildLandingPage(template) {
   return fill(template, {
+    STYLES_HREF: stylesHref(""),
     HERO: heroHTML("", "index", { showNav: false }),
     PROJECT_BLURB,
     LANDING_VIDEO_SRC: assetURL("assets/video/landing-bg.mp4"),
@@ -224,6 +235,7 @@ function buildAboutPage(template, objects) {
     METASHAPE_REPORTS_GRID: metashapeReportsGridHTML(objects),
   });
   return fill(template, {
+    STYLES_HREF: stylesHref(""),
     HERO: heroHTML("", "about"),
     ...panels,
     THEME_TOGGLE: themeToggleHTML(),
@@ -291,6 +303,7 @@ function buildCollectionPage(template, objects) {
   const cards = objects.map(buildCard).join("\n");
 
   return fill(template, {
+    STYLES_HREF: stylesHref(""),
     HERO: heroHTML("", "collection"),
     YEAR_OPTIONS: optionsHTML(years),
     COUNTRY_OPTIONS: optionsHTML(countries),
@@ -636,6 +649,7 @@ function buildObjectPage(obj, template) {
   const materialsNote = materialsNoteHTML(obj);
 
   return fill(template, {
+    STYLES_HREF: stylesHref("../"),
     HERO: heroHTML("../", "collection"),
     TITLE: obj.title,
     ID: obj.id,
