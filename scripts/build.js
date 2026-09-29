@@ -639,6 +639,34 @@ function buildObjectsDataJSON(objects) {
   return JSON.stringify(data).replace(/<\/script/gi, "<\\/script");
 }
 
+/* ---------- Sitemap ----------
+ * Deployed via GitHub Pages, "Deploy from a branch" off /docs, with no
+ * custom domain (no CNAME file) — so the canonical base is the repo's
+ * github.io URL, not something read from package.json or a config file. */
+const SITE_URL = "https://evapchiri.github.io/chiriandresesmuseum-v1";
+
+function buildSitemap(objects) {
+  const today = new Date().toISOString().slice(0, 10);
+  const urls = [
+    { loc: `${SITE_URL}/`, priority: "1.0" },
+    { loc: `${SITE_URL}/about.html`, priority: "0.7" },
+    { loc: `${SITE_URL}/collection.html`, priority: "0.9" },
+    ...objects.map((obj) => ({
+      loc: `${SITE_URL}/objects/${obj.slug}.html`,
+      priority: "0.8",
+    })),
+  ];
+
+  const body = urls
+    .map(
+      (u) =>
+        `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${u.priority}</priority>\n  </url>`,
+    )
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
+}
+
 /* ---------- Main ---------- */
 
 function main() {
@@ -740,6 +768,8 @@ function main() {
     const html = buildObjectPage(obj, objectTemplate);
     fs.writeFileSync(path.join(DOCS, "objects", `${obj.slug}.html`), html);
   }
+
+  fs.writeFileSync(path.join(DOCS, "sitemap.xml"), buildSitemap(objects));
 
   fs.writeFileSync(path.join(DOCS, ".nojekyll"), "");
 
