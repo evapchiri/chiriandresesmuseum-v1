@@ -2797,28 +2797,30 @@ body.modal-open {
 /* ---------- Mobile polish (max-width: 600px only) ---------- */
 
 @media (max-width: 600px) {
-  /* Card thumbnails: every SVG fits one fixed box (they all carry a
-   * viewBox, so width/height 100% scales them uniformly, never overflowing). */
+  /* Card thumbnails: the thumb column stretches to the full card height
+   * (set by the text) and the SVG is absolutely fitted inside it, so it
+   * scales with the card instead of its own intrinsic size. */
   .card-link {
     align-items: stretch;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.3fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 12px;
+    padding: 16px 20px;
   }
   .card-thumb {
-    height: clamp(130px, 36vw, 170px);
-    justify-content: center;
-    align-items: center;
-    padding: clamp(8px, 3vw, 16px);
-    box-sizing: border-box;
-    min-width: 0;
+    position: relative;
+    height: auto;
+    min-height: 200px;
+    align-self: stretch;
+    padding: 0;
     overflow: hidden;
   }
   .card-thumb svg {
-    display: block;
-    margin: 0 auto;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    max-width: 100%;
-    max-height: 100%;
+    max-width: none;
+    max-height: none;
   }
 
   /* Object description: smaller type, comfortable margins (modal + full record) */
