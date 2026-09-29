@@ -192,7 +192,7 @@
     </dl>
 
     <p class="record-section-label">Acquisition, by chunk</p>
-    <div class="stage-table-wrap">
+    <div class="stage-table-wrap stage-table-wrap--desktop">
       <table class="stage-table results-table">
         <thead>
           <tr><th scope="col">Chunk</th><th scope="col">Exposure</th><th scope="col">Optics &amp; focus</th><th scope="col">Rotational steps</th><th scope="col">Images</th></tr>
@@ -221,12 +221,37 @@
         </tr></tbody>
       </table>
     </div>
+    
+    <div class="stage-table-wrap stage-table-wrap--mobile">
+      <table class="stage-table stage-table--transposed">
+        <thead>
+          <tr><th scope="col">Chunk</th><th scope="col">Half-top (~70°)</th><th scope="col">Front (~0°)</th><th scope="col">Half-bottom, focused (~10°)</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">Exposure</th>
+          <td>Aperture priority</td><td>Aperture priority</td><td>Aperture priority</td>
+        </tr>
+        <tr>
+          <th scope="row">Optics &amp; focus</th>
+          <td>23mm – f/8</td><td>36mm – f/8</td><td>18mm – f/8</td>
+        </tr>
+        <tr>
+          <th scope="row">Rotational steps</th>
+          <td>15–20°</td><td>15–20°</td><td>15–20°</td>
+        </tr>
+        <tr>
+          <th scope="row">Images</th>
+          <td>74</td><td>73</td><td>32</td>
+        </tr></tbody>
+      </table>
+    </div>
 
     <p class="record-section-label">Processing &amp; derived assets</p>
     <dl>
       <div class="record-row"><dt>Software</dt><dd>Agisoft Metashape Standard 2.2.2</dd></div>
     </dl>
-    <div class="stage-table-wrap">
+    <div class="stage-table-wrap stage-table-wrap--desktop">
       <table class="stage-table results-table results-table--wide">
         <thead>
           <tr><th scope="col">Asset</th><th scope="col">Mesh</th><th scope="col">Alignment</th><th scope="col">Tie points</th><th scope="col">Vertices</th><th scope="col">Faces</th><th scope="col">Filename</th><th scope="col">Format</th><th scope="col">Size</th></tr>
@@ -253,6 +278,47 @@
           <td>CHAN-001_FBX_HIGH.fbx</td>
           <td>.fbx (unpacked)</td>
           <td>184 MB (directory)</td>
+        </tr></tbody>
+      </table>
+    </div>
+    
+    <div class="stage-table-wrap stage-table-wrap--mobile">
+      <table class="stage-table stage-table--transposed">
+        <thead>
+          <tr><th scope="col">Asset</th><th scope="col">Asset 1</th><th scope="col">Asset 2</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">Mesh</th>
+          <td>High-poly, raw</td><td>High-poly, raw</td>
+        </tr>
+        <tr>
+          <th scope="row">Alignment</th>
+          <td>High</td><td>High</td>
+        </tr>
+        <tr>
+          <th scope="row">Tie points</th>
+          <td>81,535</td><td>81,535</td>
+        </tr>
+        <tr>
+          <th scope="row">Vertices</th>
+          <td>129,621</td><td>129,621</td>
+        </tr>
+        <tr>
+          <th scope="row">Faces</th>
+          <td>259,238</td><td>259,238</td>
+        </tr>
+        <tr>
+          <th scope="row">Filename</th>
+          <td>CHAN-001.fbx</td><td>CHAN-001_FBX_HIGH.fbx</td>
+        </tr>
+        <tr>
+          <th scope="row">Format</th>
+          <td>.fbx (packed)</td><td>.fbx (unpacked)</td>
+        </tr>
+        <tr>
+          <th scope="row">Size</th>
+          <td>180.7 MB</td><td>184 MB (directory)</td>
         </tr></tbody>
       </table>
     </div>

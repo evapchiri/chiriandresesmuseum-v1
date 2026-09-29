@@ -1457,6 +1457,31 @@ figcaption {
 .results-table--wide {
   min-width: 56rem;
 }
+
+/* Mobile shows a transposed version of the acquisition/derived-asset
+ * tables (chunks/assets as columns, fields as rows) instead of the
+ * desktop table, so the first column can freeze in full — see
+ * transposedTableHTML() in build.js for why this is built rather than
+ * reshaped with CSS. */
+.stage-table-wrap--mobile {
+  display: none;
+}
+.stage-table--transposed {
+  min-width: 0;
+}
+.stage-table--transposed th[scope="col"],
+.stage-table--transposed td {
+  min-width: 7.5rem;
+}
+@media (max-width: 700px) {
+  .stage-table-wrap--desktop {
+    display: none;
+  }
+  .stage-table-wrap--mobile {
+    display: block;
+  }
+}
+
 .results-table tbody tr:nth-child(even) {
   background: rgba(255, 255, 255, 0.03);
 }
@@ -2221,6 +2246,15 @@ figure[data-expandable] img {
   color: var(--teal);
 }
 
+@media (max-width: 600px) {
+  .card-link {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+  .card-icon {
+    display: none;
+  }
+}
+
 /* ---------- Object page ---------- */
 
 .object-intro {
@@ -2607,15 +2641,6 @@ body.modal-open {
   grid-template-columns: 1.5fr 1fr;
 }
 
-@media (max-width: 600px) {
-  .modal-panel .object-body {
-    grid-template-columns: 1fr;
-  }
-  .modal-panel .field-record {
-    max-height: none !important;
-  }
-}
-
 .modal-panel .viewer-wrap {
   position: static;
 }
@@ -2631,6 +2656,41 @@ body.modal-open {
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 14px 16px 12px;
+}
+
+/* Placed after the unconditional rules above so these mobile-only
+ * overrides win on shared properties (aspect-ratio, max-height) despite
+ * equal selector specificity. .object-body's grid box disappears so its
+ * two children (viewer-wrap, field-record) become flex items of .wrap
+ * alongside .story, letting all three be reordered with `order` —
+ * description before the field record, on mobile only. flex: none stops
+ * field-record (which sets min-height: 0 for its own desktop scrolling)
+ * from flex-shrinking down to near-nothing to fit .wrap's cross size. */
+@media (max-width: 600px) {
+  .modal-panel .wrap {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-panel .object-body {
+    display: contents;
+  }
+  .modal-panel .viewer-wrap {
+    order: 1;
+    flex: none;
+  }
+  .modal-panel .story {
+    order: 2;
+    flex: none;
+  }
+  .modal-panel .field-record {
+    order: 3;
+    flex: none;
+    max-height: none !important;
+  }
+  .modal-panel .viewer-frame {
+    aspect-ratio: 3 / 4;
+    max-height: 70vh;
+  }
 }
 
 .modal-panel .field-record .record-title {

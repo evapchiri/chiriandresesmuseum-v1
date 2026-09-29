@@ -471,6 +471,59 @@ function geometricDataText(fullRecord) {
   return `${asset.meshResolution} · ${asset.vertexCount.toLocaleString("en-GB")} vertices · ${asset.faceCount.toLocaleString("en-GB")} faces`;
 }
 
+/* Mobile screens show the same acquisition/derived-asset data as a
+ * transposed table (each chunk/asset becomes a column instead of a row) so
+ * the first column — the field labels — can be frozen in its entirety while
+ * scrolling sideways through items, rather than only the column header
+ * being frozen as happens with the desktop table's plain <td> first column.
+ * Toggled purely with CSS (.stage-table-wrap--desktop/--mobile); built here
+ * since the row/column data is already at hand. */
+function transposedTableHTML(cornerLabel, fields, items) {
+  const headerCells = items
+    .map((item) => `<th scope="col">${fields[0].value(item)}</th>`)
+    .join("");
+  const bodyRows = fields
+    .slice(1)
+    .map(
+      (f) => `
+        <tr>
+          <th scope="row">${f.label}</th>
+          ${items.map((item) => `<td>${f.value(item)}</td>`).join("")}
+        </tr>`,
+    )
+    .join("");
+
+  return `
+    <div class="stage-table-wrap stage-table-wrap--mobile">
+      <table class="stage-table stage-table--transposed">
+        <thead>
+          <tr><th scope="col">${cornerLabel}</th>${headerCells}</tr>
+        </thead>
+        <tbody>${bodyRows}</tbody>
+      </table>
+    </div>`;
+}
+
+const ACQUISITION_FIELDS = [
+  { label: "Chunk", value: (a) => a.chunk },
+  { label: "Exposure", value: (a) => a.exposureMode },
+  { label: "Optics &amp; focus", value: (a) => a.opticsFocus },
+  { label: "Rotational steps", value: (a) => a.rotationalSteps },
+  { label: "Images", value: (a) => a.imageCount },
+];
+
+const DERIVED_ASSET_FIELDS = [
+  { label: "Asset", value: (a) => a.label },
+  { label: "Mesh", value: (a) => a.meshResolution },
+  { label: "Alignment", value: (a) => a.alignmentQuality },
+  { label: "Tie points", value: (a) => a.tiePointCount.toLocaleString("en-GB") },
+  { label: "Vertices", value: (a) => a.vertexCount.toLocaleString("en-GB") },
+  { label: "Faces", value: (a) => a.faceCount.toLocaleString("en-GB") },
+  { label: "Filename", value: (a) => a.filename },
+  { label: "Format", value: (a) => a.format },
+  { label: "Size", value: (a) => a.size },
+];
+
 /* Tier-3 "Full record" — everything from the digitisation record that
  * doesn't belong in the curated tier-1/2 field record: initial assessment,
  * capture tolerances, full equipment + per-chunk acquisition detail,
@@ -494,6 +547,11 @@ function fullRecordHTML(obj) {
         </tr>`,
     )
     .join("");
+  const acquisitionTransposed = transposedTableHTML(
+    "Chunk",
+    ACQUISITION_FIELDS,
+    r.acquisition || [],
+  );
 
   const assetRows = (r.derivedAssets || [])
     .map(
@@ -511,6 +569,11 @@ function fullRecordHTML(obj) {
         </tr>`,
     )
     .join("");
+  const assetsTransposed = transposedTableHTML(
+    "Asset",
+    DERIVED_ASSET_FIELDS,
+    r.derivedAssets || [],
+  );
 
   return `<p class="record-section-label">Assessment</p>
     <dl>
@@ -544,7 +607,7 @@ function fullRecordHTML(obj) {
     </dl>
 
     <p class="record-section-label">Acquisition, by chunk</p>
-    <div class="stage-table-wrap">
+    <div class="stage-table-wrap stage-table-wrap--desktop">
       <table class="stage-table results-table">
         <thead>
           <tr><th scope="col">Chunk</th><th scope="col">Exposure</th><th scope="col">Optics &amp; focus</th><th scope="col">Rotational steps</th><th scope="col">Images</th></tr>
@@ -552,19 +615,21 @@ function fullRecordHTML(obj) {
         <tbody>${acquisitionRows}</tbody>
       </table>
     </div>
+    ${acquisitionTransposed}
 
     <p class="record-section-label">Processing &amp; derived assets</p>
     <dl>
       <div class="record-row"><dt>Software</dt><dd>${r.processingSoftware}</dd></div>
     </dl>
-    <div class="stage-table-wrap">
+    <div class="stage-table-wrap stage-table-wrap--desktop">
       <table class="stage-table results-table results-table--wide">
         <thead>
           <tr><th scope="col">Asset</th><th scope="col">Mesh</th><th scope="col">Alignment</th><th scope="col">Tie points</th><th scope="col">Vertices</th><th scope="col">Faces</th><th scope="col">Filename</th><th scope="col">Format</th><th scope="col">Size</th></tr>
         </thead>
         <tbody>${assetRows}</tbody>
       </table>
-    </div>`;
+    </div>
+    ${assetsTransposed}`;
 }
 
 function buildObjectPage(obj, template) {
@@ -665,6 +730,10 @@ function buildSitemap(objects) {
     .join("\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
+}
+
+function buildRobotsTxt() {
+  return `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`;
 }
 
 /* ---------- Main ---------- */
@@ -770,6 +839,7 @@ function main() {
   }
 
   fs.writeFileSync(path.join(DOCS, "sitemap.xml"), buildSitemap(objects));
+  fs.writeFileSync(path.join(DOCS, "robots.txt"), buildRobotsTxt());
 
   fs.writeFileSync(path.join(DOCS, ".nojekyll"), "");
 
