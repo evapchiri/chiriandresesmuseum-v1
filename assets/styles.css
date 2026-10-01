@@ -215,6 +215,9 @@ h3 {
       linear-gradient(rgba(18, 18, 18, 0.4), rgba(18, 18, 18, 0.54));
   }
 
+  .landing .landing-actions {
+    font-size: 1rem;
+  }
   .landing .landing-blurb {
     color: var(--ink);
     font-size: 1rem;
@@ -260,10 +263,77 @@ h3 {
 
 .landing-actions {
   margin-top: 4em;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  /* Same measure as .landing-blurb (62ch at its font size) so the cards
+   * line up with the text above. */
+  font-size: 0.95rem;
+  max-width: 62ch;
+  margin-inline: auto;
+}
+@media (max-width: 600px) {
+  .landing-actions {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.landing-card {
   display: flex;
-  justify-content: center;
-  gap: 18px;
-  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: left;
+  padding: 20px 22px;
+  border: 1px solid var(--ink-soft);
+  border-radius: 18px;
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+.landing-card h2 {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+}
+
+.landing-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.landing-card-arrow {
+  flex: none;
+  display: flex;
+  transition: transform 0.15s ease;
+}
+.landing-card-arrow svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.landing-card:hover,
+.landing-card:focus-visible {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+.landing-card:hover .landing-card-arrow,
+.landing-card:focus-visible .landing-card-arrow {
+  transform: translateX(4px);
+}
+
+.btn {
+  text-align: center;
+  border-radius: 6px;
+  border-width: 2px;
 }
 
 .btn {
@@ -2084,6 +2154,9 @@ figure[data-expandable] img {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 190px;
 }
 
 .filter-field label {
@@ -2102,7 +2175,11 @@ figure[data-expandable] img {
   background: var(--paper-raised);
   color: var(--ink);
   border-radius: var(--radius);
-  min-width: 150px;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .filter-field select:disabled {
@@ -2120,6 +2197,7 @@ figure[data-expandable] img {
   text-underline-offset: 3px;
   cursor: pointer;
   padding: 8px 0;
+  flex: none;
 }
 
 .no-results {
@@ -2148,6 +2226,17 @@ figure[data-expandable] img {
   gap: 18px;
   max-width: 760px;
   margin: 40px auto 64px;
+}
+
+@media (min-width: 901px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;
+  }
+  .card-link {
+    gap: 16px;
+    padding: 18px 20px;
+  }
 }
 
 .card {
@@ -2232,7 +2321,9 @@ figure[data-expandable] img {
   color: var(--ink-soft);
 }
 
-.card-icon svg {
+.card-icon svg,
+.modal-nav svg,
+.about-pager button svg {
   width: 22px;
   height: 22px;
   fill: none;
@@ -2373,8 +2464,14 @@ main.wrap > .viewer-wrap .viewer-caption {
 }
 
 .story {
-  margin: 2em;
+  padding: 1em 0;
   text-align: justify;
+  border-top: 1px dashed var(--rule);
+}
+
+main.wrap > .viewer-wrap .story {
+  max-width: 640px;
+  margin-inline: auto;
 }
 
 main.wrap > .viewer-wrap .story p {
@@ -2432,6 +2529,13 @@ main.wrap > .viewer-wrap .story p {
 .record-subrow {
   text-align: right;
 }
+.record-subrow dd {
+  text-align: left;
+  color: var(--ink-soft);
+}
+.record-row.record-row-nest {
+  border-bottom: none;
+}
 
 .record-section-label {
   font-family: "Geist Mono", monospace;
@@ -2449,8 +2553,9 @@ main.wrap > .viewer-wrap .story p {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 2px 8px;
-  border-radius: var(--radius);
+  padding: 1px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 .stamp.measured {
   background: var(--measured-bg);
@@ -2507,30 +2612,21 @@ main.wrap > .viewer-wrap .story p {
   gap: 0 24px;
 }
 .record-full-page .record-row {
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 170px 1fr;
   font-size: 0.78rem;
   padding: 3px 0;
 }
 
 /* Photogrammetry block: left column Captured/Software/Geometric data, right
- * column Complexity then Material/Surface, whose values are indented. */
+ * column Complexity then Surface/Material, whose labels are right-aligned. */
 .record-full-page .record-photogrammetry {
   grid-auto-flow: column;
   grid-template-rows: repeat(3, auto);
-}
-.record-full-page .record-photogrammetry .record-row-indent {
-  grid-template-columns: 120px 1fr;
-}
-.record-full-page .record-photogrammetry .record-row-indent dd {
-  padding-left: 136px;
 }
 @media (max-width: 700px) {
   .record-full-page .record-photogrammetry {
     grid-auto-flow: row;
     grid-template-rows: none;
-  }
-  .record-full-page .record-photogrammetry .record-row-indent dd {
-    padding-left: 0;
   }
 }
 
@@ -2545,21 +2641,12 @@ main.wrap > .viewer-wrap .story p {
   border-radius: var(--radius);
   padding: 10px 12px;
 }
-.texture-map-head {
+.texture-map-badges {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 8px;
-}
-html .texture-map-head .stamp {
-  font-size: 0.6rem;
-  letter-spacing: 0.02em;
-  padding: 2px 5px;
-  white-space: nowrap;
-}
-.texture-map-head {
+  align-items: center;
   gap: 6px;
+  margin-top: 6px;
 }
 .texture-map-cell .prop {
   font-weight: 600;
@@ -2567,13 +2654,6 @@ html .texture-map-head .stamp {
 }
 .texture-map-detail {
   margin-top: 6px;
-}
-.texture-map-detail .res-chip {
-  margin-bottom: 4px;
-}
-html .texture-map-detail .res-chip {
-  font-size: 0.6rem;
-  letter-spacing: 0.02em;
 }
 .texture-map-cell .note {
   display: block;
@@ -2775,6 +2855,73 @@ body.modal-open {
   margin: 0 0 0.5em;
 }
 
+.modal-controls {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-nav {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  color: var(--ink);
+  cursor: pointer;
+}
+.modal-nav svg {
+  width: 18px;
+  height: 18px;
+}
+.modal-nav-prev svg,
+.about-pager .pager-prev svg {
+  transform: scaleX(-1);
+}
+.modal-nav:hover:not(:disabled) {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+.modal-nav:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Desktop: prev/next float outside the panel, vertically centred.
+ * Mobile: they live in the top bar and centred at the end of the content. */
+.modal-nav-side {
+  position: fixed;
+  top: 50%;
+  margin-top: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  z-index: 101;
+}
+.modal-nav-side-prev {
+  left: max(
+    4px,
+    calc(50% - min(var(--max-width) / 2, 50% - clamp(20px, 5vw, 64px)) - 48px)
+  );
+}
+.modal-nav-side-next {
+  right: max(
+    4px,
+    calc(50% - min(var(--max-width) / 2, 50% - clamp(20px, 5vw, 64px)) - 48px)
+  );
+}
+.modal-nav-top,
+.modal-bottom-nav,
+.modal-scroll-hint {
+  display: none;
+}
+
 .modal-close {
   flex: none;
   width: 34px;
@@ -2789,6 +2936,110 @@ body.modal-open {
 }
 
 .modal-close:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+@media (max-width: 600px) {
+  .modal-nav-side {
+    display: none;
+  }
+  .modal-nav-top {
+    display: flex;
+  }
+  .modal-bottom-nav {
+    order: 4;
+    flex: none;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 15px 0;
+  }
+  .modal-scroll-hint {
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    margin-left: -18px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    background: var(--paper-raised);
+    color: var(--teal);
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.25s ease;
+    z-index: 2;
+  }
+  .modal-scroll-hint svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: rotate(90deg);
+  }
+  .modal-scroll-hint.gone {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .modal-scroll-hint.bounce {
+    animation: scroll-hint-bounce 1.4s ease-in-out 2;
+  }
+}
+@keyframes scroll-hint-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal-scroll-hint.bounce {
+    animation: none;
+  }
+}
+
+/* ---------- About page: previous / next section pager ---------- */
+
+.about-pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--rule);
+}
+.about-pager .pager-next {
+  margin-left: auto;
+}
+.about-pager button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Onest", system-ui, sans-serif;
+  font-size: 0.88rem;
+  padding: 8px 14px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  color: var(--ink);
+  cursor: pointer;
+}
+.about-pager button svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.about-pager button:hover {
   border-color: var(--teal);
   color: var(--teal);
 }

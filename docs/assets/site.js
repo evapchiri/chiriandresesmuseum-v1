@@ -161,6 +161,29 @@ function initAboutTabs() {
     btn.addEventListener('click', () => selectPanel(btn.dataset.panel, btn));
   });
 
+  // Previous / next buttons at the foot of each panel, in sidebar order.
+  const chevron =
+    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/icons.svg#icon-chevron"></use></svg>';
+  const order = [...buttons];
+  order.forEach((btn, i) => {
+    const panel = document.querySelector(`[data-panel-content="${btn.dataset.panel}"]`);
+    if (!panel) return;
+    const pager = document.createElement('nav');
+    pager.className = 'about-pager';
+    pager.setAttribute('aria-label', 'Previous and next section');
+    const add = (target, cls, html) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = cls;
+      b.innerHTML = html;
+      b.addEventListener('click', () => selectPanel(target.dataset.panel, target));
+      pager.appendChild(b);
+    };
+    if (i > 0) add(order[i - 1], 'pager-prev', `${chevron}<span>${order[i - 1].textContent}</span>`);
+    if (i < order.length - 1) add(order[i + 1], 'pager-next', `<span>${order[i + 1].textContent}</span>${chevron}`);
+    panel.appendChild(pager);
+  });
+
   // In-content cross-references, e.g. "see the Project archive" from deep
   // inside another panel (Stage-by-stage, Lessons learned, ...): jump the
   // reader to that section the same way clicking its sidebar tab would.
@@ -843,7 +866,61 @@ function initObjectModal() {
   const viewerFrame = iframe.closest('.viewer-frame');
   const viewerWrap = modal.querySelector('.viewer-wrap');
   const fieldRecord = modal.querySelector('.field-record');
+  const prevBtns = modal.querySelectorAll('[data-nav="prev"]');
+  const nextBtns = modal.querySelectorAll('[data-nav="next"]');
+  const scrollArea = modal.querySelector('.modal-panel > .wrap');
+  const scrollHint = modal.querySelector('.modal-scroll-hint');
+  const mobileMQ = window.matchMedia('(max-width: 600px)');
   let lastFocused = null;
+  let currentId = null;
+
+  // Objects whose cards survive the current filters, in grid order.
+  function visibleObjects() {
+    return [...grid.querySelectorAll('.card')]
+      .filter((card) => card.style.display !== 'none')
+      .map((card) => byId.get((card.dataset.id || '').toLowerCase()))
+      .filter(Boolean);
+  }
+
+  function neighbour(step) {
+    const list = visibleObjects();
+    const i = list.findIndex((o) => o.id === currentId);
+    return i === -1 ? null : list[i + step] || null;
+  }
+
+  function updateNav() {
+    const noPrev = !neighbour(-1);
+    const noNext = !neighbour(1);
+    prevBtns.forEach((b) => { b.disabled = noPrev; });
+    nextBtns.forEach((b) => { b.disabled = noNext; });
+  }
+
+  // Always start a freshly opened object at the top. Must run once the
+  // modal is visible: scrollTop assignments are ignored while display:none.
+  function resetScroll() {
+    modal.scrollTop = 0;
+    panel.scrollTop = 0;
+    scrollArea.scrollTop = 0;
+    fieldRecord.scrollTop = 0;
+  }
+
+  // Mobile only: a downward chevron that bounces twice to hint there is
+  // more below, and goes away once the reader scrolls.
+  function showScrollHint() {
+    scrollHint.classList.remove('bounce', 'gone');
+    if (!mobileMQ.matches || scrollArea.scrollHeight <= scrollArea.clientHeight + 8) {
+      scrollHint.classList.add('gone');
+      return;
+    }
+    void scrollHint.offsetWidth; // restart the animation
+    scrollHint.classList.add('bounce');
+  }
+  scrollArea.addEventListener('scroll', () => {
+    if (scrollArea.scrollTop > 24) scrollHint.classList.add('gone');
+  }, { passive: true });
+  scrollHint.addEventListener('click', () => {
+    scrollArea.scrollBy({ top: scrollArea.clientHeight * 0.8, behavior: 'smooth' });
+  });
 
   /* Field record's max-height is set here (not in CSS) so it can match
    * .viewer-wrap's actual rendered height exactly — a pure-CSS grid-stretch
@@ -885,11 +962,15 @@ function initObjectModal() {
 
   function openModal(obj, { pushState = true } = {}) {
     fillModal(obj);
+    currentId = obj.id;
+    updateNav();
     lastFocused = document.activeElement;
     modal.hidden = false;
     document.body.classList.add('modal-open');
     panel.focus({ preventScroll: true });
+    resetScroll();
     syncFieldRecordHeight();
+    showScrollHint();
     if (pushState) history.pushState({ modal: obj.id }, '', `#${obj.id.toLowerCase()}`);
   }
 
@@ -917,6 +998,14 @@ function initObjectModal() {
   });
 
   closeBtn.addEventListener('click', () => closeModal());
+  prevBtns.forEach((b) => b.addEventListener('click', () => {
+    const o = neighbour(-1);
+    if (o) openModal(o);
+  }));
+  nextBtns.forEach((b) => b.addEventListener('click', () => {
+    const o = neighbour(1);
+    if (o) openModal(o);
+  }));
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
@@ -929,7 +1018,8 @@ function initObjectModal() {
   // Minimal focus trap while the modal is open.
   modal.addEventListener('keydown', (e) => {
     if (e.key !== 'Tab') return;
-    const focusable = modal.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+    const focusable = [...modal.querySelectorAll('a[href], button:not(:disabled), [tabindex]:not([tabindex="-1"])')]
+      .filter((el) => el.offsetParent !== null || getComputedStyle(el).position === 'fixed');
     if (!focusable.length) return;
     const first = focusable[0];
     const last = focusable[focusable.length - 1];

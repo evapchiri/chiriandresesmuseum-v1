@@ -1,7 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-  <symbol id="icon-card-search" viewBox="0 0 24 24">
-    <circle cx="10.5" cy="10.5" r="6.5"/>
-    <path d="M20 20l-4.8-4.8"/>
+  <symbol id="icon-arrow" viewBox="0 0 24 24">
+    <path d="M3 12h17M14 6l6 6-6 6"/>
+  </symbol>
+
+  <symbol id="icon-chevron" viewBox="0 0 24 24">
+    <path d="M9 5l7 7-7 7"/>
   </symbol>
 
   <symbol id="icon-linkedin" viewBox="0 0 24 24">

@@ -273,7 +273,7 @@ function cardThumbHTML(id) {
   return fs.existsSync(file) ? readFile(file) : "";
 }
 
-const CARD_SEARCH_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/icons.svg#icon-card-search"></use></svg>`;
+const CARD_CHEVRON_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/icons.svg#icon-chevron"></use></svg>`;
 
 function buildCard(obj) {
   return `<article class="card" data-decade="${obj.decade}" data-country="${obj.country}" data-continent="${obj.continent}" data-id="${obj.id}" data-name="${obj.title}">
@@ -288,7 +288,7 @@ function buildCard(obj) {
           <li>${obj.country}</li>
         </ul>
       </div>
-      <span class="card-icon">${CARD_SEARCH_ICON}</span>
+      <span class="card-icon">${CARD_CHEVRON_ICON}</span>
     </a>
   </article>`;
 }
@@ -414,23 +414,21 @@ function resolveTextureMapItems(items) {
  * item.chip (Reshaped/Patched/Recreated) mirrors the same work-type chips
  * used in the About page's Stage-by-stage "Mesh or texture polishing
  * record" table (.res-chip.is-part there too) — only set on provenance
- * entries that actually got that kind of manual post-processing work. It's
- * grouped with .note in .texture-map-detail (not with the status stamp in
- * .texture-map-head) because it explains *how* the note's disclosure
- * happened, not the property's status.
+ * entries that actually got that kind of manual post-processing work. Each
+ * cell stacks three rows: the property name (.texture-map-head), a badge
+ * row (.texture-map-badges) holding the status stamp and, where present,
+ * the work-type chip side by side, then the free-text note
+ * (.texture-map-detail).
  *
- * status: "n/a" is rendered as a bare "Not created" stamp chip on the same
- * .texture-map-head row as every other status (property name left, stamp
- * right) — there's nothing to disclose about a map that was never
- * generated, so the .texture-map-detail block (chip + note, still required
- * by the schema for internal record-keeping) is intentionally omitted. */
+ * status: "n/a" is rendered as a bare "Not created" stamp in the badge row —
+ * there's nothing to disclose about a map that was never generated, so the
+ * .texture-map-detail block (note, still required by the schema for
+ * internal record-keeping) is intentionally omitted. */
 function renderTextureMapCell(item) {
   if (item.status === "n/a") {
     return `<div class="texture-map-cell">
-      <div class="texture-map-head">
-        <span class="prop">${item.property}</span>
-        <span class="stamp na">Not created</span>
-      </div>
+      <div class="texture-map-head"><span class="prop">${item.property}</span></div>
+      <div class="texture-map-badges"><span class="stamp na">Not created</span></div>
     </div>`;
   }
   const label = STATUS_LABEL[item.status] || item.status;
@@ -438,11 +436,9 @@ function renderTextureMapCell(item) {
     ? `<span class="res-chip is-part">${item.chip}</span>`
     : "";
   return `<div class="texture-map-cell">
-      <div class="texture-map-head">
-        <span class="prop">${item.property}</span>
-        <span class="stamp ${item.status}">${label}</span>
-      </div>
-      <div class="texture-map-detail">${chip}
+      <div class="texture-map-head"><span class="prop">${item.property}</span></div>
+      <div class="texture-map-badges"><span class="stamp ${item.status}">${label}</span>${chip}</div>
+      <div class="texture-map-detail">
         <span class="note">${item.note}</span>
       </div>
     </div>`;
