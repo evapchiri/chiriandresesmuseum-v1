@@ -244,7 +244,7 @@ h3 {
 
 .landing-main {
   text-align: center;
-  padding: 40px 0 52px;
+  padding-block: 40px 52px;
 }
 
 .landing-blurb {
@@ -2212,6 +2212,12 @@ figure[data-expandable] img {
   }
   .filter-field {
     flex: 1 1 100%;
+    max-width: none;
+  }
+  .filter-reset {
+    flex: 1 1 100%;
+    text-align: left;
+    padding: 0;
   }
   .filter-field select {
     width: 100%;
